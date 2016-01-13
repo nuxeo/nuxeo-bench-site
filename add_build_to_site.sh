@@ -30,6 +30,7 @@ function copy_artifact() {
   mkdir -p $SITE_PATH/static/build/$BENCHID
   rm -rf $SITE_PATH/static/build/$BENCHID/$DBPROFILE
   cp -aLf $BUILD_PATH $SITE_PATH/static/build/$BENCHID/$DBPROFILE
+  gzip $SITE_PATH/static/build/$BENCHID/$DBPROFILE/log || true
 }
 
 function add_data() {

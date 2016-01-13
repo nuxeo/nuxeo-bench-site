@@ -20,8 +20,8 @@ function get_artifact_info() {
 }
 
 function copy_artifact() {
-  mkdir -p $SITE_PATH/static/build
-  mkdir $SITE_PATH/static/build/$BENCHID
+  mkdir -p $SITE_PATH/static/build/$BENCHID
+  rm -rf $SITE_PATH/static/build/$BENCHID/$DBPROFILE
   cp -af $BUILD_PATH $SITE_PATH/static/build/$BENCHID/$DBPROFILE
 }
 

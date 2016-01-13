@@ -45,7 +45,6 @@ EOF
 
 function rebuild_site() {
   pushd $SITE_PATH
-  git pull
   hugo --theme=hyde
   popd
 }

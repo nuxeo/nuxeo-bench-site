@@ -151,10 +151,7 @@
     <h3>Reindex repository</h3>
     <div>Elasticsearch reindexing of the entire repository.</div>
     <dl>
-      <dt>Response time in ms</dt>
-      <dd>Average: {{ (index .Site.Data.bench $data).reindex_reindexallrepository_avg }}
-      </dd>
-      <dt>Time to process asynchronous jobs</dt>
+      <dt>Time to reindex the repository in ms</dt>
       <dd>{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</dd>
       <dt>Reports</dt>
       <dd>

@@ -10,7 +10,13 @@ shift
 SITE_PATH=$1
 shift
 DATA_FILE=$BUILD_PATH/archive/reports/data.yml
-HUGO=/opt/build/tools/hugo/hugo
+
+hugo_path=$(which hugo)
+if [ -x "$hugo_path" ] ; then
+  HUGO=hugo
+else
+  HUGO=/opt/build/tools/hugo/hugo
+fi
 
 function get_artifact_info() {
   # need dbprofile, benchid, benchname
@@ -22,12 +28,12 @@ function get_artifact_info() {
 function copy_artifact() {
   mkdir -p $SITE_PATH/static/build/$BENCHID
   rm -rf $SITE_PATH/static/build/$BENCHID/$DBPROFILE
-  cp -af $BUILD_PATH $SITE_PATH/static/build/$BENCHID/$DBPROFILE
+  cp -aLf $BUILD_PATH $SITE_PATH/static/build/$BENCHID/$DBPROFILE
 }
 
 function add_data() {
   mkdir -p $SITE_PATH/data/bench
-  cp -r $DATA_FILE $SITE_PATH/data/bench/$BENCHID$DBPROFILE.yml
+  cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$DBPROFILE.yml
 }
 
 function add_content() {

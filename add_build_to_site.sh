@@ -10,7 +10,7 @@ shift
 SITE_PATH=$1
 shift
 DATA_FILE=$BUILD_PATH/archive/reports/data.yml
-
+HUGO=/opt/build/tools/hugo/hugo
 
 function get_artifact_info() {
   # need dbprofile, benchid, benchname
@@ -45,7 +45,7 @@ EOF
 
 function rebuild_site() {
   pushd $SITE_PATH
-  hugo --theme=hyde
+  $HUGO --theme=hyde
   popd
 }
 

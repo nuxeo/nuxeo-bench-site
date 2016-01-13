@@ -4,6 +4,7 @@ set -x
 cd $(dirname $0)
 # fail on any command error
 
+
 BUILD_PATH=$1
 shift
 SITE_PATH=$1
@@ -34,6 +35,11 @@ function copy_artifact() {
 function add_data() {
   mkdir -p $SITE_PATH/data/bench
   cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$DBPROFILE.yml
+  if [ -d $SITE_PATH/data_all ]; then
+    # init data directory because hugo don't want a symlink for data directory
+    cp -an $SITE_PATH/data_all/* $SITE_PATH/data/
+    cp -a $DATA_FILE $SITE_PATH/data_all/bench/$BENCHID$DBPROFILE.yml
+  fi
 }
 
 function add_content() {

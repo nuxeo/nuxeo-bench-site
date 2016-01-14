@@ -24,30 +24,32 @@ function get_artifact_info() {
   export BENCHID=`grep benchid $DATA_FILE | cut -d \: -f 2 | sed 's,[" ],,g'`
   export DBPROFILE=`grep dbprofile $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export BENCHNAME=`grep benchname $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export BUILDID=`grep build_number $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export BENCHFILE="$DBPROFILE$BENCHID"
 }
 
 function copy_artifact() {
   mkdir -p $SITE_PATH/static/build/$BENCHID
-  rm -rf $SITE_PATH/static/build/$BENCHID/$DBPROFILE
-  cp -aLf $BUILD_PATH $SITE_PATH/static/build/$BENCHID/$DBPROFILE
-  gzip $SITE_PATH/static/build/$BENCHID/$DBPROFILE/log || true
+  rm -rf $SITE_PATH/static/build/$BENCHID/$BENCHFILE
+  cp -aLf $BUILD_PATH $SITE_PATH/static/build/$BENCHID/$BENCHFILE
+  gzip $SITE_PATH/static/build/$BENCHID/$BENCHFILE/log || true
 }
 
 function add_data() {
   mkdir -p $SITE_PATH/data/bench
-  cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$DBPROFILE.yml
+  cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml
   if [ -d $SITE_PATH/data_all ]; then
     # init data directory because hugo don't want a symlink for data directory
     cp -an $SITE_PATH/data_all/* $SITE_PATH/data/
-    cp -a $DATA_FILE $SITE_PATH/data_all/bench/$BENCHID$DBPROFILE.yml
+    cp -a $DATA_FILE $SITE_PATH/data_all/bench/$BENCHID$BENCHFILE.yml
   fi
 }
 
 function add_content() {
   mkdir -p $SITE_PATH/content/bench/$BENCHID
-  cat > $SITE_PATH/content/bench/$BENCHID/$DBPROFILE.md << EOF
+  cat > $SITE_PATH/content/bench/$BENCHID/$BENCHFILE.md << EOF
 ---
-dfile: "$BENCHID$DBPROFILE"
+dfile: "$BENCHID$BENCHFILE"
 benchid: "$BENCHID"
 benchname: "$BENCHNAME"
 dbprofile: "$DBPROFILE"

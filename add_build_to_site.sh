@@ -16,7 +16,7 @@ function get_artifact_info() {
   export DBPROFILE=`grep dbprofile $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export BENCHNAME=`grep benchname $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export BUILDID=`grep build_number $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  export BENCHFILE="$DBPROFILE$BENCHID"
+  export BENCHFILE="$DBPROFILE$BUILDID"
 }
 
 function copy_artifact() {
@@ -49,10 +49,6 @@ type: bench
 EOF
 }
 
-function rebuild_site() {
-  ./update_site.sh $SITE_PATH
-}
-
 # -------------------------------------------------------
 # main
 #
@@ -60,5 +56,4 @@ get_artifact_info
 copy_artifact
 add_data
 add_content
-rebuild_site
 echo "Done"

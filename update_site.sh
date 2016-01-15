@@ -16,6 +16,10 @@ fi
 
 function rebuild_site() {
   pushd $SITE_PATH
+  if [ -d $SITE_PATH/data_src ]; then
+    # The data directory can not be symlink so we need to copy the persisted data from somewhere like data_src
+    rsync -avz --delete $SITE_PATH/data_src/ $SITE_PATH/data
+  fi
   $HUGO --theme=hyde
   popd
 }

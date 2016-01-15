@@ -29,10 +29,10 @@ function copy_artifact() {
 function add_data() {
   mkdir -p $SITE_PATH/data/bench
   cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml
-  if [ -d $SITE_PATH/data_all ]; then
-    # init data directory because hugo don't want a symlink for data directory
-    cp -an $SITE_PATH/data_all/* $SITE_PATH/data/
-    cp -a $DATA_FILE $SITE_PATH/data_all/bench/$BENCHID$BENCHFILE.yml
+  if [ -d $SITE_PATH/data_src ]; then
+    # The data directory can not be symlink so we need to copy the persisted data from somewhere like data_src
+    cp -an $SITE_PATH/data_src/* $SITE_PATH/data/
+    cp -a $DATA_FILE $SITE_PATH/data_src/bench/$BENCHID$BENCHFILE.yml
   fi
 }
 

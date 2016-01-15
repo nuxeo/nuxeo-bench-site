@@ -9,14 +9,14 @@
     <h3>{{ .Key }}</h3>
     <table>
       <thead>
-        <th>Benchmark profile</th>
-        <th>Jenkins build</th>
+        <th>Profile</th>
         <th>Import docs/s</th>
         <th>Create doc/s</th>
         <th>Navigation req/s</th>
         <th>Update doc/s</th>
-        <th>Mix usage req/s</th>
+        <th>Read/Write req/s</th>
         <th>Redindexing in ms</th>
+        <th>Build</th>
       </thead>
       {{ range .Pages }}
         {{ .Render "summary_row" }}

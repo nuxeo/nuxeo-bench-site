@@ -7,15 +7,21 @@
   <ul class="posts">
     {{ range .Data.Pages.GroupByParam "benchname" }}
     <h3>{{ .Key }}</h3>
-    <ul>
+    <table>
+      <thead>
+        <th>Benchmark profile</th>
+        <th>Jenkins build</th>
+        <th>Import docs/s</th>
+        <th>Create doc/s</th>
+        <th>Navigation req/s</th>
+        <th>Update doc/s</th>
+        <th>Mix usage req/s</th>
+        <th>Redindexing in ms</th>
+      </thead>
       {{ range .Pages }}
-      <li>
-        <a href="{{ .Permalink }}">{{ .Params.dbprofile }} {{ .Params.classifier}}</a>
-        <div class="meta">{{ .Date.Format "Mon, Jan 2,  2006" }}</div>
-      </li>
+        {{ .Render "summary_row" }}
       {{ end }}
-    </ul>
-
+    </table>
     {{ end }}
   </ul>
 </div>

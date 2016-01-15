@@ -10,6 +10,8 @@ SITE_PATH=$1
 shift
 DATA_FILE=$BUILD_PATH/archive/reports/data.yml
 
+[ -r $DATA_FILE ]
+
 function get_artifact_info() {
   # need dbprofile, benchid, benchname
   export BENCHID=`grep benchid $DATA_FILE | cut -d \: -f 2 | sed 's,[" ],,g'`
@@ -21,18 +23,19 @@ function get_artifact_info() {
 
 function copy_artifact() {
   mkdir -p $SITE_PATH/static/build/$BENCHID
-  rm -rf $SITE_PATH/static/build/$BENCHID/$BENCHFILE
-  cp -aLf $BUILD_PATH $SITE_PATH/static/build/$BENCHID/$BENCHFILE
+  rsync -avz --delete $BUILD_PATH/ $SITE_PATH/static/build/$BENCHID/$BENCHFILE
   gzip $SITE_PATH/static/build/$BENCHID/$BENCHFILE/log || true
 }
 
 function add_data() {
-  mkdir -p $SITE_PATH/data/bench
-  cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml
   if [ -d $SITE_PATH/data_src ]; then
     # The data directory can not be symlink so we need to copy the persisted data from somewhere like data_src
-    cp -an $SITE_PATH/data_src/* $SITE_PATH/data/
+    mkdir -p $SITE_PATH/data_src/data/bench
     cp -a $DATA_FILE $SITE_PATH/data_src/bench/$BENCHID$BENCHFILE.yml
+    rsync -avz --delete $SITE_PATH/data_src/ $SITE_PATH/data
+  else
+    mkdir -p $SITE_PATH/data/bench
+    cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml
   fi
 }
 

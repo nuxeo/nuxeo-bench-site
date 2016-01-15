@@ -14,10 +14,8 @@
       <dd>{{ (index .Site.Data.bench $data).benchid }}</dd>
       <dt>Bench Name</dt>
       <dd>{{ (index .Site.Data.bench $data).benchname }}</dd>
-      <dt>CI Build number</dt>
-      <dd>{{ (index .Site.Data.bench $data).build_number }}</dd>
-      <dt>CI Build URL</dt>
-      <dd><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_url }}</a></dd>
+      <dt>CI Build</dt>
+      <dd><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a></dd>
       <dt>Number of Nuxeo nodes:</dt>
       <dd>{{ (index .Site.Data.bench $data).nuxeonodes }}</dd>
     </dl>

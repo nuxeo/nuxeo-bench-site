@@ -1,3 +1,4 @@
+{{ $data := .Params.dfile }}
 <tr>
   <th>{{ (index .Site.Data.bench $data).dbprofile }}{{ (index .Site.Data.bench $data).classifier }}</th>
   <td><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a></td>

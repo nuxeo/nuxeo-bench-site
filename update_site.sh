@@ -15,7 +15,6 @@ else
 fi
 
 function rebuild_site() {
-  git pull
   pushd $SITE_PATH
   $HUGO --theme=hyde
   popd

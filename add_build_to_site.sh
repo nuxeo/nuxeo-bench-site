@@ -3,21 +3,12 @@ set -x
 # This script add a CI build artifact of a bench to the bench reference site
 cd $(dirname $0)
 # fail on any command error
-
-
+set -e
 BUILD_PATH=$1
 shift
 SITE_PATH=$1
 shift
 DATA_FILE=$BUILD_PATH/archive/reports/data.yml
-set -e
-
-hugo_path=$(which hugo) || true
-if [ -x "$hugo_path" ] ; then
-  HUGO=hugo
-else
-  HUGO=/opt/build/tools/hugo/hugo
-fi
 
 function get_artifact_info() {
   # need dbprofile, benchid, benchname
@@ -59,9 +50,7 @@ EOF
 }
 
 function rebuild_site() {
-  pushd $SITE_PATH
-  $HUGO --theme=hyde
-  popd
+  ./update_site.sh $SITE_PATH
 }
 
 # -------------------------------------------------------

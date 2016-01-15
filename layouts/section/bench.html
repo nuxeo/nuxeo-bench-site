@@ -5,12 +5,12 @@
 
 <div class="content container">
   <ul class="posts">
-    {{ range .Data.Pages.GroupByParam "benchid" }}
+    {{ range .Data.Pages.GroupByParam "benchname" }}
     <h3>{{ .Key }}</h3>
     <ul>
       {{ range .Pages }}
       <li>
-        <a href="{{ .Permalink }}">{{ .Params.dbprofile }}</a>
+        <a href="{{ .Permalink }}">{{ .Params.dbprofile }} {{ .Params.classifier}}</a>
         <div class="meta">{{ .Date.Format "Mon, Jan 2,  2006" }}</div>
       </li>
       {{ end }}

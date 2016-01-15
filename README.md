@@ -6,10 +6,13 @@ There are 2 jobs that run on master:
 - http://qa.nuxeo.org/jenkins/job/nuxeo-reference-site-add/ to add a new bench to the site
 - http://qa.nuxeo.org/jenkins/job/nuxeo-reference-site/ to update the site
 
-The git repo don't contain any data, the data must be persisted, for instance the following symlink must be set on
-/jenkins/.jenkins/jobs/nuxeo-reference-site/workspace and
-/jenkins/.jenkins/jobs/nuxeo-reference-site-add/workspace:
+The first job trigger the second.
 
-data_all -> /opt/build/bench-reference-site-data/data
-public -> /opt/build/bench-reference-site-data/public
-static -> /opt/build/bench-reference-site-data/static
+The git repo don't contain any data. 
+The data and the generated site are located:
+/opt/build/bench-reference-site-data
+ 
+To work the nuxeo-reference-site must have 2 symlink mapped to the data dir:
+/jenkins/.jenkins/jobs/nuxeo-reference-site/workspace/static -> /opt/build/bench-reference-site-data/static
+/jenkins/.jenkins/jobs/nuxeo-reference-site/workspace/public -> /opt/build/bench-reference-site-data/public
+

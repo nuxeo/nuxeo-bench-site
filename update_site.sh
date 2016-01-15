@@ -3,7 +3,7 @@
 cd $(dirname $0)
 # fail on any command error
 set -e
-
+set -x
 SITE_PATH=$1
 shift
 
@@ -15,13 +15,12 @@ else
 fi
 
 function rebuild_site() {
-  pushd $SITE_PATH
-  if [ -d $SITE_PATH/data_src ]; then
-    # The data directory can not be symlink so we need to copy the persisted data from somewhere like data_src
-    rsync -avz --delete $SITE_PATH/data_src/ $SITE_PATH/data
-  fi
+  # The data and content directories can not be symlink so
+  # we need to copy the data first
+  rsync -avz --delete $SITE_PATH/data/ ./data
+  rsync -avz --delete $SITE_PATH/content/ ./content
   $HUGO --theme=hyde
-  popd
+  # the localt ./static and ./public are symlink to SITE_PATH/static & public
 }
 
 # -------------------------------------------------------

@@ -30,7 +30,7 @@ function copy_artifact() {
 function add_data() {
   if [ -d $SITE_PATH/data_src ]; then
     # The data directory can not be symlink so we need to copy the persisted data from somewhere like data_src
-    mkdir -p $SITE_PATH/data_src/data/bench
+    mkdir -p $SITE_PATH/data_src/bench
     cp -a $DATA_FILE $SITE_PATH/data_src/bench/$BENCHID$BENCHFILE.yml
     rsync -avz --delete $SITE_PATH/data_src/ $SITE_PATH/data
   else

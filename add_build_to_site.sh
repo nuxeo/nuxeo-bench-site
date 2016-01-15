@@ -23,20 +23,13 @@ function get_artifact_info() {
 
 function copy_artifact() {
   mkdir -p $SITE_PATH/static/build/$BENCHID
-  rsync -avz --delete $BUILD_PATH/ $SITE_PATH/static/build/$BENCHID/$BENCHFILE
+  rsync -ahz --delete $BUILD_PATH/ $SITE_PATH/static/build/$BENCHID/$BENCHFILE
   gzip $SITE_PATH/static/build/$BENCHID/$BENCHFILE/log || true
 }
 
 function add_data() {
-  if [ -d $SITE_PATH/data_src ]; then
-    # The data directory can not be symlink so we need to copy the persisted data from somewhere like data_src
-    mkdir -p $SITE_PATH/data_src/bench
-    cp -a $DATA_FILE $SITE_PATH/data_src/bench/$BENCHID$BENCHFILE.yml
-    rsync -avz --delete $SITE_PATH/data_src/ $SITE_PATH/data
-  else
-    mkdir -p $SITE_PATH/data/bench
-    cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml
-  fi
+  mkdir -p $SITE_PATH/data/bench
+  cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml
 }
 
 function add_content() {

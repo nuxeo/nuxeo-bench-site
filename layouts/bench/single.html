@@ -47,6 +47,8 @@
         p50: {{ (index .Site.Data.bench $data).create_p50 }}<br>
         p95: {{ (index .Site.Data.bench $data).create_p95 }}
       </dd>
+      <dt>Percent of error</dt>
+      <dd>{{ (index .Site.Data.bench $data).create_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).create_user }}</dd>
       <dt>Reports</dt>
@@ -66,6 +68,8 @@
       p50: {{ (index .Site.Data.bench $data).nav_p50 }}<br>
       p95: {{ (index .Site.Data.bench $data).nav_p95 }}
       </dd>
+      <dt>Percent of error</dt>
+      <dd>{{ (index .Site.Data.bench $data).nav_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).nav_user }}</dd>
       <dt>Reports</dt>
@@ -88,6 +92,8 @@
       </dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).navjsf_user }}</dd>
+      <dt>Percent of error</dt>
+      <dd>{{ (index .Site.Data.bench $data).navjsf_percentError }}</dd>
       <dt>Reports</dt>
       <dd>
         <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">overview and monitoring</a>,
@@ -108,6 +114,8 @@
       </dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).update_user }}</dd>
+      <dt>Percent of error</dt>
+      <dd>{{ (index .Site.Data.bench $data).update_percentError }}</dd>
       <dt>Reports</dt>
       <dd>
         <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/">overview and monitoring</a>,
@@ -128,6 +136,8 @@
       </dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).crud_user }}</dd>
+      <dt>Percent of error</dt>
+      <dd>{{ (index .Site.Data.bench $data).crud_percentError }}</dd>
       <dt>Reports</dt>
       <dd>
         <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/">overview and monitoring</a>,
@@ -146,6 +156,8 @@
         p50: {{ (index .Site.Data.bench $data).bench_p50 }}<br>
         p95: {{ (index .Site.Data.bench $data).bench_p95 }}
       </dd>
+      <dt>Percent of error</dt>
+      <dd>{{ (index .Site.Data.bench $data).bench_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).bench_user }}</dd>
       <dt>Reports</dt>

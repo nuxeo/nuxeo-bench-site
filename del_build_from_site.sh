@@ -19,14 +19,13 @@ function search_build() {
   export DBPROFILE=`grep dbprofile $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export BENCHNAME=`grep benchname $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export BENCHID=`grep benchid $DATA_FILE | cut -d \: -f 2 | sed 's,[" ],,g'`
-  export BENCHFILE="$DBPROFILE$BUILDID"
+  export BENCHFILE="$DBPROFILE$BUILD_ID"
   echo "## Found build_number $BUILD_ID: $DBPROFILE - $BENCHID - $BENCHNAME"
 }
 
 function del_build() {
   rm -rf $SITE_PATH/static/build/$BENCHID/$BENCHFILE
   rm -f $SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml || true
-  rm -f $SITE_PATH/data_src/bench/$BENCHID$BENCHFILE.yml || true
   rm -f $SITE_PATH/content/bench/$BENCHID/$BENCHFILE.md
 }
 

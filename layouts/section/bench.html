@@ -18,7 +18,7 @@
         <th>Re-indexing in ms</th>
         <th>Build</th>
       </thead>
-      {{ range .Pages }}
+      {{ range .Pages.ByTitle }}
         {{ .Render "summary_row" }}
       {{ end }}
     </table>

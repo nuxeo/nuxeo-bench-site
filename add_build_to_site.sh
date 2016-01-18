@@ -37,6 +37,7 @@ function add_content() {
   mkdir -p $SITE_PATH/content/bench/$BENCHID
   cat > $SITE_PATH/content/bench/$BENCHID/$BENCHFILE.md << EOF
 ---
+title: "$DBPROFILE $BUILDID"
 dfile: "$BENCHID$BENCHFILE"
 benchid: "$BENCHID"
 benchname: "$BENCHNAME"

@@ -18,7 +18,7 @@ function rebuild_site() {
   # The data and content directories can not be symlink so
   # we need to copy the data first
   rsync -avz --delete $SITE_PATH/data/ ./data
-  rsync -avz --delete $SITE_PATH/content/ ./content
+  rsync -avz --delete $SITE_PATH/content/bench/ ./content/bench
   $HUGO --theme=hyde
   # the localt ./static and ./public are symlink to SITE_PATH/static & public
 }

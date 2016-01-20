@@ -32,6 +32,7 @@ All of this nodes are setup according to our recommandation.
 The bench is driven by continuous integration jobs (Jenkins).
 
 Here is a list of tools used to perform the benchmark:
+
 - Ansible: to start and setup nodes.
 - Gatling: to generate load.
 - Home made open source tool to expose Gatling results.

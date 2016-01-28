@@ -1,11 +1,16 @@
 {{ $data := .Params.dfile }}
 <tr>
-  <th><a href="{{ .Permalink }}">{{ (index .Site.Data.bench $data).dbprofile }} {{ (index .Site.Data.bench $data).classifier }}</a></th>
+  <th nowrap><a
+    href="{{ .Permalink }}">{{ (index .Site.Data.bench $data).dbprofile }} {{ (index .Site.Data.bench $data).classifier }}</a>
+  </th>
   <td>{{ (index .Site.Data.bench $data).import_dps }}</td>
   <td>{{ (index .Site.Data.bench $data).create_rps }}</td>
+  <td nowrap>{{ (index .Site.Data.bench $data).create_avg }} (+/- {{ (index .Site.Data.bench $data).create_std }})</td>
   <td>{{ (index .Site.Data.bench $data).nav_rps }}</td>
+  <td nowrap>{{ (index .Site.Data.bench $data).nav_avg }} (+/- {{ (index .Site.Data.bench $data).nav_std }})</td>
   <td>{{ (index .Site.Data.bench $data).update_rps }}</td>
-  <td>{{ (index .Site.Data.bench $data).bench_rps }}</td>
+  <td>{{ (index .Site.Data.bench $data).crud_rps }}</td>
   <td>{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</td>
-  <td><a target="_blank" href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a></td>
+  <td><a target="_blank"
+    href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a></td>
 </tr>

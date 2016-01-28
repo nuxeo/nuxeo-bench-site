@@ -5,25 +5,33 @@
 
 <div class="content container">
   <ul class="posts">
-    {{ range .Data.Pages.GroupByParam "benchname" }}
+    {{ range (.Data.Pages.GroupByParam "benchname").Reverse }}
     <h3>{{ .Key }}</h3>
     <table>
       <thead>
-        <th>Profile</th>
-        <th>Import docs/s</th>
-        <th>Create doc/s</th>
-        <th>Navigation req/s</th>
-        <th>Update doc/s</th>
-        <th>Read/Write req/s</th>
-        <th>Re-indexing in ms</th>
-        <th>Build</th>
+      <th>Profile</th>
+      <th class="rotate"><div><span>Import rps</span></div></th>
+      <th class="rotate"><div><span>Create rps</span></div></th>
+      <th class="rotate"><div><span>Create avg</span></div></th>
+      <th class="rotate"><div><span>Navigation rps</span></div></th>
+      <th class="rotate"><div><span>Navigation avg</span></div></th>
+      <th class="rotate"><div><span>Update rps</span></div></th>
+      <th class="rotate"><div><span>CRUD rps</span></div></th>
+      <th class="rotate"><div><span>Re-indexing in ms</span></div></th>
+      <th class="rotate"><div><span>Build</span></div></th>
       </thead>
       {{ range .Pages.ByTitle }}
-        {{ .Render "summary_row" }}
+      {{ .Render "summary_row" }}
       {{ end }}
     </table>
     {{ end }}
   </ul>
+  <dl>
+    <dt>rps</dt>
+    <dd>Requests per second or documents created per second</dd>
+    <dt>avg<dt>
+    <dd>Average response time in milli seconds with standard deviation</dd>
+  </dl>
 </div>
 </body>
 </html>

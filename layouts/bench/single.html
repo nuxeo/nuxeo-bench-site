@@ -16,8 +16,11 @@
       <dd>{{ (index .Site.Data.bench $data).benchname }}</dd>
       <dt>Classifier</dt>
       <dd>{{ (index .Site.Data.bench $data).classifier }}</dd>
+      <dt>Backend</dt>
+      <dd>{{ (index .Site.Data.bench $data).dbprofile }}</dd>
       <dt>CI Build</dt>
-      <dd><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a></dd>
+      <dd><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a>
+      </dd>
       <dt>Number of Nuxeo nodes</dt>
       <dd>{{ (index .Site.Data.bench $data).nuxeonodes }}</dd>
     </dl>
@@ -34,12 +37,15 @@
       <dd>{{ (index .Site.Data.bench $data).import_waitforasyncjobs_avg }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/overview/">overview and monitoring</a>,
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/detail/">detail</a></dd>
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/overview/">overview and monitoring</a>,
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/detail/">detail</a>
+      </dd>
     </dl>
 
     <h3>Create document using REST</h3>
-    <div>This simulation creates new documents (without attachement) on top on the existing instance</div>
+    <div>This simulation creates new documents (without attachement) on top of an existing instance</div>
     <dl>
       <dt>Documents created per second</dt>
       <dd>{{ (index .Site.Data.bench $data).create_rps }}</dd>
@@ -55,8 +61,11 @@
       <dd>{{ (index .Site.Data.bench $data).create_user }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/overview/">overview and monitoring</a>,
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/detail/">detail</a></dd>
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/overview/">overview and monitoring</a>,
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/detail/">detail</a>
+      </dd>
     </dl>
 
     <h3>Navigation using REST</h3>
@@ -66,9 +75,9 @@
       <dd>{{ (index .Site.Data.bench $data).nav_rps }}</dd>
       <dt>Response time in ms</dt>
       <dd>Average: {{ (index .Site.Data.bench $data).nav_avg }} (+/- {{ (index .Site.Data.bench $data).nav_std }})<br>
-      min: {{ (index .Site.Data.bench $data).nav_min }}<br>
-      p50: {{ (index .Site.Data.bench $data).nav_p50 }}<br>
-      p95: {{ (index .Site.Data.bench $data).nav_p95 }}
+        min: {{ (index .Site.Data.bench $data).nav_min }}<br>
+        p50: {{ (index .Site.Data.bench $data).nav_p50 }}<br>
+        p95: {{ (index .Site.Data.bench $data).nav_p95 }}
       </dd>
       <dt>Percent of error</dt>
       <dd>{{ (index .Site.Data.bench $data).nav_percentError }}</dd>
@@ -76,8 +85,10 @@
       <dd>{{ (index .Site.Data.bench $data).nav_user }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/overview/">overview and monitoring</a>,
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/detail/">detail</a>
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/overview/">overview and monitoring</a>,
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/detail/">detail</a>
       </dd>
     </dl>
 
@@ -98,8 +109,10 @@
       <dd>{{ (index .Site.Data.bench $data).navjsf_percentError }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">overview and monitoring</a>,
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/">detail</a>
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">overview and monitoring</a>,
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/">detail</a>
       </dd>
     </dl>
 
@@ -120,8 +133,10 @@
       <dd>{{ (index .Site.Data.bench $data).update_percentError }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/">overview and monitoring</a>,
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/detail/">detail</a>
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/">overview and monitoring</a>,
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/detail/">detail</a>
       </dd>
     </dl>
 
@@ -142,8 +157,10 @@
       <dd>{{ (index .Site.Data.bench $data).crud_percentError }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/">overview and monitoring</a>,
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/detail/">detail</a>
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/">overview and monitoring</a>,
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/detail/">detail</a>
       </dd>
     </dl>
 
@@ -164,8 +181,10 @@
       <dd>{{ (index .Site.Data.bench $data).bench_user }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/overview/">overview and monitoring</a>,
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/detail/">detail</a>
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/overview/">overview and monitoring</a>,
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/detail/">detail</a>
       </dd>
     </dl>
 
@@ -176,8 +195,10 @@
       <dd>{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/">overview and monitoring</a>,
-        <a href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/detail/">detail</a>
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/">overview and monitoring</a>,
+        <a
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/detail/">detail</a>
       </dd>
     </dl>
 

@@ -255,6 +255,10 @@ table.result td {
   text-align: right;
 }
 
+table.result th {
+  text-align: left;
+}
+
 .build, .time, .avg, .stddev, .rps, .dps  {
   display: inline-block;
   white-space: nowrap;
@@ -309,4 +313,8 @@ table.result td {
 
 .build:before {
   content:'#'
+}
+
+.classifier {
+  font-size: 0.7em;
 }

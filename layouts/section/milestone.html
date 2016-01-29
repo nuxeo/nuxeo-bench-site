@@ -4,7 +4,8 @@
 {{ partial "sidebar.html" . }}
 
 <div class="content container">
-  <h1>Benchmarks results</h1>
+  <h1>Milestone Benchmarks results</h1>
+  <div>Here are the Benchmarks results for the main Nuxeo releases</div>
   <ul class="posts">
     {{ range (.Data.Pages.GroupByParam "benchname").Reverse }}
     <h3>{{ .Key }}</h3>
@@ -35,7 +36,7 @@
       </thead>
       <tbody>
       {{ range .Pages.ByTitle }}
-      {{ .Render "summary_row" }}
+        {{ .Render "summary_row" }}
       {{ end }}
       </tbody>
     </table>

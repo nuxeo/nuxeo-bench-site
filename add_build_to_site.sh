@@ -4,13 +4,14 @@ set -x
 cd $(dirname $0)
 # defaults
 HERE=`readlink -e .`
+CATEGORY="continuous"
 # fail on any command error
 set -e
 
 
 function help {
   echo "Usage: $0 BUILD_PATH SITE_PATH"
-  echo "  -m      : Add the build as a milestone build"
+  echo "  -c category : like milestone, continuous, misc (default to continous)"
   exit 0
 }
 
@@ -37,13 +38,8 @@ function add_data() {
 }
 
 function add_content() {
-  mkdir -p $SITE_PATH/content/bench/$BENCHID
-  if [ -z "$MILESTONE" ]; then
-    MILESTONE="null"
-  else
-    MILESTONE="\"$BENCHNAME\""
-  fi
-  cat > $SITE_PATH/content/bench/$BENCHID/$BENCHFILE.md << EOF
+  mkdir -p $SITE_PATH/content/$CATEGORY/$BENCHID
+  cat > $SITE_PATH/content/$CATEGORY/$BENCHID/$BENCHFILE.md << EOF
 ---
 title: "$DBPROFILE $BUILDID"
 dfile: "$BENCHID$BENCHFILE"
@@ -52,7 +48,6 @@ benchname: "$BENCHNAME"
 dbprofile: "$DBPROFILE"
 date: $BENCHDATE
 type: bench
-milestone: $MILESTONE
 ---
 EOF
 }
@@ -60,15 +55,14 @@ EOF
 # -------------------------------------------------------
 # main
 #
-while getopts "mh" opt; do
+while getopts "c:h" opt; do
     case $opt in
         h)
             help
             ;;
-        m)
-            MILESTONE=true
+        c)
+            CATEGORY=$OPTARG
             ;;
-        :  ) echo "Missing option argument for -$OPTARG" >&2; exit 1;;
         ?)
             echo "Invalid option: -$OPTARG" >&2
             exit 1

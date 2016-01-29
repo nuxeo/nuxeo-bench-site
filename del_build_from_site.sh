@@ -2,12 +2,15 @@
 set -x
 # This remove a bench from the reference site
 cd $(dirname $0)
+# defaults
+HERE=`readlink -e .`
 # fail on any command error
 set -e
-SITE_PATH=$1
-shift
-BUILD_ID=$1
-shift
+
+function help {
+  echo "Usage: $0 SITE_PATH BUILD_NUMBER"
+  exit 0
+}
 
 function search_build() {
   DATA_FILE=`grep -l "build_number: ${BUILD_ID}$" $SITE_PATH/data/bench/*.yml`
@@ -26,12 +29,29 @@ function search_build() {
 function del_build() {
   rm -rf $SITE_PATH/static/build/$BENCHID/$BENCHFILE
   rm -f $SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml || true
-  rm -f $SITE_PATH/content/bench/$BENCHID/$BENCHFILE.md
+  rm -f $SITE_PATH/content/*/$BENCHID/$BENCHFILE.md
 }
 
 # -------------------------------------------------------
 # main
 #
+while getopts "h" opt; do
+    case $opt in
+        h)
+            help
+            ;;
+        ?)
+            echo "Invalid option: -$OPTARG" >&2
+            exit 1
+            ;;
+    esac
+done
+shift $(($OPTIND - 1))
+SITE_PATH=$1
+shift
+BUILD_ID=$1
+shift
+
 search_build
 del_build
 echo "Done"

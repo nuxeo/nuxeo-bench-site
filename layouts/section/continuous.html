@@ -1,0 +1,47 @@
+{{ partial "head.html" . }}
+<body class="{{ .Site.Params.themeColor }}">
+
+{{ partial "sidebar.html" . }}
+
+<div class="content container">
+  <h1>Continous Benchmarks Results</h1>
+  <div>By default all Continuous Integration Benchmark resutls go here.</div>
+  <ul class="posts">
+    {{ range (.Data.Pages.GroupByParam "benchname").Reverse }}
+    <h3>{{ .Key }}</h3>
+    <table class="result">
+      <thead>
+      <th>Profile</th>
+      <th>
+        <div><span>Import</span></div>
+      </th>
+      <th>
+        <div><span>Create</span></div>
+      </th>
+      <th>
+        <div><span>Navigation</span></div>
+      </th>
+      <th>
+        <div><span>Update</span></div>
+      </th>
+      <th>
+        <div><span>CRUD</span></div>
+      </th>
+      <th>
+        <div><span>Reindexing</span></div>
+      </th>
+      <th>
+        <div><span>Build</span></div>
+      </th>
+      </thead>
+      <tbody>
+      {{ range .Pages.ByTitle }}
+        {{ .Render "summary_row" }}
+      {{ end }}
+      </tbody>
+    </table>
+    {{ end }}
+  </ul>
+</div>
+</body>
+</html>

@@ -2,15 +2,18 @@
 set -x
 # This script add a CI build artifact of a bench to the bench reference site
 cd $(dirname $0)
+# defaults
+HERE=`readlink -e .`
 # fail on any command error
 set -e
-BUILD_PATH=$1
-shift
-SITE_PATH=$1
-shift
-DATA_FILE=$BUILD_PATH/archive/reports/data.yml
 
-[ -r $DATA_FILE ]
+
+function help {
+  echo "Usage: $0 BUILD_PATH SITE_PATH"
+  echo "  -m      : Add the build as a milestone build"
+  exit 0
+}
+
 
 function get_artifact_info() {
   # need dbprofile, benchid, benchname
@@ -35,6 +38,11 @@ function add_data() {
 
 function add_content() {
   mkdir -p $SITE_PATH/content/bench/$BENCHID
+  if [ -z "$MILESTONE" ]; then
+    MILESTONE="null"
+  else
+    MILESTONE="\"$BENCHNAME\""
+  fi
   cat > $SITE_PATH/content/bench/$BENCHID/$BENCHFILE.md << EOF
 ---
 title: "$DBPROFILE $BUILDID"
@@ -44,6 +52,7 @@ benchname: "$BENCHNAME"
 dbprofile: "$DBPROFILE"
 date: $BENCHDATE
 type: bench
+milestone: $MILESTONE
 ---
 EOF
 }
@@ -51,6 +60,30 @@ EOF
 # -------------------------------------------------------
 # main
 #
+while getopts "mh" opt; do
+    case $opt in
+        h)
+            help
+            ;;
+        m)
+            MILESTONE=true
+            ;;
+        :  ) echo "Missing option argument for -$OPTARG" >&2; exit 1;;
+        ?)
+            echo "Invalid option: -$OPTARG" >&2
+            exit 1
+            ;;
+    esac
+done
+shift $(($OPTIND - 1))
+BUILD_PATH=$1
+shift
+SITE_PATH=$1
+shift
+DATA_FILE=$BUILD_PATH/archive/reports/data.yml
+[ -r $DATA_FILE ]
+
+
 get_artifact_info
 copy_artifact
 add_data

@@ -62,7 +62,8 @@ Databases uses a `c4.2xlarge`, Elasticache uses a `cache.m3.large`, all other no
     - 6.05 Gib Memory
 
 
-Running a benchmark with the default setting requires requires 8 machines
+Running a benchmark with the default setting requires requires 8 machines:
+
 - 3 nodes for Elasticsearch
 - 2 nodes for Nuxeo
 - 1 node for the database/MongoDB

@@ -23,6 +23,7 @@ function get_artifact_info() {
   export BENCHNAME=`grep benchname $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export BUILDID=`grep build_number $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export BENCHDATE=`grep import_date $DATA_FILE | cut -d \: -f 2- | sed 's,",,g;s,^ *,,g;s,\ ,T,g'`
+  export NUXEONODES=`grep nuxeonodes $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export BENCHFILE="$DBPROFILE$BUILDID"
 }
 
@@ -41,7 +42,7 @@ function add_content() {
   mkdir -p $SITE_PATH/content/$CATEGORY/$BENCHID
   cat > $SITE_PATH/content/$CATEGORY/$BENCHID/$BENCHFILE.md << EOF
 ---
-title: "$DBPROFILE $BUILDID"
+title: "$DBPROFILE $NUXEONODES $BUILDID"
 dfile: "$BENCHID$BENCHFILE"
 benchid: "$BENCHID"
 benchname: "$BENCHNAME"

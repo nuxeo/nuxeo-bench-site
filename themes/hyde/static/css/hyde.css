@@ -250,23 +250,63 @@ a.sidebar-nav-item:focus {
 }
 
 /* customization */
-th.rotate {
-  /* Something you can count on */
-  height: 140px;
+table.result td {
+  vertical-align: top;
+  text-align: right;
+}
+
+.build, .time, .avg, .stddev, .rps, .dps  {
+  display: inline-block;
   white-space: nowrap;
-  border: none;
+  font-family: 'Verdana';
 }
 
-th.rotate > div {
-  transform:
-    /* Magic Numbers */
-    translate(25px, 51px)
-    /* 45 is really 360 - 45 */
-    rotate(315deg);
-  width: 30px;
+.time {
+  color: #63613e;
 }
 
-th.rotate > div > span {
-  border-bottom: 1px solid #ccc;
-  padding: 5px 10px;
+.rps, .dps {
+  color: #79533d;
+}
+
+.avg, .rps, .dps {
+  font-weight: bold;
+}
+
+.build, .avg, .stddev {
+  font-size: 0.7em;
+}
+
+.avg:after {
+  content:' ms';
+  font-weight: normal;
+}
+
+.stddev {
+  font-weight: normal;
+  font-size: 0.5em;
+}
+
+.stddev:before {
+  content: " (+/-"
+}
+
+.stddev:after {
+  content: ")"
+}
+
+.rps:after {
+  content:' req/s';
+  font-weight: normal;
+  font-size: 0.5em;
+}
+
+.dps:after {
+  content:' docs/s';
+  font-weight: normal;
+  font-size: 0.5em;
+}
+
+.build:before {
+  content:'#'
 }

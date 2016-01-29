@@ -3,14 +3,40 @@
   <th nowrap><a
     href="{{ .Permalink }}">{{ (index .Site.Data.bench $data).dbprofile }} {{ (index .Site.Data.bench $data).classifier }}</a>
   </th>
-  <td>{{ (index .Site.Data.bench $data).import_dps }}</td>
-  <td>{{ (index .Site.Data.bench $data).create_rps }}</td>
-  <td nowrap>{{ (index .Site.Data.bench $data).create_avg }} (+/- {{ (index .Site.Data.bench $data).create_std }})</td>
-  <td>{{ (index .Site.Data.bench $data).nav_rps }}</td>
-  <td nowrap>{{ (index .Site.Data.bench $data).nav_avg }} (+/- {{ (index .Site.Data.bench $data).nav_std }})</td>
-  <td>{{ (index .Site.Data.bench $data).update_rps }}</td>
-  <td>{{ (index .Site.Data.bench $data).crud_rps }}</td>
-  <td>{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</td>
-  <td><a target="_blank"
-    href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a></td>
+  <td>
+    <div class="dps">{{ (index .Site.Data.bench $data).import_dps }}</div>
+  </td>
+  <td>
+    <div class="dps">{{ (index .Site.Data.bench $data).create_rps }}</div>
+    <div class="time">
+      <span class="avg">{{ (index .Site.Data.bench $data).create_avg }}</span>
+      <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span>
+    </div>
+  </td>
+  <td>
+    <div class="rps">{{ (index .Site.Data.bench $data).nav_rps }}</div>
+    <div class="time">
+      <span class="avg">{{ (index .Site.Data.bench $data).nav_avg }}</span>
+      <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span>
+    </div>
+  </td>
+  <td>
+    <div class="rps">{{ (index .Site.Data.bench $data).update_rps }}</div>
+    <div class="time">
+      <span class="avg">{{ (index .Site.Data.bench $data).update_avg }}</span>
+      <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span>
+    </div>
+  </td>
+  <td>
+    <div class="rps">{{ (index .Site.Data.bench $data).crud_rps }}</div>
+    <div class="time">
+      <span class="avg">{{ (index .Site.Data.bench $data).crud_avg }}</span>
+      <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span>
+    </div>
+  </td>
+  <td>
+    <div class="time"><span class="avg">{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</span></div>
+  </td>
+  <td><div class="build"><a target="_blank"
+    href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a></div></td>
 </tr>

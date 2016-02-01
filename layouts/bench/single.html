@@ -29,6 +29,8 @@
     <h3>Mass import</h3>
     <div>This simulation uses the nuxeo-importer on an empty instance.</div>
     <dl>
+      <dt>Documents imported</dt>
+      <dd>{{ (index .Site.Data.bench $data).import_docs }}</dd>
       <dt>Documents created per second</dt>
       <dd>{{ (index .Site.Data.bench $data).import_dps }}</dd>
       <dt>Time of import in ms</dt>
@@ -191,6 +193,10 @@
     <h3>Reindex repository</h3>
     <div>Elasticsearch reindexing of the entire repository.</div>
     <dl>
+      <dt>Documents reindexed</dt>
+      <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
+      <dt>Documents per second</dt>
+      <dd>{{ (index .Site.Data.bench $data).reindex_dps }}</dd>
       <dt>Time to reindex the repository in ms</dt>
       <dd>{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</dd>
       <dt>Reports</dt>

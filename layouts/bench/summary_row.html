@@ -35,7 +35,7 @@
     </div>
   </td>
   <td>
-    <div class="time"><span class="avg">{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</span></div>
+    <div class="rps">{{ (index .Site.Data.bench $data).reindex_dps }}</div>
   </td>
   <td><div class="build"><a target="_blank"
     href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a></div></td>

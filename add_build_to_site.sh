@@ -12,6 +12,7 @@ set -e
 function help {
   echo "Usage: $0 BUILD_PATH SITE_PATH"
   echo "  -c category : like milestone, continuous, misc (default to continous)"
+  echo "  -u          : only update data file stats"
   exit 0
 }
 
@@ -38,6 +39,25 @@ function add_data() {
   cp -a $DATA_FILE $SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml
 }
 
+function update_data() {
+  # parse info to extract more stats if not alreaddy present
+  # Extract the mass import document stats
+  import_dps=`tail -n1 $BUILD_PATH/archive/logs/*/perf*.csv | cut -d \; -f3 | LC_ALL=C xargs printf "%.1f"`
+  import_docs=`tail -n1 $BUILD_PATH/archive/logs/*/perf*.csv |  cut -d \; -f2 | LC_ALL=C xargs printf "%.0f"`
+  # Extract reindex stats
+  reindex_docs=`grep 'ScrollingIndexingWorker.*has submited ' $BUILD_PATH/archive/logs/*/server.log | sed -e 's,^.*submited.,,g;s,.documents.*$,,g' `
+  reindex_ms=`grep reindex_waitforasync_avg $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  reindex_dps=`awk "BEGIN {printf \"%.1f\", $reindex_docs/($reindex_ms / 1000)}"`
+
+  # update target data file
+  data_file=$SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml
+  grep -q '^import_dps:' $data_file && sed -i "s/^import_dps\:.*/import_dps\: $import_dps/" $data_file || echo "import_dps: $import_dps" >> $data_file
+  grep -q '^import_docs:' $data_file && sed -i "s/^import_docs\:.*/import_docs\: $import_docs/" $data_file || echo "import_docs: $import_docs" >> $data_file
+  grep -q '^reindex_docs:' $data_file && sed -i "s/^reindex_docs\:.*/reindex_docs\: $reindex_docs/" $data_file || echo "reindex_docs: $reindex_docs" >> $data_file
+  grep -q '^reindex_dps:' $data_file && sed -i "s/^reindex_dps\:.*/reindex_dps\: $reindex_dps/" $data_file || echo "reindex_dps: $reindex_dps" >> $data_file
+}
+
+
 function add_content() {
   mkdir -p $SITE_PATH/content/$CATEGORY/$BENCHID
   cat > $SITE_PATH/content/$CATEGORY/$BENCHID/$BENCHFILE.md << EOF
@@ -56,13 +76,16 @@ EOF
 # -------------------------------------------------------
 # main
 #
-while getopts "c:h" opt; do
+while getopts "c:hu" opt; do
     case $opt in
         h)
             help
             ;;
         c)
             CATEGORY=$OPTARG
+            ;;
+        u)
+            ONLY_UPDATE=true
             ;;
         ?)
             echo "Invalid option: -$OPTARG" >&2
@@ -80,7 +103,12 @@ DATA_FILE=$BUILD_PATH/archive/reports/data.yml
 
 
 get_artifact_info
-copy_artifact
-add_data
-add_content
+if [ -z "$ONLY_UPDATE" ]; then
+  copy_artifact
+  add_data
+  update_data
+  add_content
+else
+  update_data
+fi
 echo "Done"

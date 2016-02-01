@@ -27,7 +27,7 @@ This is a mix of static and dynamic parts:
 - the database/MongoDB and Graphite nodes are started on demand (but not created)
 - the ELB, ElastiCache and S3 bucket are static
 
-All of this nodes are setup according to our recommandation.
+All these nodes are setup according to our recommandation.
 
 The bench is driven by continuous integration jobs (Jenkins).
 

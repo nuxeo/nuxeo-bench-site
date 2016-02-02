@@ -32,16 +32,18 @@
  */
 
 html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
 }
 @media (min-width: 48em) {
   html {
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 @media (min-width: 58em) {
   html {
-    font-size: 20px;
+    font-size: 17px;
   }
 }
 
@@ -55,17 +57,18 @@ html {
 
 .sidebar {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 6rem 1rem 2rem;
   color: rgba(255,255,255,.5);
   background-color: #202020;
 }
+
 @media (min-width: 48em) {
   .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    width: 18rem;
+    width: 14rem;
     text-align: left;
   }
 }
@@ -79,7 +82,6 @@ html {
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-family: "Abril Fatface", serif;
   font-size: 3.25rem;
 }
 
@@ -109,7 +111,6 @@ a.sidebar-nav-item:focus {
   .sidebar-sticky {
     position: absolute;
     right:  1rem;
-    bottom: 1rem;
     left:   1rem;
   }
 }
@@ -129,14 +130,14 @@ a.sidebar-nav-item:focus {
 @media (min-width: 48em) {
   .content {
     max-width: 38rem;
-    margin-left: 20rem;
+    margin-left: 18rem;
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 64em) {
   .content {
-    margin-left: 22rem;
+    margin-left: 20rem;
     margin-right: 4rem;
   }
 }
@@ -249,20 +250,9 @@ a.sidebar-nav-item:focus {
   color: #8f5536;
 }
 
-/* customization */
-table.result td {
-  vertical-align: top;
-  text-align: right;
-}
-
-table.result th {
-  text-align: left;
-}
-
 .build, .time, .avg, .stddev, .rps, .dps  {
   display: inline-block;
   white-space: nowrap;
-  font-family: 'Verdana';
 }
 
 .time {
@@ -317,4 +307,59 @@ table.result th {
 
 .classifier {
   font-size: 0.7em;
+}
+
+/* -- Nuxeo customization -- */
+
+/* Header */
+header {
+  background-color: #fff;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  padding: .8rem 1rem;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.25);
+}
+
+header > * {
+  display: inline-block;
+}
+
+header img {
+  width: 5rem;
+  border-radius: 0;
+  margin: 0 2em 0 0;
+}
+
+header span {
+  color: #213f7d;
+  text-align: text-bottom;
+  font-weight: 300;
+  font-size: 1.1rem;
+  vertical-align: text-bottom;
+}
+
+@media (min-width: 48em) {
+  header img {
+    width: 6.5rem;
+  }
+}
+
+.sidebar {
+  background: linear-gradient( #1c2842, #213f7d );
+}
+
+ul.post,
+ul.posts {
+  padding-left: 0
+}
+
+/* Tables */
+table.result td {
+  vertical-align: top;
+  text-align: right;
+}
+
+table.result th {
+  text-align: left;
 }

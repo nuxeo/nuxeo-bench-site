@@ -1,11 +1,11 @@
 {{ partial "head.html" . }}
 <body class="{{ .Site.Params.themeColor }}">
-
+{{ partial "header.html" . }}
 {{ partial "sidebar.html" . }}
 
 <div class="content container">
   <h1>Continous Benchmarks Results</h1>
-  <div>By default all Continuous Integration Benchmark resutls go here.</div>
+  <div>By default all Continuous Integration Benchmark results go here.</div>
   <ul class="posts">
     {{ range (.Data.Pages.GroupByParam "benchname").Reverse }}
     <h3>{{ .Key }}</h3>

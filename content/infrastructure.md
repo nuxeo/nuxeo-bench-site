@@ -44,10 +44,9 @@ Here is a list of tools used to perform the benchmark:
 
 All machines are on Amazon and runs on the same availability zone (AZ).
 
-Databases uses a `c4.2xlarge`, Elasticache uses a `cache.m3.large`, all other nodes use `c4.xlarge`.
+Databases are `c4.2xlarge`, Elasticache is setup with a `cache.m3.large`, all other nodes are `c4.xlarge`.
 
 - c4.xlarge is:
-
     - 4 vCPU
     - 7.5 GiB Memory
     - 750 Mbps EBS throughput
@@ -89,7 +88,7 @@ page provider.
 Nuxeo run with the latest Oracle JVM 1.8, the heap size is set to 80% of total memory (5.84g for a C4.xlarge with 7.5g), 
 the flight recoder option is active: 
 
-> JAVA_OPTS=-server -Xms5984m -Xmx5984m -Dfile.encoding=UTF-8 -Dmail.mime.decodeparameters=true -Djava.util.Arrays.useLegacyMergeSort=true -Xloggc:"/opt/nuxeo/logs/gc.log" -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Dcom.sun.management.jmxremote.autodiscovery=true -Dcom.sun.management.jdp.name=Nuxeo -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true
+`JAVA_OPTS`=`-server -Xms5984m -Xmx5984m -Dfile.encoding=UTF-8 -Dmail.mime.decodeparameters=true -Djava.util.Arrays.useLegacyMergeSort=true -Xloggc:"/opt/nuxeo/logs/gc.log" -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Dcom.sun.management.jmxremote.autodiscovery=true -Dcom.sun.management.jdp.name=Nuxeo -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true`
 
 ### Elasticsearch
 
@@ -101,14 +100,17 @@ The heap size is set to 50% of the available memory (3.75g)
 Default S3 bucket.
 
 ### ELB
+  
   HTTP Listener
-  Stickiness: LBCookieStickinessPolicy, expirationPeriod='86400'
+  
+     Stickiness: LBCookieStickinessPolicy, expirationPeriod='86400'
+       
   Health check 
   
-  - Ping target: HTTP:8080/nuxeo/runningstatus
-  - Timeout: 5 seconds
-  - Interval: 20 seconds
-  - Thresold: 2
+  - Ping target: `HTTP:8080/nuxeo/runningstatus`
+  - Timeout: `5 seconds`
+  - Interval: `20 seconds`
+  - Thresold: `2`
     
   
 ### Elasticache
@@ -122,11 +124,26 @@ Database are setup using the recommanded setup and tuning from our documentation
 
 #### PostgreSQL
 
+[Default setup](https://doc.nuxeo.com/display/ADMINDOC/PostgreSQL) for a 16g server:
+
+ - shared_buffers: 4GB
+ - effective_cache_size: 8GB
+ - work_mem: 16MB
+ - maintenance_work_mem: 1GB
+ - max_connections: 153
+
+
 #### Oracle 12
+
+[Default setup](https://doc.nuxeo.com/display/ADMINDOC/Oracle).
 
 #### SQL Server 2012 (mssql)
 
+[Default setup](https://doc.nuxeo.com/display/ADMINDOC/https://doc.nuxeo.com/display/ADMINDOC/Microsoft+SQL+Server).
+
 #### MongoDB
+
+[Default setup](https://doc.nuxeo.com/display/ADMINDOC/MongoDB).
 
 
 # About Nuxeo

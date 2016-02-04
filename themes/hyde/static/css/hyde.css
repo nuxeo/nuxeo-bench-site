@@ -297,7 +297,7 @@ a.sidebar-nav-item:focus {
 }
 
 .rps, .dps {
-  color: #008012;
+  color: #5d2e00;
 }
 
 .avg, .rps, .dps {
@@ -490,13 +490,39 @@ table.result th {
 
 .tag {
   display: inline-block;
-  margin: .5rem auto;
   background-color: #434343;
   color: #fff;
   font-weight: 700;
+  font-size: .9rem;
   border-radius: .2rem;
-  padding: .3rem .6rem;
+  padding: .02rem .5rem .1rem;
 }
+
+.row.mongodb .tag {
+  background-color: #457430;
+}
+
+.row.oracle12c .tag {
+  background-color: #11666b;
+}
+
+.row.mssql .tag {
+  background-color: #673a79;
+}
+
+.row.pgsql .tag {
+  background-color: #7a333d;
+}
+
+.row .tag:focus,
+.row .tag:hover {
+  background-color: #00adff;
+}
+
+.flex-itm .tag {
+  margin: .5rem auto;
+}
+
 
 
 @media (min-width: 48em) {

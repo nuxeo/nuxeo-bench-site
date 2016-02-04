@@ -1,7 +1,7 @@
 {{ $data := .Params.dfile }}
-<tr>
+<tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
   <th><a
-    href="{{ .Permalink }}">{{ (index .Site.Data.bench $data).dbprofile }} <span class="classifier">{{ (index .Site.Data.bench $data).nuxeonodes }}nodes {{ (index .Site.Data.bench $data).classifier }}</span></a>
+    href="{{ .Permalink }}"><span class="tag">{{ (index .Site.Data.bench $data).dbprofile }}</span> <span class="classifier">{{ (index .Site.Data.bench $data).nuxeonodes }}nodes {{ (index .Site.Data.bench $data).classifier }}</span></a>
   </th>
   <td>
     <div class="dps">{{ (index .Site.Data.bench $data).import_dps }}</div>

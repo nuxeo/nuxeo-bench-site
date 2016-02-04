@@ -7,7 +7,6 @@
 <div class="content container">
   <div class="post">
     <h1>{{ (index .Site.Data.bench $data).benchname }} - {{ (index .Site.Data.bench $data).dbprofile }}</h1>
-    <span class="post-date">{{ .Date.Format "Mon, Jan 2, 2006" }}</span>
     {{ .Content }}
     <h2>Configuration</h2>
     <dl>

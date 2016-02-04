@@ -3,22 +3,33 @@
 {{ partial "header.html" . }}
 {{ partial "sidebar.html" . }}
 
-<div class="content container">
-  <div class="posts">
-    <h1>Welcome to the Nuxeo Reference benchmark site</h1>
-    <div>This is the Nuxeo reference benchmark site, tracing performance over Nuxeo releases.</div>
-    <div>
-      <ul>
-        <li>
-          <a href="{{ .Site.BaseURL }}about/">About Nuxeo Benchmarks</a>
-        </li>
-        <li>
-          <a href="{{ .Site.BaseURL }}infra/">Infrastructure</a>
-        </li>
-      </ul>
+<div class="content container fullspace">
+  <div class="intro">
+    <p>Trace performance over Nuxeo releases</p>
+  </div>
+  <div>
+    <h3>Current pref</h3>
+  </div>
+  <div class="flex-ctn">
+    <div class="flex-itm">
+      <img src="{{ .Site.BaseURL }}images/corg.png" />
+      <div class="tag">12123</div>
+      <div class="detail">details about that number</div>
+    </div>
+    <div class="flex-itm">
+      <img src="{{ .Site.BaseURL }}images/power.png" />
+      <div class="tag">12123</div>
+      <div class="detail">details about that number</div>
+    </div>
+    <div class="flex-itm">
+      <img src="{{ .Site.BaseURL }}images/chart.png" />
+      <div class="tag">12123</div>
+      <div class="detail">details about that number</div>
     </div>
   </div>
 </div>
+
+{{ partial "footer.html" . }}
 
 </body>
 </html>

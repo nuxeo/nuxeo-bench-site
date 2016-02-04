@@ -57,9 +57,9 @@ html {
 
 .sidebar {
   text-align: center;
-  padding: 6rem 1rem 2rem;
+  padding: 5rem 1rem 2rem;
   color: rgba(255,255,255,.5);
-  background-color: #202020;
+  background: url(../images/nuxeo_bg.png) no-repeat right 120%, linear-gradient(#212121, #25477f);
 }
 
 @media (min-width: 48em) {
@@ -73,16 +73,24 @@ html {
   }
 }
 
+.sidebar ul,
+.sidebar li {
+  list-style: none;
+  padding: .25rem 0;
+  margin-left: 0;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
 /* Sidebar links */
 .sidebar a {
   color: #fff;
+  display: block;
 }
 
-/* About section */
-.sidebar-about h1 {
-  color: #fff;
-  margin-top: 0;
-  font-size: 3.25rem;
+.sidebar a:focus,
+.sidebar a:hover {
+  color: #00adff;
 }
 
 /* Sidebar nav */
@@ -127,11 +135,31 @@ a.sidebar-nav-item:focus {
   padding-bottom: 4rem;
 }
 
+.content.fullspace {
+  padding: 0;
+  padding: 0;
+  max-width: none;
+}
+
+.content.fullspace > div {
+  padding: 2rem;
+}
+
 @media (min-width: 48em) {
   .content {
     max-width: 38rem;
     margin-left: 18rem;
     margin-right: 2rem;
+  }
+  .content.fullspace {
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 3rem;
+    padding-left: 14rem;
+    padding-right: 0;
+  }
+  .content.fullspace > div {
+    padding: 2rem 4rem;
   }
 }
 
@@ -140,8 +168,17 @@ a.sidebar-nav-item:focus {
     margin-left: 20rem;
     margin-right: 4rem;
   }
+  .content.fullspace {
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 3rem;
+    padding-left: 14rem;
+    padding-right: 0;
+  }
+  .content.fullspace > div {
+    padding: 2rem 5rem;
+  }
 }
-
 
 /*
  * Reverse layout
@@ -260,7 +297,7 @@ a.sidebar-nav-item:focus {
 }
 
 .rps, .dps {
-  color: #79533d;
+  color: #008012;
 }
 
 .avg, .rps, .dps {
@@ -311,6 +348,14 @@ a.sidebar-nav-item:focus {
 
 /* -- Nuxeo customization -- */
 
+/* Fix alignment bug with Intercom */
+body {
+  margin-bottom: 0 !important;
+}
+.sidebar {
+  bottom: 0 !important;
+}
+
 /* Header */
 header {
   background-color: #fff;
@@ -328,25 +373,79 @@ header > * {
 header img {
   width: 5rem;
   border-radius: 0;
-  margin: 0 2em 0 0;
+  margin: 0 2rem 0 0;
 }
 
 header span {
+  display: inline-block;
   color: #213f7d;
-  text-align: text-bottom;
   font-weight: 300;
   font-size: 1.1rem;
-  vertical-align: text-bottom;
+  vertical-align: bottom;
 }
 
 @media (min-width: 48em) {
+  header {
+    padding-left: 2rem;
+  }
   header img {
     width: 6.5rem;
   }
 }
 
-.sidebar {
-  background: linear-gradient( #1c2842, #213f7d );
+footer {
+  padding: 1.8rem 1rem 2rem;
+  background-color: #26292d;
+  text-align: center;
+  font-size: .85rem;
+}
+
+footer ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+footer li {
+  padding: 0 0 3em;
+}
+
+footer a {
+  color: #fff;
+  background-color: #ff452a;
+  padding: .3rem .6rem .4rem;
+  border-radius: .1em;
+  margin: 0 .2em 0 1.4em;
+  font-weight: 300;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+footer a:focus,
+footer a:hover {
+  color: #fff;
+  background-color: #00adff;
+}
+
+@media (min-width: 48em) {
+  footer {
+    padding-left: 18rem;
+    text-align: left;
+  }
+  footer li {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 64em) {
+  footer {
+    padding-left: 20rem;
+  }
+}
+
+/* -- */
+
+.fullspace h3 {
+  margin: 0;
 }
 
 ul.post,
@@ -362,4 +461,46 @@ table.result td {
 
 table.result th {
   text-align: left;
+}
+
+/* Flexbox on home */
+
+.intro {
+  background-color: #00adff;
+  font-weight: 200;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.flex-ctn {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.flex-itm {
+  flex: 0 1 auto;
+  align-self: center;
+  min-width: 8rem;
+  max-width: 12rem;
+  text-align: center;
+}
+
+.tag {
+  display: inline-block;
+  margin: .5rem auto;
+  background-color: #434343;
+  color: #fff;
+  font-weight: 700;
+  border-radius: .2rem;
+  padding: .3rem .6rem;
+}
+
+
+@media (min-width: 48em) {
+  .flex-ctn {
+  flex-direction: row;
+  }
 }

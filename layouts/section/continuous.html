@@ -5,7 +5,7 @@
 
 <div class="content container">
   <h1>Continous Benchmarks Results</h1>
-  <div>By default all Continuous Integration Benchmark results go here.</div>
+  <div>By default all Continuous Integration Benchmark results go here. You can click on the link of the first cell on each row to have the complete resultset of the corresponding benchmark.</div>
   <ul class="posts">
     {{ range (.Data.Pages.GroupByParam "benchname").Reverse }}
     <h3>{{ .Key }}</h3>

@@ -5,7 +5,7 @@
 
 <div class="content container">
   <h1>Milestone Benchmarks results</h1>
-  <div>Here are the Benchmarks results for the main Nuxeo releases</div>
+  <div>Here are the Benchmarks results for the main Nuxeo releases. You can click on the link of the first cell on each row to have the complete resultset of the corresponding benchmark. </div>
   <ul class="posts">
     {{ range (.Data.Pages.GroupByParam "benchname").Reverse }}
     <h3>{{ .Key }}</h3>

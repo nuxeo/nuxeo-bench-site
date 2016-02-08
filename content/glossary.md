@@ -1,12 +1,14 @@
 ---
-title: "Glossary"
+title: "Scenarios"
 ---
 
-## Simulations
+## Sources
 
-The benchmark is a composed of a dozen of gatling simulations.
+The benchmark is composed of a serie of a dozen of Gatling simulations.
 
-They are part of the [Nuxeo source](https://github.com/nuxeo/nuxeo/tree/master/nuxeo-distribution/nuxeo-distribution-cap-gatling-tests/).
+They are part of the [Nuxeo source](https://github.com/nuxeo/nuxeo/tree/master/nuxeo-distribution/nuxeo-distribution-cap-gatling-tests/). Those scenarios cover important use cases of a content platform such as import, browsing, update of some content. 
+
+## Description
 
 ### Mass import
 

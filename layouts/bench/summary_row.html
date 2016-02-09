@@ -37,6 +37,5 @@
   <td>
     <div class="dps">{{ (index .Site.Data.bench $data).reindex_dps }}</div>
   </td>
-  <td><div class="build"><a target="_blank"
-    href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a></div></td>
+  <td><a href={{ .Permalink }}><img src="/benchmarks/images/preview.gif"/></a></td>
 </tr>

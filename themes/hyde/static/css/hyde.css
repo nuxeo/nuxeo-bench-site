@@ -287,12 +287,12 @@ a.sidebar-nav-item:focus {
   color: #8f5536;
 }
 
-.build, .time, .avg, .stddev, .rps, .dps  {
+.build, .timems, .time, .avg, .stddev, .rps, .dps  {
   display: inline-block;
   white-space: nowrap;
 }
 
-.time {
+.time, .timems {
   color: #63613e;
 }
 
@@ -304,13 +304,26 @@ a.sidebar-nav-item:focus {
   font-weight: bold;
 }
 
-.build, .avg, .stddev {
+.build, .avg, .stddev, .pill {
   font-size: 0.7em;
 }
 
 .avg:after {
   content:' ms';
   font-weight: normal;
+}
+
+.pcterr:after {
+  content: " %"
+}
+
+.timems:after, .pill:after {
+  content:' ms';
+  font-weight: normal;
+}
+
+.timems {
+  font-weight: bold;
 }
 
 .stddev {
@@ -516,6 +529,10 @@ table.result th {
 
 .row.pgsql .tag,
 .pgsql.tag {
+  background-color: #7a333d;
+}
+
+.report.tag {
   background-color: #7a333d;
 }
 

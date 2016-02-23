@@ -11,19 +11,23 @@
     {{ .Content }}
     <h2>Configuration</h2>
     <dl>
-      <dt>Bench Id</dt>
-      <dd>{{ (index .Site.Data.bench $data).benchid }}</dd>
-      <dt>Bench Name</dt>
-      <dd>{{ (index .Site.Data.bench $data).benchname }}</dd>
+      <dt>Bench Id/Name</dt>
+      <dd>{{ (index .Site.Data.bench $data).benchid }}/{{ (index .Site.Data.bench $data).benchname }}</dd>
       <dt>Classifier</dt>
       <dd>{{ (index .Site.Data.bench $data).classifier }}</dd>
+      <dt>Distribution</dt>
+      <dd>{{ (index .Site.Data.bench $data).distribution }}</dd>
+      <dt>Date</dt>
+      <dd>{{ (index .Site.Data.bench $data).bench_date }}</dd>
       <dt>Backend</dt>
       <dd>{{ (index .Site.Data.bench $data).dbprofile }}</dd>
+      <dt>Nuxeo nodes</dt>
+      <dd>{{ (index .Site.Data.bench $data).nuxeonodes }}</dd>
       <dt>CI Build</dt>
       <dd><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a>
       </dd>
-      <dt>Number of Nuxeo nodes</dt>
-      <dd>{{ (index .Site.Data.bench $data).nuxeonodes }}</dd>
+      <dt>Number of documents</dt>
+      <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
     </dl>
     <h2>Results</h2>
 
@@ -32,162 +36,166 @@
     <dl>
       <dt>Documents imported</dt>
       <dd>{{ (index .Site.Data.bench $data).import_docs }}</dd>
-      <dt>Documents created per second</dt>
-      <dd>{{ (index .Site.Data.bench $data).import_dps }}</dd>
-      <dt>Time of import in ms</dt>
-      <dd>{{ (index .Site.Data.bench $data).import_massimportwiththreads_avg }}</dd>
-      <dt>Time to process asynchronous jobs in ms</dt>
-      <dd>{{ (index .Site.Data.bench $data).import_waitforasyncjobs_avg }}</dd>
+      <dt>Throughput</dt>
+      <dd class="dps">{{ (index .Site.Data.bench $data).import_dps }}</dd>
+      <dt>Duration</dt>
+      <dd class="timems">{{ (index .Site.Data.bench $data).import_massimportwiththreads_avg }}</dd>
+      <dt>Asynchronous jobs</dt>
+      <dd class="timems">{{ (index .Site.Data.bench $data).import_waitforasyncjobs_avg }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/overview/">overview and monitoring</a>,
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/detail/">detail</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/overview/">Overview and monitoring</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/Gatling/">Gatling</a>
       </dd>
     </dl>
 
     <h3>Create document using REST</h3>
     <div>This simulation creates new documents (without attachement) on top of an existing instance</div>
     <dl>
-      <dt>Documents created per second</dt>
-      <dd>{{ (index .Site.Data.bench $data).create_rps }}</dd>
-      <dt>Response time in ms</dt>
-      <dd>Average: {{ (index .Site.Data.bench $data).create_avg }} <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span><br>
+      <dt>Document created</dt>
+      <dd>{{ (index .Site.Data.bench $data).create_count }}</dd>
+      <dt>Throughput</dt>
+      <dd class="dps">{{ (index .Site.Data.bench $data).create_rps }}</dd>
+      <dt>Response time</dt>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).create_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).create_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).create_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).create_p95 }}</div>
       </dd>
-      <dt>Percent of error</dt>
-      <dd>{{ (index .Site.Data.bench $data).create_percentError }}</dd>
+      <dt>Error</dt>
+      <dd class="pcterr">{{ (index .Site.Data.bench $data).create_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).create_user }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/overview/">overview and monitoring</a>,
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/detail/">detail</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/overview/">Overview and monitoring</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/Gatling/">Gatling</a>
       </dd>
     </dl>
 
     <h3>Navigation using REST</h3>
     <div>This simulation navigate on the existing instance.</div>
     <dl>
-      <dt>Request per seconds</dt>
-      <dd>{{ (index .Site.Data.bench $data).nav_rps }}</dd>
-      <dt>Response time in ms</dt>
-      <dd>Average: {{ (index .Site.Data.bench $data).nav_avg }} <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span><br>
+      <dt>Throughput</dt>
+      <dd class="rps">{{ (index .Site.Data.bench $data).nav_rps }}</dd>
+      <dt>Response time</dt>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).nav_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).nav_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).nav_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).nav_p95 }}</div>
       </dd>
-      <dt>Percent of error</dt>
-      <dd>{{ (index .Site.Data.bench $data).nav_percentError }}</dd>
+      <dt>Requests</dt>
+      <dd>{{ (index .Site.Data.bench $data).nav_count }}</dd>
+      <dt>Error</dt>
+      <dd class="pcterr">{{ (index .Site.Data.bench $data).nav_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).nav_user }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/overview/">overview and monitoring</a>,
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/detail/">detail</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/overview/">Overview and monitoring</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/Gatling/">Gatling</a>
       </dd>
     </dl>
 
-    <h3>Navigation usgin JSF</h3>
-    <div>This simulation use the JSF interface to navigate on folder and document tabs.</div>
+    <h3>Navigation using JSF</h3>
+    <div>This simulation uses the JSF interface to navigate on folder and document tabs.</div>
     <dl>
-      <dt>Request per seconds</dt>
-      <dd>{{ (index .Site.Data.bench $data).navjsf_rps }}</dd>
-      <dt>Response time in ms</dt>
-      <dd>Average: {{ (index .Site.Data.bench $data).navjsf_avg }} <span class="stddev">{{ (index .Site.Data.bench $data).navjsf_std }}</span><br>
+      <dt>Throughput</dt>
+      <dd class="rps">{{ (index .Site.Data.bench $data).navjsf_rps }}</dd>
+      <dt>Response time</dt>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).navjsf_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).navjsf_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).navjsf_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).navjsf_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).navjsf_p95 }}</div>
       </dd>
+      <dt>Error</dt>
+      <dd class="pcterr">{{ (index .Site.Data.bench $data).navjsf_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).navjsf_user }}</dd>
-      <dt>Percent of error</dt>
-      <dd>{{ (index .Site.Data.bench $data).navjsf_percentError }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">overview and monitoring</a>,
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/">detail</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">Overview and monitoring</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/Gatling/">Gatling</a>
       </dd>
     </dl>
 
     <h3>Update REST</h3>
     <div>This simulation performs concurrent update of documents metadata using REST.</div>
     <dl>
-      <dt>Request per seconds</dt>
-      <dd>{{ (index .Site.Data.bench $data).update_rps }}</dd>
-      <dt>Response time in ms</dt>
-      <dd>Average: {{ (index .Site.Data.bench $data).update_avg }} <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span><br>
+      <dt>Throughput</dt>
+      <dd class="rps">{{ (index .Site.Data.bench $data).update_rps }}</dd>
+      <dt>Response time</dt>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).update_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).update_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).update_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).update_p95 }}</div>
       </dd>
+      <dt>Error</dt>
+      <dd class="pcterr">{{ (index .Site.Data.bench $data).update_percentrror }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).update_user }}</dd>
-      <dt>Percent of error</dt>
-      <dd>{{ (index .Site.Data.bench $data).update_percentError }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/">overview and monitoring</a>,
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/detail/">detail</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/">Overview and monitoring</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/Gatling/">Gatling</a>
       </dd>
     </dl>
 
     <h3>CRUD on documents in REST</h3>
     <div>This simulation performs concurrent Create Read Update Delete operations using REST.</div>
     <dl>
-      <dt>Request per seconds</dt>
-      <dd>{{ (index .Site.Data.bench $data).crud_rps }}</dd>
-      <dt>Response time in ms</dt>
-      <dd>Average: {{ (index .Site.Data.bench $data).crud_avg }} <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span><br>
+      <dt>Throughput</dt>
+      <dd class="rps">{{ (index .Site.Data.bench $data).crud_rps }}</dd>
+      <dt>Response time</dt>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).crud_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).crud_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).crud_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).crud_p95 }}</div>
       </dd>
+      <dt>Error</dt>
+      <dd class="pcterr">{{ (index .Site.Data.bench $data).crud_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).crud_user }}</dd>
-      <dt>Percent of error</dt>
-      <dd>{{ (index .Site.Data.bench $data).crud_percentError }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/">overview and monitoring</a>,
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/detail/">detail</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/">Overview and monitoring</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/Gatling/">Gatling</a>
       </dd>
     </dl>
 
     <h3>Bench mixing actions</h3>
     <div>This simulation performs JSF read and CRUD in REST.</div>
     <dl>
-      <dt>Request per seconds</dt>
-      <dd>{{ (index .Site.Data.bench $data).bench_rps }}</dd>
-      <dt>Response time in ms</dt>
-      <dd>Average: {{ (index .Site.Data.bench $data).bench_avg }} <span class="stddev">{{ (index .Site.Data.bench $data).bench_std }}</span>
+      <dt>Throughtput</dt>
+      <dd class="rps">{{ (index .Site.Data.bench $data).bench_rps }}</dd>
+      <dt>Response time</dt>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).bench_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).bench_std }}</span>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).bench_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).bench_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).bench_p95 }}</div>
       </dd>
-      <dt>Percent of error</dt>
-      <dd>{{ (index .Site.Data.bench $data).bench_percentError }}</dd>
+      <dt>Error</dt>
+      <dd class="pcterr">{{ (index .Site.Data.bench $data).bench_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).bench_user }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/overview/">overview and monitoring</a>,
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/detail/">detail</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/overview/">Overview and monitoring</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/Gatling/">Gatling</a>
       </dd>
     </dl>
 
@@ -196,16 +204,16 @@
     <dl>
       <dt>Documents reindexed</dt>
       <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
-      <dt>Documents per second</dt>
-      <dd>{{ (index .Site.Data.bench $data).reindex_dps }}</dd>
-      <dt>Time to reindex the repository in ms</dt>
-      <dd>{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</dd>
+      <dt>Throughput</dt>
+      <dd class="dps">{{ (index .Site.Data.bench $data).reindex_dps }}</dd>
+      <dt>Duration</dt>
+      <dd class="timems">{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</dd>
       <dt>Reports</dt>
       <dd>
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/">overview and monitoring</a>,
-        <a
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/detail/">detail</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/">Overview and monitoring</a>
+        <a class="tag" target="_blank"
+          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/Gatling/">Gatling</a>
       </dd>
     </dl>
 

@@ -40,6 +40,7 @@ function add_data() {
 }
 
 function update_data() {
+  set +e
   # parse info to extract more stats if not alreaddy present
   # Extract the mass import document stats
   import_dps=`tail -n1 $BUILD_PATH/archive/logs/*/perf*.csv | cut -d \; -f3 | LC_ALL=C xargs printf "%.1f"`
@@ -47,8 +48,8 @@ function update_data() {
   # Extract reindex stats
   reindex_docs=`grep 'ScrollingIndexingWorker.*has submited ' $BUILD_PATH/archive/logs/*/server.log | sed -e 's,^.*submited.,,g;s,.documents.*$,,g' `
   reindex_ms=`grep reindex_waitforasync_avg $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  reindex_dps=`awk "BEGIN {printf \"%.1f\", $reindex_docs/($reindex_ms / 1000)}"`
-
+  reindex_dps=`awk "BEGIN {printf \"%.1f\", $reindex_docs/($reindex_ms / 1000)}" || echo "NA"`
+  set -e
   # update target data file
   data_file=$SITE_PATH/data/bench/$BENCHID$BENCHFILE.yml
   grep -q '^import_dps:' $data_file && sed -i "s/^import_dps\:.*/import_dps\: $import_dps/" $data_file || echo "import_dps: $import_dps" >> $data_file

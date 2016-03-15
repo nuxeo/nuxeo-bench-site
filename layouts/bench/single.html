@@ -8,7 +8,9 @@
   <div class="post">
     <h1>{{ (index .Site.Data.bench $data).benchname }} <span class="tag {{ (index .Site.Data.bench $data).dbprofile }}">{{ (index .Site.Data.bench $data).dbprofile }}</span></h1>
     <span class="post-date">{{ .Date.Format "Mon, Jan 2, 2006" }}</span>
+
     {{ .Content }}
+
     <h2>Configuration</h2>
     <dl>
       <dt>Bench Id/Name</dt>
@@ -68,6 +70,8 @@
       <dd class="pcterr">{{ (index .Site.Data.bench $data).create_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).create_user }}</dd>
+      <dt>Asynchronous jobs</dt>
+      <dd class="timems">{{ (index .Site.Data.bench $data).createasync_avg }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
@@ -142,6 +146,8 @@
       <dd class="pcterr">{{ (index .Site.Data.bench $data).update_percentrror }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).update_user }}</dd>
+      <dt>Asynchronous jobs</dt>
+      <dd class="timems">{{ (index .Site.Data.bench $data).updateasync_avg }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
@@ -166,6 +172,8 @@
       <dd class="pcterr">{{ (index .Site.Data.bench $data).crud_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).crud_user }}</dd>
+      <dt>Asynchronous jobs</dt>
+      <dd class="timems">{{ (index .Site.Data.bench $data).crudasync_avg }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"

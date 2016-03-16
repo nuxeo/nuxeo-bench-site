@@ -34,7 +34,7 @@
     <h2>Results</h2>
 
     <h3>Mass import</h3>
-    <div>This simulation uses the nuxeo-importer on an empty instance.</div>
+    <div>This simulation uses the nuxeo-importer on an empty instance, document attachement is upload to S3 and fulltext extracted.</div>
     <dl>
       <dt>Throughput sync</dt>
       <dd class="dps">{{ (index .Site.Data.bench $data).import_dps }}</dd>
@@ -56,7 +56,7 @@
     </dl>
 
     <h3>Create document using REST</h3>
-    <div>This simulation creates new documents (without attachement) on top of an existing instance</div>
+    <div>This simulation creates new documents (without attachement) on top of the existing instance.</div>
     <dl>
       <dt>Throughput sync</dt>
       <dd class="dps">{{ (index .Site.Data.bench $data).create_rps }}</dd>

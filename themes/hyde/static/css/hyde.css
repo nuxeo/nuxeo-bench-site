@@ -287,12 +287,12 @@ a.sidebar-nav-item:focus {
   color: #8f5536;
 }
 
-.build, .timems, .time, .avg, .stddev, .rps, .dps  {
+.build, .timems, .times, .time, .avg, .stddev, .rps, .dps  {
   display: inline-block;
   white-space: nowrap;
 }
 
-.time, .timems {
+.time, .times, .timems {
   color: #63613e;
 }
 
@@ -317,12 +317,17 @@ a.sidebar-nav-item:focus {
   content: " %"
 }
 
+.times:after, .pill:after {
+  content:' s';
+  font-weight: normal;
+}
+
 .timems:after, .pill:after {
   content:' ms';
   font-weight: normal;
 }
 
-.timems {
+.times, .timems {
   font-weight: bold;
 }
 

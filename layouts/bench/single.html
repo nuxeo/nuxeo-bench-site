@@ -36,13 +36,15 @@
     <h3>Mass import</h3>
     <div>This simulation uses the nuxeo-importer on an empty instance.</div>
     <dl>
+      <dt>Throughput sync</dt>
+      <dd class="dps">{{ (index .Site.Data.bench $data).import_dps }}</dd>
       <dt>Documents imported</dt>
       <dd>{{ (index .Site.Data.bench $data).import_docs }}</dd>
-      <dt>Throughput</dt>
-      <dd class="dps">{{ (index .Site.Data.bench $data).import_dps }}</dd>
-      <dt>Duration</dt>
+      <dt>Total duration</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).import_duration }}</dd>
+      <dt>Duration sync</dt>
       <dd class="timems">{{ (index .Site.Data.bench $data).import_massimportwiththreads_avg }}</dd>
-      <dt>Asynchronous jobs</dt>
+      <dt>Duration async</dt>
       <dd class="timems">{{ (index .Site.Data.bench $data).import_waitforasyncjobs_avg }}</dd>
       <dt>Reports</dt>
       <dd>
@@ -56,9 +58,7 @@
     <h3>Create document using REST</h3>
     <div>This simulation creates new documents (without attachement) on top of an existing instance</div>
     <dl>
-      <dt>Document created</dt>
-      <dd>{{ (index .Site.Data.bench $data).create_count }}</dd>
-      <dt>Throughput</dt>
+      <dt>Throughput sync</dt>
       <dd class="dps">{{ (index .Site.Data.bench $data).create_rps }}</dd>
       <dt>Response time</dt>
       <dd><span class="timems">{{ (index .Site.Data.bench $data).create_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span><br>
@@ -66,12 +66,16 @@
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).create_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).create_p95 }}</div>
       </dd>
+      <dt>Document created</dt>
+      <dd>{{ (index .Site.Data.bench $data).create_count }}</dd>
       <dt>Error</dt>
       <dd class="pcterr">{{ (index .Site.Data.bench $data).create_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).create_user }}</dd>
-      <dt>Asynchronous jobs</dt>
-      <dd class="timems">{{ (index .Site.Data.bench $data).createasync_avg }}</dd>
+      <dt>Duration sync</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).create_duration }}</dd>
+      <dt>Duration async</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).createasync_duration }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
@@ -98,6 +102,8 @@
       <dd class="pcterr">{{ (index .Site.Data.bench $data).nav_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).nav_user }}</dd>
+      <dt>Duration</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).nav_duration }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
@@ -118,10 +124,14 @@
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).navjsf_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).navjsf_p95 }}</div>
       </dd>
+      <dt>Requests</dt>
+      <dd>{{ (index .Site.Data.bench $data).navjsf_count }}</dd>
       <dt>Error</dt>
       <dd class="pcterr">{{ (index .Site.Data.bench $data).navjsf_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).navjsf_user }}</dd>
+      <dt>Duration</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).navjsf_duration }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
@@ -134,7 +144,7 @@
     <h3>Update REST</h3>
     <div>This simulation performs concurrent update of documents metadata using REST.</div>
     <dl>
-      <dt>Throughput</dt>
+      <dt>Throughput sync</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).update_rps }}</dd>
       <dt>Response time</dt>
       <dd><span class="timems">{{ (index .Site.Data.bench $data).update_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span><br>
@@ -142,12 +152,16 @@
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).update_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).update_p95 }}</div>
       </dd>
+      <dt>Requests</dt>
+      <dd>{{ (index .Site.Data.bench $data).update_count }}</dd>
       <dt>Error</dt>
-      <dd class="pcterr">{{ (index .Site.Data.bench $data).update_percentrror }}</dd>
+      <dd class="pcterr">{{ (index .Site.Data.bench $data).update_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).update_user }}</dd>
-      <dt>Asynchronous jobs</dt>
-      <dd class="timems">{{ (index .Site.Data.bench $data).updateasync_avg }}</dd>
+      <dt>Duration sync</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).update_duration }}</dd>
+      <dt>Duration async</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).updateasync_duration }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
@@ -160,7 +174,7 @@
     <h3>CRUD on documents in REST</h3>
     <div>This simulation performs concurrent Create Read Update Delete operations using REST.</div>
     <dl>
-      <dt>Throughput</dt>
+      <dt>Throughput sync</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).crud_rps }}</dd>
       <dt>Response time</dt>
       <dd><span class="timems">{{ (index .Site.Data.bench $data).crud_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span><br>
@@ -168,12 +182,16 @@
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).crud_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).crud_p95 }}</div>
       </dd>
+      <dt>Requests</dt>
+      <dd>{{ (index .Site.Data.bench $data).crud_count }}</dd>
       <dt>Error</dt>
       <dd class="pcterr">{{ (index .Site.Data.bench $data).crud_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).crud_user }}</dd>
-      <dt>Asynchronous jobs</dt>
-      <dd class="timems">{{ (index .Site.Data.bench $data).crudasync_avg }}</dd>
+      <dt>Duration sync</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).crud_duration }}</dd>
+      <dt>Duration async</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).crudasync_duration }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
@@ -194,10 +212,14 @@
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).bench_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).bench_p95 }}</div>
       </dd>
+      <dt>Requests</dt>
+      <dd>{{ (index .Site.Data.bench $data).bench_count }}</dd>
       <dt>Error</dt>
       <dd class="pcterr">{{ (index .Site.Data.bench $data).bench_percentError }}</dd>
       <dt>Concurrency</dt>
       <dd>{{ (index .Site.Data.bench $data).bench_user }}</dd>
+      <dt>Duration</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).bench_duration }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
@@ -210,12 +232,12 @@
     <h3>Reindex repository</h3>
     <div>Elasticsearch reindexing of the entire repository.</div>
     <dl>
-      <dt>Documents reindexed</dt>
-      <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
       <dt>Throughput</dt>
       <dd class="dps">{{ (index .Site.Data.bench $data).reindex_dps }}</dd>
+      <dt>Documents reindexed</dt>
+      <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
       <dt>Duration</dt>
-      <dd class="timems">{{ (index .Site.Data.bench $data).reindex_waitforasync_avg }}</dd>
+      <dd class="times">{{ (index .Site.Data.bench $data).reindex_duration }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
@@ -233,4 +255,4 @@
 </div>
 
 </body>
-</html>
+

@@ -6,14 +6,14 @@
 
 <div class="content container">
   <div class="post">
-    <h1>{{ (index .Site.Data.bench $data).bench_suite }} <span class="tag {{ (index .Site.Data.bench $data).dbprofile }}">{{ (index .Site.Data.bench $data).dbprofile }}</span></h1>
+    <h1>{{ (index .Site.Data.bench $data).bench_suite }} <span
+      class="tag {{ (index .Site.Data.bench $data).dbprofile }}">{{ (index .Site.Data.bench $data).dbprofile }}</span>
+    </h1>
     <span class="post-date">{{ .Date.Format "Mon, Jan 2, 2006" }}</span>
-
-    {{ .Content }}
 
     <h2>Configuration</h2>
     <dl>
-      <dt>Bench Suite</dt>
+      <dt>Benchmark suite</dt>
       <dd>{{ (index .Site.Data.bench $data).bench_suite }}</dd>
       <dt>Classifier</dt>
       <dd>{{ (index .Site.Data.bench $data).classifier }}</dd>
@@ -31,7 +31,72 @@
       <dt>Number of documents</dt>
       <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
     </dl>
-    <h2>Results</h2>
+
+    <h2>Overview</h2>
+    <table class="result">
+      <thead>
+      <th>
+        <div><span>Import</span></div>
+      </th>
+      <th>
+        <div><span>Create</span></div>
+      </th>
+      <th>
+        <div><span>Navigation</span></div>
+      </th>
+      <th>
+        <div><span>Update</span></div>
+      </th>
+      <th>
+        <div><span>CRUD</span></div>
+      </th>
+      <th>
+        <div><span>Reindexing</span></div>
+      </th>
+      </thead>
+      <tbody>
+      <tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
+        <td>
+          <div class="dps">{{ (index .Site.Data.bench $data).import_dps }}</div>
+        </td>
+        <td>
+          <div class="dps">{{ (index .Site.Data.bench $data).create_rps }}</div>
+          <div class="time">
+            <span class="avg">{{ (index .Site.Data.bench $data).create_avg }}</span>
+            <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="rps">{{ (index .Site.Data.bench $data).nav_rps }}</div>
+          <div class="time">
+            <span class="avg">{{ (index .Site.Data.bench $data).nav_avg }}</span>
+            <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="rps">{{ (index .Site.Data.bench $data).update_rps }}</div>
+          <div class="time">
+            <span class="avg">{{ (index .Site.Data.bench $data).update_avg }}</span>
+            <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="rps">{{ (index .Site.Data.bench $data).crud_rps }}</div>
+          <div class="time">
+            <span class="avg">{{ (index .Site.Data.bench $data).crud_avg }}</span>
+            <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="dps">{{ (index .Site.Data.bench $data).reindex_dps }}</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    {{ .Content }}
+
+    <h2>Details</h2>
 
     <h3>Mass import</h3>
     <div>This simulation uses the nuxeo-importer on an empty instance, document attachement are upload to S3 and fulltext extracted.</div>
@@ -49,9 +114,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/overview/">Overview and monitoring</a>
+          href="https://benchmarks.nuxeo.com/build/{{ $data }}/archive/reports/sim10massimport/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/detail/">Gatling</a>
+          href="https://benchmarks.nuxeo.com/build/{{ $data }}/archive/reports/sim10massimport/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -61,7 +126,8 @@
       <dt>Throughput sync</dt>
       <dd class="dps">{{ (index .Site.Data.bench $data).create_rps }}</dd>
       <dt>Response time</dt>
-      <dd><span class="timems">{{ (index .Site.Data.bench $data).create_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span><br>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).create_avg }}</span> <span
+        class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).create_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).create_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).create_p95 }}</div>
@@ -79,9 +145,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/overview/">Overview and monitoring</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/detail/">Gatling</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -91,7 +157,8 @@
       <dt>Throughput</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).nav_rps }}</dd>
       <dt>Response time</dt>
-      <dd><span class="timems">{{ (index .Site.Data.bench $data).nav_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span><br>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).nav_avg }}</span> <span
+        class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).nav_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).nav_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).nav_p95 }}</div>
@@ -107,9 +174,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/overview/">Overview and monitoring</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/detail/">Gatling</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -119,7 +186,8 @@
       <dt>Throughput</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).navjsf_rps }}</dd>
       <dt>Response time</dt>
-      <dd><span class="timems">{{ (index .Site.Data.bench $data).navjsf_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).navjsf_std }}</span><br>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).navjsf_avg }}</span> <span
+        class="stddev">{{ (index .Site.Data.bench $data).navjsf_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).navjsf_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).navjsf_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).navjsf_p95 }}</div>
@@ -135,9 +203,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">Overview and monitoring</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/">Gatling</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -147,7 +215,8 @@
       <dt>Throughput sync</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).update_rps }}</dd>
       <dt>Response time</dt>
-      <dd><span class="timems">{{ (index .Site.Data.bench $data).update_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span><br>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).update_avg }}</span> <span
+        class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).update_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).update_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).update_p95 }}</div>
@@ -165,9 +234,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/">Overview and monitoring</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/detail/">Gatling</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -177,7 +246,8 @@
       <dt>Throughput sync</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).crud_rps }}</dd>
       <dt>Response time</dt>
-      <dd><span class="timems">{{ (index .Site.Data.bench $data).crud_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span><br>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).crud_avg }}</span> <span
+        class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span><br>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).crud_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).crud_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).crud_p95 }}</div>
@@ -195,9 +265,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/">Overview and monitoring</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/detail/">Gatling</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -207,7 +277,8 @@
       <dt>Throughtput</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).bench_rps }}</dd>
       <dt>Response time</dt>
-      <dd><span class="timems">{{ (index .Site.Data.bench $data).bench_avg }}</span> <span class="stddev">{{ (index .Site.Data.bench $data).bench_std }}</span>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).bench_avg }}</span> <span
+        class="stddev">{{ (index .Site.Data.bench $data).bench_std }}</span>
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).bench_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).bench_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).bench_p95 }}</div>
@@ -223,9 +294,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/overview/">Overview and monitoring</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/detail/">Gatling</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -241,9 +312,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/">Overview and monitoring</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/detail/">Gatling</a>
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/detail/">Gatling</a>
       </dd>
     </dl>
 

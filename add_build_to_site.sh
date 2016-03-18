@@ -23,6 +23,7 @@ function get_artifact_info() {
   export BENCH_DATE=`grep import_date $DATA_FILE | cut -d \: -f 2- | sed 's,",,g;s,^ *,,g;s,\ ,T,g'`
   export DBPROFILE=`grep dbprofile $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export NUXEONODES=`grep nuxeonodes $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export CLASSIFIER=`grep classifier $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   export DEFAULT_CATEGORY=`grep default_category $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   if [ -z $CATEGORY ]; then
     if [ -z $DEFAULT_CATEGORY ]; then
@@ -73,8 +74,9 @@ title: "$DBPROFILE $NUXEONODES $BUILD_NUMBER"
 bench_suite: "$BENCH_SUITE"
 build_number: "$BUILD_NUMBER"
 dbprofile: "$DBPROFILE"
+classifier: "$CLASSIFIER"
 date: $BENCH_DATE
-type: bench
+type: "bench"
 ---
 EOF
 }

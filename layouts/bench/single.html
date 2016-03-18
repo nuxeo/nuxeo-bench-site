@@ -16,7 +16,7 @@
       <dt>Benchmark suite</dt>
       <dd>{{ (index .Site.Data.bench $data).bench_suite }}</dd>
       <dt>Classifier</dt>
-      <dd>{{ (index .Site.Data.bench $data).classifier }}</dd>
+      <dd>{{ .Params.classifier }}</dd>
       <dt>Distribution</dt>
       <dd>{{ (index .Site.Data.bench $data).distribution }}</dd>
       <dt>Date</dt>

@@ -27,9 +27,10 @@ function get_artifact_info() {
 }
 
 function copy_artifact() {
-  mkdir -p $SITE_PATH/static/build/$BUILDID
-  rsync -ahz --delete $BUILD_PATH/ $SITE_PATH/static/build/$BUILDID
-  gzip $SITE_PATH/static/build/$BUILDID/log || true
+  mkdir -p $SITE_PATH/build/$BUILDID
+  rsync -ahz --delete $BUILD_PATH/ $SITE_PATH/build/$BUILDID
+  gzip $SITE_PATH/build/$BUILDID/log || true
+  rm $SITE_PATH/build/$BUILDID/log || true
 }
 
 function add_data() {

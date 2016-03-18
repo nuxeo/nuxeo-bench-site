@@ -13,8 +13,8 @@
 
     <h2>Configuration</h2>
     <dl>
-      <dt>Bench Id/Name</dt>
-      <dd>{{ (index .Site.Data.bench $data).benchid }}/{{ (index .Site.Data.bench $data).benchname }}</dd>
+      <dt>Bench Name</dt>
+      <dd>{{ (index .Site.Data.bench $data).benchname }}</dd>
       <dt>Classifier</dt>
       <dd>{{ (index .Site.Data.bench $data).classifier }}</dd>
       <dt>Distribution</dt>
@@ -34,7 +34,7 @@
     <h2>Results</h2>
 
     <h3>Mass import</h3>
-    <div>This simulation uses the nuxeo-importer on an empty instance, document attachement is upload to S3 and fulltext extracted.</div>
+    <div>This simulation uses the nuxeo-importer on an empty instance, document attachement are upload to S3 and fulltext extracted.</div>
     <dl>
       <dt>Throughput sync</dt>
       <dd class="dps">{{ (index .Site.Data.bench $data).import_dps }}</dd>
@@ -49,14 +49,14 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/overview/">Overview and monitoring</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/detail/">Gatling</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim10massimport/detail/">Gatling</a>
       </dd>
     </dl>
 
     <h3>Create document using REST</h3>
-    <div>This simulation creates new documents (without attachement) on top of the existing instance.</div>
+    <div>This simulation creates new documents without attachement on top of the existing instance.</div>
     <dl>
       <dt>Throughput sync</dt>
       <dd class="dps">{{ (index .Site.Data.bench $data).create_rps }}</dd>
@@ -79,9 +79,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/overview/">Overview and monitoring</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/detail/">Gatling</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -107,9 +107,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/overview/">Overview and monitoring</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/detail/">Gatling</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -135,9 +135,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">Overview and monitoring</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/">Gatling</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -165,9 +165,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/">Overview and monitoring</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/detail/">Gatling</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -195,9 +195,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/">Overview and monitoring</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/detail/">Gatling</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -223,9 +223,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/overview/">Overview and monitoring</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/detail/">Gatling</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/detail/">Gatling</a>
       </dd>
     </dl>
 
@@ -241,9 +241,9 @@
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/">Overview and monitoring</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/">Overview and monitoring</a>
         <a class="tag" target="_blank"
-          href="../../../build/{{ .Params.benchid }}/{{ .Params.dbprofile }}{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/detail/">Gatling</a>
+          href="../../../build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/detail/">Gatling</a>
       </dd>
     </dl>
 

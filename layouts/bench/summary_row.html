@@ -1,7 +1,7 @@
 {{ $data := .Params.dfile }}
 <tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
   <td>
-    <div class="build">{{ (index .Site.Data.bench $data).build_number }}</div>
+    <div class="build">{{ (index .Site.Data.bench $data).build_number }}</a></div>
   </td>
   <th><a
     href="{{ .Permalink }}"><span class="tag">{{ (index .Site.Data.bench $data).dbprofile }}</span> <span class="classifier">{{ (index .Site.Data.bench $data).nuxeonodes }}nodes {{ (index .Site.Data.bench $data).classifier }}</span></a>

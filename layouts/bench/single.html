@@ -2,19 +2,19 @@
 <body class="{{ .Site.Params.themeColor }}">
 {{ partial "header.html" . }}
 {{ partial "sidebar.html" . }}
-{{ $data := .Params.dfile }}
+{{ $data := .Params.build_number }}
 
 <div class="content container">
   <div class="post">
-    <h1>{{ (index .Site.Data.bench $data).benchname }} <span class="tag {{ (index .Site.Data.bench $data).dbprofile }}">{{ (index .Site.Data.bench $data).dbprofile }}</span></h1>
+    <h1>{{ (index .Site.Data.bench $data).bench_suite }} <span class="tag {{ (index .Site.Data.bench $data).dbprofile }}">{{ (index .Site.Data.bench $data).dbprofile }}</span></h1>
     <span class="post-date">{{ .Date.Format "Mon, Jan 2, 2006" }}</span>
 
     {{ .Content }}
 
     <h2>Configuration</h2>
     <dl>
-      <dt>Bench Name</dt>
-      <dd>{{ (index .Site.Data.bench $data).benchname }}</dd>
+      <dt>Bench Suite</dt>
+      <dd>{{ (index .Site.Data.bench $data).bench_suite }}</dd>
       <dt>Classifier</dt>
       <dd>{{ (index .Site.Data.bench $data).classifier }}</dd>
       <dt>Distribution</dt>

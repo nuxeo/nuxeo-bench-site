@@ -18,24 +18,24 @@ function help {
 
 
 function get_artifact_info() {
-  # need dbprofile, benchname
+  # need dbprofile, benchsuite
+  export BUILD_NUMBER=`grep build_number $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export BENCH_SUITE=`grep bench_suite $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export BENCH_DATE=`grep import_date $DATA_FILE | cut -d \: -f 2- | sed 's,",,g;s,^ *,,g;s,\ ,T,g'`
   export DBPROFILE=`grep dbprofile $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  export BENCHNAME=`grep benchname $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  export BUILDID=`grep build_number $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  export BENCHDATE=`grep import_date $DATA_FILE | cut -d \: -f 2- | sed 's,",,g;s,^ *,,g;s,\ ,T,g'`
   export NUXEONODES=`grep nuxeonodes $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
 }
 
 function copy_artifact() {
-  mkdir -p $SITE_PATH/build/$BUILDID
-  rsync -ahz --delete $BUILD_PATH/ $SITE_PATH/build/$BUILDID
-  gzip $SITE_PATH/build/$BUILDID/log || true
-  rm $SITE_PATH/build/$BUILDID/log || true
+  mkdir -p $SITE_PATH/build/$BUILD_NUMBER
+  rsync -ahz --delete $BUILD_PATH/ $SITE_PATH/build/$BUILD_NUMBER
+  gzip $SITE_PATH/build/$BUILD_NUMBER/log || true
+  rm $SITE_PATH/build/$BUILD_NUMBER/log || true
 }
 
 function add_data() {
   mkdir -p $SITE_PATH/data/bench
-  cp -a $DATA_FILE $SITE_PATH/data/bench/$BUILDID.yml
+  cp -a $DATA_FILE $SITE_PATH/data/bench/$BUILD_NUMBER.yml
 }
 
 function update_data() {
@@ -50,7 +50,7 @@ function update_data() {
   reindex_dps=`awk "BEGIN {printf \"%.1f\", $reindex_docs/($reindex_ms / 1000)}" || echo "NA"`
   set -e
   # update target data file
-  data_file=$SITE_PATH/data/bench/$BUILDID.yml
+  data_file=$SITE_PATH/data/bench/$BUILD_NUMBER.yml
   grep -q '^import_dps:' $data_file && sed -i "s/^import_dps\:.*/import_dps\: $import_dps/" $data_file || echo "import_dps: $import_dps" >> $data_file
   grep -q '^import_docs:' $data_file && sed -i "s/^import_docs\:.*/import_docs\: $import_docs/" $data_file || echo "import_docs: $import_docs" >> $data_file
   grep -q '^reindex_docs:' $data_file && sed -i "s/^reindex_docs\:.*/reindex_docs\: $reindex_docs/" $data_file || echo "reindex_docs: $reindex_docs" >> $data_file
@@ -60,13 +60,13 @@ function update_data() {
 
 function add_content() {
   mkdir -p $SITE_PATH/content/$CATEGORY
-  cat > $SITE_PATH/content/$CATEGORY/$BUILDID.md << EOF
+  cat > $SITE_PATH/content/$CATEGORY/$BUILD_NUMBER.md << EOF
 ---
-title: "$DBPROFILE $NUXEONODES $BUILDID"
-dfile: "$BUILDID"
-benchname: "$BENCHNAME"
+title: "$DBPROFILE $NUXEONODES $BUILD_NUMBER"
+bench_suite: "$BENCH_SUITE"
+build_number: "$BUILD_NUMBER"
 dbprofile: "$DBPROFILE"
-date: $BENCHDATE
+date: $BENCH_DATE
 type: bench
 ---
 EOF

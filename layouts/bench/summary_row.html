@@ -1,4 +1,4 @@
-{{ $data := .Params.dfile }}
+{{ $data := .Params.build_number }}
 <tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
   <td>
     <div class="build">{{ (index .Site.Data.bench $data).build_number }}</a></div>

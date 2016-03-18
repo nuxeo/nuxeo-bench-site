@@ -22,7 +22,7 @@ function rebuild_site() {
   rsync -avz --delete $SITE_PATH/content/milestone/ ./content/milestone
   rsync -avz --delete $SITE_PATH/content/continuous/ ./content/continuous
   $HUGO --theme=hyde
-  # the localt ./static and ./public are symlink to SITE_PATH/static & public
+  # the local ./public must be a symlink to SITE_PATH/static & public
 }
 
 # -------------------------------------------------------

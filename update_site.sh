@@ -3,9 +3,6 @@
 cd $(dirname $0)
 # fail on any command error
 set -e
-set -x
-SITE_PATH=$1
-shift
 
 hugo_path=$(which hugo) || true
 if [ -x "$hugo_path" ] ; then
@@ -15,14 +12,7 @@ else
 fi
 
 function rebuild_site() {
-  # The data and content directories can not be symlink so
-  # we need to copy the data first
-  rsync -avz --delete $SITE_PATH/data/ ./data
-  rsync -avz --delete $SITE_PATH/content/misc/ ./content/misc
-  rsync -avz --delete $SITE_PATH/content/milestone/ ./content/milestone
-  rsync -avz --delete $SITE_PATH/content/continuous/ ./content/continuous
   $HUGO --theme=hyde
-  # the local ./public must be a symlink to SITE_PATH/static & public
 }
 
 # -------------------------------------------------------

@@ -42,8 +42,8 @@ function copy_artifact() {
 }
 
 function add_data() {
-  mkdir -p $SITE_PATH/data/bench
-  cp -a $DATA_FILE $SITE_PATH/data/bench/$BUILD_NUMBER.yml
+  mkdir -p ./data/bench
+  cp -a $DATA_FILE ./data/bench/$BUILD_NUMBER.yml
 }
 
 function update_data() {
@@ -58,7 +58,7 @@ function update_data() {
   reindex_dps=`awk "BEGIN {printf \"%.1f\", $reindex_docs/($reindex_ms / 1000)}" || echo "NA"`
   set -e
   # update target data file
-  data_file=$SITE_PATH/data/bench/$BUILD_NUMBER.yml
+  data_file=./data/bench/$BUILD_NUMBER.yml
   grep -q '^import_dps:' $data_file && sed -i "s/^import_dps\:.*/import_dps\: $import_dps/" $data_file || echo "import_dps: $import_dps" >> $data_file
   grep -q '^import_docs:' $data_file && sed -i "s/^import_docs\:.*/import_docs\: $import_docs/" $data_file || echo "import_docs: $import_docs" >> $data_file
   grep -q '^reindex_docs:' $data_file && sed -i "s/^reindex_docs\:.*/reindex_docs\: $reindex_docs/" $data_file || echo "reindex_docs: $reindex_docs" >> $data_file
@@ -67,8 +67,8 @@ function update_data() {
 
 
 function add_content() {
-  mkdir -p $SITE_PATH/content/$CATEGORY
-  cat > $SITE_PATH/content/$CATEGORY/$BUILD_NUMBER.md << EOF
+  mkdir -p ./content/$CATEGORY
+  cat > ./content/$CATEGORY/$BUILD_NUMBER.md << EOF
 ---
 title: "$DBPROFILE $NUXEONODES $BUILD_NUMBER"
 bench_suite: "$BENCH_SUITE"

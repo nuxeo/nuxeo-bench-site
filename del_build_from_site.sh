@@ -13,9 +13,12 @@ function help {
 }
 
 function del_build() {
+  git checkout master
+  git pull
   git rm ./data/bench/$BUILD_NUMBER.yml ./content/*/$BUILD_NUMBER.md || true
-  git commit -m"Removing build $BUILD_NUMBER"
+  git commit -m"Removing build $BUILD_NUMBER"  || true
   rm -f ./data/bench/$BUILD_NUMBER.yml ./content/*/$BUILD_NUMBER.md || true
+  git push
 }
 
 # -------------------------------------------------------

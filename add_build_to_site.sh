@@ -17,6 +17,7 @@ function help {
 function git_pull() {
   if [ -z $GIT_SKIP ]; then
     git checkout master
+    git pull
   fi
 }
 

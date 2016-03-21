@@ -52,6 +52,10 @@ function get_build_info() {
       export CATEGORY=$DEFAULT_CATEGORY
     fi
   fi
+  if [ "$BENCH_SUITE" == "auto" ]; then
+    week=${date -d $BENCH_DATE +%yw%V}
+    export BENCH_SUITE="$week CI Weekly Benchmark"
+  fi
   export DATA_FILE=$HERE/data/bench/$BUILD_NUMBER.yml
   export CONTENT_FILE=$HERE/content/$CATEGORY/$BUILD_NUMBER.md
   export BUILD_PATH=$SITE_PATH/build/$BUILD_NUMBER

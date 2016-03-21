@@ -8,7 +8,8 @@
   <div>Miscellaneous Benchmarks results. You can click on the link of the first cell on each row to have the complete resultset of the corresponding benchmark.</div>
   <ul class="posts">
     {{ range (.Data.Pages.GroupByParam "bench_suite").Reverse }}
-    <h3>{{ .Key }}</h3>
+    <a name="{{ .Key }}" class="suite"></a>
+    <h3><a href="#{{ .Key }}">{{ .Key }}</a></h3>
     <table class="result">
       <thead>
       <th>
@@ -38,7 +39,7 @@
       </thead>
       <tbody>
       {{ range .Pages.ByTitle }}
-        {{ .Render "summary_row" }}
+      {{ .Render "summary_row" }}
       {{ end }}
       </tbody>
     </table>

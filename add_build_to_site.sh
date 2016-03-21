@@ -14,6 +14,12 @@ function help {
   exit 0
 }
 
+function git_pull() {
+  if [ -z $GIT_SKIP ]; then
+    git checkout master
+  fi
+}
+
 function git_add_file() {
   if [ -z $GIT_SKIP ]; then
     file_path=$1
@@ -25,6 +31,7 @@ function git_add_file() {
 function git_commit() {
   if [ -z $GIT_SKIP ]; then
     git commit -m"Adding build $BUILD_NUMBER in category $CATEGORY"
+    git push
   fi
 }
 
@@ -131,6 +138,7 @@ DATA_SRC_FILE=$BUILD_SRC_PATH/archive/reports/data.yml
 
 
 get_build_info
+git_pull
 if [ -z "$ONLY_UPDATE" ]; then
   copy_build
   add_data

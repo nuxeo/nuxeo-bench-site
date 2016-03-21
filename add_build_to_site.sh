@@ -7,68 +7,84 @@ HERE=`readlink -e .`
 # fail on any command error
 set -e
 
-
 function help {
   echo "Usage: $0 BUILD_PATH SITE_PATH"
-  echo "  -c category : like milestone, continuous, misc (default to continous)"
+  echo "  -c category : like milestone, continuous, misc or workbench (default to workbench)"
   echo "  -u          : only update data file stats"
   exit 0
 }
 
+function git_add_file() {
+  if [ -z $GIT_SKIP ]; then
+    file_path=$1
+    shift
+    git add $file_path
+  fi
+}
 
-function get_artifact_info() {
+function git_commit() {
+  if [ -z $GIT_SKIP ]; then
+    git commit -m"Adding build $BUILD_NUMBER in category $CATEGORY"
+  fi
+}
+
+function get_build_info() {
   # need dbprofile, benchsuite
-  export BUILD_NUMBER=`grep build_number $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  export BENCH_SUITE=`grep bench_suite $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  export BENCH_DATE=`grep import_date $DATA_FILE | cut -d \: -f 2- | sed 's,",,g;s,^ *,,g;s,\ ,T,g'`
-  export DBPROFILE=`grep dbprofile $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  export NUXEONODES=`grep nuxeonodes $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  export CLASSIFIER=`grep classifier $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
-  export DEFAULT_CATEGORY=`grep default_category $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export BUILD_NUMBER=`grep build_number $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export BENCH_SUITE=`grep bench_suite $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export BENCH_DATE=`grep import_date $DATA_SRC_FILE | cut -d \: -f 2- | sed 's,",,g;s,^ *,,g;s,\ ,T,g'`
+  export DBPROFILE=`grep dbprofile $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export NUXEONODES=`grep nuxeonodes $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export CLASSIFIER=`grep classifier $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  export DEFAULT_CATEGORY=`grep default_category $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   if [ -z $CATEGORY ]; then
     if [ -z $DEFAULT_CATEGORY ]; then
-      export CATEGORY=continuous
+      export CATEGORY=workbench
     else
       export CATEGORY=$DEFAULT_CATEGORY
     fi
   fi
+  export DATA_FILE=$HERE/data/bench/$BUILD_NUMBER.yml
+  export CONTENT_FILE=$HERE/content/$CATEGORY/$BUILD_NUMBER.md
+  export BUILD_PATH=$SITE_PATH/build/$BUILD_NUMBER
 }
 
-function copy_artifact() {
-  mkdir -p $SITE_PATH/build/$BUILD_NUMBER
-  rsync -ahz --delete $BUILD_PATH/ $SITE_PATH/build/$BUILD_NUMBER
-  gzip $SITE_PATH/build/$BUILD_NUMBER/log || true
-  rm $SITE_PATH/build/$BUILD_NUMBER/log || true
+function copy_build() {
+  mkdir -p $BUILD_PATH
+  rsync -ahz --delete $BUILD_SRC_PATH/ $BUILD_PATH
+  gzip $BUILD_PATH/log || true
+  [ -f $BUILD_PATH/log ] && rm $BUILD_PATH/log || true
 }
 
 function add_data() {
-  mkdir -p ./data/bench
-  cp -a $DATA_FILE ./data/bench/$BUILD_NUMBER.yml
+  mkdir -p `dirname $DATA_FILE`
+  cp -a $DATA_SRC_FILE $DATA_FILE
+  git_add_file $DATA_FILE
 }
 
 function update_data() {
   set +e
   # parse info to extract more stats if not alreaddy present
   # Extract the mass import document stats
-  import_dps=`tail -n1 $BUILD_PATH/archive/logs/*/perf*.csv | cut -d \; -f3 | LC_ALL=C xargs printf "%.1f"`
-  import_docs=`tail -n1 $BUILD_PATH/archive/logs/*/perf*.csv |  cut -d \; -f2 | LC_ALL=C xargs printf "%.0f"`
+  import_dps=`tail -n1 $BUILD_SRC_PATH/archive/logs/*/perf*.csv | cut -d \; -f3 | LC_ALL=C xargs printf "%.1f"`
+  import_docs=`tail -n1 $BUILD_SRC_PATH/archive/logs/*/perf*.csv |  cut -d \; -f2 | LC_ALL=C xargs printf "%.0f"`
   # Extract reindex stats
-  reindex_docs=`grep 'ScrollingIndexingWorker.*has submited ' $BUILD_PATH/archive/logs/*/server.log | sed -e 's,^.*submited.,,g;s,.documents.*$,,g' `
-  reindex_ms=`grep reindex_waitforasync_avg $DATA_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  reindex_docs=`grep 'ScrollingIndexingWorker.*has submited ' $BUILD_SRC_PATH/archive/logs/*/server.log | sed -e 's,^.*submited.,,g;s,.documents.*$,,g' `
+  reindex_ms=`grep reindex_waitforasync_avg $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   reindex_dps=`awk "BEGIN {printf \"%.1f\", $reindex_docs/($reindex_ms / 1000)}" || echo "NA"`
   set -e
   # update target data file
-  data_file=./data/bench/$BUILD_NUMBER.yml
-  grep -q '^import_dps:' $data_file && sed -i "s/^import_dps\:.*/import_dps\: $import_dps/" $data_file || echo "import_dps: $import_dps" >> $data_file
-  grep -q '^import_docs:' $data_file && sed -i "s/^import_docs\:.*/import_docs\: $import_docs/" $data_file || echo "import_docs: $import_docs" >> $data_file
-  grep -q '^reindex_docs:' $data_file && sed -i "s/^reindex_docs\:.*/reindex_docs\: $reindex_docs/" $data_file || echo "reindex_docs: $reindex_docs" >> $data_file
-  grep -q '^reindex_dps:' $data_file && sed -i "s/^reindex_dps\:.*/reindex_dps\: $reindex_dps/" $data_file || echo "reindex_dps: $reindex_dps" >> $data_file
+  grep -q '^import_dps:' $DATA_FILE && sed -i "s/^import_dps\:.*/import_dps\: $import_dps/" $DATA_FILE || echo "import_dps: $import_dps" >> $DATA_FILE
+  grep -q '^import_docs:' $DATA_FILE && sed -i "s/^import_docs\:.*/import_docs\: $import_docs/" $DATA_FILE || echo "import_docs: $import_docs" >> $DATA_FILE
+  grep -q '^reindex_docs:' $DATA_FILE && sed -i "s/^reindex_docs\:.*/reindex_docs\: $reindex_docs/" $DATA_FILE || echo "reindex_docs: $reindex_docs" >> $DATA_FILE
+  grep -q '^reindex_dps:' $DATA_FILE && sed -i "s/^reindex_dps\:.*/reindex_dps\: $reindex_dps/" $DATA_FILE || echo "reindex_dps: $reindex_dps" >> $DATA_FILE
+  git_add_file $DATA_FILE
 }
 
 
 function add_content() {
-  mkdir -p ./content/$CATEGORY
-  cat > ./content/$CATEGORY/$BUILD_NUMBER.md << EOF
+  mkdir -p `dirname $CONTENT_FILE`
+  cat > $CONTENT_FILE << EOF
 ---
 title: "$DBPROFILE $NUXEONODES $BUILD_NUMBER"
 bench_suite: "$BENCH_SUITE"
@@ -79,12 +95,13 @@ date: $BENCH_DATE
 type: "bench"
 ---
 EOF
+  git_add_file $CONTENT_FILE
 }
 
 # -------------------------------------------------------
 # main
 #
-while getopts "c:hu" opt; do
+while getopts "c:hun" opt; do
     case $opt in
         h)
             help
@@ -95,6 +112,9 @@ while getopts "c:hu" opt; do
         u)
             ONLY_UPDATE=true
             ;;
+        n)
+            GIT_SKIP="true"
+            ;;
         ?)
             echo "Invalid option: -$OPTARG" >&2
             exit 1
@@ -102,21 +122,22 @@ while getopts "c:hu" opt; do
     esac
 done
 shift $(($OPTIND - 1))
-BUILD_PATH=$1
+BUILD_SRC_PATH=$1
 shift
 SITE_PATH=$1
 shift
-DATA_FILE=$BUILD_PATH/archive/reports/data.yml
-[ -r $DATA_FILE ]
+DATA_SRC_FILE=$BUILD_SRC_PATH/archive/reports/data.yml
+[ -r $DATA_SRC_FILE ]
 
 
-get_artifact_info
+get_build_info
 if [ -z "$ONLY_UPDATE" ]; then
-  copy_artifact
+  copy_build
   add_data
   update_data
   add_content
 else
   update_data
 fi
+git_commit
 echo "Done"

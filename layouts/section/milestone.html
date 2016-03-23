@@ -6,45 +6,7 @@
 <div class="content container">
   <h1>Milestone Benchmarks results</h1>
   <div>Here are the Benchmarks results for the main Nuxeo releases. You can click on the link of the first cell on each row to have the complete resultset of the corresponding benchmark.</div>
-  <ul class="posts">
-    {{ range (.Data.Pages.GroupByParam "bench_suite").Reverse }}
-    <a name="{{ .Key }}" class="suite"></a>
-    <h3><a href="#{{ .Key }}">{{ .Key }}</a></h3>
-    <table class="result">
-      <thead>
-      <th>
-      </th>
-      <th>Profile</th>
-      <th>
-        <div><span>Import</span></div>
-      </th>
-      <th>
-        <div><span>Create</span></div>
-      </th>
-      <th>
-        <div><span>Navigation</span></div>
-      </th>
-      <th>
-        <div><span>Update</span></div>
-      </th>
-      <th>
-        <div><span>CRUD</span></div>
-      </th>
-      <th>
-        <div><span>Reindexing</span></div>
-      </th>
-      <th>
-        <div><span>Detailed View</span></div>
-      </th>
-      </thead>
-      <tbody>
-      {{ range .Pages.ByTitle }}
-      {{ .Render "summary_row" }}
-      {{ end }}
-      </tbody>
-    </table>
-    {{ end }}
-  </ul>
+  {{ partial "benchsuite.html" . }}
 </div>
 
 {{ partial "footer.html" . }}

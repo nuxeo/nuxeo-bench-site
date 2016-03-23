@@ -4,7 +4,8 @@
     <div class="build">{{ (index .Site.Data.bench $data).build_number }}</a></div>
   </td>
   <th><a
-    href="{{ .Permalink }}"><span class="tag">{{ (index .Site.Data.bench $data).dbprofile }}</span> <span class="classifier">{{ (index .Site.Data.bench $data).nuxeonodes }}nodes {{ .Params.classifier }}</span></a>
+    href="{{ .Permalink }}"><span class="tag">{{ (index .Site.Data.bench $data).dbprofile }}</span> <span
+    class="classifier">{{ (index .Site.Data.bench $data).nuxeonodes }}nodes {{ .Params.classifier }}</span></a>
   </th>
   <td>
     <div class="dps">{{ (index .Site.Data.bench $data).import_dps }}</div>
@@ -40,5 +41,5 @@
   <td>
     <div class="dps">{{ (index .Site.Data.bench $data).reindex_dps }}</div>
   </td>
-  <td><a href={{ .Permalink }}><img src="/images/preview.gif"/></a></td>
+  <td><a href={{ .Permalink }}><img src="/images/preview.gif"/></a>
 </tr>

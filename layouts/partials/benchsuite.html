@@ -3,7 +3,7 @@
   <a name="{{ .Key }}" class="suite"></a>
   <h3><a href="#{{ .Key }}">{{ .Key }}</a></h3>
   <div class="analysis">
-  {{ if isset $.Site.Data.analysis.continuous .Key }}{{ (index $.Site.Data.analysis.continuous .Key ) | markdownify }}{{end}}
+    {{ if isset $.Site.Data.analysis.suite .Key }}{{ (index $.Site.Data.analysis.suite .Key ) | markdownify }}{{end}}
   </div>
   <table class="result">
     <thead>

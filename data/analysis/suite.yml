@@ -1,0 +1,38 @@
+# Here you can comment bench suite using markdown
+"Nuxeo 8.1": "**Import**
+
+
+- The nuxeo-importer is run on a single node so the synchronous part do not benefit of having multiple Nuxeo node.
+  The limitation is mostly Nuxeo CPU at the begining then Nuxeo CPU + Nuxeo disk IO + CPU Backend.
+
+
+- The asynchronous part scale with the number of node, more async activities impacts the synchronous part which
+  explain sync thoughput decrease when adding Nuxeo nodes.
+  The limitation is mostly due to [fulltext updater](https://jira.nuxeo.com/browse/NXP-17862).
+
+
+**Create/Update**
+
+
+- For synchronous part the limitation moves to the backend once there are 2 Nuxeo nodes.
+
+
+**Navigation**
+
+
+- This scales with the number of Nuxeo nodes. The limitation is on Nuxeo CPU and backend response time.
+
+
+**CRUD**
+
+
+- There are some randomness in the result here because the async time is incorrect [due to a bug|https://jira.nuxeo.com/browse/NXP-19092]
+
+
+**Reindex**
+
+
+- Limited by backend except for MongoDB where the limitation is Elasticsearch.
+
+
+"

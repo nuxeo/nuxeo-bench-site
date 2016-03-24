@@ -3,7 +3,7 @@
 
 
 - The nuxeo-importer is run on a single node so the synchronous part do not benefit of having multiple Nuxeo node.
-  The limitation is mostly Nuxeo CPU at the begining then Nuxeo CPU + Nuxeo disk IO + CPU Backend.
+  The limitation is mostly Nuxeo CPU at the begining then Nuxeo (CPU + IO on S3) + Backend CPU.
 
 
 - The asynchronous part scale with the number of node, more async activities impacts the synchronous part which

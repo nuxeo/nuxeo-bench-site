@@ -36,3 +36,24 @@
 
 
 "
+
+"16w11 NXP-17934/NXP-17862 audit and fulltext updater": "This benchmark suite contains 2 major optimizations:
+
+
+- [NXP-17862](https://jira.nuxeo.com/browse/NXP-17862) Fulltext updater
+
+- [NXP-17934](https://jira.nuxeo.com/browse/NXP-17934) Audit optimization refactoring
+
+
+Theses optimizaton reduce asynchronous processing duration from **7x** to **11x**.
+
+The gain comes mostly from the ft updater refactoring and 30% from audit refactoring.
+
+The total benchmark duration is shorter from ~**75** min to ~**40** min.
+"
+
+"16w08 NXP-14923 Redis vs DB invalidation": "This suite test the default database cluster invalidation against the Redis
+implementation [NXP-14923](https://jira.nuxeo.com/browse/NXP-14923).
+
+On heavy concurrent write operation the gain can be around **2x**.
+"

@@ -6,15 +6,17 @@
   The limitation is mostly Nuxeo CPU at the begining then Nuxeo (CPU + IO on S3) + Backend CPU.
 
 
-- The asynchronous part scale with the number of node, more async activities impacts the synchronous part which
-  explain sync thoughput decrease when adding Nuxeo nodes.
+- The asynchronous part scale with the number of node. More async activity impacts the backend and can explain
+  the throughput decrease on synchronous part when adding Nuxeo nodes.
   The limitation is mostly due to [fulltext updater](https://jira.nuxeo.com/browse/NXP-17862).
 
 
 **Create/Update**
 
 
-- For synchronous part the limitation moves to the backend once there are 2 Nuxeo nodes.
+- For synchronous part the limitation is on Nuxeo CPU then backend IO once there are two Nuxeo nodes.
+
+- Same observation as the import for the asynchronous part.
 
 
 **Navigation**
@@ -23,10 +25,19 @@
 - This scales with the number of Nuxeo nodes. The limitation is on Nuxeo CPU and backend response time.
 
 
+**Update**
+
+
+- First limited by Nuxeo CPU, scale with more nodes then backend IO limitation or Redis CPU/IO for MongoDB.
+
+- The async time is incorrect [due to a bug](https://jira.nuxeo.com/browse/NXP-19092) under Redis OOM.
+
+
+
 **CRUD**
 
 
-- There are some randomness in the result here because the async time is incorrect [due to a bug|https://jira.nuxeo.com/browse/NXP-19092]
+- Same as Update, mssql encounter errors on deletion
 
 
 **Reindex**

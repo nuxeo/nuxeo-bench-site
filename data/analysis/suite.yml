@@ -3,10 +3,10 @@
 
 
 - The nuxeo-importer is run on a single node so the synchronous part do not benefit of having multiple Nuxeo node.
-  The limitation is mostly Nuxeo CPU at the begining then Nuxeo (CPU + IO on S3) + Backend CPU.
+  The limitation is mostly `Nuxeo CPU` at the begining then `Nuxeo IO on S3` with `Backend CPU`.
 
 
-- The asynchronous part scale with the number of node. More async activity impacts the backend and can explain
+- The asynchronous part scale with the number of nodes. More async activity impacts the backend and can explain
   the throughput decrease on synchronous part when adding Nuxeo nodes.
   The limitation is mostly due to [fulltext updater](https://jira.nuxeo.com/browse/NXP-17862).
 
@@ -14,7 +14,7 @@
 **Create/Update**
 
 
-- For synchronous part the limitation is on Nuxeo CPU then backend IO once there are two Nuxeo nodes.
+- For synchronous part the limitation is on `Nuxeo CPU` then `Backend IO` once there are two Nuxeo nodes.
 
 - Same observation as the import for the asynchronous part.
 
@@ -22,13 +22,13 @@
 **Navigation**
 
 
-- This scales with the number of Nuxeo nodes. The limitation is on Nuxeo CPU and backend response time.
+- This scales with the number of Nuxeo nodes. The limitation is on `Nuxeo CPU` and backend response time.
 
 
 **Update**
 
 
-- First limited by Nuxeo CPU, scale with more nodes then backend IO limitation or Redis CPU/IO for MongoDB.
+- First limited by `Nuxeo CPU`, scale with more nodes then `Backend IO` limitation or `Redis CPU/IO` for MongoDB.
 
 - The async time is incorrect [due to a bug](https://jira.nuxeo.com/browse/NXP-19092) under Redis OOM.
 
@@ -43,7 +43,7 @@
 **Reindex**
 
 
-- Limited by backend except for MongoDB where the limitation is Elasticsearch.
+- For SQL Backend limited by `Nuxeo VCS` impedance mismatch (slow document loading). For MongoDB limited by `Elasticsearch CPU`.
 
 
 "

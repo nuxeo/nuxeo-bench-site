@@ -11,6 +11,7 @@ function help {
   echo "Usage: $0 BUILD_PATH SITE_PATH"
   echo "  -c category : like milestone, continuous, misc or workbench (default to workbench)"
   echo "  -u          : only update data file stats"
+  echo "  -n          : skip git commands"
   exit 0
 }
 
@@ -53,7 +54,8 @@ function get_build_info() {
     fi
   fi
   if [ "$BENCH_SUITE" == "auto" ]; then
-    week=${date -d $BENCH_DATE +%yw%V}
+    bdate=`echo $BENCH_DATE | cut -dT -f 1`
+    week=`date -d $bdate +%yw%V`
     export BENCH_SUITE="$week CI Weekly Benchmark"
   fi
   export DATA_FILE=$HERE/data/bench/$BUILD_NUMBER.yml

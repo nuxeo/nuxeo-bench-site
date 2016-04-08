@@ -45,16 +45,18 @@
 
 - For SQL Backend limited by `Nuxeo VCS` impedance mismatch (slow document loading). For MongoDB limited by `Elasticsearch CPU`.
 
-
 "
 
-"16w12 NXBT-1018 Test default pool size": "Having more than 4 threads in the default pool increase very slightly
-asynchronous activities. This affects also the synchronous parts.
+"16w12 NXBT-1018 Test default pool size": "Having more than 4 threads in the default pool improves very slightly
+asynchronous tasks.
+
+
+Using a bigger pool means working with more sessions and concurrency, this impacts the synchronous part.
 
 
 So far it is not interesting to use more than 4 threads for the default pool.
-This should be tested again when audit and ft updater optimizations are merged because
-they are the first bottleneck and they may prevent to see benefits of increasing the pool size."
+This should be tested again once audit and ft updater optimizations are merged because
+they are the first bottlenecks at the moment and they may prevent to see benefits of increasing the default pool size."
 
 
 "16w11 NXP-17934/NXP-17862 audit and fulltext updater": "This benchmark suite contains 2 major optimizations:

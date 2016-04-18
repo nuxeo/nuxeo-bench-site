@@ -4,7 +4,7 @@ slug: "infra"
 ---
 
 Nuxeo benchmark infrastructure runs on Amazon Web Service (AWS).
-![Benchmarked Architecture](/benchmarks/images/architecture.png "Architecture deployed for the benchmark")
+![Benchmarked Architecture](/images/architecture.png "Architecture deployed for the benchmark")
 
 The benchmark infrastructure is composed of:
 

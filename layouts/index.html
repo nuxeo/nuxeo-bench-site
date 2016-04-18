@@ -1,31 +1,29 @@
 {{ partial "head.html" . }}
 <body class="{{ .Site.Params.themeColor }}">
 {{ partial "header.html" . }}
-{{ partial "sidebar.html" . }}
 
 <div class="content container fullspace">
   <div class="intro">
-  <p>Nuxeo Platform has a distributed architecture. It is compatible with a wide range of backends. Hence there is many options for addressing your scalability requirements.  From simple and small deployments to  billion records repositories, how Nuxeo Platform behaves? Awesome <a href="https://github.com/nuxeo/nuxeo-bench" target="blank">cloud automation</a> helps us answering that question: Nuxeo Platform rocks!  Just have a tour on our per-release benchmarks, continuous ones and extra-special ones.  Watch figures, compare, learn the architectures, and give feedback!</p>
+  <p>The Nuxeo Platform provides a distributed architecture, compatible with a wide range of backends, offering many options for massive scalability.</p>
+  <p>From simple and small deployments to billion records repositories, check out our <a href="{{ .Site.BaseURL }}milestone/">performance benchmarks for each release</a>, and our weekly <a href="{{ .Site.BaseURL }}continuous/">continuous integration updates</a>.</p>
   </div>
-  
+
   <div class="flex-ctn">
-<div class="flex-itm">
-   <h1>If you had only those figures to remember...</h1>
-  </div>
+    <h1>Notable benchmark numbers for reference</h1>
     <div class="flex-itm">
       <img src="{{ .Site.BaseURL }}images/power.png" />
       <div class="tag">1,000,000,000</div>
-      <div class="detail">That's the greatest number of documents ever stored in a Nuxeo Platform instance so far. Read the details on the <a href="http://www.nuxeo.com/blog/one-billion-documents/" target="blank">Nuxeo Blog</a> and stay tuned, we now are targetting ten billions!</div>
+      <div class="detail">Greatest number of documents stored in Nuxeo Platform for now. Next step: ten billions! <a href="http://www.nuxeo.com/blog/one-billion-documents/" target="blank">» Read  blogpost</a></div>
     </div>
     <div class="flex-itm">
       <img src="{{ .Site.BaseURL }}images/power.png" />
       <div class="tag">6000 req/s</div>
-      <div class="detail">Benchmarking a JavaScript front application hitting Nuxeo Platform server, we reached 6000 requests per seconds. Read the details on the <a href="http://www.nuxeo.com/blog/can-the-nuxeo-platform-scale-to-the-next-level-again-yes/" target="blank"> Nuxeo Blog</a>.</div>
+      <div class="detail">A JavaScript front application can send 6000 requests per seconds to a Nuxeo Platform server.<a href="http://www.nuxeo.com/blog/can-the-nuxeo-platform-scale-to-the-next-level-again-yes/" target="blank"> » Read blogpost</a>.</div>
     </div>
     <div class="flex-itm">
       <img src="{{ .Site.BaseURL }}images/power.png" />
       <div class="tag">14000 documents/sec</div>
-      <div class="detail">That's the import speed when using a MongoDB backend, which makes this backend an ideal one for projects with huge batches of data to import. Read more on the <a href="http://www.nuxeo.com/nuxeo-platform-benchmark-results-using-mongodb-a-15x-performance-increase/">Nuxeo Blog</a>.</div>
+      <div class="detail">Import speed when using a MongoDB backend, perfect for projects with huge batches of data to import.<a href="http://www.nuxeo.com/nuxeo-platform-benchmark-results-using-mongodb-a-15x-performance-increase/">» Read  blogpost</a>.</div>
     </div>
   </div>
 </div>

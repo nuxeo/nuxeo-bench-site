@@ -48,7 +48,7 @@ body {
 }
 
 html {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Aregular', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -85,15 +85,15 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
 }
 h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 h2 {
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 h3 {
   margin-top: 1.5rem;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
 }
 h4, h5, h6 {
   margin-top: 1rem;
@@ -104,6 +104,12 @@ h4, h5, h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+p img {
+  max-width: 45em;
+  margin: 1em auto;
+  box-shadow: 0 0 1px rgba(0, 0, 0, .3);
 }
 
 strong {
@@ -264,9 +270,9 @@ tbody tr:nth-child(odd) th {
  */
 
 .container {
-  max-width: 38rem;
   padding-left:  1rem;
   padding-right: 1rem;
+  font-size: .95em;
   margin-left:  auto;
   margin-right: auto;
 }
@@ -367,7 +373,7 @@ tbody tr:nth-child(odd) th {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
   margin-right: -1rem;
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: 'Aregular', Arial, sans-serif;
   color: #ccc;
   text-align: center;
 }

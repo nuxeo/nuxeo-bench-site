@@ -295,7 +295,6 @@ html {
 }
 
 .build, .timems, .times, .time, .avg, .stddev, .rps, .dps  {
-  display: inline-block;
   white-space: nowrap;
 }
 
@@ -313,6 +312,10 @@ html {
 
 .build, .avg, .stddev, .pill {
   font-size: .7em;
+}
+
+.build {
+  text-align: center;
 }
 
 .avg:after {
@@ -489,6 +492,7 @@ table.result th {
   text-align: left;
 }
 
+th div,
 .report {
   text-align: center;
 }

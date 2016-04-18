@@ -1,20 +1,18 @@
 <div class="sidebar">
-  <div class="container sidebar-sticky">
-    <ul class="sidebar-nav">
-      <li>
-        <ul>
-          <li><a href="{{ .Site.BaseURL }}milestone/">Milestones</a></li>
-          <li><a href="{{ .Site.BaseURL }}continuous/">Continuous</a></li>
-          <li><a href="{{ .Site.BaseURL }}misc/">Misc</a></li>
-          <li><a href="{{ .Site.BaseURL }}workbench/">Workbench</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="{{ .Site.BaseURL }}infra/">Infrastructure</a>
-      </li>
-      <li>
-        <a href="{{ .Site.BaseURL }}scenarios/">Scenarios</a>
-      </li>
-    </ul>
-  </div>
+  <ul class="sidebar-nav">
+    <li>
+      <ul>
+        <li id="milestone"><a href="{{ .Site.BaseURL }}milestone/">Milestones</a></li>
+        <li id="continuous"><a href="{{ .Site.BaseURL }}continuous/">Continuous</a></li>
+        <li id="misc"><a href="{{ .Site.BaseURL }}misc/">Misc</a></li>
+        <li id="workbench"><a href="{{ .Site.BaseURL }}workbench/">Workbench</a></li>
+      </ul>
+    </li>
+    <li id="infra">
+      <a href="{{ .Site.BaseURL }}infra/">Infrastructure</a>
+    </li>
+    <li id="scenarios">
+      <a href="{{ .Site.BaseURL }}scenarios/">Scenarios</a>
+    </li>
+  </ul>
 </div>

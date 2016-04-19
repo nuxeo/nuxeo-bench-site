@@ -610,9 +610,10 @@ th div,
   clear: both;
   border-top: 1px solid #eee;
   padding-top: 1em;
+  min-height: 7em;
 }
 
-.detail a {
+.detail + a {
   display: block;
   border: 2px solid #00adff;
   color: #00adff;;
@@ -622,15 +623,15 @@ th div,
   font-size: 1.15em;
 }
 
-.detail a:hover {
+.detail + a:hover {
   display: block;
   background-color: #00adff;
   color: #fff;
 }
 
 .home .flex-itm img {
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   float: left;
   margin: 0 .2em 0 -0.7em;
 }

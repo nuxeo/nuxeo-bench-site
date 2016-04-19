@@ -32,14 +32,25 @@
  */
 
 @font-face {
-font-family: 'Aregular';
-src: url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.eot');
-src: url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.eot?#iefix') format('embedded-opentype'),
-   url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.woff') format('woff'),
-   url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.ttf') format('truetype'),
-   url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.svg#Aregular') format('svg');
-font-weight: normal;
-font-style: normal;
+  font-family: 'Aregular';
+  src: url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.eot');
+  src: url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.eot?#iefix') format('embedded-opentype'), url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.woff') format('woff'), url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.ttf') format('truetype'), url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.svg#Aregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ademi';
+  src: url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Demi.eot');
+  src: url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Demi.eot?#iefix') format('embedded-opentype'), url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Demi.woff') format('woff'), url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Demi.ttf') format('truetype'), url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Demi.svg#Ademi') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ademic';
+  src: url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-DemiCn.eot');
+  src: url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-DemiCn.eot?#iefix') format('embedded-opentype'), url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-DemiCn.woff') format('woff'), url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-DemiCn.ttf') format('truetype'), url('http://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-DemiCn.svg#Ademic') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 html {
@@ -93,9 +104,10 @@ html {
 .sidebar a {
   color: #333;
   display: inline-block;
-  height: 68px;
+  height: 69px;
   padding: 0 .5em;
   text-transform: uppercase;
+  font-family: 'Ademi', 'Aregular', 'Open Sans', Arial, sans-serif;
   font-size: .85em;
   font-weight: 700;
 }
@@ -167,7 +179,7 @@ html {
     padding-right: 0;
   }
   .content.fullspace > div {
-    padding: 2rem 12rem;
+    padding: 2.7rem 12rem 2.2rem;
   }
 }
 
@@ -183,7 +195,7 @@ html {
     padding-right: 0;
   }
   .content.fullspace > div {
-    padding: 2rem 12rem;
+    padding: 3rem 12rem 2.7rem;
   }
 }
 
@@ -408,9 +420,9 @@ header img {
 
 header span {
   display: inline-block;
-  color: #00adff;
-  font-weight: 300;
+  font-weight: 200;
   font-size: 1.05rem;
+
 }
 
 @media (min-width: 48em) {
@@ -552,14 +564,15 @@ th div,
 /* Flexbox on home */
 
 .intro {
-  background-color: #00adff;
+  background: #213F7D url('../images/background.jpg') no-repeat scroll  100% / cover;
   font-weight: 200;
   color: #fff;
-  font-size: 1.2rem;
+  line-height: 1.8em;
+  font-size: 1.15rem;
 }
 
 .intro a {
-  font-weight: bold;
+  font-family: 'Ademi', 'Aregular', 'Open Sans', Arial, sans-serif;
   color: #fff;
 }
 
@@ -580,17 +593,55 @@ th div,
   display: block;
   text-align: center;
   width: 100%;
+  font-weight: 200;
+  margin: 0 0 2em;
+  color: #00adff;
 }
 
 .flex-itm {
   flex: 0 1 auto;
   min-width: 8rem;
-  max-width: 13rem;
+  max-width: 15rem;
   text-align: center;
 }
 
 .flex-itm .detail {
   text-align: left;
+  clear: both;
+  border-top: 1px solid #eee;
+  padding-top: 1em;
+}
+
+.detail a {
+  display: block;
+  border: 2px solid #00adff;
+  color: #00adff;;
+  margin: 1em 0;
+  padding: .6em 2em;
+  text-align: center;
+  font-size: 1.15em;
+}
+
+.detail a:hover {
+  display: block;
+  background-color: #00adff;
+  color: #fff;
+}
+
+.home .flex-itm img {
+  width: 3rem;
+  height: 3rem;
+  float: left;
+  margin: 0 .2em 0 -0.7em;
+}
+
+.home .number {
+  font-family: 'Ademic';
+  font-size: 2.2em;
+  vertical-align: text-bottom;
+  display: inline-block;
+  float: left;
+  color: #213f7D;
 }
 
 .tag {

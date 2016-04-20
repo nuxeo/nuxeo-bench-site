@@ -154,8 +154,13 @@ html {
  */
 
 .content {
-  padding-top:    4rem;
+  padding-top:    7rem;
   padding-bottom: 4rem;
+}
+
+.post {
+  background-color: #fff;
+  padding: 1rem 2rem;
 }
 
 .content.fullspace {
@@ -562,13 +567,8 @@ th div,
 }
 
 /* Flexbox on home */
-
-.home {
-  background-color: #eee;
-}
-
 .intro {
-  background: #213F7D url('../images/background.jpg') no-repeat scroll  100% / cover;
+  background: #213f7d url('../images/background.jpg') no-repeat scroll  100% / cover;
   font-weight: 200;
   color: #fff;
   line-height: 1.8em;

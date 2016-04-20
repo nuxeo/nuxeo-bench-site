@@ -1,11 +1,10 @@
 	{{ partial "head.html" . }}
 	<body class="{{ .Site.Params.themeColor }}">
 	  {{ partial "header.html" . }}
-		{{ partial "sidebar.html" . }}
 
 		<div class="content container">
+			<h1>{{ .Title }}</h1>
 			<div class="post">
-			 	<h1>{{ .Title }}</h1>
 			      {{ .Content }}
 			</div>
 

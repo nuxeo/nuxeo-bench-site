@@ -4,12 +4,11 @@
 {{ $data := .Params.build_number }}
 
 <div class="content container">
-  <div class="post">
-    <h1>{{ (index .Site.Data.bench $data).bench_suite }} <span
+  <h1>{{ (index .Site.Data.bench $data).bench_suite }} <span
       class="tag {{ (index .Site.Data.bench $data).dbprofile }}">{{ (index .Site.Data.bench $data).dbprofile }}</span>
-    </h1>
-    <span class="post-date">{{ .Date.Format "Mon, Jan 2, 2006" }}</span>
-
+  </h1>
+  <span class="post-date">{{ .Date.Format "Mon, Jan 2, 2006" }}</span>
+  <div class="post">
     <h2>Configuration</h2>
     <dl>
       <dt>Benchmark suite</dt>

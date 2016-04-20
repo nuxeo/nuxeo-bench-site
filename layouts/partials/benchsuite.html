@@ -7,7 +7,7 @@
   <div class="bench">
     <ul class="tabs" id="tabs">
       <li class="active">Result</li>
-      <li>Analysis</li>
+      {{ if isset $.Site.Data.analysis.suite .Key }}<li>Analysis</li>{{end}}
     </ul>
 
     <div class="tabs-content">

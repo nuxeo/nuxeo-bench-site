@@ -160,6 +160,9 @@ a {
 }
 
 @media (max-width: 810px) {
+  .sidebar {
+    width: 30%;
+  }
   .sidebar label:hover {
     cursor: pointer;
   }
@@ -251,6 +254,10 @@ a {
   }
   .content.fullspace > div {
     padding: 3rem 12rem 2.7rem;
+  }
+
+  p img {
+    max-width: 45em;
   }
 }
 

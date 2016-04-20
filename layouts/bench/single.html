@@ -31,66 +31,68 @@
     </dl>
 
     <h2>Overview</h2>
-    <table class="result">
-      <thead>
-      <th>
-        <div><span>Import</span></div>
-      </th>
-      <th>
-        <div><span>Create</span></div>
-      </th>
-      <th>
-        <div><span>Navigation</span></div>
-      </th>
-      <th>
-        <div><span>Update</span></div>
-      </th>
-      <th>
-        <div><span>CRUD</span></div>
-      </th>
-      <th>
-        <div><span>Reindexing</span></div>
-      </th>
-      </thead>
-      <tbody>
-      <tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
-        <td>
-          <div class="dps">{{ (index .Site.Data.bench $data).import_dps }}</div>
-        </td>
-        <td>
-          <div class="dps">{{ (index .Site.Data.bench $data).create_rps }}</div>
-          <div class="time">
-            <span class="avg">{{ (index .Site.Data.bench $data).create_avg }}</span>
-            <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span>
-          </div>
-        </td>
-        <td>
-          <div class="rps">{{ (index .Site.Data.bench $data).nav_rps }}</div>
-          <div class="time">
-            <span class="avg">{{ (index .Site.Data.bench $data).nav_avg }}</span>
-            <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span>
-          </div>
-        </td>
-        <td>
-          <div class="rps">{{ (index .Site.Data.bench $data).update_rps }}</div>
-          <div class="time">
-            <span class="avg">{{ (index .Site.Data.bench $data).update_avg }}</span>
-            <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span>
-          </div>
-        </td>
-        <td>
-          <div class="rps">{{ (index .Site.Data.bench $data).crud_rps }}</div>
-          <div class="time">
-            <span class="avg">{{ (index .Site.Data.bench $data).crud_avg }}</span>
-            <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span>
-          </div>
-        </td>
-        <td>
-          <div class="dps">{{ (index .Site.Data.bench $data).reindex_dps }}</div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="table-overflow">
+      <table class="result">
+        <thead>
+        <th>
+          <div><span>Import</span></div>
+        </th>
+        <th>
+          <div><span>Create</span></div>
+        </th>
+        <th>
+          <div><span>Navigation</span></div>
+        </th>
+        <th>
+          <div><span>Update</span></div>
+        </th>
+        <th>
+          <div><span>CRUD</span></div>
+        </th>
+        <th>
+          <div><span>Reindexing</span></div>
+        </th>
+        </thead>
+        <tbody>
+        <tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
+          <td>
+            <div class="dps">{{ (index .Site.Data.bench $data).import_dps }}</div>
+          </td>
+          <td>
+            <div class="dps">{{ (index .Site.Data.bench $data).create_rps }}</div>
+            <div class="time">
+              <span class="avg">{{ (index .Site.Data.bench $data).create_avg }}</span>
+              <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="rps">{{ (index .Site.Data.bench $data).nav_rps }}</div>
+            <div class="time">
+              <span class="avg">{{ (index .Site.Data.bench $data).nav_avg }}</span>
+              <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="rps">{{ (index .Site.Data.bench $data).update_rps }}</div>
+            <div class="time">
+              <span class="avg">{{ (index .Site.Data.bench $data).update_avg }}</span>
+              <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="rps">{{ (index .Site.Data.bench $data).crud_rps }}</div>
+            <div class="time">
+              <span class="avg">{{ (index .Site.Data.bench $data).crud_avg }}</span>
+              <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="dps">{{ (index .Site.Data.bench $data).reindex_dps }}</div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
     {{ .Content }}
 

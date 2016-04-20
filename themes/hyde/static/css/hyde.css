@@ -69,11 +69,18 @@ html {
   }
 }
 
+a {
+  transition: all .2s ease-in-out;
+}
+
+.align-c {
+  text-align: center;
+}
 
 /*
  * Sidebar
  *
- * Flexible banner for housing site name, intro, and "footer" content. Starts
+ * Flexible banner for housing site name, dark-bloc, and "footer" content. Starts
  * out above content in mobile and later moves to the side with wider viewports.
  */
 
@@ -160,6 +167,7 @@ html {
 
 .post {
   background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15);
   padding: 1rem 2rem;
 }
 
@@ -458,18 +466,12 @@ footer li {
 
 footer a {
   color: #fff;
-  background-color: #ff452a;
-  padding: .3rem .6rem .4rem;
-  border-radius: .1em;
-  margin: 0 .2em 0 1.4em;
-  font-weight: 300;
-  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  margin: 0 1.4em;
 }
 
 footer a:focus,
 footer a:hover {
-  color: #fff;
-  background-color: #00adff;
+  text-transform: underline;
 }
 
 @media (min-width: 48em) {
@@ -567,7 +569,23 @@ th div,
 }
 
 /* Flexbox on home */
-.intro {
+.home .button {
+  display: inline-block;
+  border: 2px solid #00adff;
+  color: #00adff;
+  text-transform: uppercase;
+  font-family: 'Aregular', Arial, sans-serif;
+  margin: 1em 0 0;
+  padding: .3em 1em;
+  font-size: .8em;
+}
+
+.home .button:hover {
+  background-color: #00adff;
+  color: #fff;
+}
+
+.dark-bloc {
   background: #213f7d url('../images/background.jpg') no-repeat scroll  100% / cover;
   font-weight: 200;
   color: #fff;
@@ -575,14 +593,23 @@ th div,
   font-size: 1.15rem;
 }
 
-.intro a {
+.dark-bloc a {
   font-family: 'Ademi', 'Aregular', 'Open Sans', Arial, sans-serif;
+  color: #00adff;
+}
+
+.dark-bloc a:hover {
   color: #fff;
 }
 
-.intro a:hover {
-  text-decoration: underline;
+.dark-bloc a.button {
+  border: 2px solid #ff462a;
   color: #fff;
+  background-color: #ff462a;
+}
+
+.dark-bloc a.button:hover {
+  background-color: #dd1c00;
 }
 
 .flex-ctn {
@@ -620,19 +647,9 @@ th div,
   min-height: 7em;
 }
 
-.detail + a {
-  display: block;
-  border: 2px solid #00adff;
-  color: #00adff;
-  margin: 1em 0;
+.flex-itm .detail + .button {
+  font-size: 1em;
   padding: .6em 1.2em;
-  font-size: 1.1em;
-}
-
-.detail + a:hover {
-  display: block;
-  background-color: #00adff;
-  color: #fff;
 }
 
 .home .flex-itm img {
@@ -640,6 +657,14 @@ th div,
   height: 2rem;
   float: left;
   margin: .3em .2em 0 -0.7em;
+}
+
+.home .dark-bloc .flex-itm {
+  background: none;
+  box-shadow: none;
+  margin-bottom: .5em;
+  max-width: none;
+  padding: 0;
 }
 
 .home .number {
@@ -658,8 +683,8 @@ th div,
   font-weight: 300;
   letter-spacing: 0.02rem;
   font-size: .9rem;
-  border-radius: .2rem;
-  padding: .02rem .5rem .1rem;
+  border-radius: .15rem;
+  padding: .1rem .35rem;
 }
 
 .row.mongodb .tag,
@@ -698,6 +723,11 @@ h1 .tag {
 
 .flex-itm .tag {
   margin: .5rem auto;
+}
+
+dd a.tag:hover {
+  background-color: #00adff;
+  color: #fff;
 }
 
 dl {

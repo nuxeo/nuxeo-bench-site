@@ -3,9 +3,16 @@
 {{ partial "header.html" . }}
 
 <div class="content container fullspace home">
-  <div class="intro">
-  <p>The Nuxeo Platform provides a distributed architecture, compatible with a wide range of backends, offering many options for massive scalability.</p>
-  <p>From thousands to billion documents repositories, check out our <a href="{{ .Site.BaseURL }}milestone/">performance benchmarks for each release</a>, and our weekly <a href="{{ .Site.BaseURL }}continuous/">continuous integration updates</a>.</p>
+  <div class="dark-bloc">
+    <p>From thousands to billion documents repositories, check out the Nuxeo Platform <a href="{{ .Site.BaseURL }}milestone/">performance benchmarks for each release</a>, and our weekly <a href="{{ .Site.BaseURL }}continuous/">continuous integration updates</a>.</p>
+    <div class="flex-ctn">
+     <div class="flex-itm">
+        <a class="button" href="{{ .Site.BaseURL }}milestone/" alt="blank">Milestones Benchmarks</a>
+      </div>
+      <div class="flex-itm">
+        <a class="button" href="{{ .Site.BaseURL }}continuous/" alt="blank">Continuous Integration Benchmarks</a>
+      </div>
+    </div>
   </div>
 
   <div class="flex-ctn">
@@ -16,7 +23,7 @@
         <span class="number">1 Billion Docs</span>
       </div>
       <div class="detail">Current benchmark for the number of documents stored in the Nuxeo Platform. Next step: 10 billion!</div>
-      <a href="http://www.nuxeo.com/blog/one-billion-documents/" target="blank">» Read the Blog Post</a>
+      <a class="button" href="http://www.nuxeo.com/blog/one-billion-documents/" target="blank">» Read the Blog Post</a>
     </div>
     <div class="flex-itm">
       <div class="box-title">
@@ -24,7 +31,7 @@
         <span class="number">6,000 reqs/sec</span>
       </div>
       <div class="detail">A JavaScript front-end application can send 6,000 requests per second to a Nuxeo Platform server.</div>
-      <a href="http://www.nuxeo.com/blog/can-the-nuxeo-platform-scale-to-the-next-level-again-yes/" target="blank"> » Read the Blog Post</a>
+      <a class="button" href="http://www.nuxeo.com/blog/can-the-nuxeo-platform-scale-to-the-next-level-again-yes/" target="blank"> » Read the Blog Post</a>
     </div>
     <div class="flex-itm">
       <div class="box-title">
@@ -32,9 +39,17 @@
         <span class="number">14,000 docs/sec</span>
       </div>
       <div class="detail">Import speed when using a MongoDB backend. Perfect for projects with huge batches of data to import.</div>
-      <a href="http://www.nuxeo.com/nuxeo-platform-benchmark-results-using-mongodb-a-15x-performance-increase/">» Read the Blog Post</a>
+      <a class="button" href="http://www.nuxeo.com/nuxeo-platform-benchmark-results-using-mongodb-a-15x-performance-increase/">» Read the Blog Post</a>
     </div>
   </div>
+
+  <div class="dark-bloc">
+    <p>Designed by developers for developers, the Nuxeo Platform is a highly customizable and extensible content management platform for building business applications.</p>
+    <div class="align-c">
+      <a class="button" href="http://www.nuxeo.com/products/content-management-platform/" target="blank">Discover Nuxeo Platform</a>
+    </div>
+  </div>
+
 </div>
 
 {{ partial "footer.html" . }}

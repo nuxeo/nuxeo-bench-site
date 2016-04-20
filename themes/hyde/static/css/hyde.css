@@ -563,6 +563,10 @@ th div,
 
 /* Flexbox on home */
 
+.home {
+  background-color: #eee;
+}
+
 .intro {
   background: #213F7D url('../images/background.jpg') no-repeat scroll  100% / cover;
   font-weight: 200;
@@ -595,18 +599,21 @@ th div,
   width: 100%;
   font-weight: 200;
   margin: 0 0 2em;
-  color: #00adff;
+  color: #213f7d;
 }
 
-.flex-itm {
+.home .flex-itm {
   flex: 0 1 auto;
   min-width: 8rem;
-  max-width: 15rem;
+  max-width: 17rem;
+  background-color: #fff;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5em;
   text-align: center;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15);
 }
 
 .flex-itm .detail {
-  text-align: left;
   clear: both;
   border-top: 1px solid #eee;
   padding-top: 1em;
@@ -616,11 +623,10 @@ th div,
 .detail + a {
   display: block;
   border: 2px solid #00adff;
-  color: #00adff;;
+  color: #00adff;
   margin: 1em 0;
-  padding: .6em 2em;
-  text-align: center;
-  font-size: 1.15em;
+  padding: .6em 1.2em;
+  font-size: 1.1em;
 }
 
 .detail + a:hover {
@@ -641,7 +647,7 @@ th div,
   vertical-align: text-bottom;
   display: inline-block;
   float: left;
-  color: #213f7d;
+  color: #00adff;
   font-family: 'Ademic', 'Aregular', Arial, sans-serif;
 }
 

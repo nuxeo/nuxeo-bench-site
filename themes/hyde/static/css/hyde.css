@@ -86,15 +86,19 @@ a {
 
 .sidebar {
   text-align: center;
-  padding: 0 2rem 0 3rem;
+  padding: 0 0 0 2.5rem;
   color: rgba(255,255,255,.5);
   background-color: #fff;
+  position: relative;
+  width: 70%;
+  float: right;
+  display: inline-block;
+  vertical-align: top;
 }
 
-@media (min-width: 48em) {
-  .sidebar {
-    height: 50px;
-  }
+.sidebar ul {
+  position: absolute;
+  display: block;
 }
 
 .sidebar ul,
@@ -103,6 +107,10 @@ a {
   padding: 0;
   margin: 0;
   font-weight: 400;
+}
+
+.sidebar li {
+  float: left;
   display: inline-block;
 }
 
@@ -111,25 +119,20 @@ a {
 .sidebar a {
   color: #333;
   display: inline-block;
-  height: 69px;
   padding: 0 .5em;
   text-transform: uppercase;
   font-family: 'Ademi', 'Aregular', 'Open Sans', Arial, sans-serif;
-  font-size: .85em;
+  font-size: .8em;
   font-weight: 700;
 }
 
 .sidebar a:focus,
 .sidebar a:hover {
   color: #00adff;
-}
-
-.sidebar-nav li a {
-  border-bottom: 3px solid transparent;
+  cursor: pointer;
 }
 
 .sidebar-nav li.active a {
-  border-color: #ccc;
   color: #00adff;
 }
 
@@ -137,6 +140,48 @@ a {
 .sidebar-nav {
   padding-left: 0;
   list-style: none;
+}
+
+/* Responsive menu */
+.show-menu,
+.sidebar input[type=checkbox] {
+  display: none;
+}
+
+.sidebar input[type=checkbox]:checked ~ .sidebar-nav{
+  display: block;
+}
+
+.show-menu img {
+  width: 2em;
+  height: 2em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 810px) {
+  .sidebar label:hover {
+    cursor: pointer;
+  }
+
+  .sidebar ul {
+    position: static;
+    display: none;
+  }
+
+  .sidebar li {
+    margin-bottom: 1px;
+  }
+
+  .sidebar ul li, .sidebar li a {
+    width: 100%;
+    line-height: 3em;
+  }
+
+  .show-menu {
+    display: block;
+    text-align: right;
+  }
 }
 
 /* Sticky sidebar
@@ -182,9 +227,6 @@ a {
 }
 
 @media (min-width: 48em) {
-  .content {
-    margin-right: 2rem;
-  }
   .content.fullspace {
     margin-left: 0;
     margin-right: 0;
@@ -415,7 +457,7 @@ header {
   position: fixed;
   z-index: 100;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0 .3rem 0 .5em;
   line-height: 70px;
   height: 70px;
   box-shadow: 0 0 4px rgba(0,0,0,0.3);
@@ -440,7 +482,16 @@ header span {
 
 @media (min-width: 48em) {
   header {
-    padding-left: 2rem;
+    padding: 0 .3rem 0 1rem;
+  }
+  header img {
+    width: 5rem;
+  }
+}
+
+@media (min-width: 64em) {
+  header {
+    padding: 0 1rem 0 2rem;
   }
   header img {
     width: 6.5rem;
@@ -565,6 +616,11 @@ th div,
 .tabs-content div.active {
   display: block;
   min-height: 12em;
+
+}
+
+.tabs-content div.active,
+.table-overflow {
   overflow-x: auto;
 }
 
@@ -685,6 +741,7 @@ th div,
   font-size: .9rem;
   border-radius: .15rem;
   padding: .1rem .35rem;
+  margin: 0 .3em .3em 0;
 }
 
 .row.mongodb .tag,

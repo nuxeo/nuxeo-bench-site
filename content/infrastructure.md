@@ -84,7 +84,9 @@ page provider.
 Nuxeo run with the latest Oracle JVM 1.8, the heap size is set to 80% of total memory (5.84g for a C4.xlarge with 7.5g),
 the flight recoder option is active:
 
-`JAVA_OPTS`=`-server -Xms5984m -Xmx5984m -Dfile.encoding=UTF-8 -Dmail.mime.decodeparameters=true -Djava.util.Arrays.useLegacyMergeSort=true -Xloggc:"/opt/nuxeo/logs/gc.log" -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Dcom.sun.management.jmxremote.autodiscovery=true -Dcom.sun.management.jdp.name=Nuxeo -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true`
+<div class="table-overflow">
+<code>JAVA_OPTS</code>=<code>-server -Xms5984m -Xmx5984m -Dfile.encoding=UTF-8 -Dmail.mime.decodeparameters=true -Djava.util.Arrays.useLegacyMergeSort=true -Xloggc:"/opt/nuxeo/logs/gc.log" -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Dcom.sun.management.jmxremote.autodiscovery=true -Dcom.sun.management.jdp.name=Nuxeo -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true</code>
+</div>
 
 ### Elasticsearch
 
@@ -135,7 +137,7 @@ Database are setup using the recommanded setup and tuning from our documentation
 
 #### SQL Server 2012 (mssql)
 
-[Default setup](https://doc.nuxeo.com/display/ADMINDOC/https://doc.nuxeo.com/display/ADMINDOC/Microsoft+SQL+Server).
+[Default setup](https://doc.nuxeo.com/display/ADMINDOC/Microsoft+SQL+Server).
 
 #### MongoDB
 

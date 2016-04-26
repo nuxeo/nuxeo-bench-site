@@ -120,7 +120,7 @@ Default S3 bucket.
 
 Database are setup using the recommanded setup and tuning from our documentation
 
-#### PostgreSQL
+#### PostgreSQL 9.4
 
 [Default setup](https://doc.nuxeo.com/display/ADMINDOC/PostgreSQL) for a 16g server:
 
@@ -139,6 +139,6 @@ Database are setup using the recommanded setup and tuning from our documentation
 
 [Default setup](https://doc.nuxeo.com/display/ADMINDOC/Microsoft+SQL+Server).
 
-#### MongoDB
+#### MongoDB 8.2
 
 [Default setup](https://doc.nuxeo.com/display/ADMINDOC/MongoDB).

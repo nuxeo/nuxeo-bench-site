@@ -35,22 +35,25 @@
       <table class="result">
         <thead>
         <th>
-          <div><span>Import</span></div>
+          <div><span><a href="#massimport">Import</a></span></div>
         </th>
         <th>
-          <div><span>Create</span></div>
+          <div><span><a href="#create">Create</a></span></div>
         </th>
         <th>
-          <div><span>Navigation</span></div>
+          <div><span><a href="#read">Read</a></span></div>
         </th>
         <th>
-          <div><span>Update</span></div>
+          <div><span><a href="#search">Search</a></span></div>
         </th>
         <th>
-          <div><span>CRUD</span></div>
+          <div><span><a href="#update">Update</a></span></div>
         </th>
         <th>
-          <div><span>Reindexing</span></div>
+          <div><span><a href="#delete">CRU+Delete</a></span></div>
+        </th>
+        <th>
+          <div><span><a href="#reindex">Reindexing</a></span></div>
         </th>
         </thead>
         <tbody>
@@ -71,6 +74,17 @@
               <span class="avg">{{ (index .Site.Data.bench $data).nav_avg }}</span>
               <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span>
             </div>
+          </td>
+          <td>
+            {{ if ne (index .Site.Data.bench $data).search_rps nil }}
+            <div class="rps">{{ (index .Site.Data.bench $data).search_rps }}</div>
+            <div class="time">
+              <span class="avg">{{ (index .Site.Data.bench $data).search_avg }}</span>
+              <span class="stddev">{{ (index .Site.Data.bench $data).search_std }}</span>
+            </div>
+            {{ else }}
+            NA
+            {{ end }}
           </td>
           <td>
             <div class="rps">{{ (index .Site.Data.bench $data).update_rps }}</div>
@@ -97,9 +111,9 @@
     {{ .Content }}
 
     <h2>Details</h2>
-
+    <a name="massimport" class="suite"></a>
     <h3>Mass import</h3>
-    <div>This simulation uses the nuxeo-importer on an empty instance, document attachement are upload to S3 and fulltext extracted.</div>
+    <div>This simulation uses the nuxeo-importer on an empty instance, document attachement are upload to S3 and fulltext is extracted.</div>
     <dl>
       <dt>Throughput sync</dt>
       <dd class="dps">{{ (index .Site.Data.bench $data).import_dps }}</dd>
@@ -120,6 +134,7 @@
       </dd>
     </dl>
 
+    <a name="create" class="suite"></a>
     <h3>Create document using REST</h3>
     <div>This simulation creates new documents without attachement on top of the existing instance.</div>
     <dl>
@@ -151,8 +166,9 @@
       </dd>
     </dl>
 
-    <h3>Navigation using REST</h3>
-    <div>This simulation navigate on the existing instance.</div>
+    <a name="read" class="suite"></a>
+    <h3>Read using REST</h3>
+    <div>This simulation reads random documents and folders with different kind of metadata.</div>
     <dl>
       <dt>Throughput</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).nav_rps }}</dd>
@@ -180,6 +196,7 @@
       </dd>
     </dl>
 
+    <a name="navigation" class="suite"></a>
     <h3>Navigation using JSF</h3>
     <div>This simulation uses the JSF interface to navigate on folder and document tabs.</div>
     <dl>
@@ -209,6 +226,41 @@
       </dd>
     </dl>
 
+    <a name="search" class="suite"></a>
+    <h3>Search using REST</h3>
+    {{ if ne (index .Site.Data.bench $data).search_count nil }}
+    <div>This simulation performs random NXQL searches relying on Elasticsearch.</div>
+    <dl>
+      <dt>Throughput</dt>
+      <dd class="rps">{{ (index .Site.Data.bench $data).search_rps }}</dd>
+      <dt>Response time</dt>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).search_avg }}</span> <span
+        class="stddev">{{ (index .Site.Data.bench $data).search_std }}</span><br>
+        <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).search_min }}</div>
+        <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).search_p50 }}</div>
+        <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).search_p95 }}</div>
+      </dd>
+      <dt>Requests</dt>
+      <dd>{{ (index .Site.Data.bench $data).search_count }}</dd>
+      <dt>Error</dt>
+      <dd class="pcterr">{{ (index .Site.Data.bench $data).search_percentError }}</dd>
+      <dt>Concurrency</dt>
+      <dd>{{ (index .Site.Data.bench $data).search_user }}</dd>
+      <dt>Duration</dt>
+      <dd class="times">{{ (index .Site.Data.bench $data).search_duration }}</dd>
+      <dt>Reports</dt>
+      <dd>
+        <a class="tag" target="_blank"
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/overview/">» Overview and monitoring</a>
+        <a class="tag" target="_blank"
+          href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/">» Gatling</a>
+      </dd>
+    </dl>
+    {{ else }}
+    No search simulation available.
+    {{ end }}
+
+    <a name="update" class="suite"></a>
     <h3>Update REST</h3>
     <div>This simulation performs concurrent update of documents metadata using REST.</div>
     <dl>
@@ -240,8 +292,9 @@
       </dd>
     </dl>
 
+    <a name="delete" class="suite"></a>
     <h3>CRUD on documents in REST</h3>
-    <div>This simulation performs concurrent Create Read Update Delete operations using REST.</div>
+    <div>This simulation performs concurrent Create Read Update and Delete operations on document using REST.</div>
     <dl>
       <dt>Throughput sync</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).crud_rps }}</dd>
@@ -251,6 +304,13 @@
         <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).crud_min }}</div>
         <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).crud_p50 }}</div>
         <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).crud_p95 }}</div>
+      </dd>
+      <dt>Delete response time</dt>
+      <dd><span class="timems">{{ (index .Site.Data.bench $data).crud_deletefile_avg }}</span> <span
+        class="stddev">{{ (index .Site.Data.bench $data).crud_deletefile_std }}</span><br>
+        <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).crud_deletefile_min }}</div>
+        <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).crud_deletefile_p50 }}</div>
+        <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).crud_deletefile_p95 }}</div>
       </dd>
       <dt>Requests</dt>
       <dd>{{ (index .Site.Data.bench $data).crud_count }}</dd>
@@ -271,8 +331,9 @@
       </dd>
     </dl>
 
-    <h3>Bench mixing actions</h3>
-    <div>This simulation performs JSF read and CRUD in REST.</div>
+    <a name="bench" class="suite"></a>
+    <h3>Benchmark mixing actions</h3>
+    <div>This simulation performs concurrently JSF navigation and CRUD in REST.</div>
     <dl>
       <dt>Throughtput</dt>
       <dd class="rps">{{ (index .Site.Data.bench $data).bench_rps }}</dd>
@@ -300,6 +361,7 @@
       </dd>
     </dl>
 
+    <a name="reindex" class="suite"></a>
     <h3>Reindex repository</h3>
     <div>Elasticsearch reindexing of the entire repository.</div>
     <dl>

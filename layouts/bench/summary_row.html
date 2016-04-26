@@ -25,6 +25,17 @@
     </div>
   </td>
   <td>
+    {{ if ne (index .Site.Data.bench $data).search_count nil }}
+    <div class="rps">{{ (index .Site.Data.bench $data).search_rps }}</div>
+    <div class="time">
+      <span class="avg">{{ (index .Site.Data.bench $data).search_avg }}</span>
+      <span class="stddev">{{ (index .Site.Data.bench $data).search_std }}</span>
+    </div>
+    {{ else }}
+    NA
+    {{ end }}
+  </td>
+  <td>
     <div class="rps">{{ (index .Site.Data.bench $data).update_rps }}</div>
     <div class="time">
       <span class="avg">{{ (index .Site.Data.bench $data).update_avg }}</span>

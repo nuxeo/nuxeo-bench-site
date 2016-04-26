@@ -5,35 +5,44 @@ title: "Scenarios"
 ## Sources
 
 The benchmark is composed of a serie of a dozen of Gatling simulations.
+Those simulations cover important use cases of a content platform such as mass import, create, read, search, browsing, update and delete of content. 
 
-They are part of the [Nuxeo source](https://github.com/nuxeo/nuxeo/tree/master/nuxeo-distribution/nuxeo-distribution-cap-gatling-tests/). Those scenarios cover important use cases of a content platform such as import, browsing, update of some content. 
+They are part of the [Nuxeo source](https://github.com/nuxeo/nuxeo/tree/master/nuxeo-distribution/nuxeo-distribution-cap-gatling-tests/). 
+
+The simulations are driven by a [Jenkins job](https://github.com/nuxeo/nuxeo-bench/).
+
 
 ## Description
 
 ### Mass import
 
-This simulation use the 'nuxeo-platform-importer' to generate random document with attachement.
+This simulation use the [nuxeo-platform-importer](https://github.com/nuxeo/nuxeo-platform-importer/) to generate random document with an attachement.
+The attached binary file is stored in S3 and the fulltext is extracted and indexed.
 
 ### Create document using REST
 
-Create documents using the rest API. The documents are imported from a CSV file.
+Create documents using the REST API. The documents are imported from a CSV file, there is no file attachement.
 
-### Navigation REST
+### Read using REST
 
-Get a random folder and document using the REST API.
+Get a random folders and documents using the REST API with various metadata.
+
+### Search using REST
+
+Performs fulltext search using terms from a CSV file.
 
 ### Navigation JSF
 
-View a random folder and a document in it, view all document tabs.
+Using the web UI, view a random folder and a document in it, view all document tabs.
 
-### CRUD REST
+### CRU+Delete using REST
 
-Create a document, Read, Update and Delete it.
+CRUD is Create/Read/Update/Delete of document, this is done on top of previously imported documents.
 
-### Read/Write REST
+### Benchmarks mixing actions
 
-Mixing JSF and Rest Navigation with Document update.
+Mixing web UI navigation and CRUD in REST.
 
-### Elasticsearch Reindexing
+### Reindexing repository
 
-Time to drop and recreate the repository index.
+Time to drop and recreate the Elasticsearch index, documents are loaded from the repository.

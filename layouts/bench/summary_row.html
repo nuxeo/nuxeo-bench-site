@@ -8,17 +8,17 @@
     </a>
   </th>
   <td>
-    <div class="dps">{{ (index .Site.Data.bench $data).import_dps }}</div>
+    <div class="dps"><a href="{{ .Permalink }}#massimport">{{ (index .Site.Data.bench $data).import_dps }}</a></div>
   </td>
   <td>
-    <div class="dps">{{ (index .Site.Data.bench $data).create_rps }}</div>
+    <div class="dps"><a href="{{ .Permalink }}#create">{{ (index .Site.Data.bench $data).create_rps }}</a></div>
     <div class="time">
       <span class="avg">{{ (index .Site.Data.bench $data).create_avg }}</span>
       <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span>
     </div>
   </td>
   <td>
-    <div class="rps">{{ (index .Site.Data.bench $data).nav_rps }}</div>
+    <div class="rps"><a href="{{ .Permalink }}#read">{{ (index .Site.Data.bench $data).nav_rps }}</a></div>
     <div class="time">
       <span class="avg">{{ (index .Site.Data.bench $data).nav_avg }}</span>
       <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span>
@@ -26,7 +26,7 @@
   </td>
   <td>
     {{ if ne (index .Site.Data.bench $data).search_count nil }}
-    <div class="rps">{{ (index .Site.Data.bench $data).search_rps }}</div>
+    <div class="rps"><a href="{{ .Permalink }}#search">{{ (index .Site.Data.bench $data).search_rps }}</a></div>
     <div class="time">
       <span class="avg">{{ (index .Site.Data.bench $data).search_avg }}</span>
       <span class="stddev">{{ (index .Site.Data.bench $data).search_std }}</span>
@@ -36,21 +36,21 @@
     {{ end }}
   </td>
   <td>
-    <div class="rps">{{ (index .Site.Data.bench $data).update_rps }}</div>
+    <div class="rps"><a href="{{ .Permalink }}#update">{{ (index .Site.Data.bench $data).update_rps }}</a></div>
     <div class="time">
       <span class="avg">{{ (index .Site.Data.bench $data).update_avg }}</span>
       <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span>
     </div>
   </td>
   <td>
-    <div class="rps">{{ (index .Site.Data.bench $data).crud_rps }}</div>
+    <div class="rps"><a href="{{ .Permalink }}#crud">{{ (index .Site.Data.bench $data).crud_rps }}</a></div>
     <div class="time">
       <span class="avg">{{ (index .Site.Data.bench $data).crud_avg }}</span>
       <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span>
     </div>
   </td>
   <td>
-    <div class="dps">{{ (index .Site.Data.bench $data).reindex_dps }}</div>
+    <div class="dps"><a href="{{ .Permalink }}#reindex">{{ (index .Site.Data.bench $data).reindex_dps }}</a></div>
   </td>
   <td>
     <div class="report"><a href={{ .Permalink }} title="view benchmark report"></a></div>

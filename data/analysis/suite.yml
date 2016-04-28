@@ -1,4 +1,25 @@
 # Here you can comment bench suite using markdown
+"16w17 NXP-19389 Search optim": "**To improve the new Search simulation results some optimizations have been done:**
+
+
+- The simulations are using an empty header `X-NXfetch.document` that results in fetching all sub entities of documents
+  (due to [NXP-19581](https://jira.nuxeo.com/browse/NXP-19581)).
+  Not fetching all sub entities improves Reads throughput by **27%** and Search by **x2**.
+
+
+- Adding a UserManager cache ([NXP-19584](https://jira.nuxeo.com/browse/NXP-19584)) helps on high throughput.
+  Read simulation improves its throughput by **6%**.
+
+
+- Relying on client to choose the locale instead of fetching it from the user preference [NXP-19588](https://jira.nuxeo.com/browse/NXP-19588) benefits to all REST
+  access, giving a **40%** boost on Read simulation.
+
+
+All cumulated the Read simulation has been improved by **x1.9** and the Search by **2.7**.
+
+
+" 
+
 "Nuxeo 8.1": "**Import**
 
 

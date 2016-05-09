@@ -43,35 +43,43 @@ All machines are on Amazon and runs on the same availability zone (AZ).
 Databases are `c4.2xlarge`, Elasticache is setup with a `cache.m3.large`, all other nodes are `c4.xlarge`.
 
 - c4.xlarge is:
-    - 4 vCPU
-    - 7.5 GiB Memory
-    - 750 Mbps EBS throughput
+    - 4 vCPU (16 ECU)
+    - 7.5 GB Memory
+    - EBS
+        - Not optimized, bandwidth is shared with network
+        - General Purpose SSD (gp2) 8g 24/3000 IOPS (+ 250g 750/3000 IOPS for Elasticsearch node)
+    - Network Performance: High
 
 - c4.2xlarge is:
-    - 8 vCPU
-    - 15 Gib Memory
-    - 1000 Mbps EBS thoughput
+    - 8 vCPU (31 ECU)
+    - 15 GB Memory
+    - EBS
+        - Optimized: max bandwidth: 125MB/s
+        - General Purpose SSD (gp2) 20g 60/3000 IOPS + 100g 300/3000 IOPS
+    - Network Performance: High
 
 - cache.m3.large
     - 2 vCPU
-    - 6.05 Gib Memory
+    - 6.05 GB Memory
+    - Network Performance: Moderate
+    - Redis Engine Version Compatibility: 2.8.23
 
 
-Running a benchmark with the default setting requires requires 8 machines:
+Running a benchmark with the default setting requires 8 machines:
 
-- 3 nodes for Elasticsearch
-- 2 nodes for Nuxeo
-- 1 node for the database/MongoDB
+- 3 nodes for the Elasticsearch cluster
+- 2 nodes for Nuxeo cluster
+- 1 node for an SQL database or MongoDB
 - 1 node for the monitoring
-- 1 node to run the benchmark (Jenkins slave)
+- 1 node to run the benchmark, this is done by a Jenkins slave
 
 ## Configuration
 
 ### Nuxeo nodes
 
-The number of nodex in the Nuxeo Cluster can be configured (default is 2)
+The number of nodes in the Nuxeo Cluster can be configured (default is 2)
 
-The Nuxeo is installed using a zip archive, there are additional packages installed:
+The Nuxeo is installed using a zip archive or by building the tomcat zip using sources, there are additional packages installed:
 
  - `amazon-s3-online-storage`: used to store binaries into S3
  - `nuxeo-platform-importer`: used during the bench to generate random files.
@@ -95,6 +103,7 @@ Create a cluster of 3 nodes using the latest 1.7 version.
 The heap size is set to 50% of the available memory (3.75g)
 
 ### S3
+
 Default S3 bucket.
 
 ### ELB
@@ -113,12 +122,11 @@ Default S3 bucket.
 
 ### Elasticache
 
-  Cluster with a single node using Redis.
-  Configured to disable eviction on memory pressure: `maxmemory-policy=noevictions`
+Cluster with a single node using Redis 2.8.
 
 ### Databases
 
-Database are setup using the recommanded setup and tuning from our documentation
+Database are setup using the recommanded setup and tuning from our documentation.
 
 #### PostgreSQL 9.4
 

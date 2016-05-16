@@ -29,41 +29,55 @@ The bench is driven by continuous integration jobs (Jenkins).
 
 Here is a list of tools used to perform the benchmark:
 
-- Ansible: to start and setup nodes.
-- Gatling: to generate load.
-- Home made open source tool to expose Gatling results.
-- Graphite: to monitor.
-- Hugo: to generate this static site.
-- Jenkins: to drive bench and manage results.
+- [Ansible](https://www.ansible.com/): to start and setup nodes.
+- [Gatling](http://gatling.io/): to generate load.
+- [gatling-report](https://github.com/nuxeo/gatling-report): home made open source tool to expose Gatling results.
+- [Graphite](http://graphite.wikidot.com/): to monitor.
+- [Hugo](http://gohugo.io/): to generate this static site.
+- [Jenkins](https://jenkins.io/): to drive bench and manage results.
 
 ## Amazon ec2 instance type
 
 All machines are on Amazon and runs on the same availability zone (AZ).
 
-Databases are `c4.2xlarge`, Elasticache is setup with a `cache.m3.large`, all other nodes are `c4.xlarge`.
+| Node | ec2 instance type |
+|-|-|
+|Database|`c4.2xlarge`|
+|Nuxeo| `c4.xlarge`|
+|Elasticsearch| `c4.xlarge` |
+|Redis|`cache.m3.large`|
+|Jenkins slave|`c3.xlarge`|
 
-- c4.xlarge is:
-    - 4 vCPU (16 ECU)
-    - 7.5 GB Memory
-    - EBS
-        - Not optimized, bandwidth is shared with network
-        - General Purpose SSD (gp2) 8g 24/3000 IOPS (+ 250g 750/3000 IOPS for Elasticsearch node)
-    - Network Performance: High
 
-- c4.2xlarge is:
+- `c4.2xlarge`:
     - 8 vCPU (31 ECU)
     - 15 GB Memory
-    - EBS
+    - Storage EBS
         - Optimized: max bandwidth: 125MB/s
         - General Purpose SSD (gp2) 20g 60/3000 IOPS + 100g 300/3000 IOPS
     - Network Performance: High
 
-- cache.m3.large
+- `c4.xlarge`:
+    - 4 vCPU (16 ECU)
+    - 7.5 GB Memory
+    - Storage EBS
+        - Not optimized, bandwidth is shared with network
+        - General Purpose SSD (gp2) 8g 24/3000 IOPS (+ 250g 750/3000 IOPS for Elasticsearch node)
+    - Network Performance: High
+
+- `cache.m3.large`
     - 2 vCPU
     - 6.05 GB Memory
     - Network Performance: Moderate
     - Redis Engine Version Compatibility: 2.8.23
 
+- `c3.xlarge`:
+    - 4 vCPU (14 ECU)
+    - 7.5 GB Memory
+    - Storage EBS
+        - Not optimized, bandwidth is shared with network
+        - General Purpose SSD (gp2) 50g 150/3000 IOPS
+    - Network Performance: Moderate
 
 Running a benchmark with the default setting requires 8 machines:
 
@@ -75,11 +89,13 @@ Running a benchmark with the default setting requires 8 machines:
 
 ## Configuration
 
-### Nuxeo nodes
+Operating system used: Ubuntu LTS 14.04 trusty using ext4 filesystem.
+
+### Nuxeo
 
 The number of nodes in the Nuxeo Cluster can be configured (default is 2)
 
-The Nuxeo is installed using a zip archive or by building the tomcat zip using sources, there are additional packages installed:
+The Nuxeo is installed using a zip archive, there are additional packages installed:
 
  - `amazon-s3-online-storage`: used to store binaries into S3
  - `nuxeo-platform-importer`: used during the bench to generate random files.
@@ -102,11 +118,11 @@ Create a cluster of 3 nodes using the latest 1.7 version.
 
 The heap size is set to 50% of the available memory (3.75g)
 
-### S3
+### Binary Storage: Amazon S3
 
 Default S3 bucket.
 
-### ELB
+### Load balancer: Amazon ELB
 
   HTTP Listener
 
@@ -120,9 +136,9 @@ Default S3 bucket.
   - Thresold: `2`
 
 
-### Elasticache
+### Redis: Amazon Elasticache
 
-Cluster with a single node using Redis 2.8.
+Elasticache cluster with a single node using Redis 2.8.
 
 ### Databases
 

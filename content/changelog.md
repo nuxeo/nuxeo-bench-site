@@ -1,7 +1,8 @@
 ---
 title: "Changelog"
 slug: "changes"
----------------
+---
+
 
 Here are some import changes on the Benchmark infrastructure and tests that
 should be take in account to interpret performance evolution.

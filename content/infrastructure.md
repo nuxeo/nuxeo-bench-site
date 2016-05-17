@@ -146,7 +146,7 @@ Database are setup using the recommanded setup and tuning from our documentation
 
 #### PostgreSQL 9.4
 
-[Default setup](https://doc.nuxeo.com/display/ADMINDOC/PostgreSQL) for a 16g server:
+[Default setup](https://doc.nuxeo.com/x/fwQz) for a 16g server:
 
  - shared_buffers: 4GB
  - effective_cache_size: 8GB
@@ -157,12 +157,12 @@ Database are setup using the recommanded setup and tuning from our documentation
 
 #### Oracle 12
 
-[Default setup](https://doc.nuxeo.com/display/ADMINDOC/Oracle).
+[Default setup](https://doc.nuxeo.com/x/ywE7).
 
 #### SQL Server 2012 (mssql)
 
-[Default setup](https://doc.nuxeo.com/display/ADMINDOC/Microsoft+SQL+Server).
+[Default setup](https://doc.nuxeo.com/x/EgI7).
 
 #### MongoDB 8.2
 
-[Default setup](https://doc.nuxeo.com/display/ADMINDOC/MongoDB).
+[Default setup](https://doc.nuxeo.com/x/yAEuAQ).

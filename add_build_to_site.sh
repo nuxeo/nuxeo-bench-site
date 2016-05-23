@@ -60,10 +60,11 @@ function get_build_info() {
   fi
   export DATA_FILE=$HERE/data/bench/$BUILD_NUMBER.yml
   export CONTENT_FILE=$HERE/content/$CATEGORY/$BUILD_NUMBER.md
+  export BUILD_DEST_PATH=$SITE_PATH/build/$BUILD_NUMBER
 }
 
 function copy_build() {
-  if [[ $SITE_PATH = s3* ]]; then
+  if [[ $BUILD_DEST_PATH = s3* ]]; then
     copy_build_s3
   else
     copy_build_local
@@ -73,16 +74,15 @@ function copy_build() {
 function copy_build_s3() {
    gzip $BUILD_SRC_PATH/log || true
    #time s3cmd sync $BUILD_SRC_PATH $SITE_PATH/build/
-   time aws s3 sync $BUILD_SRC_PATH $SITE_PATH/build/
+   time aws s3 sync $BUILD_SRC_PATH $BUILD_DEST_PATH/
    gunzip $BUILD_SRC_PATH/log.gz || true
 }
 
 function copy_build_local() {
-  export BUILD_PATH=$SITE_PATH/build/$BUILD_NUMBER
-  mkdir -p $BUILD_PATH
-  rsync -ahz --delete $BUILD_SRC_PATH/ $BUILD_PATH
-  gzip $BUILD_PATH/log || true
-  [ -f $BUILD_PATH/log ] && rm $BUILD_PATH/log || true
+  mkdir -p $BUILD_DEST_PATH
+  rsync -ahz --delete $BUILD_SRC_PATH/ $BUILD_DEST_PATH
+  gzip $BUILD_DEST_PATH/log || true
+  [ -f $BUILD_DEST_PATH/log ] && rm $BUILD_DEST_PATH/log || true
 }
 
 function add_data() {

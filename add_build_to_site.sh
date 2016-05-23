@@ -60,10 +60,24 @@ function get_build_info() {
   fi
   export DATA_FILE=$HERE/data/bench/$BUILD_NUMBER.yml
   export CONTENT_FILE=$HERE/content/$CATEGORY/$BUILD_NUMBER.md
-  export BUILD_PATH=$SITE_PATH/build/$BUILD_NUMBER
 }
 
 function copy_build() {
+  if [[ $SITE_PATH = s3* ]]; then
+    copy_build_s3
+  else
+    copy_build_local
+  fi
+}
+
+function copy_build_s3() {
+   gzip $BUILD_SRC_PATH/log || true
+   time s3cmd sync $BUILD_SRC_PATH $SITE_PATH/build/
+   gunzip $BUILD_SRC_PATH/log.gz || true
+}
+
+function copy_build_local() {
+  export BUILD_PATH=$SITE_PATH/build/$BUILD_NUMBER
   mkdir -p $BUILD_PATH
   rsync -ahz --delete $BUILD_SRC_PATH/ $BUILD_PATH
   gzip $BUILD_PATH/log || true

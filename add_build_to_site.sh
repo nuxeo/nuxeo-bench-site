@@ -72,7 +72,8 @@ function copy_build() {
 
 function copy_build_s3() {
    gzip $BUILD_SRC_PATH/log || true
-   time s3cmd sync $BUILD_SRC_PATH $SITE_PATH/build/
+   #time s3cmd sync $BUILD_SRC_PATH $SITE_PATH/build/
+   time aws s3 sync $BUILD_SRC_PATH $SITE_PATH/build/
    gunzip $BUILD_SRC_PATH/log.gz || true
 }
 

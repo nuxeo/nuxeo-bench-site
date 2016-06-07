@@ -1,4 +1,10 @@
 # Here you can comment bench suite using markdown
+"16w23 NXP-19754 Test import with random dublincore properties": "**The nuxeo importer has been enhanced to generate random dublincore value:**
+
+
+- This impacts the import throughput around 30%. It is still not clear if the limitation comes from the generation or the load that it creates on services
+"
+
 "16w17 NXP-19389 Search optim": "**To improve the new Search simulation results some optimizations have been done:**
 
 

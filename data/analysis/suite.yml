@@ -1,4 +1,56 @@
 # Here you can comment bench suite using markdown
+"Nuxeo 8.3": "**Import**
+
+
+- The nuxeo-importer is run on a single node so the synchronous part do not benefit of having multiple Nuxeo node.
+  The limitation is mostly `Nuxeo CPU` at the begining (especially for SQL backend) then `Nuxeo IO on S3`, then `SQL Backend IO`
+  and `Backend CPU`.
+
+
+- The asynchronous part [has been optimized](http://localhost:1313/misc/#16w11%20NXP-17934%2fNXP-17862%20audit%20and%20fulltext%20updater) since 8.1.
+  When using more than 2 nodes the asynchonous jobs are processed in real time.
+
+
+**Create**
+
+
+- Create and Update tests scales with the number of nodes, and it is the limitation is on `Nuxeo CPU` then `Backend IO` once there are two Nuxeo nodes.
+
+
+**Read**
+
+
+- This scales with the number of Nuxeo nodes. The limitation is on `Nuxeo CPU` and backend latency.
+
+
+**Search**
+
+
+- This scales with the number of Nuxeo nodes as `Nuxeo CPU` is the first limitation.
+
+
+**Update**
+
+
+- Same as Create but it requires less resources from the backend, Redis overhead present on 8.1 has been fixed. Another possible limitation may be on
+  the load concurrency that is not high enough.
+
+
+
+**CRUD**
+
+
+- Same as Update, mssql encounter errors on deletion [NXP-19335](https://jira.nuxeo.com/browse/NXP-19335).
+
+
+**Reindex**
+
+
+- For SQL Backend except for PostgreSQL limited by `Nuxeo VCS` impedance mismatch (slow document loading). For MongoDB and PostgreSQL limited by `Elasticsearch CPU`.
+
+
+"
+
 "16w23 NXP-19754 Test import with random dublincore properties": "**The nuxeo importer has been enhanced to generate random dublincore value:**
 
 
@@ -24,7 +76,7 @@
 All cumulated the Read simulation has been improved by **x1.9** and the Search by **2.7**.
 
 
-" 
+"
 
 "Nuxeo 8.1": "**Import**
 

@@ -123,7 +123,7 @@
       <dd class="times">{{ (index .Site.Data.bench $data).import_duration }}</dd>
       <dt>Duration sync</dt>
       <dd class="timems">{{ (index .Site.Data.bench $data).import_massimportwiththreads_avg }}</dd>
-      <dt>Duration async</dt>
+      <dt>Residual Residual duration async</dt>
       <dd class="timems">{{ (index .Site.Data.bench $data).import_waitforasyncjobs_avg }}</dd>
       <dt>Reports</dt>
       <dd>
@@ -155,7 +155,7 @@
       <dd>{{ (index .Site.Data.bench $data).create_user }}</dd>
       <dt>Duration sync</dt>
       <dd class="times">{{ (index .Site.Data.bench $data).create_duration }}</dd>
-      <dt>Duration async</dt>
+      <dt>Residual duration async</dt>
       <dd class="times">{{ (index .Site.Data.bench $data).createasync_duration }}</dd>
       <dt>Reports</dt>
       <dd>
@@ -281,7 +281,7 @@
       <dd>{{ (index .Site.Data.bench $data).update_user }}</dd>
       <dt>Duration sync</dt>
       <dd class="times">{{ (index .Site.Data.bench $data).update_duration }}</dd>
-      <dt>Duration async</dt>
+      <dt>Residual duration async</dt>
       <dd class="times">{{ (index .Site.Data.bench $data).updateasync_duration }}</dd>
       <dt>Reports</dt>
       <dd>
@@ -320,7 +320,7 @@
       <dd>{{ (index .Site.Data.bench $data).crud_user }}</dd>
       <dt>Duration sync</dt>
       <dd class="times">{{ (index .Site.Data.bench $data).crud_duration }}</dd>
-      <dt>Duration async</dt>
+      <dt>Residual duration async</dt>
       <dd class="times">{{ (index .Site.Data.bench $data).crudasync_duration }}</dd>
       <dt>Reports</dt>
       <dd>

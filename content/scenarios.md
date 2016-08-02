@@ -49,3 +49,15 @@ Mixing different simulations: Navigation JSF, Read and Update using REST. This s
 ### Reindexing repository
 
 Time to drop and recreate the Elasticsearch index, documents are loaded from the repository.
+
+## Metrics
+
+
+- Throughput sync: throughput as seen by a client submitting requests.
+- Duration sync: total duration as seen by a client to process all the requests.
+- Residual duration async: Residual duration for asynchronous operations such as fulltext extraction or indexing.
+- Total duration: sync + redisual async durations.
+- p50: Median or 50th percentile, response time where half of requests are delivered.
+- p95: 95th percentile, response time where 95 percent ofrequests are delivered.
+- min: Minimum response time for a page or request.
+- 25.5ms(+/-10): Average response time for a request in millisecond, with standard deviation.

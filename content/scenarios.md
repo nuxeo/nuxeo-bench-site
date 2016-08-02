@@ -14,10 +14,13 @@ The simulations are driven by a [Jenkins job](https://github.com/nuxeo/nuxeo-ben
 
 ## Description
 
+Each simulation plays a scenario with a concurrency that is part of the report, there is no pause (i.e. think time) between requests,
+   (except for the simulation Benchmarks mixing actions).
+
 ### Mass import
 
 This simulation use the [nuxeo-platform-importer](https://github.com/nuxeo/nuxeo-platform-importer/) to generate random document with an attachement.
-The attached binary file is stored in S3 and the fulltext is extracted and indexed.
+The attached binary file is stored in S3 and the fulltext is extracted and indexed. The import is run on a single Nuxeo node.
 
 ### Create document using REST
 
@@ -41,7 +44,7 @@ CRUD is Create/Read/Update/Delete of document, this is done on top of previously
 
 ### Benchmarks mixing actions
 
-Mixing web UI navigation and CRUD in REST.
+Mixing different simulations: Navigation JSF, Read and Update using REST. This simulation uses pauses between requests.
 
 ### Reindexing repository
 

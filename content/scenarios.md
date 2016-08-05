@@ -61,3 +61,4 @@ Time to drop and recreate the Elasticsearch index, documents are loaded from the
 - p95: 95th percentile, response time where 95 percent ofrequests are delivered.
 - min: Minimum response time for a page or request.
 - 25.5ms(+/-10): Average response time for a request in millisecond, with standard deviation.
+- Concurrency: number of concurrent requests.

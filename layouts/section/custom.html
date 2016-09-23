@@ -1,0 +1,14 @@
+{{ partial "head.html" . }}
+<body class="{{ .Site.Params.themeColor }}">
+{{ partial "header.html" . }}
+
+<div class="content container">
+  <h1>Custom Benchmarks results</h1>
+  <div>Here are adhoc benchmark to test different limits.</div>
+  {{ partial "custombenchsuite.html" . }}
+</div>
+
+{{ partial "footer.html" . }}
+
+</body>
+</html>

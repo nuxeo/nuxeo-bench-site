@@ -1,0 +1,60 @@
+<ul class="posts">
+  {{ range (.Data.Pages.GroupByParam "bench_suite").Reverse }}
+  <a name="{{ .Key }}" class="suite"></a>
+
+  <h3><a href="#{{ .Key }}">{{ .Key }}</a></h3>
+
+  <div class="bench">
+    <ul class="tabs" id="tabs">
+      <li class="active">Result</li>
+      {{ if isset $.Site.Data.analysis.suite .Key }}<li>Analysis</li>{{end}}
+    </ul>
+
+    <div class="tabs-content">
+      <div class="active">
+        <table class="result">
+          <thead>
+            <th>Profile</th>
+            <th>
+              <div><span>Mass Import target</span></div>
+            </th>
+            <th>
+              <div><span>Mass Import</span></div>
+            </th>
+            <th>
+              <div><span>Indexing</span></div>
+            </th>
+            <th>
+              <div><span>Gatling Import</span></div>
+            </th>
+            <th>
+              <div><span>Gatling Create</span></div>
+            </th>
+            <th>
+              <div><span>Gatling Read</span></div>
+            </th>
+            <th>
+              <div><span>Gatling Search</span></div>
+            </th>
+            <th>
+              <div><span>Gatling Update</span></div>
+            </th>
+            <th>
+              <div><span>Gatling CRUD</span></div>
+            </th>
+          </thead>
+          <tbody>
+            {{ range .Pages.ByTitle }}
+            {{ .Render "customsummary_row" }}
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+      <div>
+      {{ if isset $.Site.Data.analysis.suite .Key }}{{ (index $.Site.Data.analysis.suite .Key ) | markdownify }}{{end}}
+      </div>
+    </div>
+  </div>
+
+  {{ end }}
+</ul>

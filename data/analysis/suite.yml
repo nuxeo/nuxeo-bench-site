@@ -1,4 +1,56 @@
 # Here you can comment bench suite using markdown
+"Nuxeo LTS 8.10": "**Import**
+
+
+- The nuxeo-importer is run on a single node so the synchronous part do not benefit of having multiple Nuxeo node.
+  The limitation is mostly `Nuxeo CPU` at the begining (especially for SQL backend) then `Nuxeo IO on S3`, then `SQL Backend IO`
+  and `Backend CPU`.
+
+
+- The asynchronous part [has been optimized](/misc/#16w11%20NXP-17934%2fNXP-17862%20audit%20and%20fulltext%20updater) since 7.10 LTS.
+
+
+**Create**
+
+
+- Create and Update tests scales with the number of nodes, and it is the limitation is on `Nuxeo CPU`, MongoDB is much faster than in 7.10 because [a cache has been introduced](/misc/index.html#16w44%20NXP-20640%20DBS%20cache%20enabled) to reduce the CPU load related to queries.
+
+
+**Read**
+
+
+- This scales with the number of Nuxeo nodes. Here also the DBS cache works fine for MongoDB and can give more than 50% gain compared to the previous LTS.
+
+
+**Search**
+
+
+- The switch from Elasticsearch 1.x to 2.x with the default options [shows a performance regression](/misc/index.html#16w35%20NXP-19194%20Elasticsearch%202.x)
+
+
+**Update**
+
+
+- Same as Create but it requires less resources from the backend, Redis overhead present on 7.10 has been fixed. Another possible limitation may be on
+  the load concurrency that is not high enough.
+
+
+
+**CRUD**
+
+
+- Same as Update, mssql encounter errors on deletion [NXP-19335](https://jira.nuxeo.com/browse/NXP-19335).
+
+
+**Reindex**
+
+
+- For SQL Backend except for PostgreSQL limited by `Nuxeo VCS` impedance mismatch (slow document loading). For MongoDB and PostgreSQL limited by `Elasticsearch CPU`,
+  the reindexing requires less memory footprint on Nuxeo and is now able to handle billion of documents.
+
+
+"
+
 "Nuxeo 8.3": "**Import**
 
 
@@ -50,6 +102,11 @@
 
 
 "
+
+
+"16w35 NXP-19194 Elasticsearch 2.x": "The default Elasticsearch 2.x settings generates more disk IO on indexing and searching, the `index.translog.durability` is set by request and limits ES to the available IOPS (~750/3500 IOPS -> ~1000 req/s).
+Also deletion is now handled with a scroll and deletes instead of a single recursive operation."
+
 
 "16w23 NXP-19754 Test import with random dublincore properties": "**The nuxeo importer has been enhanced to generate random dublincore value:**
 

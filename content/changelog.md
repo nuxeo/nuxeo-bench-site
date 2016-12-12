@@ -7,6 +7,9 @@ slug: "changes"
 Here are some import changes on the Benchmark infrastructure and tests that
 should be take in account to interpret performance evolution.
 
+## 2016-08-30 Upgarde Elasticsearch 2.x
+ Nuxeo 8.4-SNAPSHOT/8.10 requires Elasticsearch 2.x, the cluster is upgrade from a 1.7.3 to 2.3.5
+
 ## 2016-05-09 New cluster for Jenkins slave
  New on demand c3.xlarge slave.
 

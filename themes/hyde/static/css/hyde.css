@@ -757,13 +757,21 @@ th div,
   background-color: #457430;
 }
 
-.row.oracle12c .tag,
-.oracle12c.tag {
+.row.oracle12c {
+  display: none;
+}
+
+.row.mssql {
+  display: none;
+}
+
+.row._oracle12c .tag,
+.Xoracle12c.tag {
   background-color: #11666b;
 }
 
-.row.mssql .tag,
-.mssql.tag {
+.row._mssql .tag,
+.Xmssql.tag {
   background-color: #673a79;
 }
 

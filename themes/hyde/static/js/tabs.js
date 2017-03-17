@@ -24,13 +24,3 @@ $(document).ready(function(){
     }
   });
 });
-
-$(document).keypress(function(e) {
-  if (e.charCode == 36) {
-      $('tr.row.mssql').removeClass('mssql').addClass('_mssql');
-      $('tr.row.oracle12c').removeClass('oracle12c').addClass('_oracle12c');
-  } else if (e.charCode == 104) {
-      $('tr.row._mssql').removeClass('mssql').addClass('mssql');
-      $('tr.row._oracle12c').removeClass('oracle12c').addClass('oracle12c');
-  }
-});

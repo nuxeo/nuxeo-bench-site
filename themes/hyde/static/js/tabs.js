@@ -1,14 +1,3 @@
-// main navigation
-$(document).ready(function(){
- var segments = window.location.pathname.split('/');
- for (var i = 0; i < segments.length; i++) {
-   if (segments[i].trim().length > 0) {
-     $('#' + segments[i]).addClass('active');
-     break;
-   }
- }
-});
-
 // tabs in bench suites
 $(document).ready(function(){
   $('ul.tabs li').click(function(ele) {

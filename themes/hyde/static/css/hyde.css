@@ -459,99 +459,24 @@ body {
   margin-bottom: 0 !important;
 }
 
-/* Header */
-header {
-  background-color: #fff;
-  position: fixed;
-  z-index: 100;
-  width: 100%;
-  padding: 0 .3rem 0 .5em;
-  line-height: 70px;
-  height: 70px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.3);
-}
-
-header > * {
+/* Fix image alignment bug in satellite header */
+.nuxeo-satellite-header img,
+.nuxeo-satellite-left-menu img {
   display: inline-block;
-}
-
-header img {
-  width: 5rem;
-  border-radius: 0;
-  margin: 0 .6rem -0.2em 0;
-}
-
-header span {
-  display: inline-block;
-  font-weight: 200;
-  font-size: 1.05rem;
-
-}
-
-@media (min-width: 48em) {
-  header {
-    padding: 0 .3rem 0 1rem;
-  }
-  header img {
-    width: 5rem;
-  }
-}
-
-@media (min-width: 64em) {
-  header {
-    padding: 0 1rem 0 2rem;
-  }
-  header img {
-    width: 6.5rem;
-  }
-}
-
-footer {
-  padding: 1.8rem 1rem 2rem;
-  background-color: #26292d;
-  text-align: center;
-  font-size: .85rem;
-}
-
-footer ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-footer li {
-  padding: 0 0 3em;
-}
-
-footer a {
-  color: #fff;
-  margin: 0 1.4em;
-}
-
-footer a:focus,
-footer a:hover {
-  text-transform: underline;
-}
-
-@media (min-width: 48em) {
-  footer {
-    padding-left: 18rem;
-    text-align: left;
-  }
-  footer li {
-    display: inline-block;
-  }
-}
-
-@media (min-width: 64em) {
-  footer {
-    padding-left: 20rem;
-  }
+  margin-bottom: 0;
 }
 
 /* -- */
 
-.fullspace h3 {
+.content {
+  padding-top: 3rem;
+}
+
+.content.fullspace {
+  padding-top: 0;
+}
+
+.content.fullspace h3 {
   margin: 0;
 }
 

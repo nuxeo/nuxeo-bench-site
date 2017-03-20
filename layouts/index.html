@@ -1,44 +1,47 @@
 {{ partial "head.html" . }}
 <body class="{{ .Site.Params.themeColor }}">
-{{ partial "header.html" . }}
+  {{ partial "header.html" . }}
 
-<div class="content container fullspace home">
-  <div class="dark-bloc">
-    <h1>Performance Benchmarks</h1>
-    <div class="flex-ctn align-baseline">
-    <div class="flex-itm">
-       <p>This website is protected.</p>
-     </div>
-     <div class="flex-itm">
-        <a class="button" href="//www.nuxeo.com/about/contact/" alt="blank">Contact Us to get access</a>
-      </div>
+  <div class="flex-ctn bg-blue">
+    <h1 class="flex-itm-centered">Performance Benchmarks</h1>
+    <div class="btn-ctn">
+      This website is protected.
+      <br />
+      <a class="button" href="//www.nuxeo.com/about/contact/" alt="blank">Request Access</a>
     </div>
   </div>
 
-  <div class="flex-ctn blog-section">
-    <p>
-      We have the benchmark results to prove that Nuxeo provides greater performance and scalability as an enterprise content management platform.
-      Designed to provide “future-proof” flexibility, the Nuxeo Platform offers key implementation options to stay ahead of fast-changing requirements:
-    </p>
-    <ul>
-      <li>Choose SQL or NoSQL (e.g. <a href="https://www.nuxeo.com/integration/mongodb/">MongoDB</a>) database for storage</li>
-      <li>Configure search using SQL-based queries, <a href="https://www.nuxeo.com/integration/elasticsearch/">Elasticsearch</a>, or combination of both</li>
-      <li>Partition data and scale the Elasticsearch engine independently for massive scalability</li>
-      <li>Shard on several databases for even higher throughput</li>
-    </ul>
-    <p>From thousands to billion documents repositories, check out the Nuxeo Platform <a href="{{ .Site.BaseURL }}milestone/index.html">performance benchmarks for each release</a>, and our weekly <a href="{{ .Site.BaseURL }}continuous/index.html">continuous integration updates</a>.</p>
-  </div>
+  <div class="content container fullspace home">
+    <div>
+      <hr>
+      <p>
+        <span class="h2-like">We have the benchmark results to prove that Nuxeo provides greater performance and scalability as an enterprise content management platform.</span>
+        Designed to provide “future-proof” flexibility, the Nuxeo Platform offers key implementation options to stay ahead of fast-changing requirements:
+      </p>
+      <ul>
+        <li>Choose SQL or NoSQL (e.g. <a href="https://www.nuxeo.com/integration/mongodb/">MongoDB</a>) database for storage</li>
+        <li>Configure search using SQL-based queries, <a href="https://www.nuxeo.com/integration/elasticsearch/">Elasticsearch</a>, or combination of both</li>
+        <li>Partition data and scale the Elasticsearch engine independently for massive scalability</li>
+        <li>Shard on several databases for even higher throughput</li>
+      </ul>
+      <p>From thousands to billion documents repositories, check out the Nuxeo Platform <a href="{{ .Site.BaseURL }}milestone/index.html">performance benchmarks for each release</a>, and our weekly <a href="{{ .Site.BaseURL }}continuous/index.html">continuous integration updates</a>.</p>
+    </div>
 
-  <div class="dark-bloc">
-    <p>Nuxeo provides a Hyperscale Digital Asset Platform that helps enterprise organizations unlock the full value of their digital assets to grow revenue, improve performance, and maximize investments. Leading organizations use Nuxeo for digital asset management, document management, knowledge management, and other content-centric business applications.</p>
-    <div class="align-c">
+    <div class="aside">
+      <hr>
+      <h2>Latest Blog Posts</h2>
+      <div class="flex-ctn blog-section">
+      </div>
+    </div>
+
+    <div>
+      <hr>
+      <p>Nuxeo provides a Hyperscale Digital Asset Platform that helps enterprise organizations unlock the full value of their digital assets to grow revenue, improve performance, and maximize investments. Leading organizations use Nuxeo for digital asset management, document management, knowledge management, and other content-centric business applications.</p>
       <a class="button" href="http://www.nuxeo.com/products/content-management-platform/" target="blank">Discover Nuxeo Platform</a>
     </div>
   </div>
 
-</div>
-
-{{ partial "footer.html" . }}
+  {{ partial "footer.html" . }}
 
 </body>
 </html>

@@ -31,30 +31,8 @@
  * Update the foundational and global aspects of the page.
  */
 
-@font-face {
-  font-family: 'Aregular';
-  src: url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.eot');
-  src: url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.eot?#iefix') format('embedded-opentype'), url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.woff') format('woff'), url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.ttf') format('truetype'), url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Regular.svg#Aregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Ademi';
-  src: url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Demi.eot');
-  src: url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Demi.eot?#iefix') format('embedded-opentype'), url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Demi.woff') format('woff'), url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-Demi.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Ademic';
-  src: url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-DemiCn.eot');
-  src: url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-DemiCn.eot?#iefix') format('embedded-opentype'), url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-DemiCn.woff') format('woff'), url('https://www.nuxeo.com/wp-content/themes/nuxeo.com_wp/fonts/AvenirNextLTPro/AvenirNextLTPro-DemiCn.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 html {
-  font-family: 'Aregular', 'Open Sans', Arial, sans-serif;
+  font-family: 'Open Sans', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: 400;
 }
@@ -121,7 +99,7 @@ a {
   display: inline-block;
   padding: 0 .5em;
   text-transform: uppercase;
-  font-family: 'Ademi', 'Aregular', 'Open Sans', Arial, sans-serif;
+  font-family: 'Open Sans', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: .8em;
   font-weight: 700;
 }

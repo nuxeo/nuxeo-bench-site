@@ -766,6 +766,7 @@ a.blog-post:hover {
 
 .blog-post > div:first-child {
   font-size: .7rem;
+  max-width: 100%; /* Fix overflowing bug on Safari */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

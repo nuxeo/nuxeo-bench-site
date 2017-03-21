@@ -16,7 +16,7 @@ $(document).ready(function(){
         }
       });
       if (hasTag) {
-        $('.home .blog-section').append('<a class="flex-ctn blog-post" href="https://www.nuxeo.com/blog/' + field.slug + '" target="_blank"><div>' + categories + '</div><hr><div class="h2-like title">' + field.title + '</div><div>' + new Date(field['wp:post_date']).toLocaleDateString() + ' • ' + field['dc:creator'] + '</div></a>');
+        $('.home .blog-section').append('<a class="flex-ctn blog-post" href="https://www.nuxeo.com/blog/' + field.slug + '" target="_blank"><div>' + categories + '</div><hr><div class="h2-like title">' + field.title + '</div><div>' + new Date(field['wp:post_date'].replace(/-/g, "/")).toLocaleDateString() + ' • ' + field['dc:creator'] + '</div></a>');
         blogCount++;
       }
     }

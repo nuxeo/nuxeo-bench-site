@@ -1,9 +1,24 @@
 # Here you can comment bench suite using markdown
+"Nuxeo 9.1": "- A new backend **MarkLogic** has been added to the benchmark matrix.
+
+
+- Since LTS 2016 the **import** has been tuned on DBS (MongoDB and MarkLogic) to [remove contentions](https://jira.nuxeo.com/browse/NXP-21712),
+  [reduce the number of queries](https://jira.nuxeo.com/browse/NXP-20595) and [make cache more efficient](https://jira.nuxeo.com/browse/NXP-21678).
+  This improves the import throughput by **20%**.
+
+
+- The **Elasticsearch reindexing** has been improved by [limiting the size of bulk command](https://jira.nuxeo.com/browse/NXP-21227) and by [reducing the JSON representation](https://jira.nuxeo.com/browse/NXP-21677).
+  This gives a **33%** gain.
+
+
+- There are some regression on write and search REST operation, some are related to GC problem after JSF benchmarks, investigations in process.
+"
+
 "Nuxeo LTS 2016": "**Import**
 
 
 - The nuxeo-importer is run on a single node so the synchronous part do not benefit of having multiple Nuxeo node.
-  The limitation is mostly `Nuxeo CPU` at the begining (especially for SQL backend) then `Nuxeo IO on S3`, then `SQL Backend IO`
+  The limitation is mostly `Nuxeo CPU` at the beginning (especially for SQL backend) then `Nuxeo IO on S3`, then `SQL Backend IO`
   and `Backend CPU`.
 
 
@@ -55,7 +70,7 @@
 
 
 - The nuxeo-importer is run on a single node so the synchronous part do not benefit of having multiple Nuxeo node.
-  The limitation is mostly `Nuxeo CPU` at the begining (especially for SQL backend) then `Nuxeo IO on S3`, then `SQL Backend IO`
+  The limitation is mostly `Nuxeo CPU` at the beginning (especially for SQL backend) then `Nuxeo IO on S3`, then `SQL Backend IO`
   and `Backend CPU`.
 
 
@@ -139,7 +154,7 @@ All cumulated the Read simulation has been improved by **x1.9** and the Search b
 
 
 - The nuxeo-importer is run on a single node so the synchronous part do not benefit of having multiple Nuxeo node.
-  The limitation is mostly `Nuxeo CPU` at the begining then `Nuxeo IO on S3` with `Backend CPU`.
+  The limitation is mostly `Nuxeo CPU` at the beginning then `Nuxeo IO on S3` with `Backend CPU`.
 
 
 - The asynchronous part scale with the number of nodes. More async activity impacts the backend and can explain

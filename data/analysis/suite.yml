@@ -1,4 +1,25 @@
 # Here you can comment bench suite using markdown
+"17w24 NXP-22421 db constraints": "Evaluate performance impact of database constaints as explained in [NXP-22421](https://jira.nuxeo.com/browse/NXP-22421), adding 5 constraints:
+
+
+- hierarchy_parentid_name_1_idx UNIQUE, btree (parentid, name) WHERE isproperty = false
+
+
+- hierarchy_parentid_name_2_idx UNIQUE, btree (parentid, name) WHERE isproperty = true AND pos IS NULL
+
+
+- hierarchy_parentid_name_3_idx UNIQUE, btree (parentid, name, pos) WHERE isproperty = true AND pos IS NOT NULL
+
+
+- dc_subjects_id_pos_id UNIQUE, btree (id, pos)
+
+
+- dc_contributors_id_pos_idx UNIQUE, btree (id, pos)
+
+
+No visible performance impact on the default simulations, it might require more volume/concurrency.
+"
+
 "Nuxeo 9.1": "- A new **MarkLogic** backend has been added to the benchmark matrix.
 
 

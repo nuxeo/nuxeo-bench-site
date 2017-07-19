@@ -1,4 +1,11 @@
 # Here you can comment bench suite using markdown
+"Nuxeo 9.2": "- When choosing a MongoDB backend [the directories is now also stored in MongoDB](https://jira.nuxeo.com/browse/NXP-22411) by default.
+This first implementation of MongoDB directories has limited performance due to a [lack of connection pool](https://jira.nuxeo.com/browse/NXP-22634).
+This limit drastically all the REST throughput on high load, also on high pressure [some background work fails](https://jira.nuxeo.com/browse/NXP-22780) which prevent to get some results, for instance Reindexing throughput is not available (marked as NA).
+In the mean time if you need high performance on MongoDB with 9.2 we suggest you fallback to a SQL directory implementation.
+
+- A performance [regression in the audit logger](https://jira.nuxeo.com/browse/NXP-22774) impacts all operations.
+"
 "17w24 NXP-22421 db constraints": "Evaluate performance impact of database constaints as explained in [NXP-22421](https://jira.nuxeo.com/browse/NXP-22421), adding 5 constraints:
 
 

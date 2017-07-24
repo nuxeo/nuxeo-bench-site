@@ -1,4 +1,9 @@
 # Here you can comment bench suite using markdown
+"17w29 NXP-22764 mongodb directory connection pool": "The MongoDB client used to perform requests on the database
+was initialized each time a session was created. As the client already manages its [own internal connection pool](http://api.mongodb.com/java/3.3/com/mongodb/MongoClient.html),
+[initializing it at the directory level](https://jira.nuxeo.com/browse/NXP-22764) enables to fix the performance regression.
+"
+
 "Nuxeo 9.2": "- When choosing a MongoDB backend [the directories is now also stored in MongoDB](https://jira.nuxeo.com/browse/NXP-22411) by default.
 This first implementation of MongoDB directories has limited performance due to a [lack of connection pool](https://jira.nuxeo.com/browse/NXP-22634).
 This limit drastically all the REST throughput on high load, also on high pressure [some background work fails](https://jira.nuxeo.com/browse/NXP-22780) which prevent to get some results, for instance Reindexing throughput is not available (marked as NA).

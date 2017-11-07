@@ -6,7 +6,8 @@ slug: "changes"
 
 Here are some import changes on the Benchmark infrastructure and tests that
 should be take in account to interpret performance evolution.
-
+## 2017-10-07 Use Elasticsearch Rest client instead of Transport client
+## 2017-10 Update to Elasticsearch 5.6
 ## 2016-08-30 Upgarde Elasticsearch 2.x
  Nuxeo 8.4-SNAPSHOT/8.10 requires Elasticsearch 2.x, the cluster is upgrade from a 1.7.3 to 2.3.5
 

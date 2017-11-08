@@ -1,6 +1,10 @@
 # Here you can comment bench suite using markdown
 "17w45 Elasticsearch translog sync vs async": "By default Elasticsearch fsync its translog on every request, switching from sync to async we have only one fsync every 5s.
-The result is not visible during the create document simulation because the saturation is on the Nuxeo side but the iowait decreased from 50% to <1% See [sync chart](https://benchmarks.nuxeo.com/build/1162/archive/reports/sim10massimport/overview/sysCPUIoWait_1852_20171107.png) vs [async chart](https://benchmarks.nuxeo.com/build/1161/archive/reports/sim10massimport/overview/sysCPUIoWait_1753_20171107.png)."
+The result is not visible during the create document simulation because the saturation is on the Nuxeo side but the iowait decreased from 50% to <1%
+sync | async
+-----|-----
+![sync chart](https://benchmarks.nuxeo.com/build/1162/archive/reports/sim10massimport/overview/sysCPUIoWait_1852_20171107.png) | ![async chart](https://benchmarks.nuxeo.com/build/1161/archive/reports/sim10massimport/overview/sysCPUIoWait_1753_20171107.png).
+"
 
 "17w45 Elasticsearch Rest vs Transport client": "The difference between Rest and Transport clients is not visible, benchmarks are now done with the Rest client"
 

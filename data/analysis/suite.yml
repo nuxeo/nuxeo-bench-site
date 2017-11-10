@@ -1,4 +1,10 @@
 # Here you can comment bench suite using markdown
+"17w45 Stream workmanager": "This test is done with a single node using the StreamWorkmanager [NXP-22107](https://jira.nuxeo.com/browse/NXP-22107) based on Chronicle Queues, the async processing is done at a better constant throughput, in the create simulation there are a lot of indexing task performed in async, the total duration sync + async moves from 161s (127s sync + 34s async) to 118s, a gain of 25%, this is visible in the indexing rate as well:
+
+ ![Default WorkManager](https://benchmarks.nuxeo.com/build/1163/archive/reports/sim20createdocuments/overview/nxElasticsearchindex_1159_20171110.png 'Default WorkManager') ![Stream WorkManager](https://benchmarks.nuxeo.com/build/1164/archive/reports/sim20createdocuments/overview/nxElasticsearchindex_1252_20171110.png 'Stream WorkManager')
+
+"
+
 "17w45 Elasticsearch translog sync vs async": "By default Elasticsearch fsync its translog on every request, switching from sync to async we have only one fsync every 5s.
 The result is not visible during the create document simulation because the saturation is on the Nuxeo side but the iowait decreased from 50% to ~1%.
 

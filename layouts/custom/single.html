@@ -23,11 +23,11 @@
       <dt>Backend</dt>
       <dd>{{ (index .Site.Data.custombench $data).dbprofile }}</dd>
       <dt>Nuxeo nodes</dt>
-      <dd><span class="bold">{{ (index .Site.Data.custombench $data).nuxeonodes }}</span> {{ (index .Site.Data.custombench $data).nuxeotype }}</dd>
+      <dd><span class="bold">{{ (index .Site.Data.custombench $data).nuxeonodes }}</span> * {{ (index .Site.Data.custombench $data).nuxeotype }}</dd>
       <dt>Database nodes</dt>
-      <dd>{{ (index .Site.Data.custombench $data).dbnodes }} {{ (index .Site.Data.custombench $data).dbtype }}</dd>
+      <dd>{{ (index .Site.Data.custombench $data).dbnodes }} * {{ (index .Site.Data.custombench $data).dbtype }}</dd>
       <dt>Elasticsearch nodes</dt>
-      <dd>{{ (index .Site.Data.custombench $data).esnodes }} {{ (index .Site.Data.custombench $data).estype }}</dd>
+      <dd>{{ (index .Site.Data.custombench $data).esnodes }} * {{ (index .Site.Data.custombench $data).estype }}</dd>
       </dd>
       <dt>Number of documents</dt>
       <dd>{{ (index .Site.Data.custombench $data).total_docs }}</dd>

@@ -1,4 +1,45 @@
 # Here you can comment bench suite using markdow than on write operationn
+"Nuxeo 9.3": "Performance regression of 9.2 on [MongoDB](https://jira.nuxeo.com/browse/NXP-22411) has been addressed.
+
+
+The [audit writer has been refactored to use Nuxeo Stream](https://jira.nuxeo.com/browse/NXP-22109) this improves writes operations.
+
+
+Elasticsearch upgrade from 2.3 to 5.6 shows comparable performance with some trend in slower write and faster search.
+
+
+**Import** Is back to normal an even better than LTS 2016
+
+
+**Create** Scales up to 3 nodes then plateauing around 1200 req/s for MongoDB:
+
+
+  - The throughput is limited by the response time (around 25ms) and the Gatling concurrency used (32 threads) which limit the possible load to 1280 req/s.
+    Furthermore the sync response time that limit the throughput is not bounded to Nuxeo CPU as in LTS 2016 so adding more than 3 nodes does not help.
+
+  - The total time sync + async is improved comparing to LTS 2016 with 4 nodes from 98s to 72s (+25% faster).
+
+
+**Read** Scales with number of Nuxeo nodes
+
+
+**Search** ES 5.x is a bit faster.
+
+
+**Update/CRUD** performance are much better than in 9.2 with the new audit logger.
+
+
+  - Like with the Create simulation the throughput is limited by the concurrency and response time.
+
+  - The async time is better than in LTS 2016
+
+
+**Reindex** Slower than with Elasticsearch 2.x, ES CPU bound, can be related to a slowness of the default fulltext analyzer with the `html_strip` char filter.
+
+
+"
+
+
 "17w47 DBS Cache or not": "Disabling the DBS cache with `nuxeo.dbs.cache.enabled=false` has almost no impact on write operations performance at this throughput. Read operations are more impacted, the additional round trips with storage starts to be a limitation because the throughput is much higher.
 
 

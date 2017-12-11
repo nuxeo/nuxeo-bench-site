@@ -1,0 +1,593 @@
+bench_date: 2017-12-11 06:46:22
+
+import_duration: 259.2
+import_avg: 129517.5
+import_rps: 0.0
+import_date: 2017-12-11 06:46:22
+import_count: 2
+import_percentError: 0.00
+import_error: 0
+import_waitforasyncjobs_name: "Wait for async jobs"
+import_waitforasyncjobs_avg: 120075.0
+import_massimportwiththreads_name: "Mass import 100000 with 12 threads"
+import_massimportwiththreads_avg: 138960.0
+
+create_avg: 45.6
+create_rps: 678.3
+create_std: 69
+create_min: 9
+create_p50: 35
+create_p95: 92
+create_max: 2762
+create_user: 32
+create_date: 2017-12-11 06:51:10
+create_duration: 133.2
+create_count: 90341
+create_percentError: 0.00
+create_error: 0
+create_createfile_name: "Create File"
+create_createfile_avg: 45.6
+create_createfile_std: 69
+create_createfile_min: 9
+create_createfile_p50: 35
+create_createfile_p95: 92
+create_createfile_max: 2762
+create_createfile_rps: 678.3
+
+createasync_avg: 55596.0
+createasync_duration: 55.7
+createasync_count: 1
+createasync_percentError: 0.00
+createasync_error: 0
+
+nav_avg: 39.6
+nav_rps: 1169.6
+nav_std: 31
+nav_min: 3
+nav_p50: 32
+nav_p95: 84
+nav_max: 679
+nav_user: 48
+nav_date: 2017-12-11 06:58:41
+nav_duration: 182.0
+nav_count: 212917
+nav_percentError: 0.00
+nav_error: 0
+nav_getdocumentfolder_name: "Get document folder"
+nav_getdocumentfolder_avg: 23.5
+nav_getdocumentfolder_std: 13
+nav_getdocumentfolder_min: 3
+nav_getdocumentfolder_p50: 21
+nav_getdocumentfolder_p95: 48
+nav_getdocumentfolder_max: 257
+nav_getdocumentfolder_rps: 118.2
+nav_getdocumentdconly_name: "Get document dc only"
+nav_getdocumentdconly_avg: 32.2
+nav_getdocumentdconly_std: 29
+nav_getdocumentdconly_min: 4
+nav_getdocumentdconly_p50: 26
+nav_getdocumentdconly_p95: 69
+nav_getdocumentdconly_max: 451
+nav_getdocumentdconly_rps: 117.8
+nav_getdocumentwithversionlabel_name: "Get document with versionLabel"
+nav_getdocumentwithversionlabel_avg: 38.6
+nav_getdocumentwithversionlabel_std: 29
+nav_getdocumentwithversionlabel_min: 6
+nav_getdocumentwithversionlabel_p50: 32
+nav_getdocumentwithversionlabel_p95: 75
+nav_getdocumentwithversionlabel_max: 590
+nav_getdocumentwithversionlabel_rps: 58.0
+nav_getdocument_name: "Get document"
+nav_getdocument_avg: 38.6
+nav_getdocument_std: 30
+nav_getdocument_min: 4
+nav_getdocument_p50: 32
+nav_getdocument_p95: 76
+nav_getdocument_max: 555
+nav_getdocument_rps: 350.7
+nav_getdocumentwithacl_name: "Get document with acl"
+nav_getdocumentwithacl_avg: 38.7
+nav_getdocumentwithacl_std: 30
+nav_getdocumentwithacl_min: 6
+nav_getdocumentwithacl_p50: 32
+nav_getdocumentwithacl_p95: 77
+nav_getdocumentwithacl_max: 615
+nav_getdocumentwithacl_rps: 117.0
+nav_getdocumentwiththumbnail_name: "Get document with thumbnail"
+nav_getdocumentwiththumbnail_avg: 39.0
+nav_getdocumentwiththumbnail_std: 31
+nav_getdocumentwiththumbnail_min: 6
+nav_getdocumentwiththumbnail_p50: 32
+nav_getdocumentwiththumbnail_p95: 78
+nav_getdocumentwiththumbnail_max: 514
+nav_getdocumentwiththumbnail_rps: 116.5
+nav_getdocumentwithlock_name: "Get document with lock"
+nav_getdocumentwithlock_avg: 39.5
+nav_getdocumentwithlock_std: 30
+nav_getdocumentwithlock_min: 6
+nav_getdocumentwithlock_p50: 33
+nav_getdocumentwithlock_p95: 78
+nav_getdocumentwithlock_max: 519
+nav_getdocumentwithlock_rps: 56.9
+nav_getdocumentwithbreadcrumb_name: "Get document with breadcrumb"
+nav_getdocumentwithbreadcrumb_avg: 45.3
+nav_getdocumentwithbreadcrumb_std: 31
+nav_getdocumentwithbreadcrumb_min: 8
+nav_getdocumentwithbreadcrumb_p50: 38
+nav_getdocumentwithbreadcrumb_p95: 87
+nav_getdocumentwithbreadcrumb_max: 613
+nav_getdocumentwithbreadcrumb_rps: 118.5
+nav_getdocumentwithproperties_name: "Get document with properties"
+nav_getdocumentwithproperties_avg: 63.3
+nav_getdocumentwithproperties_std: 37
+nav_getdocumentwithproperties_min: 9
+nav_getdocumentwithproperties_p50: 59
+nav_getdocumentwithproperties_p95: 117
+nav_getdocumentwithproperties_max: 679
+nav_getdocumentwithproperties_rps: 115.9
+
+navjsf_avg: 442.2
+navjsf_rps: 17.8
+navjsf_std: 455
+navjsf_min: 1
+navjsf_p50: 218
+navjsf_p95: 1265
+navjsf_max: 5010
+navjsf_user: 8
+navjsf_date: 2017-12-11 07:05:15
+navjsf_duration: 182.8
+navjsf_count: 3251
+navjsf_percentError: 0.00
+navjsf_error: 0
+navjsf_logoutredirect_name: "Logout Redirect 1"
+navjsf_logoutredirect_avg: 1.4
+navjsf_logoutredirect_std: 0
+navjsf_logoutredirect_min: 1
+navjsf_logoutredirect_p50: 1
+navjsf_logoutredirect_p95: 2
+navjsf_logoutredirect_max: 4
+navjsf_logoutredirect_rps: 0.8
+navjsf_logout_name: "Logout"
+navjsf_logout_avg: 2.8
+navjsf_logout_std: 1
+navjsf_logout_min: 1
+navjsf_logout_p50: 2
+navjsf_logout_p95: 6
+navjsf_logout_max: 18
+navjsf_logout_rps: 0.8
+navjsf_loginredirecttoworkspace_name: "Login redirect to workspace"
+navjsf_loginredirecttoworkspace_avg: 8.4
+navjsf_loginredirecttoworkspace_std: 8
+navjsf_loginredirecttoworkspace_min: 1
+navjsf_loginredirecttoworkspace_p50: 3
+navjsf_loginredirecttoworkspace_p95: 22
+navjsf_loginredirecttoworkspace_max: 32
+navjsf_loginredirecttoworkspace_rps: 0.8
+navjsf_viewdocumentfilestab_name: "View document files tab"
+navjsf_viewdocumentfilestab_avg: 145.8
+navjsf_viewdocumentfilestab_std: 59
+navjsf_viewdocumentfilestab_min: 91
+navjsf_viewdocumentfilestab_p50: 132
+navjsf_viewdocumentfilestab_p95: 272
+navjsf_viewdocumentfilestab_max: 394
+navjsf_viewdocumentfilestab_rps: 0.8
+navjsf_viewdocumentpublishtab_name: "View document publish tab"
+navjsf_viewdocumentpublishtab_avg: 147.0
+navjsf_viewdocumentpublishtab_std: 60
+navjsf_viewdocumentpublishtab_min: 88
+navjsf_viewdocumentpublishtab_p50: 131
+navjsf_viewdocumentpublishtab_p95: 284
+navjsf_viewdocumentpublishtab_max: 456
+navjsf_viewdocumentpublishtab_rps: 1.6
+navjsf_viewdocumentpermissiontab_name: "View document permission tab"
+navjsf_viewdocumentpermissiontab_avg: 158.1
+navjsf_viewdocumentpermissiontab_std: 69
+navjsf_viewdocumentpermissiontab_min: 96
+navjsf_viewdocumentpermissiontab_p50: 144
+navjsf_viewdocumentpermissiontab_p95: 303
+navjsf_viewdocumentpermissiontab_max: 484
+navjsf_viewdocumentpermissiontab_rps: 0.8
+navjsf_viewdocumentrelationtab_name: "View document relation tab"
+navjsf_viewdocumentrelationtab_avg: 163.5
+navjsf_viewdocumentrelationtab_std: 84
+navjsf_viewdocumentrelationtab_min: 100
+navjsf_viewdocumentrelationtab_p50: 145
+navjsf_viewdocumentrelationtab_p95: 344
+navjsf_viewdocumentrelationtab_max: 585
+navjsf_viewdocumentrelationtab_rps: 0.8
+navjsf_viewdocumentedittab_name: "View document edit tab"
+navjsf_viewdocumentedittab_avg: 191.8
+navjsf_viewdocumentedittab_std: 91
+navjsf_viewdocumentedittab_min: 115
+navjsf_viewdocumentedittab_p50: 175
+navjsf_viewdocumentedittab_p95: 382
+navjsf_viewdocumentedittab_max: 666
+navjsf_viewdocumentedittab_rps: 0.8
+navjsf_viewdocumenthistorytab_name: "View document history tab"
+navjsf_viewdocumenthistorytab_avg: 212.3
+navjsf_viewdocumenthistorytab_std: 80
+navjsf_viewdocumenthistorytab_min: 130
+navjsf_viewdocumenthistorytab_p50: 200
+navjsf_viewdocumenthistorytab_p95: 413
+navjsf_viewdocumenthistorytab_max: 661
+navjsf_viewdocumenthistorytab_rps: 0.8
+navjsf_viewdocument_name: "View document"
+navjsf_viewdocument_avg: 250.3
+navjsf_viewdocument_std: 92
+navjsf_viewdocument_min: 144
+navjsf_viewdocument_p50: 233
+navjsf_viewdocument_p95: 387
+navjsf_viewdocument_max: 1068
+navjsf_viewdocument_rps: 4.6
+navjsf_loginredirecttoworkspaceredirect_name: "Login redirect to workspace Redirect 1"
+navjsf_loginredirecttoworkspaceredirect_avg: 992.4
+navjsf_loginredirecttoworkspaceredirect_std: 564
+navjsf_loginredirecttoworkspaceredirect_min: 741
+navjsf_loginredirecttoworkspaceredirect_p50: 887
+navjsf_loginredirecttoworkspaceredirect_p95: 1152
+navjsf_loginredirecttoworkspaceredirect_max: 5010
+navjsf_loginredirecttoworkspaceredirect_rps: 0.8
+navjsf_viewparentfolder_name: "View parent folder"
+navjsf_viewparentfolder_avg: 1083.4
+navjsf_viewparentfolder_std: 210
+navjsf_viewparentfolder_min: 683
+navjsf_viewparentfolder_p50: 1037
+navjsf_viewparentfolder_p95: 1495
+navjsf_viewparentfolder_max: 2060
+navjsf_viewparentfolder_rps: 4.6
+
+search_avg: 158.5
+search_rps: 298.6
+search_std: 70
+search_min: 16
+search_p50: 158
+search_p95: 275
+search_max: 606
+search_user: 48
+search_date: 2017-12-11 07:01:59
+search_duration: 182.1
+search_count: 54364
+search_percentError: 0.00
+search_error: 0
+search_searchfolderssorted_name: "Search folders sorted"
+search_searchfolderssorted_avg: 85.5
+search_searchfolderssorted_std: 42
+search_searchfolderssorted_min: 16
+search_searchfolderssorted_p50: 79
+search_searchfolderssorted_p95: 165
+search_searchfolderssorted_max: 375
+search_searchfolderssorted_rps: 29.9
+search_searchallsorted_name: "Search All sorted"
+search_searchallsorted_avg: 107.4
+search_searchallsorted_std: 55
+search_searchallsorted_min: 26
+search_searchallsorted_p50: 95
+search_searchallsorted_p95: 217
+search_searchallsorted_max: 518
+search_searchallsorted_rps: 29.8
+search_searchall_name: "Search All"
+search_searchall_avg: 125.2
+search_searchall_std: 66
+search_searchall_min: 19
+search_searchall_p50: 114
+search_searchall_p95: 245
+search_searchall_max: 527
+search_searchall_rps: 29.5
+search_searchonpath_name: "Search on path"
+search_searchonpath_avg: 125.3
+search_searchonpath_std: 63
+search_searchonpath_min: 23
+search_searchonpath_p50: 114
+search_searchonpath_p95: 243
+search_searchonpath_max: 469
+search_searchonpath_rps: 29.7
+search_searchfulltext_name: "Search fulltext"
+search_searchfulltext_avg: 190.0
+search_searchfulltext_std: 57
+search_searchfulltext_min: 28
+search_searchfulltext_p50: 186
+search_searchfulltext_p95: 289
+search_searchfulltext_max: 606
+search_searchfulltext_rps: 179.7
+
+
+bench_avg: 66.0
+bench_rps: 96.1
+bench_std: 180
+bench_min: 1
+bench_p50: 14
+bench_p95: 202
+bench_max: 1757
+bench_user: 95
+bench_date: 2017-12-11 07:08:31
+bench_duration: 181.8
+bench_count: 17465
+bench_percentError: 0.00
+bench_error: 0
+bench_logoutredirect_name: "Logout Redirect 1"
+bench_logoutredirect_avg: 1.3
+bench_logoutredirect_std: 0
+bench_logoutredirect_min: 1
+bench_logoutredirect_p50: 1
+bench_logoutredirect_p95: 2
+bench_logoutredirect_max: 2
+bench_logoutredirect_rps: 0.4
+bench_logout_name: "Logout"
+bench_logout_avg: 3.2
+bench_logout_std: 5
+bench_logout_min: 1
+bench_logout_p50: 2
+bench_logout_p95: 6
+bench_logout_max: 45
+bench_logout_rps: 0.4
+bench_loginredirecttoworkspace_name: "Login redirect to workspace"
+bench_loginredirecttoworkspace_avg: 7.1
+bench_loginredirecttoworkspace_std: 7
+bench_loginredirecttoworkspace_min: 1
+bench_loginredirecttoworkspace_p50: 3
+bench_loginredirecttoworkspace_p95: 23
+bench_loginredirecttoworkspace_max: 33
+bench_loginredirecttoworkspace_rps: 0.4
+bench_getdocumentfolder_name: "Get document folder"
+bench_getdocumentfolder_avg: 8.0
+bench_getdocumentfolder_std: 6
+bench_getdocumentfolder_min: 3
+bench_getdocumentfolder_p50: 7
+bench_getdocumentfolder_p95: 19
+bench_getdocumentfolder_max: 105
+bench_getdocumentfolder_rps: 7.3
+bench_getdocumentdconly_name: "Get document dc only"
+bench_getdocumentdconly_avg: 24.0
+bench_getdocumentdconly_std: 34
+bench_getdocumentdconly_min: 3
+bench_getdocumentdconly_p50: 9
+bench_getdocumentdconly_p95: 103
+bench_getdocumentdconly_max: 301
+bench_getdocumentdconly_rps: 7.7
+bench_getdocument_name: "Get document"
+bench_getdocument_avg: 26.3
+bench_getdocument_std: 34
+bench_getdocument_min: 3
+bench_getdocument_p50: 12
+bench_getdocument_p95: 102
+bench_getdocument_max: 321
+bench_getdocument_rps: 23.7
+bench_getdocumentwithversionlabel_name: "Get document with versionLabel"
+bench_getdocumentwithversionlabel_avg: 26.7
+bench_getdocumentwithversionlabel_std: 35
+bench_getdocumentwithversionlabel_min: 7
+bench_getdocumentwithversionlabel_p50: 12
+bench_getdocumentwithversionlabel_p95: 106
+bench_getdocumentwithversionlabel_max: 247
+bench_getdocumentwithversionlabel_rps: 3.7
+bench_getdocumentwithacl_name: "Get document with acl"
+bench_getdocumentwithacl_avg: 27.1
+bench_getdocumentwithacl_std: 35
+bench_getdocumentwithacl_min: 3
+bench_getdocumentwithacl_p50: 12
+bench_getdocumentwithacl_p95: 107
+bench_getdocumentwithacl_max: 306
+bench_getdocumentwithacl_rps: 7.8
+bench_getdocumentwithlock_name: "Get document with lock"
+bench_getdocumentwithlock_avg: 28.0
+bench_getdocumentwithlock_std: 36
+bench_getdocumentwithlock_min: 7
+bench_getdocumentwithlock_p50: 12
+bench_getdocumentwithlock_p95: 109
+bench_getdocumentwithlock_max: 427
+bench_getdocumentwithlock_rps: 4.3
+bench_getdocumentwiththumbnail_name: "Get document with thumbnail"
+bench_getdocumentwiththumbnail_avg: 28.0
+bench_getdocumentwiththumbnail_std: 37
+bench_getdocumentwiththumbnail_min: 6
+bench_getdocumentwiththumbnail_p50: 12
+bench_getdocumentwiththumbnail_p95: 108
+bench_getdocumentwiththumbnail_max: 311
+bench_getdocumentwiththumbnail_rps: 7.4
+bench_getdocumentwithbreadcrumb_name: "Get document with breadcrumb"
+bench_getdocumentwithbreadcrumb_avg: 29.4
+bench_getdocumentwithbreadcrumb_std: 36
+bench_getdocumentwithbreadcrumb_min: 5
+bench_getdocumentwithbreadcrumb_p50: 14
+bench_getdocumentwithbreadcrumb_p95: 108
+bench_getdocumentwithbreadcrumb_max: 271
+bench_getdocumentwithbreadcrumb_rps: 7.9
+bench_getdocumentwithproperties_name: "Get document with properties"
+bench_getdocumentwithproperties_avg: 35.3
+bench_getdocumentwithproperties_std: 35
+bench_getdocumentwithproperties_min: 5
+bench_getdocumentwithproperties_p50: 24
+bench_getdocumentwithproperties_p95: 112
+bench_getdocumentwithproperties_max: 269
+bench_getdocumentwithproperties_rps: 7.7
+bench_updatefile_name: "Update File"
+bench_updatefile_avg: 49.3
+bench_updatefile_std: 36
+bench_updatefile_min: 13
+bench_updatefile_p50: 36
+bench_updatefile_p95: 125
+bench_updatefile_max: 379
+bench_updatefile_rps: 9.2
+bench_viewdocumentfilestab_name: "View document files tab"
+bench_viewdocumentfilestab_avg: 134.0
+bench_viewdocumentfilestab_std: 35
+bench_viewdocumentfilestab_min: 86
+bench_viewdocumentfilestab_p50: 126
+bench_viewdocumentfilestab_p95: 207
+bench_viewdocumentfilestab_max: 290
+bench_viewdocumentfilestab_rps: 0.4
+bench_viewdocumentpublishtab_name: "View document publish tab"
+bench_viewdocumentpublishtab_avg: 136.6
+bench_viewdocumentpublishtab_std: 35
+bench_viewdocumentpublishtab_min: 90
+bench_viewdocumentpublishtab_p50: 128
+bench_viewdocumentpublishtab_p95: 213
+bench_viewdocumentpublishtab_max: 279
+bench_viewdocumentpublishtab_rps: 0.8
+bench_viewdocumentpermissiontab_name: "View document permission tab"
+bench_viewdocumentpermissiontab_avg: 139.8
+bench_viewdocumentpermissiontab_std: 35
+bench_viewdocumentpermissiontab_min: 98
+bench_viewdocumentpermissiontab_p50: 128
+bench_viewdocumentpermissiontab_p95: 220
+bench_viewdocumentpermissiontab_max: 231
+bench_viewdocumentpermissiontab_rps: 0.4
+bench_viewdocumentrelationtab_name: "View document relation tab"
+bench_viewdocumentrelationtab_avg: 145.3
+bench_viewdocumentrelationtab_std: 35
+bench_viewdocumentrelationtab_min: 102
+bench_viewdocumentrelationtab_p50: 135
+bench_viewdocumentrelationtab_p95: 221
+bench_viewdocumentrelationtab_max: 256
+bench_viewdocumentrelationtab_rps: 0.4
+bench_viewdocumentedittab_name: "View document edit tab"
+bench_viewdocumentedittab_avg: 176.8
+bench_viewdocumentedittab_std: 44
+bench_viewdocumentedittab_min: 114
+bench_viewdocumentedittab_p50: 169
+bench_viewdocumentedittab_p95: 255
+bench_viewdocumentedittab_max: 364
+bench_viewdocumentedittab_rps: 0.4
+bench_viewdocumenthistorytab_name: "View document history tab"
+bench_viewdocumenthistorytab_avg: 188.3
+bench_viewdocumenthistorytab_std: 50
+bench_viewdocumenthistorytab_min: 131
+bench_viewdocumenthistorytab_p50: 176
+bench_viewdocumenthistorytab_p95: 322
+bench_viewdocumenthistorytab_max: 383
+bench_viewdocumenthistorytab_rps: 0.4
+bench_viewdocument_name: "View document"
+bench_viewdocument_avg: 213.0
+bench_viewdocument_std: 49
+bench_viewdocument_min: 144
+bench_viewdocument_p50: 202
+bench_viewdocument_p95: 309
+bench_viewdocument_max: 426
+bench_viewdocument_rps: 2.4
+bench_loginredirecttoworkspaceredirect_name: "Login redirect to workspace Redirect 1"
+bench_loginredirecttoworkspaceredirect_avg: 879.8
+bench_loginredirecttoworkspaceredirect_std: 109
+bench_loginredirecttoworkspaceredirect_min: 751
+bench_loginredirecttoworkspaceredirect_p50: 844
+bench_loginredirecttoworkspaceredirect_p95: 1127
+bench_loginredirecttoworkspaceredirect_max: 1234
+bench_loginredirecttoworkspaceredirect_rps: 0.4
+bench_viewparentfolder_name: "View parent folder"
+bench_viewparentfolder_avg: 1068.5
+bench_viewparentfolder_std: 212
+bench_viewparentfolder_min: 721
+bench_viewparentfolder_p50: 991
+bench_viewparentfolder_p95: 1502
+bench_viewparentfolder_max: 1757
+bench_viewparentfolder_rps: 2.4
+
+update_avg: 94.0
+update_rps: 333.3
+update_std: 58
+update_min: 10
+update_p50: 80
+update_p95: 179
+update_max: 1002
+update_user: 32
+update_date: 2017-12-11 06:54:46
+update_duration: 182.1
+update_count: 60699
+update_percentError: 0.00
+update_error: 0
+update_updatefile_name: "Update File"
+update_updatefile_avg: 94.0
+update_updatefile_std: 58
+update_updatefile_min: 10
+update_updatefile_p50: 80
+update_updatefile_p95: 179
+update_updatefile_max: 1002
+update_updatefile_rps: 333.3
+
+updateasync_avg: 24919.0
+updateasync_duration: 25.0
+updateasync_count: 1
+updateasync_percentError: 0.00
+updateasync_error: 0
+
+crud_avg: 50.1
+crud_rps: 620.7
+crud_std: 56
+crud_min: 3
+crud_p50: 39
+crud_p95: 113
+crud_max: 1820
+crud_user: 32
+crud_date: 2017-12-11 07:11:53
+crud_duration: 122.0
+crud_count: 75728
+crud_percentError: 0.01
+crud_error: 4
+crud_getfile_name: "Get File"
+crud_getfile_avg: 33.0
+crud_getfile_std: 33
+crud_getfile_min: 3
+crud_getfile_p50: 26
+crud_getfile_p95: 74
+crud_getfile_max: 1780
+crud_getfile_rps: 155.1
+crud_createfile_name: "Create File"
+crud_createfile_avg: 39.6
+crud_createfile_std: 50
+crud_createfile_min: 11
+crud_createfile_p50: 31
+crud_createfile_p95: 82
+crud_createfile_max: 1762
+crud_createfile_rps: 155.2
+crud_updatefile_name: "Update File"
+crud_updatefile_avg: 54.0
+crud_updatefile_std: 57
+crud_updatefile_min: 9
+crud_updatefile_p50: 43
+crud_updatefile_p95: 113
+crud_updatefile_max: 1804
+crud_updatefile_rps: 155.1
+crud_deletefile_name: "Delete File"
+crud_deletefile_avg: 73.8
+crud_deletefile_std: 69
+crud_deletefile_min: 18
+crud_deletefile_p50: 64
+crud_deletefile_p95: 145
+crud_deletefile_max: 1820
+crud_deletefile_rps: 155.3
+
+crudasync_avg: 42607.0
+crudasync_duration: 42.7
+crudasync_count: 1
+crudasync_percentError: 0.00
+crudasync_error: 0
+
+reindex_avg: 65547.5
+reindex_rps: 0.0
+reindex_user: 1
+reindex_date: 2017-12-11 07:15:05
+reindex_duration: 131.3
+reindex_count: 2
+reindex_percentError: 0.00
+reindex_error: 0
+reindex_reindexallrepository_name: "Reindex All repository"
+reindex_reindexallrepository_avg: 509.0
+reindex_reindexallrepository_std: 0
+reindex_reindexallrepository_rps: 0.0
+reindex_waitforasync_name: "Wait For Async"
+reindex_waitforasync_avg: 130586.0
+reindex_waitforasync_std: 0
+reindex_waitforasync_rps: 0.0
+build_number: 1205
+build_url: "https://qa.nuxeo.org/jenkins/job/Misc/job/nuxeo-reference-bench/1205/"
+job_name: "Misc/nuxeo-reference-bench"
+dbprofile: "oracle12c"
+bench_suite: "auto"
+nuxeonodes: 2
+classifier: ""
+distribution: "lastbuild"
+default_category: "continuous"
+
+import_dps: 728.1
+import_docs: 101130
+reindex_docs: 242078
+reindex_dps: 1853.8

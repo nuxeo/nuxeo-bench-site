@@ -5,6 +5,22 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   {{ .Hugo.Generator }}
 
+  <!-- 0. Include Nuxeo Font. -->
+  <style>
+    @font-face {
+      font-family: 'Neue Haas Grotes';
+      src: local('Neue Haas Grotes'),
+      local('Neue Haas Grotes Display Std'),
+      url('https://static.nuxeo.com/fonts/NHaasGroteskDSStd-55Rg.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Neue Haas Grotes';
+      font-weight: bold;
+      src: local('Neue Haas Grotes Black'),
+      local('Neue Haas Grotes Display Black'),
+      url('https://static.nuxeo.com/fonts/NHaasGroteskDSStd-95Blk.otf') format('opentype');
+    }
+  </style>
   <!-- Standard Nuxeo header and footer - Load webcomponents-lite.min.js for polyfill support and import elements. -->
   <script src="https://static.nuxeo.com/satellite/latest/bower_components/webcomponentsjs/custom-elements-es5-adapter.js"></script>
   <script src="https://static.nuxeo.com/satellite/latest/bower_components/webcomponentsjs/webcomponents-lite.js"></script>

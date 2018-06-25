@@ -23,9 +23,9 @@ This is a mix of static and dynamic parts:
 - the database/MongoDB and Graphite nodes are started on demand (but not created)
 - the ELB, ElastiCache and S3 bucket are static
 
-**All these nodes are setup according to our recommandation.**
+**All these nodes are setup according to our recommendation.**
 
-The bench is driven by continuous integration jobs (Jenkins).
+The benchmark is driven by continuous integration jobs (Jenkins).
 
 Here is a list of tools used to perform the benchmark:
 
@@ -89,7 +89,9 @@ Running a benchmark with the default setting requires 8 machines:
 
 ## Configuration
 
-Operating system used: Ubuntu LTS 14.04 trusty using ext4 filesystem.
+Operating system used:
+- static nodes (Database, Monitoring): Ubuntu LTS 14.04 using ext4 filesystem.
+- dynamic nodes (Nuxeo and Elasticsearch): Ubuntu LTS 16.04 using ext4 filesystem (since 2018-06)
 
 ### Nuxeo
 
@@ -114,7 +116,7 @@ the flight recoder option is active:
 
 ### Elasticsearch
 
-Create a cluster of 3 nodes using the latest 1.7 version.
+Create a cluster of 3 nodes using the proper [Elasticsearch version](https://doc.nuxeo.com/nxdoc/compatibility-matrix/#elasticsearch).
 
 The heap size is set to 50% of the available memory (3.75g)
 
@@ -142,7 +144,7 @@ Elasticache cluster with a single node using Redis 2.8.
 
 ### Databases
 
-Database are setup using the recommanded setup and tuning from our documentation.
+Database are setup using the recommended setup and tuning from our documentation.
 
 #### PostgreSQL 9.4
 
@@ -166,3 +168,7 @@ Database are setup using the recommanded setup and tuning from our documentation
 #### MongoDB 8.2
 
 [Default setup](https://doc.nuxeo.com/x/yAEuAQ).
+
+## Change log
+
+The configuration must be updated to follow new dependencies visit the [Change log](./changelog.md) page for more information.

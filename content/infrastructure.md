@@ -120,6 +120,10 @@ Create a cluster of 3 nodes using the proper [Elasticsearch version](https://doc
 
 The heap size is set to 50% of the available memory (3.75g)
 
+Nuxeo uses the `perf` template that set
+`elasticsearch.index.translog.durability=async` for all indexes (since
+2018-08-13).
+
 ### Binary Storage: Amazon S3
 
 Default S3 bucket.
@@ -171,4 +175,4 @@ Database are setup using the recommended setup and tuning from our documentation
 
 ## Change log
 
-The configuration must be updated to follow new dependencies visit the [Change log](./changelog.md) page for more information.
+The configuration must be updated to follow new dependencies visit the [Change log](../changes) page for more information.

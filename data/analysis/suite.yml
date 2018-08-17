@@ -1,4 +1,119 @@
-# Here you can comment bench suite using markdow than on write operationn
+# Here you can comment bench suite using markdown"
+
+"Nuxeo 10.2": "
+First, we have removed some randomness in the results due to some improper configuration:
+
+
+- Since Nuxeo 9.3 and the switch to Elasticsearch 5.6, the
+  elasticsearch translog configuration defaults to request for the
+  audit and sequencer index. This has created lots of elasticsearch
+  disk IO stress during massive write operation. Note that the
+  repository index was set properly to async using the perf template
+  since 9.3.  This 10.2 milestone benchmark is done with all
+  elasticsearch index configured in translog async.
+
+
+- Since Nuxeo 9.3 the audit writer is implemented using a Nuxeo stream
+  and we were not waiting to flush the audit between simulations.
+  This has created some randomness and has impacted elasticsearch
+  performance on some simulations. This is now fixed
+
+
+- On successive benchmark that reuses existing elasticsearch nodes the
+  audit index was not always reset between benchmarks.
+
+
+[NXP-23016](https://jira.nuxeo.com/browse/) has fixed a regression
+responsible for increasing response time of all request by few
+milliseconds. This fix enables to reach higher throughput.
+
+
+**import** Limited by a single node doing the import
+
+
+**Create** Scale, limited by the injection (the request response time
+  + injection concurrency)
+
+
+**Read** Scale, limited by the injection
+
+
+**Search** Limited by elasticsearch CPU
+
+
+**CRUD** Scale, limited by injection
+
+
+**Reindex** Limited by elasticsearch CPU and disk IO
+
+"
+
+"18w33 NXP-25355 Audit block of sequence": "
+These tests shows 2 ways to improve mass audit log:
+
+
+- By requesting log entries by block (available in 10.3) this saves a
+  round trip per log entry making audit is written much faster. The
+  pgsql import is reduced from 907s to 304s.
+
+- By changing the elasticsearch translog from `request` to `async` for
+  audit and sequence indexes: It saves a fsync per audit log entries,
+  this remove all the stress on disk IO and don't impact any other
+  elasticsearch activity.
+
+
+Combining both gives a xX increase, the import speed from 907s to Xs.
+"
+
+"Nuxeo LTS 2017": "**Import** Better than previous LTS
+
+
+- The nuxeo-importer is run on a single node so the synchronous part
+  do not benefit of having multiple Nuxeo node.  The limitation is
+  mostly `Nuxeo CPU` at the beginning (especially for SQL backend)
+  then `Nuxeo IO on S3`, then `SQL Backend IO` and `Backend CPU`.
+
+
+**Create** Scales up to 3 nodes then plateauing around 1000 req/s for MongoDB:
+
+
+  - The throughput is limited by the response time (around 29ms) and
+    the Gatling concurrency used (32 threads) which limit the possible
+    load to 1100 req/s. This high latency regression was introduced in
+    [9.1](https://jira.nuxeo.com/browse/NXP-23016) and is fixed since
+    [9.10-HF09](https://jira.nuxeo.com/browse/NXP-25065).  This
+    regression in the directory invalidation has impacted all REST
+    requests by adding few millisecond of latency.
+
+
+**Read** Scales up to 2800 req/s
+
+
+  - Here also the high average response time prevent to scale above 3000 req/s,
+    9.10-HF09 should be much better.
+
+**Search** Faster search
+
+
+  - Elasticsearch upgrade from 2.3 to 5.6 shows comparable performance
+    with some trend in slower write and faster search. A possible
+    reason for the slowness in write is because sequence and audit
+    indexes are in translog request mode.
+
+
+**Update/CRUD**
+
+
+  - Like with the Create simulation the throughput is limited by the
+    concurrency and response time.  Upgrading to HF09 should help.
+
+
+**Reindex**
+
+
+- A bit slower than in previous LTS.
+"
+
 "Nuxeo 9.3": "Performance regression of 9.2 on [MongoDB](https://jira.nuxeo.com/browse/NXP-22411) has been addressed.
 
 

@@ -6,6 +6,9 @@
 <div class="content container">
   <h1>{{ (index .Site.Data.bench $data).bench_suite }} <span
       class="tag {{ (index .Site.Data.bench $data).dbprofile }}">{{ (index .Site.Data.bench $data).dbprofile }}</span>
+    {{ if and (ne (index .Site.Data.bench $data).kafka nil) (index .Site.Data.bench $data).kafka }}
+    <span class="tag2">Kafka</span>
+    {{ end }}
   </h1>
   <span class="post-date">{{ .Date.Format "Mon, Jan 2, 2006" }}</span>
   <div class="post">

@@ -10,7 +10,7 @@ Commit to this repository trigger another job to build and publish the site to a
 
 The site can be edited locally using hugo, from this repository once you have installed Hugo:
 
-    hugo serve -t hyde
+    hugo serve -t hyde --disableFastRender
 
 Then go to http://localhost:1313/
 

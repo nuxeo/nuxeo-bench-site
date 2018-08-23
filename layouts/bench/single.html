@@ -21,7 +21,7 @@
       <dt>Distribution</dt>
       <dd>{{ (index .Site.Data.bench $data).distribution }}</dd>
       <dt>Date</dt>
-      <dd>{{ (index .Site.Data.bench $data).bench_date }}</dd>
+      <dd>{{ (index .Site.Data.bench $data).benchmark_date }}</dd>
       <dt>Backend</dt>
       <dd>{{ (index .Site.Data.bench $data).dbprofile }}</dd>
       <dt>Nuxeo nodes</dt>
@@ -37,6 +37,9 @@
     <div class="table-overflow">
       <table class="result">
         <thead>
+        <th>
+          <div><span>Duration</span></div>
+        </th>
         <th>
           <div><span>Import</span></div>
         </th>
@@ -61,6 +64,9 @@
         </thead>
         <tbody>
         <tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
+          <td>
+            <div class="times"><span>{{ (index .Site.Data.bench $data).benchmark_duration }}</span></div>
+          </td>
           <td>
             <div class="dps"><a href="#massimport">{{ (index .Site.Data.bench $data).import_dps }}</a></div>
           </td>
@@ -127,7 +133,7 @@
       <dt>Duration sync</dt>
       <dd class="timems">{{ (index .Site.Data.bench $data).import_massimportwiththreads_avg }}</dd>
       <dt>Residual duration async</dt>
-      <dd class="timems">{{ (index .Site.Data.bench $data).import_waitforasyncjobs_avg }}</dd>
+      <dd class="timems">{{ (index .Site.Data.bench $data).import_waitforasync_avg }}</dd>
       <dt>Reports</dt>
       <dd>
         <a class="tag" target="_blank"

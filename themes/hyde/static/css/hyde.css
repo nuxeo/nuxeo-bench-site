@@ -347,7 +347,7 @@ a {
   color: #8f5536;
 }
 
-.build, .timems, .times, .time, .avg, .stddev, .rps, .dps  {
+.build, .timems, .times, .time, .avg, .stddev, .rps, .dps, .small  {
   white-space: nowrap;
 }
 
@@ -359,11 +359,11 @@ a {
   color: #5d2e00;
 }
 
-.avg, .rps, .dps {
+.avg, .rps, .dps, .small {
   font-weight: bold;
 }
 
-.build, .avg, .stddev, .pill {
+.build, .avg, .stddev, .pill, .small {
   font-size: .7em;
 }
 

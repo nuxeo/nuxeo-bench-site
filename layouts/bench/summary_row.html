@@ -12,6 +12,9 @@
     </a>
   </th>
   <td>
+    <div class="times"><span class="">{{ (index .Site.Data.bench $data).benchmark_duration }}</span></div>
+  </td>
+  <td>
     <div class="dps"><a href="{{ .Permalink }}index.html#massimport">{{ (index .Site.Data.bench $data).import_dps }}</a></div>
   </td>
   <td>

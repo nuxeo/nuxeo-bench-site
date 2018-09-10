@@ -1,5 +1,24 @@
 # Here you can comment bench suite using markdown"
+"18w34 NXP-25603 Kafka": "Redis is disabled when using Kafka with MongoDB.
 
+
+The total duration is longer with Kafka because there is a single AuditLogWriter computation for the cluster instead
+of one writer per node when using Redis. This ensure a constant throughput.
+
+
+Cache invalidation for repository and directory is based the PubSub service. When using the Kafka implementations
+we don't notice overhead on theses tests all Write operation that generate invalidation are comparable with or without Redis.
+
+
+The PubSub messages used for invalidation in DBS/MongoDB are much smaller than in VCS, first because they denote a document id instead of schema fields but also
+because they is a custom serialization and in the case of VCS they are Java serialized. This impacts the volume of the Kafka topics.
+
+
+The Re-indexation looks a bit slower (2800 vs 3000 doc/s), certainly due to the lower concurrency on tail processing with Kafka.
+Redis distributes works to available worker threads while Kafka assign partitions of works to worker threads.
+
+
+"
 "Nuxeo 10.2": "
 First, we have removed some randomness in the results due to some improper configuration:
 

@@ -46,6 +46,7 @@ All machines are on Amazon and runs on the same availability zone (AZ).
 |Nuxeo| `c4.xlarge`|
 |Elasticsearch| `c4.xlarge` |
 |Redis|`cache.m3.large`|
+|Kafka|`c4.xlarge`|
 |Jenkins slave|`c3.xlarge`|
 
 
@@ -86,6 +87,8 @@ Running a benchmark with the default setting requires 8 machines:
 - 1 node for an SQL database or MongoDB
 - 1 node for the monitoring
 - 1 node to run the benchmark, this is done by a Jenkins slave
+
+And when using Kafka there is an additional machine.
 
 ## Configuration
 
@@ -145,6 +148,24 @@ Default S3 bucket.
 ### Redis: Amazon Elasticache
 
 Elasticache cluster with a single node using Redis 2.8.
+
+
+### Kafka
+
+Since 2018-08-22 we can run reference benchmark with Kafka.
+
+Nuxeo is then configured to leverage Kafka instead of Redis:
+
+- The Audit writer is using Kafka
+- The WorkManager is using Kafka
+- The PubSub service is using Kafka, which means that repository and directory invalidation rely on Kafka.
+
+Also for MongoDB we switch the KeyValueStore from Redis to MongoDB, this way Redis can be completely disable.
+
+The Kafka cluster is a single node (definitely not a production setup):
+
+- Zookeeper 3.4.8-1 (Ubuntu 16.04 install)
+- Kafka 2.12-1.1.1
 
 ### Databases
 

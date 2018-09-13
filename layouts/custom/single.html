@@ -3,12 +3,21 @@
 {{ partial "header.html" . }}
 {{ $data := .Params.build_number }}
 {{ $datapath := .Params.classifier }}
+<div class="hero row cover padded is-bg-blue is-white" style="background:  linear-gradient( rgba(0, 103, 255, 0.7), rgba(0, 103, 255, 0.7) ), url('https://res.cloudinary.com/nuxeo/image/upload/f_auto,q_auto:eco/v1528141049/backgrounds/nuxeo-bg-45.jpg');">
+  <div class="large-8 medium-10 small-12 columns cover-left">
+    <h1>
+      {{ (index .Site.Data.custombench $data).bench_suite }}
+      <span class="tag {{ (index .Site.Data.custombench $data).dbprofile }}">{{ (index .Site.Data.custombench $data).dbprofile }}</span>
+    </h1>
+    <p class="larger is-white">
+      {{ .Date.Format "Mon, Jan 2, 2006" }}
+    </p>
+  </div>
+</div>
 
+<div class="row align-center is-bg-grey is-navy paddedt1 blog-section">
+  <div class="small-12 medium-10 large-8 columns">
 <div class="content container">
-  <h1>{{ (index .Site.Data.custombench $data).bench_suite }} <span
-      class="tag {{ (index .Site.Data.custombench $data).dbprofile }}">{{ (index .Site.Data.custombench $data).dbprofile }}</span>
-  </h1>
-  <span class="post-date">{{ .Date.Format "Mon, Jan 2, 2006" }}</span>
   <div class="post">
     <h2>Configuration</h2>
     <dl>
@@ -60,7 +69,7 @@
         </th>
         </thead>
         <tbody>
-        <tr class="row {{ (index .Site.Data.custombench $data).dbprofile }}">
+        <tr class="{{ (index .Site.Data.custombench $data).dbprofile }}">
           <td>
             <div class="dps"><a href="#massimport">{{ (index .Site.Data.custombench $data).import_dps }}</a></div>
           </td>
@@ -368,4 +377,3 @@
 </div>
 
 </body>
-

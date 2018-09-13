@@ -57,7 +57,7 @@
         </th>
         </thead>
         <tbody>
-        <tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
+        <tr class="{{ (index .Site.Data.bench $data).dbprofile }}">
           <td>
             <div class="dps"><a href="#massimport">{{ (index .Site.Data.bench $data).import_dps }}</a></div>
           </td>
@@ -388,4 +388,3 @@
 </div>
 
 </body>
-

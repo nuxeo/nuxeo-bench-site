@@ -1,0 +1,809 @@
+/*
+ *  __                  __
+ * /\ \                /\ \
+ * \ \ \___   __  __   \_\ \     __
+ *  \ \  _ `\/\ \/\ \  /'_` \  /'__`\
+ *   \ \ \ \ \ \ \_\ \/\ \_\ \/\  __/
+ *    \ \_\ \_\/`____ \ \___,_\ \____\
+ *     \/_/\/_/`/___/> \/__,_ /\/____/
+ *                /\___/
+ *                \/__/
+ *
+ * Designed, built, and released under MIT license by @mdo. Learn more at
+ * https://github.com/poole/hyde.
+ */
+
+
+/*
+ * Contents
+ *
+ * Global resets
+ * Sidebar
+ * Container
+ * Reverse layout
+ * Themes
+ */
+
+
+/*
+ * Global resets
+ *
+ * Update the foundational and global aspects of the page.
+ */
+
+html {
+  font-family: 'Open Sans', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+@media (min-width: 48em) {
+  html {
+    font-size: 15px;
+  }
+}
+@media (min-width: 58em) {
+  html {
+    font-size: 17px;
+  }
+}
+
+a {
+  transition: all .2s ease-in-out;
+}
+
+.align-c {
+  text-align: center;
+}
+
+/*
+ * Sidebar
+ *
+ * Flexible banner for housing site name, dark-bloc, and "footer" content. Starts
+ * out above content in mobile and later moves to the side with wider viewports.
+ */
+
+.sidebar {
+  text-align: center;
+  padding: 0 0 0 2.5rem;
+  color: rgba(255,255,255,.5);
+  background-color: #fff;
+  position: relative;
+  width: 70%;
+  float: right;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.sidebar ul {
+  position: absolute;
+  display: block;
+}
+
+.sidebar ul,
+.sidebar li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+}
+
+.sidebar li {
+  float: left;
+  display: inline-block;
+}
+
+/* Sidebar links */
+
+.sidebar a {
+  color: #333;
+  display: inline-block;
+  padding: 0 .5em;
+  text-transform: uppercase;
+  font-family: 'Open Sans', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: .8em;
+  font-weight: 700;
+}
+
+.sidebar a:focus,
+.sidebar a:hover {
+  color: #00adff;
+  cursor: pointer;
+}
+
+.sidebar-nav li.active a {
+  color: #00adff;
+}
+
+/* Sidebar nav */
+.sidebar-nav {
+  padding-left: 0;
+  list-style: none;
+}
+
+/* Responsive menu */
+.show-menu,
+.sidebar input[type=checkbox] {
+  display: none;
+}
+
+.sidebar input[type=checkbox]:checked ~ .sidebar-nav{
+  display: block;
+}
+
+.show-menu img {
+  width: 2em;
+  height: 2em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 810px) {
+  .sidebar {
+    width: 40%;
+    padding-left: 0;
+  }
+  .sidebar label:hover {
+    cursor: pointer;
+  }
+
+  .sidebar ul {
+    position: static;
+    display: none;
+  }
+
+  .sidebar li {
+    margin-bottom: 1px;
+  }
+
+  .sidebar ul li, .sidebar li a {
+    width: 100%;
+    line-height: 3em;
+  }
+
+  .show-menu {
+    display: block;
+    text-align: right;
+  }
+}
+
+/* Sticky sidebar
+ *
+ * Add the `sidebar-sticky` class to the sidebar's container to affix it the
+ * contents to the bottom of the sidebar in tablets and up.
+ */
+
+@media (min-width: 48em) {
+  .sidebar-sticky {
+    position: absolute;
+    right:  1rem;
+    left:   1rem;
+  }
+}
+
+
+/* Container
+ *
+ * Align the contents of the site above the proper threshold with some margin-fu
+ * with a 25%-wide `.sidebar`.
+ */
+
+.content {
+  padding-top:    7rem;
+  padding-bottom: 4rem;
+}
+
+.post {
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  padding: 1rem 2rem;
+}
+
+.content.fullspace {
+  padding: 0;
+  padding: 4.1rem 0 0;
+  max-width: none;
+}
+
+.content.fullspace > div {
+  padding: 2rem;
+}
+
+@media (min-width: 48em) {
+  .content.fullspace {
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 4.1rem;
+    padding-right: 0;
+  }
+  .content.fullspace > div {
+    padding: 2.7rem 12rem 2.2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .content {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .content.fullspace {
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 4.1rem;
+    padding-right: 0;
+  }
+  .content.fullspace > div {
+    padding: 3rem 12rem 2.7rem;
+  }
+
+  p img {
+    max-width: 45em;
+  }
+}
+
+/*
+ * Reverse layout
+ *
+ * Flip the orientation of the page by placing the `.sidebar` on the right.
+ */
+
+@media (min-width: 48em) {
+  .layout-reverse .sidebar {
+    left: auto;
+    right: 0;
+  }
+  .layout-reverse .content {
+    margin-left: 2rem;
+    margin-right: 20rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .layout-reverse .content {
+    margin-left: 4rem;
+    margin-right: 22rem;
+  }
+}
+
+
+
+/*
+ * Themes
+ *
+ * As of v1.1, Hyde includes optional themes to color the sidebar and links
+ * within blog posts. To use, add the class of your choosing to the `body`.
+ */
+
+/* Base16 (http://chriskempson.github.io/base16/#default) */
+
+/* Red */
+.theme-base-08 .sidebar {
+  background-color: #ac4142;
+}
+.theme-base-08 .content a,
+.theme-base-08 .related-posts li a:hover {
+  color: #ac4142;
+}
+
+/* Orange */
+.theme-base-09 .sidebar {
+  background-color: #d28445;
+}
+.theme-base-09 .content a,
+.theme-base-09 .related-posts li a:hover {
+  color: #d28445;
+}
+
+/* Yellow */
+.theme-base-0a .sidebar {
+  background-color: #f4bf75;
+}
+.theme-base-0a .content a,
+.theme-base-0a .related-posts li a:hover {
+  color: #f4bf75;
+}
+
+/* Green */
+.theme-base-0b .sidebar {
+  background-color: #90a959;
+}
+.theme-base-0b .content a,
+.theme-base-0b .related-posts li a:hover {
+  color: #90a959;
+}
+
+/* Cyan */
+.theme-base-0c .sidebar {
+  background-color: #75b5aa;
+}
+.theme-base-0c .content a,
+.theme-base-0c .related-posts li a:hover {
+  color: #75b5aa;
+}
+
+/* Blue */
+.theme-base-0d .sidebar {
+  background-color: #6a9fb5;
+}
+.theme-base-0d .content a,
+.theme-base-0d .related-posts li a:hover {
+  color: #6a9fb5;
+}
+
+/* Magenta */
+.theme-base-0e .sidebar {
+  background-color: #aa759f;
+}
+.theme-base-0e .content a,
+.theme-base-0e .related-posts li a:hover {
+  color: #aa759f;
+}
+
+/* Brown */
+.theme-base-0f .sidebar {
+  background-color: #8f5536;
+}
+.theme-base-0f .content a,
+.theme-base-0f .related-posts li a:hover {
+  color: #8f5536;
+}
+
+.build, .timems, .times, .time, .avg, .stddev, .rps, .dps  {
+  white-space: nowrap;
+}
+
+.time, .times, .timems {
+  color: #63613e;
+}
+
+.rps, .dps {
+  color: #5d2e00;
+}
+
+.avg, .rps, .dps {
+  font-weight: bold;
+}
+
+.build, .avg, .stddev, .pill {
+  font-size: .7em;
+}
+
+.build {
+  text-align: center;
+}
+
+.avg:after {
+  content:' ms';
+  font-weight: normal;
+}
+
+.pcterr:after {
+  content: " %"
+}
+
+.times:after, .pill:after {
+  content:' s';
+  font-weight: normal;
+}
+
+.timems:after, .pill:after {
+  content:' ms';
+  font-weight: normal;
+}
+
+.times, .timems {
+  font-weight: bold;
+}
+
+.stddev {
+  font-weight: normal;
+  font-size: .5em;
+}
+
+.stddev:before {
+  content: " (+/-";
+}
+
+.stddev:after {
+  content: ")";
+}
+
+.rps:after {
+  content:' req/s';
+  font-weight: normal;
+  font-size: .5em;
+}
+
+.dps:after {
+  content:' docs/s';
+  font-weight: normal;
+  font-size: .5em;
+}
+
+.build:before {
+  content:'#';
+}
+
+.classifier {
+  font-size: .7em;
+  display: block;
+}
+
+/* ===========================================================================
+                        -- NUXEO CUSTOMIZATION --
+=========================================================================== */
+
+/* Fix alignment bug with Intercom */
+body {
+  margin-bottom: 0 !important;
+}
+
+/* Fix image alignment bug in satellite header */
+.nuxeo-satellite-header img,
+.nuxeo-satellite-left-menu img {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+/* -- */
+
+.content {
+  padding-top: 3rem;
+}
+
+ul.post,
+ul.posts {
+  padding-left: 0
+}
+
+@media (min-width: 48em) {
+  .post dt, .post dd {
+    display: inline-block;
+    vertical-align: top;
+    min-height: 1.35rem;
+  }
+  .post dt {
+    width: 35%;
+    border-right: 2px solid #eee;
+    margin-bottom: .5rem;
+    background-color: #f6f7f8;
+    padding: 0 0 0 .5rem;
+  }
+  .post dd {
+    width: 64%;
+  }
+}
+
+dl {
+  border: 1px solid #eee;
+  border-radius: .2rem;
+  background-color: #fff;
+  padding: .5rem .5rem 0;
+}
+
+dd .stddev {
+  font-size: .85rem;
+}
+
+.pill {
+  border: 1px solid #eee;
+  border-radius: .2rem;
+  background-color: #fff;
+  padding: 0 .3rem 0 0;
+  display: inline-block;
+  font-size: .85rem;
+}
+
+.pill span {
+  background-color: #f8f9f9;
+  padding: 0 .2rem 0 .3rem;
+  margin: 0 .3rem 0 0;
+}
+
+.suite {
+    position:relative;
+    top:-50px;
+}
+
+/* Tables */
+table.result td {
+  vertical-align: top;
+  text-align: right;
+}
+
+table.result th {
+  text-align: left;
+}
+
+th div,
+.report {
+  text-align: center;
+}
+
+.report a {
+  background: transparent url('../images/report.png') no-repeat center center / cover;
+  width: 1.4em;
+  height: 1.4em;
+  display: inline-block;
+}
+
+.report a:hover {
+  background: transparent url('../images/report_blue.png') no-repeat center center / cover;
+}
+
+/* Tabs on benchmark results */
+.tabs, .tabs-content {
+  border: 1px solid #e3e8f0;
+  background-color: #fff;
+}
+
+.tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs li {
+  display: inline-block;
+  text-align: center;
+  border-bottom: 3px solid transparent;
+  padding: .3em 3em;
+  cursor: pointer;
+}
+
+.tabs li:hover,
+.tabs li.active{
+  border-bottom-color: #00adff;
+}
+
+.tabs-content {
+  margin: -1px 0 0;
+  padding: 0;
+}
+
+.tabs-content > div {
+  display: none;
+  padding: 30px;
+}
+
+.tabs-content div.active {
+  display: block;
+  min-height: 12em;
+
+}
+
+.tabs-content div.active,
+.table-overflow {
+  overflow-x: auto;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  background-color: #434343;
+  color: #fff;
+  font-weight: 300;
+  letter-spacing: 0.02rem;
+  font-size: .9rem;
+  border-radius: .15rem;
+  padding: .1rem .35rem;
+  margin: 0 .3em .3em 0;
+}
+
+.row.mongodb .tag,
+.mongodb.tag {
+  background-color: #457430;
+}
+
+.row.oracle12c .tag,
+.Xoracle12c.tag {
+  background-color: #11666b;
+}
+
+.row.mssql .tag,
+.Xmssql.tag {
+  background-color: #673a79;
+}
+
+.row.pgsql .tag,
+.pgsql.tag {
+  background-color: #7a333d;
+}
+
+.report.tag {
+  background-color: #7a333d;
+}
+
+.row .tag:focus,
+.row .tag:hover {
+  background-color: #00adff;
+}
+
+h1 .tag {
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+dd a.tag:hover {
+  background-color: #00adff;
+  color: #fff;
+}
+
+/* Button */
+.button {
+  border: 2px solid #01579B;
+  color: #01579B;
+  display: inline-block;
+  font-size: .85rem;
+  font-weight: 300;
+  letter-spacing: .05rem;
+  margin-top: .5rem;
+  padding: .5rem 1rem .5rem;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  background-color: #01579B;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Homepage */
+.content.fullspace {
+  padding-top: 0;
+}
+
+.home {
+  background-color: #fff;
+  background-image: url('https://www.nuxeo.com/assets/imgs/solutions/bg-use-cases.png');
+  background-repeat: no-repeat;
+  color: #000522;
+}
+.home hr {
+  background-color: #01579B;
+  border: 0;
+  height: 4px;
+  margin: 0 0 1rem;
+  width: 100px;
+}
+
+.home h2,
+.home .h2-like {
+  display: inline-block;
+  font-size: 1.9rem;
+  font-weight: 300;
+  letter-spacing: .15rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.home h2 {
+  color: #000522;
+}
+
+.flex-ctn {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.flex-ctn.bg-blue {
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.flex-ctn.blog-post {
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.bg-blue {
+  background: -moz-linear-gradient(0deg, #000053 5%, #2965FF 95%); /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(5%, #000053), color-stop(95%, #2965FF)); /* safari4+,chrome */
+  background: -webkit-linear-gradient(0deg, #000053 5%, #2965FF 95%); /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(0deg, #000053 5%, #2965FF 95%); /* opera 11.10+ */
+  background: -ms-linear-gradient(0deg, #000053 5%, #2965FF 95%); /* ie10+ */
+  background: linear-gradient(90deg, #000053 5%, #2965FF 95%); /* w3c */
+  height: 300px;
+}
+
+.bg-blue h1 {
+  color: #fff;
+  font-size: 1.9rem;
+  font-weight: 300;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.bg-blue .btn-ctn {
+  color: #fff;
+  font-weight: 300;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.bg-blue .button {
+  border-color: #fff;
+  color: #fff;
+}
+
+.bg-blue .button:hover {
+  background-color: #fff;
+  color: #000053;
+}
+
+.aside {
+  background-color: #ecf2f7;
+  background-image: url('https://www.nuxeo.com/assets/imgs/backgrounds/X_GRID.png');
+  background-repeat: no-repeat;
+  padding-top: 80px !important;
+}
+
+.blog-section {
+  margin: calc(-25px + 1rem) 0 0 -25px;
+}
+
+.blog-post {
+  background-color: #fff;
+  box-shadow: 0 1px 10px 0 #ccc;
+  color: rgba(0,5,34,0.5);
+  -webkit-flex: 1; /* Safari 6.1+ */
+  -ms-flex: 1; /* IE 10 */
+  flex: 1;
+  margin: 25px 0 0 25px;
+  min-width: 200px;
+  padding: 1rem;
+}
+
+a.blog-post:hover {
+  box-shadow: inset 0 1px 10px 0 #ccc;
+  color: rgba(0,5,34,0.5);
+}
+
+.blog-post > div:first-child {
+  font-size: .7rem;
+  max-width: 100%; /* Fix overflowing bug on Safari */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blog-post > div:last-child {
+  font-size: .6rem;
+}
+
+.blog-post :not(.title) {
+  font-weight: 400;
+  letter-spacing: .05rem;
+  text-transform: uppercase;
+}
+
+.blog-post hr {
+  background-color: #ecf2f7;
+  margin-top: 1rem;
+}
+
+.blog-post .title {
+  color: #000522;
+  flex-grow: 1;
+  font-size: 1.3rem;
+}
+
+.home > div:last-child {
+  text-align: center;
+}
+
+.home > div:last-child hr {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home > div:last-child p {
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: .1rem;
+}

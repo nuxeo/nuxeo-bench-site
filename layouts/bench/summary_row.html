@@ -1,5 +1,5 @@
 {{ $data := .Params.build_number }}
-<tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
+<tr class="{{ (index .Site.Data.bench $data).dbprofile }}">
   <th>
     <a href="{{ .Permalink }}index.html" title="view benchmark report">
      <span class="tag">{{ (index .Site.Data.bench $data).dbprofile }}</span><span

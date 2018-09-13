@@ -1,11 +1,21 @@
 {{ partial "head.html" . }}
 <body class="{{ .Site.Params.themeColor }}">
 {{ partial "header.html" . }}
+<div class="hero row cover padded is-bg-blue is-white" style="background:  linear-gradient( rgba(0, 103, 255, 0.7), rgba(0, 103, 255, 0.7) ), url('https://res.cloudinary.com/nuxeo/image/upload/f_auto,q_auto:eco/v1528141049/backgrounds/nuxeo-bg-45.jpg');">
+  <div class="large-8 medium-10 small-12 columns cover-left">
+    <h1>Workbench Benchmarks results</h1>
+    <p class="larger is-white">
+      These are internal dev benchmarks.
+    </p>
+  </div>
+</div>
 
-<div class="content container">
-  <h1>Workbench Benchmarks results</h1>
-  <div>These are internal dev benchmarks.</div>
-  {{ partial "benchsuite.html" . }}
+<div class="row is-bg-grey is-navy paddedt1 blog-section">
+  <div class="small-12 columns">
+    <div class="content container">
+      {{ partial "benchsuite.html" . }}
+    </div>
+  </div>
 </div>
 
 {{ partial "footer.html" . }}

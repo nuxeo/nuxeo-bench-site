@@ -2,10 +2,21 @@
 <body class="{{ .Site.Params.themeColor }}">
 {{ partial "header.html" . }}
 
-<div class="content container">
-  <h1>Misc Benchmarks results</h1>
-  <div>Miscellaneous Benchmarks results. You can click on the link of the first cell on each row to have the complete resultset of the corresponding benchmark.</div>
-  {{ partial "benchsuite.html" . }}
+<div class="hero row cover padded is-bg-blue is-white" style="background:  linear-gradient( rgba(0, 103, 255, 0.7), rgba(0, 103, 255, 0.7) ), url('https://res.cloudinary.com/nuxeo/image/upload/f_auto,q_auto:eco/v1528141049/backgrounds/nuxeo-bg-45.jpg');">
+  <div class="large-8 medium-10 small-12 columns cover-left">
+    <h1>Misc Benchmarks results</h1>
+    <p class="larger is-white">
+      Miscellaneous Benchmarks results. You can click on the link of the first cell on each row to have the complete resultset of the corresponding benchmark.
+    </p>
+  </div>
+</div>
+
+<div class="row is-bg-grey is-navy paddedt1 blog-section">
+  <div class="small-12 columns">
+    <div class="content container">
+      {{ partial "benchsuite.html" . }}
+    </div>
+  </div>
 </div>
 
 {{ partial "footer.html" . }}

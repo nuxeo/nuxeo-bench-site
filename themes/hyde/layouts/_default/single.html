@@ -1,20 +1,31 @@
 	{{ partial "head.html" . }}
 	<body class="{{ .Site.Params.themeColor }}">
-	  {{ partial "header.html" . }}
+	 {{ partial "header.html" . }}
 
-		<div class="content container">
-			<h1>{{ .Title }}</h1>
-			<div class="post">
-			      {{ .Content }}
-			</div>
+   <div class="hero row cover padded is-bg-blue is-white" style="background:  linear-gradient( rgba(0, 103, 255, 0.7), rgba(0, 103, 255, 0.7) ), url('https://res.cloudinary.com/nuxeo/image/upload/f_auto,q_auto:eco/v1528141049/backgrounds/nuxeo-bg-45.jpg');">
+     <div class="large-8 medium-10 small-12 columns cover-left">
+       <h1>{{ .Title }}</h1>
+       <p class="larger is-white">
+       </p>
+     </div>
+   </div>
 
-			{{ if and (isset .Site.Params "disqusShortname") (ne .Site.Params.disqusShortname "") }}
-				<h2>Comments</h2>
-				{{ partial "disqus" . }}
-			{{ end }}
-		</div>
+   <div class="row is-bg-grey is-navy paddedt1 blog-section">
+     <div class="small-12 columns">
+       <div class="content container">
+         <div class="post">
+           {{ .Content }}
+         </div>
 
-		{{ partial "footer.html" . }}
+         {{ if and (isset .Site.Params "disqusShortname") (ne .Site.Params.disqusShortname "") }}
+         <h2>Comments</h2>
+         {{ partial "disqus" . }}
+         {{ end }}
+       </div>
+     </div>
+   </div>
+
+   {{ partial "footer.html" . }}
 
   </body>
 </html>

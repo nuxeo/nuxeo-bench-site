@@ -1,0 +1,20 @@
+	{{ partial "head.html" . }}
+	<body class="{{ .Site.Params.themeColor }}">
+	  {{ partial "header.html" . }}
+
+		<div class="content container">
+			<h1>{{ .Title }}</h1>
+			<div class="post">
+			      {{ .Content }}
+			</div>
+
+			{{ if and (isset .Site.Params "disqusShortname") (ne .Site.Params.disqusShortname "") }}
+				<h2>Comments</h2>
+				{{ partial "disqus" . }}
+			{{ end }}
+		</div>
+
+		{{ partial "footer.html" . }}
+
+  </body>
+</html>

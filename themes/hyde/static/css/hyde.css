@@ -347,7 +347,7 @@ a {
   color: #8f5536;
 }
 
-.build, .timems, .times, .time, .avg, .stddev, .rps, .dps, .small  {
+.build, .timems, .times, .time, .avg, .stddev, .rps, .dps  {
   white-space: nowrap;
 }
 
@@ -359,11 +359,11 @@ a {
   color: #5d2e00;
 }
 
-.avg, .rps, .dps, .small {
+.avg, .rps, .dps {
   font-weight: bold;
 }
 
-.build, .avg, .stddev, .pill, .small {
+.build, .avg, .stddev, .pill {
   font-size: .7em;
 }
 
@@ -577,7 +577,7 @@ th div,
 }
 
 /* Tags */
-.tag, .tag2 {
+.tag {
   display: inline-block;
   background-color: #434343;
   color: #fff;
@@ -609,10 +609,6 @@ th div,
   background-color: #7a333d;
 }
 
-.tag2 {
-  background-color: #e67300;
-}
-
 .report.tag {
   background-color: #7a333d;
 }
@@ -622,8 +618,7 @@ th div,
   background-color: #00adff;
 }
 
-h1 .tag,
-h1 .tag2 {
+h1 .tag {
   font-size: 1.1rem;
   vertical-align: middle;
 }

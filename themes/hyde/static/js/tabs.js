@@ -1,22 +1,46 @@
 $(document).ready(function(){
+  var blog_bg = [
+    'blue',
+    'green',
+    'aqua'
+  ];
+
+  var $blog_section = $('.home .blog-section');
 
   // latest blog posts on homepage
-  $.getJSON('https://www.nuxeo.com/api/blog_en.json', function(result){
-    var blogLimit = 3, blogTag = 'Benchmark';
+  $.getJSON('https://www.nuxeo.com/api/blog_en.json', function (result) {
+    var blogLimit = 3;
+    var categoryFilter = [
+      'product and development',
+      'product & development'
+    ];
+    var imagePrefix = '/assets/imgs/';
     var blogCount = 0;
-    for(var i = 0; blogCount < blogLimit && i < result.length; i++) {
-      var field = result[i];
-      var categories = [], hasTag = false;
-      $.each(field.category, function(name, data) {
-        if ('blog-tag' === data.domain) {
-          categories.push(name);
-          if (blogTag === name) {
-            hasTag = true;
-          }
+
+    for (var i = 0; blogCount < blogLimit && i < result.length; i++) {
+      var post = result[i];
+      var categories = post && post.category && post.category['blog-tag'] || [];
+      // console.log('post', post);
+      // console.log('categories', categories.join(', '));
+
+      var hasCategory = categories.reduce(function (hasCategory, category) {
+        category = category.toLowerCase();
+        if (!hasCategory) {
+          categoryFilter.forEach(function (filter) {
+            if (category === filter) {
+              hasCategory = true;
+            }
+          })
         }
-      });
-      if (hasTag) {
-        $('.home .blog-section').append('<a class="flex-ctn blog-post" href="https://www.nuxeo.com/blog/' + field.slug + '" target="_blank"><div>' + categories + '</div><hr><div class="h2-like title">' + field.title + '</div><div>' + new Date(field['wp:post_date'].replace(/-/g, "/")).toLocaleDateString() + ' • ' + field['dc:creator'] + '</div></a>');
+        return hasCategory;
+      }, false);
+
+      if (hasCategory) {
+        // Remove prefix if necessary
+        var featured_image = post.featured_image.indexOf(imagePrefix) === 0 ? post.featured_image.substring(imagePrefix.length) : post.featured_image;
+
+        $blog_section.append('<div class="small-12 medium-4 columns blog-post"><a href="https://www.nuxeo.com/blog/' + post.slug + '" target="_blank"><div class="is-bg-' + blog_bg[blogCount] + ' full-height"><img src="http://res.cloudinary.com/nuxeo/image/upload/h_275,w_550,c_fill,g_faces:auto,f_auto,dpr_auto,q_auto/' + featured_image + '" width="100%"><div class="padded0"><h3>' + post.title + '</h3><p>' + post.excerpt + '</p></div></div></a></div>');
+
         blogCount++;
       }
     }

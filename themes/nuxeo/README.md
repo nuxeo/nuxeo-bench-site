@@ -1,3 +1,0 @@
-# Nuxeo Styling
-
-<3

@@ -80,41 +80,51 @@
   display: block;
 }
 
+/* DL lists */
 @media (min-width: 48em) {
-  .post dt, .post dd {
-    display: inline-block;
-    vertical-align: middle;
-    min-height: 1.35rem;
+  dl {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow: visible;
   }
-  .post dt {
-    width: 35%;
-    margin-bottom: .5rem;
-    padding: 0 0 0 .5rem;
+  dl dt {
+    flex: 0 0 30%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inherit;
   }
-  .post dd {
-    width: 60%;
-    margin: 0 0 .5rem;
+  dl dd {
+    flex:0 0 70%;
+    margin-left: auto;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inherit;
   }
+}
+
+dt,
+dd {
+  padding: .3rem .5rem;
 }
 
 dt {
   font-size: 1.2em;
 }
+
 dd {
-  margin: 0 0 .5rem 2rem;
+  margin: 0;
+  padding-left: 3em;
 }
 
-dl {
-  border: 1px solid #eee;
-  border-radius: .2rem;
-  background-color: #fff;
-  padding: .5rem .5rem 0;
+dt:nth-of-type(odd),
+dd:nth-of-type(odd) {
+   background-color: #f3f6fa;
 }
 
-dd .stddev {
-  font-size: .85rem;
-}
-
+/* Pills */
 .pill {
   border: 1px solid #eee;
   border-radius: .2rem;

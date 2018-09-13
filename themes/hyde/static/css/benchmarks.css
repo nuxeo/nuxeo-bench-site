@@ -1,6 +1,39 @@
+a.button-square, a:link.button-square {
+  display: block;
+  text-align: center;
+  padding: 1em .5em .5em;
+  border-bottom: solid #1F28BF .8em;
+  transition: background .2s ease;
+  line-height: 1.2;
+  height: 100%;
+}
 
-.build, .timems, .times, .time, .avg, .stddev, .rps, .dps  {
+a.button-square:hover {
+  background: #1F28BF;
+}
+
+.result a,
+.result a:link,
+.result a:visited,
+a.tag {
+  font-family: inherit;
+  font-weight: inherit;
+  border-bottom: inherit;
+  transition: color .2s ease;
+}
+
+.result a:hover,
+.result a:focus {
+  color: #00adff;
+}
+
+.build, .timems, .times, .time, .avg, .stddev, .rps, .dps,
+.build a, .timems a, .times a, .time a, .avg a, .stddev a, .rps a, .dps a,
+.build a:link, .timems a:link, .times a:link, .time a:link, .avg a:link, .stddev a:link, .rps a:link, .dps a:link,
+.build a:visited, .timems a:visited, .times a:visited, .time a:visited, .avg a:visited, .stddev a:visited, .rps a:visited, .dps a:visited
+{
   white-space: nowrap;
+  font-family: "Open Sans",Arial,sans-serif !important;
 }
 
 .time, .times, .timems {
@@ -325,37 +358,8 @@ dd a.tag:hover {
   margin-bottom: .5em
 }
 
-a.button-square, a:link.button-square {
-  display: block;
-  text-align: center;
-  padding: 1em .5em .5em;
-  border-bottom: solid #1F28BF .8em;
-  transition: background .2s ease;
-  line-height: 1.2;
-  height: 100%;
-}
-
-a.button-square:hover {
-  background: #1F28BF;
-}
-
 .cover {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-}
-
-.result a,
-.result a:link,
-.result a:visited,
-a.tag {
-  font-family: inherit;
-  font-weight: inherit;
-  border-bottom: inherit;
-  transition: color .2s ease;
-}
-
-.result a:hover,
-.result a:focus {
-  color: #00adff;
 }

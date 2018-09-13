@@ -63,7 +63,7 @@
         </th>
         </thead>
         <tbody>
-        <tr class="row {{ (index .Site.Data.bench $data).dbprofile }}">
+        <tr class="{{ (index .Site.Data.bench $data).dbprofile }}">
           <td>
             <div class="times"><span>{{ (index .Site.Data.bench $data).benchmark_duration }}</span></div>
           </td>
@@ -397,4 +397,3 @@
 </div>
 
 </body>
-

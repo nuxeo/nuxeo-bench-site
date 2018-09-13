@@ -1,0 +1,11 @@
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <ul class="sidebar-nav">
+      <li><a href="/">Home</a> </li>
+      {{ range .Site.Menus.main }}
+        <li><a href="{{.URL}}"> {{ .Name }} </a></li>
+      {{end}}
+    </ul>
+
+  </div>
+</div>

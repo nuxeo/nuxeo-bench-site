@@ -1,47 +1,93 @@
 {{ partial "head.html" . }}
-<body class="{{ .Site.Params.themeColor }}">
-  {{ partial "header.html" . }}
+<body class="{{ .Site.Params.themeColor }} home">
+{{ partial "header.html" . }}
 
-  <div class="flex-ctn bg-blue">
-    <h1 class="flex-itm-centered">Performance Benchmarks</h1>
-    <div class="btn-ctn">
+<div class="hero row cover padded is-bg-blue is-white" style="background:  linear-gradient( rgba(0, 103, 255, 0.7), rgba(0, 103, 255, 0.7) ), url('https://res.cloudinary.com/nuxeo/image/upload/f_auto,q_auto:eco/v1528141049/backgrounds/nuxeo-bg-45.jpg');">
+  <div class="large-8 medium-10 small-12 columns cover-left">
+    <h1>Nuxeo Performance Benchmarks</h1>
+    <p class="larger is-white">
+      We're open and transparent.<br>
+      We've tested our platform in rigorous scenarios, and we're confident that we're the most performant Content Services Platform on the market.
+    </p>
+  </div>
+</div>
+
+<div class="row is-bg-red is-white">
+  <div class="columns small-12 text-center">
+    <p>
+      <img src="/images/lock-circle.png" alt="Locked" width="33" height="33">
+    </p>
+    <p>
       This website is protected.
       <br />
-      <a class="button" href="//www.nuxeo.com/about/contact/" alt="blank">Request Access</a>
+      Get a password bellow to access the benchmark results.
+    </p>
+    <a class="button is-bg-blue" href="//www.nuxeo.com/about/contact/">Get a password</a>
+  </div>
+</div>
+
+<div class="row paddedt1 benefits">
+  <div class="small-12 large-4 columns">
+    <div class="padded0 is-bg-navy full-height">
+      <h2>Proven Performance</h2>
+      <p>Nuxeo's hybrid architecture approach (NoSQL or SQL databases) has been validated to accomodate more than one billion documents, yielding impressive results such as the ability to import 30,000+ documents per second.</p>
     </div>
   </div>
-
-  <div class="content container fullspace home">
-    <div>
-      <hr>
-      <p>
-        <span class="h2-like">We have the benchmark results to prove that Nuxeo provides greater performance and scalability as an enterprise content management platform.</span>
-        Designed to provide “future-proof” flexibility, the Nuxeo Platform offers key implementation options to stay ahead of fast-changing requirements:
-      </p>
-      <ul>
-        <li>Choose SQL or NoSQL (e.g. <a href="https://www.nuxeo.com/integration/mongodb/">MongoDB</a>) database for storage</li>
-        <li>Configure search using SQL-based queries, <a href="https://www.nuxeo.com/integration/elasticsearch/">Elasticsearch</a>, or combination of both</li>
-        <li>Partition data and scale the Elasticsearch engine independently for massive scalability</li>
-        <li>Shard on several databases for even higher throughput</li>
-      </ul>
-      <p>From thousands to billion documents repositories, check out the Nuxeo Platform <a href="{{ .Site.BaseURL }}milestone/index.html">performance benchmarks for each release</a>, and our weekly <a href="{{ .Site.BaseURL }}continuous/index.html">continuous integration updates</a>.</p>
-    </div>
-
-    <div class="aside">
-      <hr>
-      <h2>Latest Blog Posts</h2>
-      <div class="flex-ctn blog-section">
-      </div>
-    </div>
-
-    <div>
-      <hr>
-      <p>Nuxeo provides a Hyperscale Digital Asset Platform that helps enterprise organizations unlock the full value of their digital assets to grow revenue, improve performance, and maximize investments. Leading organizations use Nuxeo for digital asset management, document management, knowledge management, and other content-centric business applications.</p>
-      <a class="button" href="http://www.nuxeo.com/products/content-management-platform/" target="blank">Discover Nuxeo Platform</a>
+  <div class="small-12 large-4 columns">
+    <div class="padded0 is-bg-navy full-height">
+      <h2>Higher Speed Transfers and Strict Security Controls</h2>
+      <p>To combat slower speeds, we built Nuxeo Edge Cache to reduce download times by up to 95% and bandwidth consumption by 90%&mdash;all while keeping your digital assets safe&mdash;even when cached.</p>
     </div>
   </div>
+  <div class="small-12 large-4 columns">
+    <div class="padded0 is-bg-navy full-height">
+      <h2>Architected for Future-proof Flexibility</h2>
+      <p>Choose from many SQL and NoSQL (e.g. MongoDB) database options for storage, and even shard on several databases for even higher throughput. Your search can be configured using SQL-based queries, Elasticsearch, or a combination of both.</p>
+    </div>
+  </div>
+</div>
 
-  {{ partial "footer.html" . }}
+<div class="row paddedt1">
+  <div class="small-12 medium-4 columns">
+    <a href="/milestone/" class="button-square is-bg-blue">Performance Bench or each release &gt;</a>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <a href="/continuous/" class="button-square is-bg-blue">CI Updates &gt;</a>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <a href="/infra/" class="button-square is-bg-blue">Infrastructure &gt;</a>
+  </div>
+</div>
 
+<div class="row is-bg-grey paddedt1 blog-section">
+  <div class="small-12 columns">
+    <h2 class="is-purple">Latest blog posts</h2>
+  </div>
+</div>
+
+<div class="row paddedt1">
+  <div class="small-12 medium-4 columns">
+    <a href="https://www.nuxeo.com/request-demo/" class="button-square is-bg-blue">Request a demo</a>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <a href="https://www.nuxeo.com/contact/" class="button-square is-bg-blue">Contact Us</a>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <a href="https://www.nuxeo.com/downloads/" class="button-square is-bg-blue">Download the Nuxeo Platform</a>
+  </div>
+</div>
+
+<div class="row paddedt1 collapse">
+  <div class="small-12 medium-6 columns is-bg-aqua cover" style="background-image: url('http://res.cloudinary.com/nuxeo/image/upload/w_600,q_auto:eco,c_limit,dpr_auto,f_auto/backgrounds/duotone4')">
+  </div>
+  <div class="small-12 medium-6 columns is-bg-navy">
+    <div class="padded">
+      <h2>About Nuxeo</h2>
+      <p>We're focused on creating the world's most flexible, scalable Content Services Platform. We help out customers build applications that take advantage of the latest technologies and content methodologies. To achieve this, we built a platform and intuitive tools to make it easy for you to quicky build the applications you need to soolve even your most complex content challenges.</p>
+    </div>
+  </div>
+</div>
+
+{{ partial "footer.html" . }}
 </body>
 </html>

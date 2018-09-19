@@ -39,11 +39,13 @@ $(document).ready(function(){
         // Remove prefix if necessary
         var featured_image = post.featured_image.indexOf(imagePrefix) === 0 ? post.featured_image.substring(imagePrefix.length) : post.featured_image;
 
-        $blog_section.append('<div class="small-12 medium-4 columns blog-post"><a href="https://www.nuxeo.com/blog/' + post.slug + '" target="_blank"><div class="is-bg-' + blog_bg[blogCount] + ' full-height"><img src="https://res.cloudinary.com/nuxeo/image/upload/h_275,w_550,c_fill,g_faces:auto,f_auto,dpr_auto,q_auto/' + featured_image + '" width="100%"><div class="padded0"><h3>' + post.title + '</h3><p>' + post.excerpt + '</p></div></div></a></div>');
+        $blog_section.append('<div class="small-12 medium-4 columns blog-post"><a href="https://www.nuxeo.com/blog/' + post.slug + '" target="_blank"><div class="is-bg-' + blog_bg[blogCount] + ' full-height"><img src="https://res.cloudinary.com/nuxeo/image/upload/h_275,w_550,c_fill,g_faces:auto,f_auto,dpr_auto,q_auto/' + featured_image + '" width="100%"><div class="padded0"><h3 data-equalizer-watch="blog-cards">' + post.title + '</h3><p>' + post.excerpt + '</p></div></div></a></div>');
 
         blogCount++;
       }
     }
+
+    Foundation.reInit('equalizer');
   });
 
   // tabs in bench suites

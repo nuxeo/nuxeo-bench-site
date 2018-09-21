@@ -153,6 +153,27 @@
           </dd>
         </dl>
 
+        {{ if ne (index .Site.Data.bench $data).bulk_duration nil }}
+        <a name="bulk" class="suite"></a>
+        <h3>Bulk Update</h3>
+        <div>This simulation uses the Bulk Action Service to update the description of all documents.</div>
+        <dl>
+          <dt>Total duration</dt>
+          <dd class="times">{{ (index .Site.Data.bench $data).bulk_duration }}</dd>
+          <dt>Duration sync</dt>
+          <dd class="timems">{{ (index .Site.Data.bench $data).bulk_runabulkoperation_avg }}</dd>
+          <dt>Residual duration async</dt>
+          <dd class="timems">{{ (index .Site.Data.bench $data).bulk_waitforactiontobecompleted_avg }}</dd>
+          <dt>Reports</dt>
+          <dd>
+            <a class="tag" target="_blank"
+              href="https://benchmarks.nuxeo.com/build/{{ $data }}/archive/reports/sim15bulkupdatedocuments/overview/index.html">» Overview and monitoring</a>
+            <a class="tag" target="_blank"
+              href="https://benchmarks.nuxeo.com/build/{{ $data }}/archive/reports/sim15bulkupdatedocuments/detail/index.html">» Gatling report</a>
+          </dd>
+        </dl>
+        {{ end }}
+
         <a name="create" class="suite"></a>
         <h3>Create document using REST</h3>
         <div>This simulation creates new documents without attachement on top of the existing instance.</div>

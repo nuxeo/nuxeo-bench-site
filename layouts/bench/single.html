@@ -36,6 +36,12 @@
           <dd>{{ (index .Site.Data.bench $data).dbprofile }}</dd>
           <dt>Nuxeo nodes</dt>
           <dd>{{ (index .Site.Data.bench $data).nuxeonodes }}</dd>
+          <dt>Elasticsearch nodes</dt>
+          {{ if ne (index .Site.Data.bench $data).esnodes nil }}
+          <dd>{{ (index .Site.Data.bench $data).esnodes }}</dd>
+          {{ else }}
+          <dd>3</dd>
+          {{ end }}
           <dt>CI Build</dt>
           <dd><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a>
           </dd>
@@ -156,12 +162,12 @@
         {{ if ne (index .Site.Data.bench $data).bulk_duration nil }}
         <a name="bulk" class="suite"></a>
         <h3>Bulk Update</h3>
-        <div>This simulation uses the Bulk Action Service to update the description of all documents.</div>
+        <div>This simulation uses the Bulk Service to run a single command that updates the description of all File documents previously imported in mass import.</div>
         <dl>
           <dt>Total duration</dt>
           <dd class="times">{{ (index .Site.Data.bench $data).bulk_duration }}</dd>
           <dt>Duration sync</dt>
-          <dd class="timems">{{ (index .Site.Data.bench $data).bulk_runabulkoperation_avg }}</dd>
+          <dd class="timems">{{ (index .Site.Data.bench $data).bulk_updatedocuments_avg }}</dd>
           <dt>Residual duration async</dt>
           <dd class="timems">{{ (index .Site.Data.bench $data).bulk_waitforactiontobecompleted_avg }}</dd>
           <dt>Reports</dt>
@@ -332,6 +338,46 @@
           </dd>
         </dl>
 
+        {{ if ne (index .Site.Data.bench $data).mbulk_duration nil }}
+        <a name="mbulk" class="suite"></a>
+        <h3>Multi Bulk Update</h3>
+        <div>This simulation uses the Bulk Service to run many small bulk commands that update the description of random folders.</div>
+        <dl>
+          <dt>Total duration</dt>
+          <dd class="times">{{ (index .Site.Data.bench $data).mbulk_duration }}</dd>
+          <dt>Requests</dt>
+          <dd>{{ (index .Site.Data.bench $data).mbulk_count }}</dd>
+          <dt>Throughput sync</dt>
+          <dd class="rps">{{ (index .Site.Data.bench $data).mbulk_rps }}</dd>
+          <dt>Response time sync</dt>
+          <dd><span class="timems">{{ (index .Site.Data.bench $data).mbulk_updatedocuments_avg }}</span> <span
+            class="stddev">{{ (index .Site.Data.bench $data).mbulk_std }}</span><br>
+            <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).mbulk_updatedocuments_min }}</div>
+            <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).mbulk_updatedocuments_p50 }}</div>
+            <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).mbulk_updatedocuments_p95 }}</div>
+          </dd>
+          <dt>Response time async</dt>
+          <dd><span class="timems">{{ (index .Site.Data.bench $data).mbulk_waitforactiontobecompleted_avg }}</span> <span
+            class="stddev">{{ (index .Site.Data.bench $data).mbulk_std }}</span><br>
+            <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).mbulk_waitforactiontobecompleted_min }}</div>
+            <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).mbulk_waitforactiontobecompleted_p50 }}</div>
+            <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).mbulk_waitforactiontobecompleted_p95 }}</div>
+          </dd>
+          <dt>Error</dt>
+          <dd class="pcterr">{{ (index .Site.Data.bench $data).mbulk_percentError }}</dd>
+          <dt>Concurrency</dt>
+          <dd>{{ (index .Site.Data.bench $data).mbulk_user }}</dd>
+          <dt>Reports</dt>
+          <dd>
+            <a class="tag" target="_blank"
+              href="https://benchmarks.nuxeo.com/build/{{ $data }}/archive/reports/sim25bulkupdatefolders/overview/index.html">» Overview and monitoring</a>
+            <a class="tag" target="_blank"
+              href="https://benchmarks.nuxeo.com/build/{{ $data }}/archive/reports/sim25bulkupdatefolders/detail/index.html">» Gatling report</a>
+          </dd>
+        </dl>
+        {{ end }}
+
+
         <a name="crud" class="suite"></a>
         <h3>CRUD on documents in REST</h3>
         <div>This simulation performs concurrent Create Read Update and Delete operations on document using REST.</div>
@@ -370,6 +416,27 @@
             href="https://benchmarks.nuxeo.com/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/detail/index.html">» Gatling report</a>
           </dd>
         </dl>
+
+        {{ if ne (index .Site.Data.bench $data).exportcsv_duration nil }}
+        <a name="exportcsv" class="suite"></a>
+        <h3>CSV Export</h3>
+        <div>This simulation uses the Bulk Service to create a CSV export of all File documents previously imported with mass import.</div>
+        <dl>
+          <dt>Total duration</dt>
+          <dd class="times">{{ (index .Site.Data.bench $data).exportcsv_duration }}</dd>
+          <dt>Duration sync</dt>
+          <dd class="timems">{{ (index .Site.Data.bench $data).exportcsv_exportdocumentsincsvfile_avg }}</dd>
+          <dt>Residual duration async</dt>
+          <dd class="timems">{{ (index .Site.Data.bench $data).exportcsv_waitforactiontobecompleted_avg }}</dd>
+          <dt>Reports</dt>
+          <dd>
+            <a class="tag" target="_blank"
+              href="https://benchmarks.nuxeo.com/build/{{ $data }}/archive/reports/sim20csvexport/overview/index.html">» Overview and monitoring</a>
+            <a class="tag" target="_blank"
+              href="https://benchmarks.nuxeo.com/build/{{ $data }}/archive/reports/sim20csvexport/detail/index.html">» Gatling report</a>
+          </dd>
+        </dl>
+        {{ end }}
 
         <a name="bench" class="suite"></a>
         <h3>Benchmark mixing actions</h3>

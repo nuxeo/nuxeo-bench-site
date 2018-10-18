@@ -168,8 +168,10 @@
           <dd class="times">{{ (index .Site.Data.bench $data).bulk_duration }}</dd>
           <dt>Duration sync</dt>
           <dd class="timems">{{ (index .Site.Data.bench $data).bulk_updatedocuments_avg }}</dd>
-          <dt>Residual duration async</dt>
+          <dt>Command completed (async)</dt>
           <dd class="timems">{{ (index .Site.Data.bench $data).bulk_waitforactiontobecompleted_avg }}</dd>
+          <dt>Residual duration async</dt>
+          <dd class="timems">{{ (index .Site.Data.bench $data).bulk_waitforasync_avg }}</dd>
           <dt>Reports</dt>
           <dd>
             <a class="tag" target="_blank"
@@ -426,7 +428,7 @@
           <dd class="times">{{ (index .Site.Data.bench $data).exportcsv_duration }}</dd>
           <dt>Duration sync</dt>
           <dd class="timems">{{ (index .Site.Data.bench $data).exportcsv_exportdocumentsincsvfile_avg }}</dd>
-          <dt>Residual duration async</dt>
+          <dt>Command completed (async)</dt>
           <dd class="timems">{{ (index .Site.Data.bench $data).exportcsv_waitforactiontobecompleted_avg }}</dd>
           <dt>Reports</dt>
           <dd>

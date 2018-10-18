@@ -6,6 +6,7 @@ slug: "changes"
 Here are some import changes on the Benchmark infrastructure and tests that
 should be take in account to interpret performance evolution.
 
+- 2018-10-18 Upgrade to Elasticsearch 6.4.2 (previously 6.3.2)
 
 - 2018-08-14 Wait properly on audit writes between simulation
 

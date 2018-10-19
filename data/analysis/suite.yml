@@ -1,4 +1,60 @@
 # Here you can comment bench suite using markdown"
+"18w41 NXP-25632 bulk test": "Bulk service tests related to [NXP-25632](https://jira.nuxeo.com/browse/NXP-25632)
+
+
+##### setProperties action on 1m documents
+
+
+On build [#1688](./1688/index.html) the `setProperties` is tested on 1m documents with 8 threads we reach 1100 update/s:
+
+
+![update throughput](https://benchmarks.nuxeo.com/build/1688/archive/reports/sim15bulkupdatedocuments/overview/nxDocumentsallnodes_1745_20181018.png 'Update')
+
+
+The database and Nuxeos are ok for such a load::
+
+
+![cpu idle](https://benchmarks.nuxeo.com/build/1688/archive/reports/sim15bulkupdatedocuments/overview/sysCPUIdle_1745_20181018.png 'Cpu Idle')
+
+
+We can see different phases:
+
+
+- The scrolling of 1m docs is fast ~15s (not visible but reported by command status)
+
+- The action is running along with indexing and audit, it takes 14 minutes for the command to be completed ~1100 docs/s or ~130 doc/s/thread.
+
+- After this the async task are running, the indexing is busy for 16 more minutes
+
+- the audit writer needs half an hour again to complete
+
+
+The reason for this is that `setProperties` action creates a new version and generates 3 log entries per document,
+this puts more pressure on asynchronous task than on the action itself:
+
+- 2m docs to index (document + version) around 1100 doc/s, there are 12 indexing threads
+
+- 3m of log entries to write around 770 doc/s but with a single thread and with very few resources.
+
+##### multiple setProperties concurrently
+
+The Multi Bulk Update simulation created 50793 bulk command on document set of one document with a concurrency of 32 threads.
+
+No error and a completion within 0.5s (p95 is 395ms) that proves that Bulk Action can be used for small document set.
+
+
+##### CSV Export of 1m documents
+
+
+This creates a 74MB csv.gz file, or 330MB csv file of 1m lines sorted line in 147s.
+
+The projection in CSV line is done concurrently in a distributed way we see activity in both nuxeo1 and nuxeo2 nodes:
+
+
+![cpu idle](https://benchmarks.nuxeo.com/build/1688/archive/reports/sim20csvexport/overview/sysCPUIdle_1742_20181018.png 'Cpu Idle')
+
+"
+
 "18w34 NXP-25603 Kafka": "Redis is disabled when using Kafka with MongoDB.
 
 
@@ -42,7 +98,7 @@ First, we have removed some randomness in the results due to some improper confi
   audit index was not always reset between benchmarks.
 
 
-[NXP-23016](https://jira.nuxeo.com/browse/) has fixed a regression
+[NXP-23016](https://jira.nuxeo.com/browse/NXP-23016) has fixed a regression
 responsible for increasing response time of all request by few
 milliseconds. This fix enables to reach higher throughput.
 

@@ -32,13 +32,16 @@ We can see different phases:
 The reason for this is that `setProperties` action creates a new version and generates 3 log entries per document,
 this puts more pressure on asynchronous task than on the action itself:
 
+
 - 2m docs to index (document + version) around 1100 doc/s, there are 12 indexing threads
 
 - 3m of log entries to write around 770 doc/s but with a single thread and with very few resources.
 
 ##### multiple setProperties concurrently
 
+
 The Multi Bulk Update simulation created 50793 bulk command on document set of one document with a concurrency of 32 threads.
+
 
 No error and a completion within 0.5s (p95 is 395ms) that proves that Bulk Action can be used for small document set.
 
@@ -48,7 +51,8 @@ No error and a completion within 0.5s (p95 is 395ms) that proves that Bulk Actio
 
 This creates a 74MB csv.gz file, or 330MB csv file of 1m lines sorted line in 147s.
 
-The projection in CSV line is done concurrently in a distributed way we see activity in both nuxeo1 and nuxeo2 nodes:
+
+The projection in CSV line is done concurrently in a distributed way, there are activity in both nuxeo1 and nuxeo2 nodes:
 
 
 ![cpu idle](https://benchmarks.nuxeo.com/build/1688/archive/reports/sim20csvexport/overview/sysCPUIdle_1742_20181018.png 'Cpu Idle')

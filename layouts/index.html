@@ -14,6 +14,13 @@
   </div>
 </div>
 
+<div id="benchmark-pw-form" class="featherlight-hide">
+  <script src="//app-abk.marketo.com/js/forms2/js/forms2.min.js"></script>
+  <form class="mktoForm" id="mktoForm_1840"></form>
+
+  <script>MktoForms2.loadForm("//app-abk.marketo.com", "498-JDO-611", 1840);</script>
+</div>
+
 <div class="row is-bg-red is-white">
   <div class="columns small-12 text-center">
     <p>
@@ -24,7 +31,7 @@
       <br />
       Get a password bellow to access the benchmark results.
     </p>
-    <a class="button is-bg-blue" href="https://info.nuxeo.com/benchmarks-password.html" data-featherlight="iframe" data-featherlight-iframe-height="380" data-featherlight-iframe-width="480">Get a password</a>
+    <a class="button is-bg-blue" href="#" data-featherlight="#benchmark-pw-form">Get a password</a>
   </div>
 </div>
 
@@ -91,5 +98,6 @@
 </div>
 
 {{ partial "footer.html" . }}
+<script src="{{ .Site.BaseURL }}js/featherlight.min.js"></script>
 </body>
 </html>

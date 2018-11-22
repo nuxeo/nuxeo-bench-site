@@ -2,7 +2,7 @@
 <body class="{{ .Site.Params.themeColor }} home">
 {{ partial "header.html" . }}
 
-<div class="hero row cover padded is-bg-blue is-white" style="background-image: url('https://res.cloudinary.com/nuxeo/image/upload/w_1600,h_400,q_auto:eco,c_fill,g_center,dpr_auto,f_auto/backgrounds/duotone9');">
+<div class="hero row cover padded is-bg-blue is-white" style="background-image: url('https://res.cloudinary.com/nuxeo/image/upload/w_1600,h_500,q_auto,c_fill,g_center,dpr_auto,f_auto/backgrounds/duotone9');">
   <div class="large-8 medium-10 small-12 columns">
     <h1>Nuxeo Performance Benchmarks</h1>
     <p class="larger is-white">
@@ -12,13 +12,6 @@
       We've tested our platform in rigorous scenarios, and we're confident that we're the most performant Content Services Platform on the market.
     </p>
   </div>
-</div>
-
-<div id="benchmark-pw-form" class="featherlight-hide">
-  <script src="//app-abk.marketo.com/js/forms2/js/forms2.min.js"></script>
-  <form class="mktoForm" id="mktoForm_1840"></form>
-
-  <script>MktoForms2.loadForm("//app-abk.marketo.com", "498-JDO-611", 1840);</script>
 </div>
 
 <div class="row is-bg-red is-white">
@@ -31,7 +24,7 @@
       <br />
       Get a password bellow to access the benchmark results.
     </p>
-    <a class="button is-bg-blue" href="#" data-featherlight="#benchmark-pw-form">Get a password</a>
+    <a class="button is-bg-blue" href="/password-request">Get a password</a>
   </div>
 </div>
 
@@ -98,6 +91,5 @@
 </div>
 
 {{ partial "footer.html" . }}
-<script src="{{ .Site.BaseURL }}js/featherlight.min.js"></script>
 </body>
 </html>

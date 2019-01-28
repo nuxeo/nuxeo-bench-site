@@ -1,7 +1,7 @@
-<nuxeo-header show-nuxeo-menu>
+<nuxeo-header {{ if .IsHome }}show-nuxeo-menu{{ end }}>
   <!-- <nuxeo-banner background-id="1" title="New Title">Lorem ipsum dolor sit amet, cu facer noster mea. Doming iracundia voluptatum in his. Vel an impetus democritum. Te quo sapientem iracundia. Ubique nostrud dolorum ut est.
   </nuxeo-banner> -->
-  <nuxeo-menu site-name="{{ .Site.Params.description }}" site-url="{{ .Site.BaseURL }}" menu-items='[
+  <nuxeo-menu site-for-developers="true" site-name="{{ .Site.Params.description }}" site-url="{{ .Site.BaseURL }}" menu-items='[
   {"title": "Milestones", "url": "{{ .Site.BaseURL }}milestone/index.html", "pathname": "/milestone/"},
   {"title": "Continuous", "url": "{{ .Site.BaseURL }}continuous/index.html", "pathname": "/continuous/"},
   {"title": "Misc", "url": "{{ .Site.BaseURL }}misc/index.html", "pathname": "/misc/"},

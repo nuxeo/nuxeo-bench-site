@@ -3,7 +3,7 @@
 {{ partial "header.html" . }}
 {{ $data := .Params.build_number }}
 {{ $datapath := .Params.classifier }}
-<div class="hero row cover padded1 is-bg-blue is-white" style="background-image: url('https://res.cloudinary.com/nuxeo/image/upload/w_1600,h_400,q_auto:eco,c_fill,g_center,dpr_auto,f_auto/backgrounds/duotone9');">
+<div class="hero row cover padded is-bg-blue is-white" style="background-image: url('https://res.cloudinary.com/nuxeo/image/upload/w_1600,h_400,q_auto:eco,c_fill,g_center,dpr_auto,f_auto/backgrounds/duotone9');">
   <div class="large-8 medium-10 small-12 columns">
     <h1>
       {{ (index .Site.Data.custombench $data).bench_suite }}

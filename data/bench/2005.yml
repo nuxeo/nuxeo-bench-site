@@ -1,0 +1,17 @@
+build_number: 2005
+build_url: "https://qa.nuxeo.org/jenkins/job/Misc/job/nuxeo-reference-bench/2005/"
+job_name: "Misc/nuxeo-reference-bench"
+dbprofile: "pgsql"
+bench_suite: "Current snapshot on master"
+nuxeonodes: 2
+esnodes: 1
+classifier: ""
+distribution: "fix-NXP-27636-gatling-keepalive/master"
+default_category: "workbench"
+kafka: false
+benchmark_duration: 
+
+import_dps: 316.0
+import_docs: 101148
+reindex_docs: 328121
+reindex_dps: NA

@@ -74,7 +74,8 @@ function copy_build() {
 function copy_build_s3() {
    gzip $BUILD_SRC_PATH/log || true
    #time s3cmd sync $BUILD_SRC_PATH $SITE_PATH/build/
-   time aws s3 sync $BUILD_SRC_PATH $BUILD_DEST_PATH/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+   #time aws s3 sync $BUILD_SRC_PATH $BUILD_DEST_PATH/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+   time aws s3 sync $BUILD_SRC_PATH $BUILD_DEST_PATH/
    gunzip $BUILD_SRC_PATH/log.gz || true
 }
 

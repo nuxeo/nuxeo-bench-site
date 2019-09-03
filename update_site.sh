@@ -26,7 +26,7 @@ function rebuild_site() {
 function sync_s3() {
   local S3_BUCKET=$1
   shift
-  time aws s3 sync ./public/ $S3_BUCKET/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+  time aws s3 sync ./public/ $S3_BUCKET/
 }
 
 # -------------------------------------------------------

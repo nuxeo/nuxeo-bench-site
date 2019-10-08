@@ -1,18 +1,19 @@
 # Here you can comment bench suite using markdown"
 
-"Nuxeo LTS 2019": "By default Java 8 is used as runtime unless the classifier refer to a Java 11 test.
-Java 11 introduces a performance regression in the authentication layer [NXP-27917](https://jira.nuxeo.com/browse/NXP-27917)
-that has been fixed in the master branch (11.1), it is recommended to use Java 8 to run Nuxeo LTS 2019.
+"Nuxeo LTS 2019": "By default Java 8 is used as runtime unless the classifier refers to Java 11.
+Java 11 introduces a performance regression in the authentication layer [NXP-27917](https://jira.nuxeo.com/browse/NXP-27917).
+This has been fixed only on the master branch (11.1-SNAPSHOT) therefore it is recommended to use Java 8 to run Nuxeo LTS 2019.
+
 
 **Import** A bit lower than previous LTS
 
-- The refactoring of the fulltext extraction update has been done in [NXP-25716](https://jira.nuxeo.com/browse/NXP-25716)
-  in Nuxeo 10.3 this improves performance but some new regression has been introduced, this will be analyzed on master branch.
+  - The refactoring of the fulltext extraction update has been done in [NXP-25716](https://jira.nuxeo.com/browse/NXP-25716)
+    in Nuxeo 10.3 this improves performance but some new regression has been introduced, this will be analyzed on master branch.
 
-- As usual the nuxeo-importer is run on a single node so the synchronous part
-  do not benefit of having multiple Nuxeo node.  The limitation is
-  mostly `Nuxeo CPU` at the beginning (especially for SQL backend)
-  then `Nuxeo IO on S3`, then `SQL Backend IO` and `Backend CPU`.
+  - As usual, the nuxeo-importer is run on a single node so the synchronous part
+    do not benefit of having multiple Nuxeo node.  The limitation is
+    mostly `Nuxeo CPU` at the beginning (especially for SQL backend)
+    then `Nuxeo IO on S3`, then `SQL Backend IO` and `Backend CPU`.
 
 
 **Create** Scales up limited by Gatling concurrency
@@ -23,6 +24,7 @@ that has been fixed in the master branch (11.1), it is recommended to use Java 8
   - The throughput is limited by the response time for PostgreSQL (around 30ms) and
     the Gatling concurrency used (32 threads) which limit the possible
     load to 1000 req/s.
+
 
 **Read** Scales up to 3500 req/s
 

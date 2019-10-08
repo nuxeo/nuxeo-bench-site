@@ -1,4 +1,53 @@
 # Here you can comment bench suite using markdown"
+
+"Nuxeo LTS 2019": "By default Java 8 is used as runtime unless the classifier refer to a Java 11 test.
+Java 11 introduces a performance regression in the authentication layer [NXP-27917](https://jira.nuxeo.com/browse/NXP-27917)
+that has been fixed in the master branch (11.1), it is recommended to use Java 8 to run Nuxeo LTS 2019.
+
+**Import** A bit lower than previous LTS
+
+- The refactoring of the fulltext extraction update has been done in [NXP-25716](https://jira.nuxeo.com/browse/NXP-25716)
+  in Nuxeo 10.3 this improves performance but some new regression has been introduced, this will be analyzed on master branch.
+
+- As usual the nuxeo-importer is run on a single node so the synchronous part
+  do not benefit of having multiple Nuxeo node.  The limitation is
+  mostly `Nuxeo CPU` at the beginning (especially for SQL backend)
+  then `Nuxeo IO on S3`, then `SQL Backend IO` and `Backend CPU`.
+
+
+**Create** Scales up limited by Gatling concurrency
+
+  - Faster than previous LTS because of better latency (19ms vs 29ms on MongoDB) due to
+    a fix in [NXP-25065](https://jira.nuxeo.com/browse/NXP-25065)
+
+  - The throughput is limited by the response time for PostgreSQL (around 30ms) and
+    the Gatling concurrency used (32 threads) which limit the possible
+    load to 1000 req/s.
+
+**Read** Scales up to 3500 req/s
+
+
+  - This does not scale lineary with 4 nodes because of the injection concurrency (Gatling).
+
+
+**Search** A bit slower than previous LTS
+
+
+  - Elasticsearch upgrade from 5.6 to 6.3 shows comparable performance
+
+
+**Update/CRUD** Scale up limited by Gatling concurrency, better than previous LTS
+
+
+  - the latency around 30ms limits the possible throughput 1000 req/s with concurrency of 32.
+
+
+**Reindex**
+
+
+- A bit slower than in previous LTS.
+"
+
 "18w41 NXP-25632 bulk test": "Bulk service tests related to [NXP-25632](https://jira.nuxeo.com/browse/NXP-25632)
 
 

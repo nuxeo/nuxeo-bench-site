@@ -9,6 +9,7 @@ This has been fixed only on the master branch (11.1-SNAPSHOT) therefore it is re
 
 **Import** A bit lower than previous LTS
 
+
   - The refactoring of the fulltext extraction update has been done in [NXP-25716](https://jira.nuxeo.com/browse/NXP-25716)
     in Nuxeo 10.3 this improves performance but some new regression has been introduced, this will be analyzed on master branch.
 
@@ -19,6 +20,7 @@ This has been fixed only on the master branch (11.1-SNAPSHOT) therefore it is re
 
 
 **Create** Scales up limited by Gatling concurrency
+
 
   - Faster than previous LTS because of better latency (19ms vs 29ms on MongoDB) due to
     a fix in [NXP-25065](https://jira.nuxeo.com/browse/NXP-25065)

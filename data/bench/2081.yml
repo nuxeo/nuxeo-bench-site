@@ -1,0 +1,17 @@
+build_number: 2081
+build_url: "https://qa.nuxeo.org/jenkins/job/Misc/job/nuxeo-reference-bench/2081/"
+job_name: "Misc/nuxeo-reference-bench"
+dbprofile: "mongodb"
+bench_suite: "Current snapshot on master"
+nuxeonodes: 2
+esnodes: 1
+classifier: "Gatling 3.3.0"
+distribution: "feature-NXP-27977-gatling-upgrade"
+default_category: "workbench"
+kafka: false
+benchmark_duration: 
+
+import_dps: 578.8
+import_docs: 101199
+reindex_docs: 369602
+reindex_dps: NA

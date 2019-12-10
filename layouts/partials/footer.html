@@ -5,4 +5,4 @@ crossorigin="anonymous"></script>
 <script src="{{ .Site.BaseURL }}js/foundation.min.js"></script>
 <script src="{{ .Site.BaseURL }}js/tabs.js"></script>
 
-<nuxeo-footer year="2018"></nuxeo-footer>
+<nx-footer {{ if .IsHome }}{{ else }}nolinks{{ end }}></nx-footer>

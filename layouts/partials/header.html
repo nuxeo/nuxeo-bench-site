@@ -1,13 +1,16 @@
-<nuxeo-header {{ if .IsHome }}show-nuxeo-menu{{ end }}>
-  <!-- <nuxeo-banner background-id="1" title="New Title">Lorem ipsum dolor sit amet, cu facer noster mea. Doming iracundia voluptatum in his. Vel an impetus democritum. Te quo sapientem iracundia. Ubique nostrud dolorum ut est.
-  </nuxeo-banner> -->
-  <nuxeo-menu site-for-developers="true" site-name="{{ .Site.Params.description }}" site-url="{{ .Site.BaseURL }}" menu-items='[
-  {"title": "Milestones", "url": "{{ .Site.BaseURL }}milestone/index.html", "pathname": "/milestone/"},
-  {"title": "Continuous", "url": "{{ .Site.BaseURL }}continuous/index.html", "pathname": "/continuous/"},
-  {"title": "Misc", "url": "{{ .Site.BaseURL }}misc/index.html", "pathname": "/misc/"},
-  {"title": "Workbench", "url": "{{ .Site.BaseURL }}workbench/index.html", "pathname": "/workbench/"},
-  {"title": "Custom", "url": "{{ .Site.BaseURL }}custom/index.html", "pathname": "/custom/"}]' menu-items-right='[
-  {"title": "Infrastructure", "url": "{{ .Site.BaseURL }}infra/index.html", "pathname": "/infra/"},
-  {"title": "Scenarios", "url": "{{ .Site.BaseURL }}scenarios/index.html", "pathname": "/scenarios/"}]'>
-  </nuxeo-menu>
-</nuxeo-header>
+<nx-header name="Benchmarks" homelabel="Benchmarks Home">
+  <nx-header--menu-item href="{{ .Site.BaseURL }}milestones/index.html">Milestones</nx-header--menu-item>
+  <nx-header--menu-item href="{{ .Site.BaseURL }}milestones/index.html">Continuous</nx-header--menu-item>
+  <nx-header--menu-item href="{{ .Site.BaseURL }}misc/index.html">Misc</nx-header--menu-item>
+  <nx-header--menu-item href="{{ .Site.BaseURL }}workbench/index.html">Workbench</nx-header--menu-item>
+  <nx-header--menu-item href="{{ .Site.BaseURL }}custom/index.html" classes="end-of-section"
+  >Custom</nx-header--menu-item
+  >
+  <nx-header--menu-item href="{{ .Site.BaseURL }}infra/index.html">Infrastructure</nx-header--menu-item>
+  <nx-header--menu-item href="{{ .Site.BaseURL }}scenarios/index.html" classes="end-of-section"
+  >Scenarios</nx-header--menu-item
+  >
+  <nx-header--menu-item href="/password-request" classes="is-red"
+  >Request Password</nx-header--menu-item
+  >
+</nx-header>

@@ -3,7 +3,7 @@
 {{ partial "header.html" . }}
 {{ $data := .Params.build_number }}
 
-<div class="hero row padded is-bg-blue is-white"">
+<div class="hero row padded is-bg-blue is-white">
   <div class="large-8 medium-10 small-12 columns">
     <h1>
       {{ (index .Site.Data.bench $data).bench_suite }} <span

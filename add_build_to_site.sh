@@ -96,9 +96,15 @@ function update_data() {
   set +e
   # parse info to extract more stats if not alreaddy present
   # Extract the mass import document stats
-  import_dps=`tail -n1 $BUILD_SRC_PATH/archive/logs/*/perf*.csv | cut -d \; -f3 | LC_ALL=C xargs printf "%.1f"`
-  import_docs=`tail -n1 $BUILD_SRC_PATH/archive/logs/*/perf*.csv |  cut -d \; -f2 | LC_ALL=C xargs printf "%.0f"`
-  # Extract reindex stats
+  if test -n "$(shopt -s nullglob; echo $BUILD_SRC_PATH/archive/logs/*/perf*.csv)"; then
+    import_dps=`tail -n1 $BUILD_SRC_PATH/archive/logs/*/perf*.csv | cut -d \; -f3 | LC_ALL=C xargs printf "%.1f"`
+    import_docs=`tail -n1 $BUILD_SRC_PATH/archive/logs/*/perf*.csv |  cut -d \; -f2 | LC_ALL=C xargs printf "%.0f"`
+  else
+    import_s=`grep import_duration $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+    import_docs=`grep import_docs $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+    import_dps=`awk "BEGIN {printf \"%.1f\", $import_docs/$import_s}" || echo "NA"`
+  fi
+  # Extract reindex stats from server logs
   reindex_docs=`grep 'ScrollingIndexingWorker.*has submited ' $BUILD_SRC_PATH/archive/logs/*/server.log | sed -e 's,^.*submited.,,g;s,.documents.*$,,g' `
   reindex_ms=`grep reindex_waitforasync_avg $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   reindex_dps=`awk "BEGIN {printf \"%.1f\", $reindex_docs/($reindex_ms / 1000)}" || echo "NA"`

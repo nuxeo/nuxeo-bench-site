@@ -1,6 +1,6 @@
 ---
 title: "mongodb 4 nco-24"
-bench_suite: "NCO Readiness instance"
+bench_suite: "Check Readiness instance"
 build_number: "nco-24"
 dbprofile: "mongodb"
 classifier: ""

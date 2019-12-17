@@ -445,7 +445,7 @@ build_number: nco-29
 build_url: "https://qa.nuxeo.org/jenkins/job/Misc/job/nuxeo-nco-bench/29/"
 job_name: "Misc/nuxeo-nco-bench"
 dbprofile: "mongodb"
-bench_suite: "NCO Readiness instance"
+bench_suite: "Check Readiness instance"
 nuxeonodes: 4
 esnodes: 3
 classifier: ""
@@ -456,5 +456,5 @@ import_docs: 100000
 benchmark_duration: 12663
 
 import_dps: 27.7
-reindex_docs: 
-reindex_dps: NA
+reindex_docs: 270197
+reindex_dps: 1408.7

@@ -182,19 +182,19 @@ nav_getdocumentwithproperties_p95: 80
 nav_getdocumentwithproperties_max: 355
 nav_getdocumentwithproperties_rps: 204.8
 
-navjsf_avg: 
-navjsf_rps: 
-navjsf_std: 
-navjsf_min: 
-navjsf_p50: 
-navjsf_p95: 
-navjsf_max: 
-navjsf_user: 
-navjsf_date: 
-navjsf_duration: 
-navjsf_count: 
-navjsf_percentError: 
-navjsf_error: 
+navjsf_avg:
+navjsf_rps:
+navjsf_std:
+navjsf_min:
+navjsf_p50:
+navjsf_p95:
+navjsf_max:
+navjsf_user:
+navjsf_date:
+navjsf_duration:
+navjsf_count:
+navjsf_percentError:
+navjsf_error:
 
 search_avg: 194.2
 search_rps: 243.6
@@ -446,7 +446,7 @@ build_url: "https://qa.nuxeo.org/jenkins/job/Misc/job/nuxeo-nco-bench/43/"
 job_name: "Misc/nuxeo-nco-bench"
 dbprofile: "mongodb"
 bench_suite: "19w51 SUPINT-1615 Check Readiness instance"
-nuxeonodes: 4
+nuxeonodes: 3
 esnodes: 3
 classifier: "100k perf upgrade es and mongo"
 distribution: "10.10-HF19"

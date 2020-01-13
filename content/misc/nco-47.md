@@ -1,5 +1,5 @@
 ---
-title: "mongodb 4 nco-47"
+title: "mongodb 3 nco-47"
 bench_suite: "19w51 SUPINT-1615 Check Readiness instance"
 build_number: "nco-47"
 dbprofile: "mongodb"

@@ -1,4 +1,68 @@
 # Here you can comment bench suite using markdown"
+"19w51 SUPINT-1615 Check Readiness instance": "**#nco-47 vs #1950**
+
+
+Instances running on Java 8 with `perf` template (no thumbnail generation, fulltext index on database disable)
+
+
+**Import** Slower because of elastic
+
+
+  - Waiting on indexing, all nodes CPU ~12%
+
+
+**CSV Export** Similar
+
+
+**Bulk Update on all documents** Slower because of elastic
+
+
+  - 200% CPU on the node processing the Bulk command with 4 threads waiting on MongoDB, the load is not distributed because Kafka is not used.
+
+  - After update waiting on asynchronous indexing (~12% on all nodes)
+
+
+**Create/Update** Slower because of elastic
+
+
+  - 350% CPU on front nodes, 60% CPU on worker node
+
+  - Load on MongoDb and Redis
+
+  - Wait on asynchronous indexing
+
+
+**Search** Slower because of elastic
+
+
+  - 100% CPU on front nodes
+
+
+**Read** Similar
+
+
+**Reindex** Slower because of elastic
+
+
+   - 15% CPU on all nodes.
+
+
+Elastic configuration:
+
+
+  - index.translog.durability: async
+
+  - number_of_replicas: 2
+
+  - number_of_shards: 5
+
+  - 344919 docs 1.3GB primary (3.9GB total)
+
+  - 806627 audit entries 157.7MB primary (526.4MB total)
+
+
+"
+
 "19w41 NXBT-3006 Elastic 6.8 vs 6.4": "No visible difference between Elasticsearch 6.4.2/Java 8 and Elasticsearch 6.8.3/Java 11"
 
 

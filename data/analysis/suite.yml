@@ -52,7 +52,7 @@ Elastic configuration:
 
   - index.translog.durability: async
 
-  - number_of_replicas: 2
+  - number_of_replicas: 2, #nco-49 is done with 1 replica is more than 40% better on import and re-index
 
   - number_of_shards: 5
 

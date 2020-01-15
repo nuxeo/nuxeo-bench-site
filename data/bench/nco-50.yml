@@ -446,7 +446,7 @@ build_url: "https://qa.nuxeo.org/jenkins/job/Misc/job/nuxeo-nco-bench/50/"
 job_name: "Misc/nuxeo-nco-bench"
 dbprofile: "mongodb"
 bench_suite: "19w51 SUPINT-1615 Check Readiness instance"
-nuxeonodes: 4
+nuxeonodes: 3
 esnodes: 3
 classifier: "CI like conf es r5.xlarge"
 distribution: "10.10-HF19"
@@ -456,5 +456,5 @@ import_docs: 100000
 benchmark_duration: 2526
 
 import_dps: 234.9
-reindex_docs: 
-reindex_dps: NA
+reindex_docs: 342240
+reindex_dps: 1151.1

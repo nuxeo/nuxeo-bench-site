@@ -40,45 +40,47 @@ Here is a list of tools used to perform the benchmark:
 
 All machines are on Amazon and runs on the same availability zone (AZ).
 
-| Node | ec2 instance type |
-|-|-|
-|Database|`c4.2xlarge`|
-|Nuxeo| `c4.xlarge`|
-|Elasticsearch| `c4.xlarge` |
-|Redis|`cache.m3.large`|
-|Kafka|`c4.xlarge`|
-|Jenkins slave|`c3.xlarge`|
-
+| Node          | ec2 instance type |
+| ------------- | ----------------- |
+| Database      | `c4.2xlarge`      |
+| Nuxeo         | `c4.xlarge`       |
+| Elasticsearch | `c4.xlarge`       |
+| Redis         | `cache.m3.large`  |
+| Kafka         | `c4.xlarge`       |
+| Jenkins slave | `c3.xlarge`       |
 
 - `c4.2xlarge`:
-    - 8 vCPU (31 ECU)
-    - 15 GB Memory
-    - Storage EBS
-        - Optimized: max bandwidth: 125MB/s
-        - General Purpose SSD (gp2) 20g 60/3000 IOPS + 100g 300/3000 IOPS
-    - Network Performance: High
+
+  - 8 vCPU (31 ECU)
+  - 15 GB Memory
+  - Storage EBS
+    - Optimized: max bandwidth: 125MB/s
+    - General Purpose SSD (gp2) 20g 60/3000 IOPS + 100g 300/3000 IOPS
+  - Network Performance: High
 
 - `c4.xlarge`:
-    - 4 vCPU (16 ECU)
-    - 7.5 GB Memory
-    - Storage EBS
-        - Not optimized, bandwidth is shared with network
-        - General Purpose SSD (gp2) 8g 24/3000 IOPS (+ 250g 750/3000 IOPS for Elasticsearch node)
-    - Network Performance: High
+
+  - 4 vCPU (16 ECU)
+  - 7.5 GB Memory
+  - Storage EBS
+    - Not optimized, bandwidth is shared with network
+    - General Purpose SSD (gp2) 8g 24/3000 IOPS (+ 250g 750/3000 IOPS for Elasticsearch node)
+  - Network Performance: High
 
 - `cache.m3.large`
-    - 2 vCPU
-    - 6.05 GB Memory
-    - Network Performance: Moderate
-    - Redis Engine Version Compatibility: 2.8.23
+
+  - 2 vCPU
+  - 6.05 GB Memory
+  - Network Performance: Moderate
+  - Redis Engine Version Compatibility: 2.8.23
 
 - `c3.xlarge`:
-    - 4 vCPU (14 ECU)
-    - 7.5 GB Memory
-    - Storage EBS
-        - Not optimized, bandwidth is shared with network
-        - General Purpose SSD (gp2) 50g 150/3000 IOPS
-    - Network Performance: Moderate
+  - 4 vCPU (14 ECU)
+  - 7.5 GB Memory
+  - Storage EBS
+    - Not optimized, bandwidth is shared with network
+    - General Purpose SSD (gp2) 50g 150/3000 IOPS
+  - Network Performance: Moderate
 
 Running a benchmark with the default setting requires 8 machines:
 
@@ -93,6 +95,7 @@ And when using Kafka there is an additional machine.
 ## Configuration
 
 Operating system used:
+
 - static nodes (Database, Monitoring): Ubuntu LTS 14.04 using ext4 filesystem.
 - dynamic nodes (Nuxeo and Elasticsearch): Ubuntu LTS 16.04 using ext4 filesystem (since 2018-06)
 
@@ -102,10 +105,11 @@ The number of nodes in the Nuxeo Cluster can be configured (default is 2)
 
 The Nuxeo is installed using a zip archive, there are additional packages installed:
 
- - `amazon-s3-online-storage`: used to store binaries into S3
- - `nuxeo-platform-importer`: used during the bench to generate random files.
+- `amazon-s3-online-storage`: used to store binaries into S3
+- `nuxeo-platform-importer`: used during the bench to generate random files.
 
 [1]: https://github.com/nuxeo/nuxeo/tree/master/nuxeo-distribution/nuxeo-distribution-resources/src/main/resources/templates-tomcat/perf
+
 In addition to the backend template, the [`perf`][1] template is used.
 This template is provided in the default distribution and rely on Elasticsearch for fulltext search and most of the
 page provider.
@@ -133,22 +137,20 @@ Default S3 bucket.
 
 ### Load balancer: Amazon ELB
 
-  HTTP Listener
+HTTP Listener
 
      Stickiness: LBCookieStickinessPolicy, expirationPeriod='86400'
 
-  Health check
+Health check
 
-  - Ping target: `HTTP:8080/nuxeo/runningstatus`
-  - Timeout: `5 seconds`
-  - Interval: `20 seconds`
-  - Thresold: `2`
-
+- Ping target: `HTTP:8080/nuxeo/runningstatus`
+- Timeout: `5 seconds`
+- Interval: `20 seconds`
+- Thresold: `2`
 
 ### Redis: Amazon Elasticache
 
 Elasticache cluster with a single node using Redis 2.8.
-
 
 ### Kafka
 
@@ -175,12 +177,11 @@ Database are setup using the recommended setup and tuning from our documentation
 
 [Default setup](https://doc.nuxeo.com/x/fwQz) for a 16g server:
 
- - shared_buffers: 4GB
- - effective_cache_size: 8GB
- - work_mem: 16MB
- - maintenance_work_mem: 1GB
- - max_connections: 153
-
+- shared_buffers: 4GB
+- effective_cache_size: 8GB
+- work_mem: 16MB
+- maintenance_work_mem: 1GB
+- max_connections: 153
 
 #### Oracle 12
 

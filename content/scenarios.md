@@ -5,17 +5,16 @@ title: "Scenarios"
 ## Sources
 
 The benchmark is composed of a serie of a dozen of Gatling simulations.
-Those simulations cover important use cases of a content platform such as mass import, create, read, search, browsing, update and delete of content. 
+Those simulations cover important use cases of a content platform such as mass import, create, read, search, browsing, update and delete of content.
 
-They are part of the [Nuxeo source](https://github.com/nuxeo/nuxeo/tree/master/nuxeo-distribution/nuxeo-jsf-ui-gatling-tests).
+They are part of the [Nuxeo source](https://github.com/nuxeo/nuxeo/tree/master/ftests/nuxeo-server-gatling-tests).
 
 The simulations are driven by a [Jenkins job](https://github.com/nuxeo/nuxeo-bench/).
-
 
 ## Description
 
 Each simulation plays a scenario with a concurrency that is part of the report, there is no pause (i.e. think time) between requests,
-   (except for the simulation Benchmarks mixing actions).
+(except for the simulation Benchmarks mixing actions).
 
 ### Mass import
 
@@ -51,7 +50,6 @@ Mixing different simulations: Navigation JSF, Read and Update using REST. This s
 Time to drop and recreate the Elasticsearch index, documents are loaded from the repository.
 
 ## Metrics
-
 
 - Throughput sync: throughput as seen by a client submitting requests.
 - Duration sync: total duration as seen by a client to process all the requests.

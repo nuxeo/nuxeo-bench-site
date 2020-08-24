@@ -1,45 +1,155 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"{{with .Site.LanguageCode}} xml:lang="{{.}}" lang="{{.}}"{{end}}>
-<head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  {{ .Hugo.Generator }}
+<html xmlns="http://www.w3.org/1999/xhtml" {{with .Site.LanguageCode}}xml:lang="{{.}}" lang="{{.}}"{{end}}>
+  <head>
+    <link href="http://gmpg.org/xfn/11" rel="profile" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    {{ .Hugo.Generator }}
 
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <!-- Enable responsiveness on mobile devices-->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
 
-  <title> {{ .Title }} &middot; {{ .Site.Title }} </title>
+    <title>{{ .Title }} &middot; {{ .Site.Title }}</title>
 
-  <!-- tracking code -->
-<script type="text/javascript">
-!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
-analytics.load("4qquvje3fv");
-analytics.page()
-}}();
-</script>
-<!-- tracking code -->
+    <!-- tracking code -->
+    <script type="text/javascript">
+      !(function() {
+        var analytics = (window.analytics = window.analytics || []);
+        if (!analytics.initialize)
+          if (analytics.invoked)
+            window.console &&
+              console.error &&
+              console.error("Segment snippet included twice.");
+          else {
+            analytics.invoked = !0;
+            analytics.methods = [
+              "trackSubmit",
+              "trackClick",
+              "trackLink",
+              "trackForm",
+              "pageview",
+              "identify",
+              "reset",
+              "group",
+              "track",
+              "ready",
+              "alias",
+              "page",
+              "once",
+              "off",
+              "on"
+            ];
+            analytics.factory = function(t) {
+              return function() {
+                var e = Array.prototype.slice.call(arguments);
+                e.unshift(t);
+                analytics.push(e);
+                return analytics;
+              };
+            };
+            for (var t = 0; t < analytics.methods.length; t++) {
+              var e = analytics.methods[t];
+              analytics[e] = analytics.factory(e);
+            }
+            analytics.load = function(t) {
+              var e = document.createElement("script");
+              e.type = "text/javascript";
+              e.async = !0;
+              e.src =
+                ("https:" === document.location.protocol
+                  ? "https://"
+                  : "http://") +
+                "cdn.segment.com/analytics.js/v1/" +
+                t +
+                "/analytics.min.js";
+              var n = document.getElementsByTagName("script")[0];
+              n.parentNode.insertBefore(e, n);
+            };
+            analytics.SNIPPET_VERSION = "3.1.0";
+            analytics.load("4qquvje3fv");
+            analytics.page();
+          }
+      })();
+    </script>
+    <!-- tracking code -->
 
-  <!-- CSS -->
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="https://static.nuxeo.com/components/v1/global.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://static.nuxeo.com/satellite/latest/css/v2-nuxeo-styles.css"
+    />
 
-  <link rel="stylesheet" href="https://static.nuxeo.com/components/v1/global.css">
-  <link rel="stylesheet" href="https://static.nuxeo.com/satellite/8.2.1/css/v2-nuxeo-styles.css">
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/benchmarks.css">
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/syntax.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/benchmarks.css" />
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/syntax.css" />
+    {{ if .IsHome }}
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/dist/home.css" />
+    {{ else }}
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/dist/main.css" />
+    {{ end }}
 
-  <!-- Icons -->
-  <link rel="apple-touch-icon" sizes="57x57" href="https://www.nuxeo.com/assets/icons/apple-touch-icon.png?v=3">
-  <link rel="android-touch-icon" href="https://www.nuxeo.com/assets/icons/android-chrome-192x192.png" />
-  <link rel="icon" type="image/png" href="https://www.nuxeo.com/assets/icons/favicon-32x32.png?v=2" sizes="32x32">
-  <link rel="icon" type="image/png" href="https://www.nuxeo.com/assets/icons/android-chrome-192x192.png" sizes="192x192">
-  <link rel="icon" type="image/png" href="https://www.nuxeo.com/assets/icons/favicon-16x16.png?v=2" sizes="16x16">
-  <link rel="manifest" href="https://www.nuxeo.com/assets/icons/manifest.json">
-  <link rel="mask-icon" href="https://www.nuxeo.com/assets/icons/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="https://www.nuxeo.com/assets/icons/favicon.ico?v=2">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="msapplication-TileImage" content="https://www.nuxeo.com/assets/icons/mstile-144x144.png">
-  <meta name="theme-color" content="#2199e8">
+    <!-- Icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="https://www.nuxeo.com/assets/icons/apple-touch-icon.png?v=3"
+    />
+    <link
+      rel="android-touch-icon"
+      href="https://www.nuxeo.com/assets/icons/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.nuxeo.com/assets/icons/favicon-32x32.png?v=2"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.nuxeo.com/assets/icons/android-chrome-192x192.png"
+      sizes="192x192"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.nuxeo.com/assets/icons/favicon-16x16.png?v=2"
+      sizes="16x16"
+    />
+    <link
+      rel="manifest"
+      href="https://www.nuxeo.com/assets/icons/manifest.json"
+    />
+    <link
+      rel="mask-icon"
+      href="https://www.nuxeo.com/assets/icons/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://www.nuxeo.com/assets/icons/favicon.ico?v=2"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta
+      name="msapplication-TileImage"
+      content="https://www.nuxeo.com/assets/icons/mstile-144x144.png"
+    />
+    <meta name="theme-color" content="#2199e8" />
 
-  <!-- RSS -->
-  <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
-  <script defer src="https://static.nuxeo.com/components/v1/bundle.min.js"></script>
-</head>
+    <!-- RSS -->
+    <link
+      href="{{ .RSSLink }}"
+      rel="alternate"
+      type="application/rss+xml"
+      title="{{ .Site.Title }}"
+    />
+    <script
+      defer
+      src="https://static.nuxeo.com/components/v1/bundle.min.js"
+    ></script>
+  </head>

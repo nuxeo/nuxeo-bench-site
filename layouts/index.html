@@ -2,73 +2,97 @@
 <body class="{{ .Site.Params.themeColor }} home">
 {{ partial "header.html" . }}
 
-<div class="hero row padded is-bg-blue is-white">
-  <div class="large-8 medium-10 small-12 columns">
-    <h1>Nuxeo Performance Benchmarks</h1>
-    <p class="larger is-white">
-      We're open and transparent.
-    </p>
-    <p class="larger is-white">
-      We've tested our platform in rigorous scenarios, and we're confident that we're the most performant Content Services Platform on the market.
-    </p>
-  </div>
-</div>
-
-<div class="row padded benefits" data-equalizer="heading-cards" data-equalizer-on="medium" data-equalize-by-row="true">
-  <div class="small-12 large-4 columns">
-    <div class="padded0 is-bg-grey is-blue full-height">
-      <h2 data-equalizer-watch="heading-cards">Proven Performance</h2>
-      <p>Nuxeo's hybrid architecture approach (NoSQL or SQL databases) has been validated to accomodate more than one billion documents, yielding impressive results such as the ability to import 30,000+ documents per second.</p>
+<div class="is-bg-white is-black" style="background-image: url('/assets/main/home-illustration.svg');background-size: contain;background-repeat: no-repeat;background-position: center;">
+  <div class="row align-center background-for-medium">
+    <div id="home" class="column space-3 large-10 large-centered">
+      <div class="text-center">
+        <h2>Nuxeo Performance Benchmarks</h2>
+        <p>
+          We're open and transparent.
+          <br>
+          We've tested our platform in rigorous scenarios, and we're confident that we're the most performant Content Services Platform on the market.
+        </p>
+      </div>
+      <div class="boxes boxes--3">
+        <a class="box no-decoration is-bg-purple" href="/milestone/">
+            <div class="box__content">
+              <h4>Proven Performance</h4>
+              <p>
+                Nuxeo's hybrid architecture approach (NoSQL or SQL databases) has been validated to accomodate more than one billion documents, yielding impressive results such as the ability to import 30,000+ documents per second.
+              </p>
+            </div>
+            <div class="more box__content box__content--last">Performance Benchmarks for Each Release</div>
+        </a>
+        <a class="box no-decoration is-bg-blue" href="/continuous/">
+            <div class="box__content">
+              <h4>Higher Speed Transfers and Strict Security Controls</h4>
+              <p>
+                To combat slower speeds, we built Nuxeo Edge Cache to reduce download times by up to 95% and bandwidth consumption by 90%&mdash;all while keeping your digital assets safe&mdash;even when cached.
+              </p>
+            </div>
+            <div class="more box__content box__content--last">CI Updates</div>
+        </a>
+        <a class="box no-decoration is-bg-aqua" href="/infra/">
+            <div class="box__content">
+              <h4>Architected for Future-proof Flexibility</h4>
+              <p>
+                Choose from many SQL and NoSQL (e.g. MongoDB) database options for storage, and even shard on several databases for even higher throughput. Your search can be configured using SQL-based queries, Elasticsearch, or a combination of both.
+              </p>
+            </div>
+            <div class="more box__content box__content--last">Infrastructure</div>
+        </a>
+      </div>
     </div>
   </div>
-  <div class="small-12 large-4 columns">
-    <div class="padded0 is-bg-grey is-blue full-height">
-      <h2 data-equalizer-watch="heading-cards">Higher Speed Transfers and Strict Security Controls</h2>
-      <p>To combat slower speeds, we built Nuxeo Edge Cache to reduce download times by up to 95% and bandwidth consumption by 90%&mdash;all while keeping your digital assets safe&mdash;even when cached.</p>
+</div>
+
+<div class="row align-center is-bg-grey is-black">
+  <div class="column space-3 large-10 large-centered">
+    <h3>Latest blog posts</h3>
+    <div class="boxes boxes--3 blog-section"></div>
+  </div>
+</div>
+
+<div class="row align-center is-bg-aqua-light is-black">
+  <div class="column large-8 large-centered space-3">
+    <div class="row small-text-center-only is-bg-aqua-light">
+      <div class="column small-12 medium-6">
+        <h3 class="space-top-2">About Nuxeo</h3>
+        <p class="medium-9">
+          We're focused on creating the world's most flexible, scalable Content Services Platform. We help out customers build applications that take advantage of the latest technologies and content methodologies. To achieve this, we built a platform and intuitive tools to make it easy for you to quicky build the applications you need to soolve even your most complex content challenges.
+        </p>
+      </div>
+      <div class="column small-12 medium-6">
+        <div class="column space-top-3">
+          <a href="https://www.nuxeo.com/about/why-nuxeo/" class="button button--arrow is-bg-aqua">Our Vision</a>
+        </div>
+        <div class="column space-top-2 space-bottom-2">
+          <a href="https://www.nuxeo.com/about/" class="button button--arrow is-bg-aqua">Our Mission</a>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="small-12 large-4 columns">
-    <div class="padded0 is-bg-grey is-blue full-height">
-      <h2 data-equalizer-watch="heading-cards">Architected for Future-proof Flexibility</h2>
-      <p>Choose from many SQL and NoSQL (e.g. MongoDB) database options for storage, and even shard on several databases for even higher throughput. Your search can be configured using SQL-based queries, Elasticsearch, or a combination of both.</p>
+</div>
+
+<div class="row align-center is-black">
+  <div class="column large-8 large-centered space-3">
+    <div class="row small-text-center-only">
+      <div class="column small-12 medium-6">
+        <h3 class="space-top-2">Want to go Further</h3>
+        <p class="medium-9"></p>
+      </div>
+      <div class="column small-12 medium-6">
+        <div class="column space-top-3">
+          <a href="https://www.nuxeo.com/request-demo/" class="button button--arrow is-bg-blue">Request a demo</a>
+        </div>
+        <div class="column space-top-2 space-bottom-2">
+          <a href="https://www.nuxeo.com/contact/" class="button button--arrow is-bg-blue">Contact Us</a>
+        </div>
+        <div class="column space-top-2 space-bottom-2">
+          <a href="https://www.nuxeo.com/downloads/" class="button button--arrow is-bg-blue">Download the Nuxeo Platform</a>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="small-12 columns padded0"></div>
-
-  <div class="small-12 medium-4 columns">
-    <a href="/milestone/" class="button-square button-square--tall is-bg-orange">Performance Benchmarks for each release &gt;</a>
-  </div>
-  <div class="small-12 medium-4 columns">
-    <a href="/continuous/" class="button-square button-square--tall is-bg-orange">CI Updates &gt;</a>
-  </div>
-  <div class="small-12 medium-4 columns">
-    <a href="/infra/" class="button-square button-square--tall is-bg-orange">Infrastructure &gt;</a>
-  </div>
-</div>
-
-<div class="row is-bg-grey padded blog-section" data-equalizer="blog-cards" data-equalizer-on="medium" data-equalize-by-row="true">
-  <div class="small-12 columns">
-    <h2 class="is-blue">Latest blog posts</h2>
-  </div>
-</div>
-
-<div class="row padded collapse is-bg-navy">
-  <div class="large-8 medium-10 small-12 columns">
-    <h2>About Nuxeo</h2>
-    <p>We're focused on creating the world's most flexible, scalable Content Services Platform. We help out customers build applications that take advantage of the latest technologies and content methodologies. To achieve this, we built a platform and intuitive tools to make it easy for you to quicky build the applications you need to soolve even your most complex content challenges.</p>
-  </div>
-</div>
-
-<div class="row padded">
-  <div class="small-12 medium-4 columns">
-    <a href="https://www.nuxeo.com/request-demo/" class="button-square is-bg-blue">Request a demo</a>
-  </div>
-  <div class="small-12 medium-4 columns">
-    <a href="https://www.nuxeo.com/contact/" class="button-square is-bg-blue">Contact Us</a>
-  </div>
-  <div class="small-12 medium-4 columns">
-    <a href="https://www.nuxeo.com/downloads/" class="button-square is-bg-blue">Download the Nuxeo Platform</a>
   </div>
 </div>
 

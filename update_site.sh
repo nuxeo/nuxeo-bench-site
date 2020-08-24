@@ -31,7 +31,9 @@ function sync_s3() {
 
 # -------------------------------------------------------
 # main
-#
+
+$HUGO version
+
 while getopts "h" opt; do
     case $opt in
         h)

@@ -2,14 +2,14 @@
 <body class="{{ .Site.Params.themeColor }}">
 {{ partial "header.html" . }}
 
-<div class="row padded is-navy">
-  <div class="large-8 medium-10 small-12 columns">
-    <h1>{{ .Title }}</h1>
+<div class="row align-center is-black">
+  <div class="small-12 medium-6 large-4 columns space-top-3 text-center">
+    <h1 class="h2">{{ .Title }}</h1>
   </div>
 </div>
 
-<div class="row padded is-navy blog-section">
-  <div class="small-12 columns">
+<div class="row align-center is-black">
+  <div class="small-12 medium-6 large-4 columns space-bottom-3">
     <div class="content container">
       {{ .Content }}
       {{ partial "passwordform.html" . }}

@@ -1,0 +1,358 @@
+@charset 'utf-8';
+
+@import 'settings';
+
+$info-border: $c-navy;
+$info-background: $c-blue;
+
+/* stylelint-disable selector-no-qualifying-type, selector-class-pattern, selector-max-compound-selectors, no-descending-specificity */
+.form-sec .mktoForm {
+  * {
+    font-family: $font-primary;
+  }
+
+  .mktoForm--hidden {
+    display: none;
+  }
+}
+
+.form-sec.marketo-update .mktoForm {
+  max-width: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 1rem;
+  // Fix space after banner
+  padding-top: 5px;
+  position: relative;
+  width: 100% !important;
+
+  .mktoFormRow {
+    margin-top: 5px;
+  }
+
+  .mktoButtonRow {
+    display: block;
+    margin-top: 1rem;
+
+    span {
+      button {
+        margin: 0 auto !important;
+      }
+    }
+  }
+
+  .mktoFormCol {
+    float: none;
+    margin: 0;
+    width: auto !important;
+  }
+
+  fieldset {
+    border: 0;
+    margin-top: 2rem;
+
+    > legend {
+      font-size: 22px;
+      font-weight: $weight-medium;
+      color: $c-black;
+      margin: 0;
+      padding: 2rem 0 0;
+    }
+  }
+
+  .mktoField {
+    color: $c-grey-3;
+    font-size: 18px !important;
+    font-style: normal;
+    max-width: 600px !important;
+    width: 100% !important;
+
+    &[type='checkbox'],
+    &[type='radio'] {
+      position: absolute;
+      width: auto !important;
+    }
+  }
+
+  textarea.mktoField,
+  select.mktoField {
+    -moz-appearance: none !important;
+    appearance: none !important;
+
+    option {
+      color: $c-grey-3;
+    }
+  }
+
+  .mktoFieldWrap {
+    max-width: 600px !important;
+    position: relative;
+    width: 100% !important;
+
+    label {
+      color: $c-blue;
+      max-width: 98%;
+    }
+
+    > .mktoLabel {
+      background: $white;
+      font-size: 1.2em;
+      font-weight: normal;
+      width: auto !important;
+
+      .is-bg-grey & {
+        background: $c-grey;
+      }
+
+      .mktoAsterix {
+        float: right;
+        padding: 0 0 0 0.5em;
+      }
+    }
+
+    .mktoHtmlText {
+      width: auto !important;
+    }
+
+    .mktoCheckboxList,
+    .mktoRadioList {
+      align-items: center;
+      clear: both;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0.5rem 0;
+      width: 100% !important;
+
+      label {
+        color: $c-grey-3;
+        transition: color 0.2s ease;
+        width: calc(100% - 3rem);
+
+        &:hover {
+          color: $c-blue;
+        }
+      }
+
+      // Change label colour when checkbox/radio is hovered
+      input:hover + label {
+        color: $c-blue;
+      }
+
+      label,
+      input {
+        cursor: pointer;
+      }
+    }
+
+    input,
+    select,
+    textarea {
+      box-shadow: none;
+      height: auto;
+      line-height: 1.2em;
+
+      ~.mktoLabel {
+        display: block;
+        left: 0;
+        padding: 0 0.4rem;
+        position: absolute;
+        top: 0.8rem;
+        transition: all 0.2s ease, left 0.2s ease, font-size 0.2s ease;
+      }
+
+      &.mktoInvalid ~ .mktoLabel {
+        color: $c-red;
+      }
+    }
+
+    input {
+      border: 1px solid $c-grey-1;
+      padding: 0.6rem 0.6rem 0.3rem !important;
+
+      &:focus ~ .mktoLabel,
+      &.filled ~ .mktoLabel {
+        font-size: 0.8em;
+        left: 0.5rem;
+        top: -0.4rem;
+      }
+    }
+
+    select,
+    textarea {
+      border: 1px solid $c-grey-1;
+      font-style: normal;
+      padding: 0.6rem 0.5rem 0.4rem !important;
+
+      .ie9 & {
+        background: none;
+      }
+
+      option {
+        font-style: normal;
+
+        &[value=''] {
+          display: none;
+        }
+      }
+
+      ~ .mktoLabel {
+        font-size: 0.8em;
+        left: 0.5rem;
+        top: -0.4rem;
+      }
+
+      &::placeholder {
+        color: $c-blue;
+      }
+    }
+
+    select:not([multiple]) {
+      background: url('/images/form-select-arrow-grey.png') no-repeat;
+      background-position: calc(100% - 0.5rem) 1.2rem;
+      background-size: 1rem;
+      color: $c-blue;
+      cursor: pointer;
+      padding-right: 1.8rem !important;
+
+      &.mktoValid {
+        color: $c-grey-3;
+      }
+    }
+
+    textarea {
+      height: 3.2em;
+      // margin-top: -0.4rem; // in modals
+      resize: vertical;
+    }
+  }
+
+  input {
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+
+  .mktoButtonWrap {
+    .mktoButton {
+      background: $c-blue !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      color: $white;
+      font-size: 15px !important;
+      font-weight: bold;
+      height: auto !important;
+      margin: 28px auto 0;
+      min-width: 217px !important;
+      padding: 10px 0 !important;
+      text-shadow: none !important;
+      text-transform: none !important;
+      width: 100% !important;
+
+      &:hover {
+        background: darken($c-blue, $hover-darken-percentage) !important;
+      }
+    }
+  }
+
+  .mktoButtonWrap.mktoDownloadButton .mktoButton:active {
+    background: $c-blue !important;
+  }
+
+  .mktoFieldWrap input.mktoInvalid ~ .mktoLabel,
+  .mktoFieldWrap select.mktoInvalid ~ .mktoLabel,
+  .mktoFieldWrap textarea.mktoInvalid ~ .mktoLabel {
+    color: $c-blue;
+  }
+
+  .mktoFieldWrap .mktoLabel .mktoAsterix {
+    display: none;
+  }
+
+  .mktoTemplateBox p {
+    padding: 0.7em 2em;
+    text-align: center;
+    width: 100%;
+  }
+
+  padding-right: 0;
+
+  .mktoOffset {
+    height: 0;
+  }
+
+  .mktoFormCol {
+    margin: 0 !important;
+  }
+
+  .mktoFieldWrap {
+    .mktoHtmlText {
+      p {
+        color: $c-barely-black !important;
+      }
+    }
+
+    input:not([type='checkbox']):not([type='radio']),
+    select,
+    textarea {
+      border-left: 0;
+      border-right: 0;
+      border-top: 0;
+      margin-bottom: 0.8rem;
+
+      &:focus {
+        outline: 1px solid $c-grey-3;
+        outline-offset: -1px;
+      }
+    }
+  }
+
+  .mktoError {
+    background: $white;
+    bottom: auto !important;
+    padding: 0 0.4rem;
+    right: 0.5rem !important;
+    top: -0.7rem;
+    z-index: 20;
+
+    .mktoErrorArrow {
+      background: none !important;
+      // background: url('/assets/branded-icons/warning.svg') !important;
+      border: 0 !important;
+      // transform: none;
+    }
+
+    .mktoErrorMsg {
+      background: none !important;
+      border: 0 !important;
+      border-radius: 0;
+      box-shadow: none;
+      color: $c-red !important;
+      display: inline;
+      font-size: 12px;
+      margin: 0;
+      padding: 0;
+      text-shadow: none;
+      text-transform: uppercase;
+
+      .mktoErrorDetail {
+        display: inline;
+        text-transform: none;
+      }
+    }
+  }
+
+  .mktoButtonWrap {
+    margin-left: 0 !important;
+  }
+}
+
+// Grey background tweak
+.form-sec.marketo-update .is-bg-grey .mktoForm {
+  .mktoFieldWrap .mktoLabel {
+    background: $c-grey;
+  }
+}
+
+
+/* stylelint-enable */

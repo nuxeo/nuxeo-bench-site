@@ -5,9 +5,9 @@ crossorigin="anonymous"></script>
 <script defer src="{{ .Site.BaseURL }}js/foundation.min.js"></script>
 {{ if .IsHome }}
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
-<script defer src="{{ .Site.BaseURL }}js/home.js"></script>
+<script defer src="{{ .Site.BaseURL }}js/home.js?v2"></script>
 {{ else }}
-<script defer src="{{ .Site.BaseURL }}js/tabs.js"></script>
+<script defer src="{{ .Site.BaseURL }}js/tabs.js?v2"></script>
 {{ end }}
 
 <nx-footer {{ if .IsHome }}{{ else }}nolinks{{ end }}></nx-footer>

@@ -80,13 +80,14 @@
       rel="stylesheet"
       href="https://static.nuxeo.com/components/v1/global.css"
     />
+    <script
+      async
+      src="https://static.nuxeo.com/components/v1/bundle.min.js"
+    ></script>
     <link
       rel="stylesheet"
       href="https://static.nuxeo.com/satellite/latest/css/v2-nuxeo-styles.css"
     />
-
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/benchmarks.css" />
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/syntax.css" />
     {{ if .IsHome }}
     <link rel="stylesheet" href="{{ .Site.BaseURL }}css/dist/home.css" />
     {{ else }}
@@ -148,8 +149,5 @@
       type="application/rss+xml"
       title="{{ .Site.Title }}"
     />
-    <script
-      defer
-      src="https://static.nuxeo.com/components/v1/bundle.min.js"
-    ></script>
   </head>
+</html>

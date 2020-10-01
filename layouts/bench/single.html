@@ -3,167 +3,167 @@
 {{ partial "header.html" . }}
 {{ $data := .Params.build_number }}
 
-<div class="hero row padded is-bg-blue is-white">
-  <div class="large-8 medium-10 small-12 columns">
-    <h1>
+  <div class="hero row padded is-bg-blue is-white">
+    <div class="large-8 medium-10 small-12 columns">
+      <h1>
       {{ (index .Site.Data.bench $data).bench_suite }} <span
       class="tag {{ (index .Site.Data.bench $data).dbprofile }}">{{ (index .Site.Data.bench $data).dbprofile }}</span>
       {{ if and (ne (index .Site.Data.bench $data).kafka nil) (index .Site.Data.bench $data).kafka }}
-      <span class="tag kafka">Kafka</span>
-      {{ end }}
-    </h1>
-    <p class="larger is-white">
-      {{ .Date.Format "Mon, Jan 2, 2006" }}
-    </p>
+        <span class="tag kafka">Kafka</span>
+        {{ end }}
+      </h1>
+      <p class="larger is-white">
+        {{ .Date.Format "Mon, Jan 2, 2006" }}
+      </p>
+    </div>
   </div>
-</div>
 
-<div class="row is-bg-grey is-navy paddedt1 blog-section">
-  <div class="small-12 columns">
-    <div class="content container">
-      <div class="post">
-        <h2>Configuration</h2>
-        <dl>
-          <dt>Benchmark suite</dt>
-          <dd>{{ (index .Site.Data.bench $data).bench_suite }}</dd>
-          <dt>Classifier</dt>
-          <dd>{{ .Params.classifier }}</dd>
-          <dt>Distribution</dt>
-          <dd>{{ (index .Site.Data.bench $data).distribution }}</dd>
-          <dt>Date</dt>
-          <dd>{{ (index .Site.Data.bench $data).benchmark_date }}</dd>
-          <dt>Backend</dt>
-          <dd>{{ (index .Site.Data.bench $data).dbprofile }}</dd>
-          <dt>Nuxeo nodes</dt>
-          <dd>{{ (index .Site.Data.bench $data).nuxeonodes }}</dd>
-          <dt>Elasticsearch nodes</dt>
-          {{ if ne (index .Site.Data.bench $data).esnodes nil }}
-          <dd>{{ (index .Site.Data.bench $data).esnodes }}</dd>
-          {{ else }}
-          <dd>3</dd>
-          {{ end }}
-          <dt>CI Build</dt>
-          <dd><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a>
-          </dd>
-          <dt>Number of documents</dt>
-          <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
-        </dl>
+  <div class="row is-bg-grey is-black paddedt1 blog-section">
+    <div class="small-12 columns">
+      <div class="content container">
+        <div class="post">
+          <h2>Configuration</h2>
+          <dl>
+            <dt>Benchmark suite</dt>
+            <dd>{{ (index .Site.Data.bench $data).bench_suite }}</dd>
+            <dt>Classifier</dt>
+            <dd>{{ .Params.classifier }}</dd>
+            <dt>Distribution</dt>
+            <dd>{{ (index .Site.Data.bench $data).distribution }}</dd>
+            <dt>Date</dt>
+            <dd>{{ (index .Site.Data.bench $data).benchmark_date }}</dd>
+            <dt>Backend</dt>
+            <dd>{{ (index .Site.Data.bench $data).dbprofile }}</dd>
+            <dt>Nuxeo nodes</dt>
+            <dd>{{ (index .Site.Data.bench $data).nuxeonodes }}</dd>
+            <dt>Elasticsearch nodes</dt>
+            {{ if ne (index .Site.Data.bench $data).esnodes nil }}
+            <dd>{{ (index .Site.Data.bench $data).esnodes }}</dd>
+            {{ else }}
+            <dd>3</dd>
+            {{ end }}
+            <dt>CI Build</dt>
+            <dd><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a>
+            </dd>
+            <dt>Number of documents</dt>
+            <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
+          </dl>
 
-        <h2>Overview</h2>
-        <div class="table-overflow">
-          <table class="result">
-            <thead>
-              <th>
-                <div><span>Duration</span></div>
-              </th>
-              <th>
-                <div><span>Import</span></div>
-              </th>
-              <th>
-                <div><span>Create</span></div>
-              </th>
-              <th>
-                <div><span>Read</span></div>
-              </th>
-              <th>
-                <div><span>Search</span></div>
-              </th>
-              <th>
-                <div><span>Update</span></div>
-              </th>
-              <th>
-                <div><span>CRUD</span></div>
-              </th>
-              <th>
-                <div><span>Reindexing</span></div>
-              </th>
-            </thead>
-            <tbody>
-              <tr class="{{ (index .Site.Data.bench $data).dbprofile }}">
-                <td>
+          <h2>Overview</h2>
+          <div class="table-overflow">
+            <table class="result">
+              <thead>
+                <th>
+                  <div><span>Duration</span></div>
+                </th>
+                <th>
+                  <div><span>Import</span></div>
+                </th>
+                <th>
+                  <div><span>Create</span></div>
+                </th>
+                <th>
+                  <div><span>Read</span></div>
+                </th>
+                <th>
+                  <div><span>Search</span></div>
+                </th>
+                <th>
+                  <div><span>Update</span></div>
+                </th>
+                <th>
+                  <div><span>CRUD</span></div>
+                </th>
+                <th>
+                  <div><span>Reindexing</span></div>
+                </th>
+              </thead>
+              <tbody>
+                <tr class="{{ (index .Site.Data.bench $data).dbprofile }}">
+                  <td>
                   <div class="times"><span>{{ (index .Site.Data.bench $data).benchmark_duration }}</span></div>
-                </td>
-                <td>
+                  </td>
+                  <td>
                   <div class="dps"><a href="#massimport">{{ (index .Site.Data.bench $data).import_dps }}</a></div>
-                </td>
-                <td>
+                  </td>
+                  <td>
                   <div class="dps"><a href="#create">{{ (index .Site.Data.bench $data).create_rps }}</a></div>
-                  <div class="time">
+                    <div class="time">
                     <span class="avg">{{ (index .Site.Data.bench $data).create_avg }}</span>
                     <span class="stddev">{{ (index .Site.Data.bench $data).create_std }}</span>
-                  </div>
-                </td>
-                <td>
+                    </div>
+                  </td>
+                  <td>
                   <div class="rps"><a href="#read">{{ (index .Site.Data.bench $data).nav_rps }}</a></div>
-                  <div class="time">
+                    <div class="time">
                     <span class="avg">{{ (index .Site.Data.bench $data).nav_avg }}</span>
                     <span class="stddev">{{ (index .Site.Data.bench $data).nav_std }}</span>
-                  </div>
-                </td>
-                <td>
-                  {{ if ne (index .Site.Data.bench $data).search_rps nil }}
+                    </div>
+                  </td>
+                  <td>
+                    {{ if ne (index .Site.Data.bench $data).search_rps nil }}
                   <div class="rps"><a href="#search">{{ (index .Site.Data.bench $data).search_rps }}</a></div>
-                  <div class="time">
+                    <div class="time">
                     <span class="avg">{{ (index .Site.Data.bench $data).search_avg }}</span>
                     <span class="stddev">{{ (index .Site.Data.bench $data).search_std }}</span>
-                  </div>
+                    </div>
                   {{ else }}
                   NA
                   {{ end }}
-                </td>
-                <td>
+                  </td>
+                  <td>
                   <div class="rps"><a href="#update">{{ (index .Site.Data.bench $data).update_rps }}</a></div>
-                  <div class="time">
+                    <div class="time">
                     <span class="avg">{{ (index .Site.Data.bench $data).update_avg }}</span>
                     <span class="stddev">{{ (index .Site.Data.bench $data).update_std }}</span>
-                  </div>
-                </td>
-                <td>
+                    </div>
+                  </td>
+                  <td>
                   <div class="rps"><a href="#crud">{{ (index .Site.Data.bench $data).crud_rps }}</a></div>
-                  <div class="time">
+                    <div class="time">
                     <span class="avg">{{ (index .Site.Data.bench $data).crud_avg }}</span>
                     <span class="stddev">{{ (index .Site.Data.bench $data).crud_std }}</span>
-                  </div>
-                </td>
-                <td>
+                    </div>
+                  </td>
+                  <td>
                   <div class="dps"><a href="#reindex">{{ (index .Site.Data.bench $data).reindex_dps }}</a></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        {{ .Content }}
+          {{ .Content }}
 
-        <h2>Details</h2>
-        <a name="massimport" class="suite"></a>
-        <h3>Mass import</h3>
+          <h2>Details</h2>
+          <a name="massimport" class="suite"></a>
+          <h3>Mass import</h3>
         <div>This simulation uses the nuxeo-importer on an empty instance, document attachement are upload to S3 and fulltext is extracted.</div>
-        <dl>
-          <dt>Throughput sync</dt>
-          <dd class="dps">{{ (index .Site.Data.bench $data).import_dps }}</dd>
-          <dt>Documents imported</dt>
-          <dd>{{ (index .Site.Data.bench $data).import_docs }}</dd>
-          <dt>Total duration</dt>
+          <dl>
+            <dt>Throughput sync</dt>
+            <dd class="dps">{{ (index .Site.Data.bench $data).import_dps }}</dd>
+            <dt>Documents imported</dt>
+            <dd>{{ (index .Site.Data.bench $data).import_docs }}</dd>
+            <dt>Total duration</dt>
           <dd class="times">{{ (index .Site.Data.bench $data).import_duration }}</dd>
-          <dt>Duration sync</dt>
+            <dt>Duration sync</dt>
           <dd class="timems">{{ (index .Site.Data.bench $data).import_massimportwiththreads_avg }}</dd>
-          <dt>Residual duration async</dt>
+            <dt>Residual duration async</dt>
           <dd class="timems">{{ (index .Site.Data.bench $data).import_waitforasync_avg }}</dd>
-          <dt>Reports</dt>
-          <dd>
+            <dt>Reports</dt>
+            <dd>
             <a class="tag" target="_blank"
             href="/build/{{ $data }}/archive/reports/sim10massimport/overview/index.html">» Overview and monitoring</a>
             <a class="tag" target="_blank"
             href="/build/{{ $data }}/archive/reports/sim10massimport/detail/index.html">» Gatling report</a>
-          </dd>
-        </dl>
+            </dd>
+          </dl>
 
-        {{ if ne (index .Site.Data.bench $data).bulk_duration nil }}
-        <a name="bulk" class="suite"></a>
-        <h3>Bulk Update</h3>
+          {{ if ne (index .Site.Data.bench $data).bulk_duration nil }}
+          <a name="bulk" class="suite"></a>
+          <h3>Bulk Update</h3>
         <div>This simulation uses the Bulk Service to run a single command that updates the description of all File documents previously imported in mass import.</div>
-        <dl>
+          <dl>
           <dt>Total duration</dt>
           <dd class="times">{{ (index .Site.Data.bench $data).bulk_duration }}</dd>
           <dt>Duration sync</dt>

@@ -1,4 +1,4 @@
-<ul class="posts">
+<div class="posts">
   {{ range (.Data.Pages.GroupByParam "bench_suite").Reverse }}
   <a name="{{ .Key }}" class="suite"></a>
 
@@ -57,4 +57,4 @@
   </div>
 
   {{ end }}
-</ul>
+</div>

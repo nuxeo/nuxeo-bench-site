@@ -24,7 +24,7 @@ The detailed reports like Gatling reports or monitoring are saved in another S3 
 To take advantage of standard Nuxeo styling, we use SCSS.
 
 ```bash
-npx sass assets/scss/:themes/hyde/static/css/dist/
+npx sass --style=compressed assets/scss/:themes/hyde/static/css/dist/
 ```
 
 For development, the source can be watched

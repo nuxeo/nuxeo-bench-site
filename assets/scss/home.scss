@@ -154,7 +154,7 @@ a.box {
     width: 100%;
     max-width: calc(33.33% - 2rem);
     margin: 1rem;
-    min-width: 270px;
+    min-width: 250px;
   }
 
   & .box__content {
@@ -173,5 +173,14 @@ a.box {
 @media screen and #{breakpoint(medium down)} {
   .boxes--3 .box {
     max-width: inherit;
+  }
+}
+@media screen and #{breakpoint(large)} {
+  .large-text-right {
+    text-align: right;
+  }
+
+  .large-text-left {
+    text-align: left;
   }
 }

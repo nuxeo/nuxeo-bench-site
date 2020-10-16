@@ -1,6 +1,7 @@
 ---
 title: "Infrastructure"
 slug: "infra"
+layout: "post"
 ---
 
 Nuxeo benchmark infrastructure runs on Amazon Web Service (AWS).

@@ -1,0 +1,22 @@
+{{ partial "head.html" . }}
+<body class="{{ .Site.Params.themeColor }}">
+  {{ partial "header.html" . }}
+
+  <div class="hero row align-center paddedt1 is-bg-blue is-white">
+    <div class="columns small-12 medium-10 large-8">
+      <h1>{{ .Title }}</h1>
+    </div>
+  </div>
+
+  <div class="row align-center is-black paddedt1">
+    <div class="columns small-12 medium-10 large-8">
+      {{ .Content }}
+    </div>
+  </div>
+
+  {{ partial "footer.html" . }}
+
+</body>
+</html>
+
+abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz.

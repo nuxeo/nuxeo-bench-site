@@ -1,5 +1,6 @@
 ---
 title: "Scenarios"
+layout: "post"
 ---
 
 ## Sources

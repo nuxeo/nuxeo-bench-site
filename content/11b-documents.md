@@ -1,13 +1,14 @@
 ---
-title: "The 11 Billion Documents Story"
-slug: "11b-docs"
+title: "An 11 Billion Docs Benchmark Story"
+slug: "11-billion-benchmark-story"
+layout: "post"
 ---
 
-# I - Why a 10B documents benchmark in 2020
+## I - Why a 10B documents benchmark in 2020
 
 > This chapter presents the reasons why we wanted to run a new benchmark campaign in 2020
 
-## Not our first benchmarks
+### Not our first benchmarks
 
 In the past, we published several large scale benchmarks:
 
@@ -34,7 +35,7 @@ To achieve this goal, there are some additional constraints:
 - test actual use cases with a meaningful dataset
   - we want to test a real application so we can get actionable insights
 
-## Production-like, not a lab
+### Production-like, not a lab
 
 **Nuxeo Cloud infrastructure**
 
@@ -52,7 +53,7 @@ In our case, it means:
   - rely on Nuxeo Configuration template system
   - Leverage build pipeline of Nuxeo Cloud to bake the custom Docker images
 
-### Production infrastructure
+#### Production infrastructure
 
 Not only is the AWS infrastructure provisioned automatically using Terraform, but we also comply with all the security and production rules:
 
@@ -65,14 +66,16 @@ Not only is the AWS infrastructure provisioned automatically using Terraform, bu
   - improve existing Dashboard and add metrics as needed
 
 **Dashboard for Phase 1**
-<img src="https://user-images.githubusercontent.com/593112/87885519-ac613680-c9e4-11ea-9fb6-c80995483c49.png" width="800px"/>
+
+<img src="/images/11b/01-dashboard-phase1.png" alt="Dashboard for Phase 1" width="800px">
 
 **Dashboard for Phase 2**
-<img src="https://user-images.githubusercontent.com/593112/94477761-4fca8680-01a0-11eb-8525-d6a969a712cc.png" width="800px"/>
+
+<img src="/images/11b/02-dashboard-phase2.png" alt="Dashboard for Phase 2" width="800px">
 
 The goal is to define architecture blueprints of what infrastructure we need to deploy a 1B, 2B, 3B, or 10B documents Nuxeo application inside Nuxeo Cloud.
 
-## Testing an application - not a storage service
+### Testing an application - not a storage service
 
 To extract meaningful insights, we want to test an application that reliably translates the challenges our customers will be facing in the future.
 We want to tests a content-centric application with real use cases, not just benchmarking a database.
@@ -97,17 +100,17 @@ In addition to the ability to scale to multiple billions of documents, the requi
 
 ---
 
-# II - Phases and Methodology
+## II - Phases and Methodology
 
 > This chapter presents how we structured our benchmarking effort.
 
-## Phases
+### Phases
 
 We know from our past experiences that doing a benchmark can be very time-consuming, and we decided to split the effort into 2 phases with different goals and deliverables.
 
-<img src="https://app.lucidchart.com/publicSegments/view/3559ab26-b1d8-4b46-875f-4a81991bc043/image.png" width="800px"/>
+<img src="/images/11b/03-phases.png" alt="Phases" width="800px">
 
-### Phase 1
+#### Phase 1
 
 This first phase aims to provide guidance to our customers who will reach 1B, 2B, or more documents in the next 18 months.
 
@@ -127,7 +130,7 @@ Deliverables for Phase 1:
   - hardware
   - expected performances
 
-### Phase 2
+#### Phase 2
 
 We know that we will host multi-billions repositories within the next 18 months.
 
@@ -153,9 +156,9 @@ We want to run this benchmark continuously to verify that performance evolves wi
 
 We also want to have the capability to rebuild this 10B+ documents demo on-demand so that people who need to "see it to believe it" can do it.
 
-<img src="https://app.lucidchart.com/publicSegments/view/78285d22-ab25-4949-9b5c-a1cc9893a419/image.png" width="400px"/>
+<img src="/images/11b/04-ci-pipeline.png" alt="CI Pipeline" width="400px">
 
-### Phase 1 & Step by Step approach
+#### Phase 1 & Step by Step approach
 
 We want to identify the scalability steps, so it implies:
 
@@ -171,7 +174,7 @@ The volumization is part of the testing process, for each of the steps:
 
 We gather metrics for each technical task.
 
-<img src="https://app.lucidchart.com/publicSegments/view/fbc4ed15-f2cb-4739-9756-8c63d2df7259/image.png" width="800px"/>
+<img src="/images/11b/05-import-pipeline.png" alt="Import Pipeline" width="800px">
 
 Once each step is reached, we run complete functional tests using Gatling:
 
@@ -194,11 +197,11 @@ For each major step (1B, 2B, 3B) we run some additional tests like:
 - Mixed workload (i.e. Bulk Import + CRUD)
 - Full Reindex
 - Bulk Updates
-- ...
+- Etc.
 
-<img src="https://app.lucidchart.com/publicSegments/view/f5686e0f-3640-486f-bce8-3955e90d7a2f/image.png" width="800px"/>
+<img src="/images/11b/06-steps-by-steps.png" alt="Step by step increasing volume" width="800px">
 
-### Phase 2 & Volumize and test
+#### Phase 2 & Volumize and test
 
 Phase 2, timewise, we could not afford to do the same step by step approach.
 
@@ -232,11 +235,11 @@ This is the reason why we choose to leverage cloud elasticity and define 2 diffe
 
 ---
 
-# III - Content generation and Fileplan strategies
+## III - Content generation and Fileplan strategies
 
 > This chapter focuses on how we generated the 10B documents and how we stored them in Nuxeo repositories.
 
-## Why realistic data does matter
+### Why realistic data does matter
 
 To tests a 10B documents repository, we need to have 10B documents that are:
 
@@ -246,7 +249,7 @@ To tests a 10B documents repository, we need to have 10B documents that are:
 - valid
 - pdf, Docx, and images need to all be valid so that we can run conversion and text extraction
 
-## Challenges with generating 10B files
+### Challenges with generating 10B files
 
 Generating 10B unique documents and attachments (files) comes with a few challenges:
 
@@ -260,7 +263,7 @@ This means that we need to have a generator that generates both metadata and fil
 
 During phase 2, the generation of the 11B documents in Kafka took about 4 days with an average throughput of 2 million doc/min.
 
-<img src="https://user-images.githubusercontent.com/593112/94482126-d1251780-01a6-11eb-8c8c-1e0f2f5cef27.png" width="800px"/>
+<img src="/images/11b/07-import-metrics.png" alt="Import metrics" width="800px">
 
 NB: the plateaus on a plot correspond to when it took me a few hours to trigger the next step of the initial data generation.
 
@@ -280,9 +283,9 @@ However, at the time we wanted to initialize the data, we faced some issues:
 Anyway, because of these uncertainties, we prepared a plan B that was to have the custom Nuxeo Blob Store that would generate the PDF files on the fly in a consistent and repeatable manner.
 This was a way for us not to be too dependent on the Snowball availability (if things went wrong with shipping). (generating a PDF on the fly takes more resources than reading it from S3).
 
-## Generation approach
+### Generation approach
 
-### Random yet reproducible
+#### Random yet reproducible
 
 The core of the system is a java library that generates random metadata:
 
@@ -297,7 +300,7 @@ The core of the system is a java library that generates random metadata:
 
 This data generation needs to be random (to avoid skewing the dataset), yet we need it to be reproducible so we can run the same generation process for several targets (Snowball, Importer, Gatling tests) and still have matching data.
 
-### Rendering
+#### Rendering
 
 We use the randomly generated metadata to generate different types of files:
 
@@ -307,7 +310,7 @@ We use the randomly generated metadata to generate different types of files:
 
 NB: the initial plan was to generate the identity cards are TIFF, but we did not find a way to write TIFF fast enough from Java and had to fall back to JPEG to avoid waiting for weeks.
 
-### Different clients
+#### Different clients
 
 Multiple clients then use this data generation and rendition library:
 
@@ -318,11 +321,11 @@ Multiple clients then use this data generation and rendition library:
 - Gatling tests using the CLI to generate tests data
 - Custom BlobStore using the library to generate PDF files on the fly
 
-<img src="https://app.lucidchart.com/publicSegments/view/c05fcd57-43eb-49e4-9bad-c9c8104da9b8/image.png"  width="800px"/>
+<img src="/images/11b/08-gen-lib.png" alt="Data generation library" width="800px"/>
 
 NB: The data generation library is available in this [github repository](https://github.com/nuxeo-sandbox/nuxeo-jit-blobstore/tree/master/nuxeo-data-generator).
 
-## File plan
+### File plan
 
 The complete target content model includes:
 
@@ -330,17 +333,17 @@ The complete target content model includes:
 - Accounts
 - Statements
 
-<img src="https://app.lucidchart.com/publicSegments/view/008e8cbb-340f-4990-8035-e0cb9071f89d/image.png" width="500px"/>
+<img src="/images/11b/09-hierarchy.png" alt="File hierarchy" width="500px">
 
-### Phase 1 File Plan
+#### Phase 1 File Plan
 
 For Phase 1, we started the tests before the Snowball was shipped back: this means we did not have the data for Customers and Accounts.
 
 So, we did the Phase 1 benchmark using only the Statement Document type and our ability to quickly generate as many statements as we wanted, both in terms of metadata and in terms of files.
 
-<img src="https://app.lucidchart.com/publicSegments/view/9e95f630-7fce-4939-bfcd-45622926ca25/image.png" width="500px"/>
+<img src="/images/11b/10-hierarchy-phase-1.png" alt="File hierarchy phase 1" width="500px">
 
-### Phase 2 File Plan
+#### Phase 2 File Plan
 
 For phase 2, we wanted to use the full content model:
 
@@ -378,11 +381,11 @@ This means:
 - archives : 9,7B
   - 179,998,862\*54
 
-<img src="https://app.lucidchart.com/publicSegments/view/785b7f91-c19d-43bd-ae03-c5b0c26a10a5/image.png" width="800px"/>
+<img src="/images/11b/11-hierarchy-phase-2.png" alt="File hierarchy phase 2" width="800px">
 
-## Data Ingestion
+### Data Ingestion
 
-### Nuxeo Stream Importer
+#### Nuxeo Stream Importer
 
 We used Nuxeo Stream importer to ingest the data.
 
@@ -407,9 +410,9 @@ For similar reasons, the import is initially done without indexing. Once the doc
 
 Later during the Phase 2 benchmark, we used a new feature from 11.x to enable "on-the-fly" bulk indexing.
 
-<img src="https://app.lucidchart.com/publicSegments/view/52285194-c571-42f6-8d8b-8f8118cbb35d/image.png" width="800px"/>
+<img src="/images/11b/12-import-stream.png" alt="Improt Stream" width="800px">
 
-### Dedicated Importer node
+#### Dedicated Importer node
 
 A standard Nuxeo deployment usually contains 2 types of nodes:
 
@@ -432,11 +435,11 @@ In the context of Phase 2, we did use 2 concurrent importer nodes against a big 
 
 ---
 
-# IV - Phase 1 test and results
+## IV - Phase 1 test and results
 
 > This chapter provides an overview of the results for Phase 1 and the takeaways from our tests.
 
-## TLDR;
+### TL;DR:
 
 - reached 3B documents
   - not a hard limit but seemed to be big enough for the phase 1 use case
@@ -447,13 +450,13 @@ In the context of Phase 2, we did use 2 concurrent importer nodes against a big 
 - using PaaS services truly make life easier
   - AWS ES / MSK & MongoDB Atlas
 
-## Proven Elasticity
+### Proven Elasticity
 
 The main achievement is that from 0 to 3B documents, we were able to adjust the infrastructure to maintain the performance at the same level.
 
 When you increase the number of documents, you expect that the performance will progressively decrease. The goal is to be sure that you can leverage the cloud elasticity to scale out or up, to maintain good performance for your workload.
 
-<img src="https://user-images.githubusercontent.com/593112/94489026-c3c15a80-01b1-11eb-98cf-ea983232c907.png" width="800px"/>
+<img src="/images/11b/13-phase1-resources-vs-perfs.png" alt="Phase 1: Resources vs. Performance" width="800px">
 
 Based on the tests we did at each "volumization step", we were able to determine the limiting factor and scale-out/up the needed part:
 
@@ -463,7 +466,7 @@ Based on the tests we did at each "volumization step", we were able to determine
 
 Obviously, the different aspects of the application (CRUD, Navigation, Search) do not evolve the same way with volume, so we optimized for what seemed to be the best trade-off for each step.
 
-### Nuxeo nodes
+#### Nuxeo nodes
 
 Nuxeo nodes can easily be added to the cluster dynamically when the workload needs it.
 
@@ -479,7 +482,7 @@ Nuxeo nodes are grouped in "AutoScalingGroups" according to their node type to m
 
 For example, during the Phase 1 benchmark, we did a full-reindex of the 3B documents repository and scaled the number of worker nodes to 9 in order to maximize throughput.
 
-<ing src="https://user-images.githubusercontent.com/593112/94489908-57dff180-01b3-11eb-9224-478fbbe5c502.png" width="800px"/>
+<img src="/images/11b/13a-phase1-3B-reindex.png" alt="Phase 1: 3B re-index" width="800px">
 
 Unsurprisingly, you can start with the default settings, but the more the volume grows, the more you need to adjust the application settings to optimize for the workload you want to handle and to avoid adding more hardware unless absolutely necessary.
 
@@ -495,13 +498,13 @@ Here are some examples of the parameters we adjusted
 
 All configuration is available in this [git repository](https://github.com/nuxeo-sandbox/nuxeo-jit-blobstore/tree/10.10-NXP-28966)
 
-### Data tier
+#### Data tier
 
 Scaling data nodes can be a little bit trickier than the Nuxeo nodes because it can imply moving data and can make the whole process slower.
 
 So, while you do not want to scale up and down as fast as you can do it on the Nuxeo side, we did really benefit from the full PaaS experience and were able to scale out or up in a manner that is easy and completely transparent for Nuxeo.
 
-#### MongoDB
+##### MongoDB
 
 We used MongoDB Atlas on AWS as our primary database for all the tests.
 
@@ -538,9 +541,9 @@ We scaled directly to M200 because:
 
 With the M200 cluster, the throughput almost recovered the same performance we had with an empty database, and the data migration was completely transparent.
 
-<img src="https://user-images.githubusercontent.com/593112/94492047-603a2b80-01b7-11eb-9f26-a1f66f790053.png" width="800px"/>
+<img src="/images/11b/14-phase1-import-perfs.png" alt="Phase 1: import performance" width="800px">
 
-#### Elasticsearch
+##### Elasticsearch
 
 For Elasticseach, the first limiting factor was the CPU usage during the indexing.
 After some profiling, we removed the `html_strip` from the analyzers and scaled out the cluster.
@@ -584,14 +587,14 @@ It allows for searching using the LIKE operator (i.e. dc:title like "something%"
 As explained in the ES documentation and in [NXP-29357](https://jira.nuxeo.com/browse/NXP-29357) this does not scale and consumes too much memory.
 Doing a full-text search will work, and we considered that not being able to do a "like" search on 2B records is an acceptable limit.
 
-<img src="https://user-images.githubusercontent.com/593112/94493087-c2942b80-01b9-11eb-9567-a2c9106356a6.png" width="800px"/>
+<img src="/images/11b/15-phase1-indexing-perfs.png" alt="Phase 1: Indexing performance" width="800px">
  
-## Scalability steps
+### Scalability steps
 
 Hardware is only one aspect of the architecture.
 As explained earlier, some settings were adjusted at the Nuxeo level and the MongoDB or Elasticsearch level.
 
-### 1B docs architecture
+#### 1B docs architecture
 
 - Nuxeo Interactive nodes :
 - 3x `m5.xlarge`
@@ -605,9 +608,9 @@ As explained earlier, some settings were adjusted at the Nuxeo level and the Mon
 - Kafka
 - 2x `m5.large.msk`
 
-<img src="https://user-images.githubusercontent.com/593112/94493633-1b17f880-01bb-11eb-9df7-de0c29773d24.png" width="800px"/>
+<img src="/images/11b/16-phase1-1B-arch.png" alt="Phase 1: 1B architecture" width="800px">
 
-### 2B docs architecture
+#### 2B docs architecture
 
 - Nuxeo Interactive nodes :
 - 4x `m5.xlarge`
@@ -627,9 +630,9 @@ Main changes:
 - moved ES nodes to m5 type
 - increased number of ES shards from 35 to 100
 
-<img src="https://user-images.githubusercontent.com/593112/94493632-1a7f6200-01bb-11eb-9d77-1345271b9641.png" width="800px"/>
+<img src="/images/11b/17-phase1-2B-arch.png" alt="Phase 1: 2B architecture" width="800px">
 
-### 3B docs architecture
+#### 3B docs architecture
 
 - Nuxeo Interactive nodes :
 - 4x `m5.xlarge`
@@ -648,9 +651,9 @@ Main changes:
 - added one Nuxeo node for interactive processing
 - increased number of ES nodes
 
-<img src="https://user-images.githubusercontent.com/593112/94493631-1a7f6200-01bb-11eb-84d5-63fafe092728.png" width="800px"/>
+<img src="/images/11b/18-phase1-3B-arch.png" alt="Phase 1: 3B architecture" width="800px">
 
-## Works in real-life
+### Works in real-life
 
 Our goal is not only to validate that we can import 3B documents inside a single repository, but also, we want to verify that such a repository can still be used in real-life operations:
 
@@ -662,7 +665,7 @@ Our goal is not only to validate that we can import 3B documents inside a single
 * scale-out as needed the different parts of the infrastructure
 * control the pressure/throttle as needed
 
-### Mixed workloads
+#### Mixed workloads
 
 In most uses cases described by our customers, the bulk import does not only happen at the very beginning.
 For sure, being able to import the data super fast in order to do the initial migration is a crucial advantage. Still, but also we need to be able to import a large amount of data, potentially daily, without affecting the user experience.
@@ -684,7 +687,7 @@ For example, we did a bulk import + index of 15M documents on a 2B documents rep
   - Bulk import + index runs at about 5.5 K docs/s
 - CRUD tests show an increase in response time of only 4%
 
-<img src="https://user-images.githubusercontent.com/593112/94504766-85d72d00-01d7-11eb-8598-33c3b0118ee4.png" width="800px"/>
+<img src="/images/11b/19-phase1-import-vs-crud.png" alt="Phase 1: Import vs. CRUD" width="800px">
 
 We also observed that depending on the limiting factor in the target platform, we can adjust the throttling:
 
@@ -692,7 +695,7 @@ We also observed that depending on the limiting factor in the target platform, w
   - import runs then at 2.5 K docs/s
 - when testing concurrently Navigation and Bulk Import+ Index against a 2B documents repository (M200) then Elasticsearch is the bottleneck, and it makes sense to reduce the indexing speed
 
-### Adjusting the infrastructure for temporary workload
+#### Adjusting the infrastructure for temporary workload
 
 When the repository reaches a significant volume, some operations can become daunting.
 The fear is that they will last forever.
@@ -717,7 +720,7 @@ We then ran the Reindex:
 - Reindexed 3B documents in 24h
 - Indexing throughput at 36K docs/s
 
-<img src="https://user-images.githubusercontent.com/593112/94505750-c8016e00-01d9-11eb-8097-5d301bbae32f.png" width="600px"/>
+<img src="/images/11b/20-phase1-3B-reindex.png" alt="Phase 1: 3B re-index" width="600px">
 
 Once the Reindexing completed, we scaled down:
 
@@ -731,19 +734,19 @@ We executed the scale down while running a Gatling test and saw:
 
 Because we reduced the number of CPU by 60% and the memory by 25% and did everything while a workload was applied, it seems like a satisfactory proof that we can leverage cloud elasticity while keeping the platform running.
 
-<img src="https://user-images.githubusercontent.com/593112/94505829-f2532b80-01d9-11eb-8736-ca4e414c90dd.png" width="600px"/>
+<img src="/images/11b/21-phase1-ES-downscale.png" alt="Phase 1: Elasticsearch downscale" width="600px">
 
 ** bulk update @3B**
 
 We ran a bulk update operation and verified that we could adjust the effective throughput by adjusting Nuxeo worker nodes' number.
 
-<img src="https://user-images.githubusercontent.com/593112/94506169-bf5d6780-01da-11eb-9e62-47ac1e21276b.png" width="800px"/>
+<img src="/images/11b/22-phase1-bulk-update.png" alt="Phase 1: bulk update" width="800px">
 
-## Raw performance results
+### Raw performance results
 
-<img src="https://user-images.githubusercontent.com/593112/94506369-31ce4780-01db-11eb-9d4a-ec147899cdbb.png" width="800px"/>
+<img src="/images/11b/23-phase1-raw-perfs.png" alt="Phase 1: Raw Performance" width="800px">
 
-## Resources
+### Resources
 
 - Nuxeo Plugin used for the benchmark: [https://github.com/nuxeo-sandbox/nuxeo-jit-blobstore/ (branch 10.10-NXP-28966)](https://github.com/nuxeo-sandbox/nuxeo-jit-blobstore/tree/10.10-NXP-28966/)
 - Gatling tests: [https://github.com/nuxeo-sandbox/nuxeo-10b-fs-bench-simulation](https://github.com/nuxeo-sandbox/nuxeo-10b-fs-bench-simulation)
@@ -753,11 +756,11 @@ We ran a bulk update operation and verified that we could adjust the effective t
 
 ---
 
-# V - Phase 2 principles: building a reproducible 11B documents repository benchmark
+## V - Phase 2 principles: building a reproducible 11B documents repository benchmark
 
 > This chapter explains how we designed Phase 2 of the benchmark and the underlying reasoning.
 
-### 11B is not just about doing x3.5 on the 3B benchmark
+#### 11B is not just about doing x3.5 on the 3B benchmark
 
 The first difference with Phase 1 is that we want to reach 10B+, but we do not want to keep increasing the 3B architecture until it gets to the target volume.
 
@@ -788,11 +791,11 @@ The partitioning of the data impact:
 
   - we could use AWS S3 infrequent access for the blobs associated with the archive repository
 
-### Full Content Model
+#### Full Content Model
 
 Another significant change is that the content model contains all content types defined inside the Studio project since we can rely on the data that was imported via the Snowball.
 
-<img src="https://app.lucidchart.com/publicSegments/view/785b7f91-c19d-43bd-ae03-c5b0c26a10a5/image.png" width="600px"/>
+<img src="/images/11b/24-phase2-sharding.png" alt="Phase 2: Sharding" width="600px">
 
 The initial split and MongoDB sizing were derived from phase 1 of the benchmark:
 
@@ -801,7 +804,7 @@ The initial split and MongoDB sizing were derived from phase 1 of the benchmark:
 - M60 NVME can handle 1B+ => M80 NVMe should be able to handle 2B+
   - 5xM80 should be able to handle about 10B
 
-### Experiment with various parameters
+#### Experiment with various parameters
 
 Because in phase 2 we use the 11.x version, it is easier to prototype and test new solutions.
 
@@ -860,9 +863,9 @@ See below the monitoring corresponding to the last 2B documents that were import
 - the MongoDB import throughput at around 13K docs/s
 - the indexing in ES at approximately 780M docs/min
 
-<img src="https://user-images.githubusercontent.com/593112/94510458-d30dcb80-01e4-11eb-9e5e-13c3a09c6aa5.png" width="600px"/>
+<img src="/images/11b/25-phase2-import-monitoring.png" alt="Phase 2: Import monitoring" width="600px">
 
-### Continuous improvement
+#### Continuous improvement
 
 We are very aware that running a full benchmark is a significant effort to put all the pieces together.
 
@@ -901,7 +904,7 @@ To try to simplify this, we took the following steps:
   - integrated into the Docker image
   - drive the different steps of the tests from NoteBooks
 
-<img src="https://user-images.githubusercontent.com/593112/94513056-b759f380-01eb-11eb-894e-d5e4628b807f.png" width="800px"/>
+<img src="/images/11b/26-phase2-notebook.png" alt="Phase 2: NoteBook Tests" width="800px">
 
 The usage of Notebook allows us to achieve a few goals:
 
@@ -909,9 +912,9 @@ The usage of Notebook allows us to achieve a few goals:
 - we can allow interactive usage for debugging and adjustments
 - we can also execute automatically (nbconvert and Notebook REST API)
 
-<img src="https://app.lucidchart.com/publicSegments/view/152e80a2-2f5c-47d3-8501-b343b50a19e2/image.png" width="800px"/>
+<img src="/images/11b/27-phase2-notebook-flow.png" alt="Phase 2: Notebook Flow" width="800px">
 
-### Import architecture vs Run architecture
+#### Import architecture vs Run architecture
 
 For the import architecture, we used M80 NVMe MongoDB cluster with 5 shards.
 This big MongoDB cluster comes with significant cost, but it allowed us to import the documents inside the Archive repository as a great throughput. We reached 25,000 documents/s when importing the first few billions of documents and using 2 Nuxeo injector nodes to maximize the throughput.
@@ -921,19 +924,19 @@ We can also revert back from NVMe to simple EBS storage since we do not need the
 
 ---
 
-# VI - Phase 2 Results
+## VI - Phase 2 Results
 
 > This chapter presents the results of the second phase of our benchmark
 
-## Browsing an 11B documents repository
+### Browsing an 11B documents repository
 
 Here is a video showing the Nuxeo application running with 11B documents:
 
-<A href="https://10b-benchmark-data.s3.amazonaws.com/B11-Nuxeo-demo.mp4" target="demo"> <img src="https://user-images.githubusercontent.com/593112/94824890-7cb2af80-03d3-11eb-9e85-032656c2b9d7.png" width="400px"/><A/>
+<a href="https://10b-benchmark-data.s3.amazonaws.com/B11-Nuxeo-demo.mp4" target="demo"><img src="/images/11b/27a-phase2-notebook-video.png" alt="Phase 2: NoteBook Video" width="400px"><a/>
 
-## Volumization results
+### Volumization results
 
-### Bulk import
+#### Bulk import
 
 For Bulk-Import we were able to achieve **25K documents/s** leveraging:
 
@@ -946,13 +949,13 @@ Compared to the tests done in Phase 1, using sharding nearly doubled the import 
 
 The graphic below shows the row documents insert throughput at the MongoDB level.
 
-<img src="https://user-images.githubusercontent.com/593112/94512073-271aaf00-01e9-11eb-8d69-16f752dbd133.png" width="800px"/>
+<img src="/images/11b/28-phase2-25K-import.png" alt="Phase 2: 25K Import" width="800px">
 
 The 2 graphics belows show 2 Nuxeo importer running both with 24 threads and importing documents inside the archives repository:
 
-<img src="https://user-images.githubusercontent.com/593112/94512089-36016180-01e9-11eb-9d4b-b63dd0243b15.png" width="800px"/>
+<img src="/images/11b/29-phase2-25K-import-monitoring.png" alt="Phase 2: 25K Import Monitoring" width="800px">
 
-### Bulk Reindex
+#### Bulk Reindex
 
 We ran a full re-index of the archive repository at 3B documents.
 
@@ -968,19 +971,19 @@ The graphics below show:
 - the Elasticsearch reindexing throughput (in documents / minute)
 - the worker threads allocated to re-indexing on the Nuxeo side (8 worker nodes)
 
-<img src="https://user-images.githubusercontent.com/593112/94512637-83ca9980-01ea-11eb-8057-1da6416d56cb.png" width="800px"/>
+<img src="/images/11b/30-phase2-bulk-index.png" alt="Phase 2: Bulk index" width="800px">
 
-### Import + Index
+#### Import + Index
 
 With the new Import + Index pipeline leveraging the ExtralScroll from the Bulk Action Framework, we can import and index documents at a throughput of **15,000 documents/s**.
 
-<img src="https://user-images.githubusercontent.com/593112/94512904-49adc780-01eb-11eb-999f-2f165bf57f39.png" width="600px"/>
+<img src="/images/11b/31-phase2-import-and-index.png" alt="Phase 2: Import and index" width="600px">
 
-## Gatling tests results
+### Gatling tests results
 
 We first run the Gatling tests with a variable number of threads to identify the optimum trade-off between throughput and response time.
 
-<img src="https://user-images.githubusercontent.com/593112/94724748-bc708d00-0328-11eb-8303-86fce8a78379.png" width="800px"/>
+<img src="/images/11b/32-phase2-gatling-trade-off.png" alt="Phase 2: Gatling Trade-off" width="800px">
 
 Once we have identified how many threads we want to run, we re-run the tests for a longer duration to gather the results.
 
@@ -989,8 +992,9 @@ Once we have identified how many threads we want to run, we re-run the tests for
 - Throughput: **1,900+ request/s**
 - P95 response time: < **220ms**
 
-<img src="https://user-images.githubusercontent.com/593112/94848234-b85c7200-03f1-11eb-876a-0aaed498d4cc.png" width="800px"/>
-<img src="https://user-images.githubusercontent.com/593112/94847640-db3a5680-03f0-11eb-8978-5e3f22e30337.png" width="800px"/>
+<img src="/images/11b/33-phase2-CRUD-gatling.png" alt="Phase 2: Gatling CRUD results" width="800px">
+
+<img src="/images/11b/33a-phase2-CRUD-rates.png" alt="Phase 2: CRUD rates" width="800px">
 
 [Full test report](https://10b-benchmark-data.s3.amazonaws.com/gatling-test-11B/sim10crud-20201001044118832/index.html)
 
@@ -1000,9 +1004,9 @@ Once we have identified how many threads we want to run, we re-run the tests for
 - P95 response time: < **500ms**
 - Mean response time: < **250ms**
 
-<img src="https://user-images.githubusercontent.com/593112/94848330-dc1fb800-03f1-11eb-814b-e26bdcd5bd8d.png" width="800px"/>
+<img src="/images/11b/34-phase2-Nav-gatling.png" alt="Phase 2: Gatling Navigation results" width="800px">
 
-<img src="https://user-images.githubusercontent.com/593112/94848431-fd80a400-03f1-11eb-8a1a-df15e6a581ed.png" width="800px" />
+<img src="/images/11b/34a-phase2-Nav-rates.png" alt="Phase 2: Navigation rates" width="800px">
 
 [Full test report](https://10b-benchmark-data.s3.amazonaws.com/gatling-test-11B/sim30navigation-20201001054838961/index.html)
 
@@ -1012,21 +1016,21 @@ Once we have identified how many threads we want to run, we re-run the tests for
 - Mean response time: < **450ms**
 - P95 response time: < **600ms**
 
-<img src="https://user-images.githubusercontent.com/593112/94848571-30c33300-03f2-11eb-96b1-7625fe7f62f4.png" width="800px"/>
+<img src="/images/11b/35-phase2-Search-gatling.png" alt="Phase 2: Gatling Search results" width="800px">
 
-<img src="https://user-images.githubusercontent.com/593112/94848652-4fc1c500-03f2-11eb-910b-4c1d71749d19.png" width="800px"/>
+<img src="/images/11b/35a-phase2-Search-rates.png" alt="Phase 2: Search rates" width="800px">
 
 NB: as visible on the graph, there was a transient network issue during the test.
 
 [Full test report](https://10b-benchmark-data.s3.amazonaws.com/gatling-test-11B/sim40search-20201001062201693/index.html)
 
-## Results Summary
+### Results Summary
 
-<img src="https://user-images.githubusercontent.com/593112/94849212-10e03f00-03f3-11eb-8e93-ae3cd19cc7e9.png" width="800px"/>
+<img src="/images/11b/36-phase2-raw-perfs.png" alt="Phase 2: Raw Performance Statistics" width="800px">
 
-## Down Sizing results
+### Down Sizing results
 
-### Motivations
+#### Motivations
 
 The goal is to reduce the cost of the database used for the archives repository.
 There are 3 steps in the downsizing:
@@ -1038,7 +1042,7 @@ There are 3 steps in the downsizing:
 - step 2: final state
   - 5xM40 EBS with default IOPS
 
-### Cluster resizing
+#### Cluster resizing
 
 Going from Step 0 to Step 1 took about 4 days:
 
@@ -1060,11 +1064,11 @@ After the migration was completed, we re-run the same tests to verify that the M
 
 The tests gave very [similar results](https://10b-benchmark-data.s3.amazonaws.com/gatling-test-11B/1htest-afterM40-resize.zip), and we just see that the CPU of the MongoDB Sharded cluster used for Archive goes higher than before.
 
-<img src="https://user-images.githubusercontent.com/593112/95115836-18b22300-0714-11eb-9246-1ae441598f66.png" width="400px"/>
+<img src="/images/11b/37-phase2-mongo-cpu.png" alt="Phase 2: MongoDB CPU graph" width="800px">
 
-## Reference Architecture
+### Reference Architecture
 
-### Architecture used during data import
+#### Architecture used during data import
 
 During the import:
 
@@ -1072,9 +1076,9 @@ During the import:
 - we scale the number of Nuxeo worker nodes from 2 to 8 when needed
 - we use up to 2 dedicated Nuxeo nodes for data ingestion
 
-<img src="https://app.lucidchart.com/publicSegments/view/5ddd3b17-3b7d-49ba-b963-c4239989dd8b/image2.png" width="800px"/>
+<img src="/images/11b/38-phase2-import-arch.png" alt="Phase 2: Import architecture" width="800px">
 
-### Run Architecture
+#### Run Architecture
 
 Once the data has been imported, we can reconfigure the platform to be more cost-efficient and allocate resources where needed:
 
@@ -1083,19 +1087,19 @@ Once the data has been imported, we can reconfigure the platform to be more cost
   - 5xM80 NMVe to 5xM40 EBS
 - we scale out the Nuxeo interactive nodes to allow a better throughput when using the REST API
 
-<img src="https://app.lucidchart.com/publicSegments/view/152a603d-37e9-437a-844d-74f65f79aad3/image3.png" width="800px"/>
+<img src="/images/11b/39-phase2-run-arch.png" alt="Phase 2: Run architecture" width="800px">
 
-### Storage Statistics
+#### Storage Statistics
 
-<img src="https://user-images.githubusercontent.com/593112/94720118-07d36d00-0322-11eb-952a-01783305bc18.png" />
+<img src="/images/11b/40-phase2-storage-stats.png" alt="Phase 2: Storage Statistics">
 
-## Phase 2 takeaways
+### Phase 2 takeaways
 
-### These (repositories) go to eleven (Billion documents)
+#### These (repositories) go to eleven (Billion documents)
 
 The initial goal was 10B, and because of the way we ran the data generation, we ended up with 11.3B documents in 3 repositories.
 
-<A href="https://youtu.be/KOO5S4vxi0o"><img src="https://media.giphy.com/media/aqSl7Dw5HTojK/giphy.gif"/></A>
+<a href="https://youtu.be/KOO5S4vxi0o"><img src="https://media.giphy.com/media/aqSl7Dw5HTojK/giphy.gif"/></a>
 
 Here the critical result is not so much the total number of documents, but the fact that we can:
 
@@ -1109,25 +1113,25 @@ By transparent, we mean:
 - we can have listing mixing documents coming from multiple repositories
 - navigation is consistent and allows to switch to the correct repository transparently
 
-### Gain of Sharding with MongoDB
+#### Gain of Sharding with MongoDB
 
 We leveraged the MongoDB Sharding to maximize write-throughput to speed-up the import of archives, and it allowed us to reach 25,000 documents/s.
 
-### Elasticsearch configuration
+#### Elasticsearch configuration
 
 The Elasticsearch configuration we used for the 1B architecture was using 9 data nodes.
 If we had applied the same configuration for 11B documents we would have needed more than 100 Elasticsearch data nodes.
 
 Thanks to the multi-repositories approach, we were able to use multiples indexes and adjust the configuration according to each repository so that the target hardware configuration is less than double (16 data nodes), whereas we multiplied the data volume by 11.
 
-### PaaS and transparent infrastructure changes
+#### PaaS and transparent infrastructure changes
 
 Using AWS Elasticseach and MongoDB Atlas PaaS Services allowed us to resize the infrastructure dynamically, depending on our needs.
 Because, with 11B documents you can not expect any storage change to be fast, it is essential to be able to make these changes while the application is live. The truth is that migration speed becomes much less important than maintaining the availability of the service.
 
 With both AWS Elasticsearch and MongoDB Atlas, we were able to validate this capability. This is very important for our Nuxeo Cloud operation team.
 
-## Resources
+### Resources
 
 - Nuxeo Plugin used for the benchmark: [https://github.com/nuxeo-sandbox/nuxeo-jit-blobstore/ (master branch)](https://github.com/nuxeo-sandbox/nuxeo-jit-blobstore/)
 - Gatling tests: [https://github.com/nuxeo-sandbox/nuxeo-10b-fs-bench-simulation](https://github.com/nuxeo-sandbox/nuxeo-10b-fs-bench-simulation)

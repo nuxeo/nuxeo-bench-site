@@ -766,10 +766,10 @@ The first difference with Phase 1 is that we want to reach 10B+, but we do not w
 
 While we are confident that we could scale Nuxeo, MongoDB Atlas, and Elasticsearch to fit 10B+ documents inside a single non-sharded repository, it does not seem to be the best approach:
 
-- cost wise it is likely not to be optimal
+- cost wise it is likely not optimal
 - from an operation standpoint, having a gigantic 11B repository is not ideal
 
-This is why for this phase 2 of the benchmark, we want to partition the data between:
+This is why for phase 2 of the benchmark, we want to partition the data between:
 
 - 2 live repositories
   - that will have adequate resources to ensure it stays performant
@@ -779,7 +779,7 @@ This is why for this phase 2 of the benchmark, we want to partition the data bet
   - where we can optimize storage for cost
 
 The need to partition the data between "live/fresh" and "archive" was clearly expressed by most of our customers looking at a multi-billion document application.
-In most cases, you do not have multiple billions of documents you need to work with regularly. However, you can have billions of documents that you rarely access but still need to be accessible and searchable in case you need them.
+In most cases, you do not have multiple billions of documents you need to work with regularly. However, you can have billions of documents that you rarely access, but still need to be accessible and searchable in case you need them.
 
 The partitioning of the data impact:
 
@@ -814,40 +814,40 @@ In this context, we did a few experiments:
 
 When doing bulk ingestion (Document Consumer) at more than 10,000 documents/s we know that even a small optimization can have a significant impact.
 When creating a document, the Nuxeo Core needs to fetch the parent document to do the parent/child association.
-Fetching the parent document is a very lightweight operation, but it still requires a round trip between the JVM and MongoDB: again, at 10,000+ operation per second, this round trip does count.
+Fetching the parent document is a very lightweight operation, but it still requires a round trip between the JVM and MongoDB: again, at 10,000+ operations per second, this round trip counts.
 
-Nuxeo repository includes a Caching System to reduce this kind of round-trips when possible. However, when documents are randomly split between 48 Kafka partitions, there is no reason that documents that will end up being created by the same `CoreSession` will have the same parent and be able to benefit from cache.
+Nuxeo repository includes a Caching System to reduce this kind of round-trip when possible. However, when documents are randomly split between 48 Kafka partitions, there is no reason that documents that will end up being created by the same `CoreSession`, will have the same parent and be able to benefit from cache.
 
-After some experimentation, we saw that dispatching the document messages in a partition based on groups sharing the same parent does improve the cache hit ratio and almost double the import throughput.
+After some experimentation, we saw that dispatching the document messages in a partition based on groups sharing the same parent does improve the cache hit ratio and almost doubles the import throughput.
 
 See [SUPINT-1772](https://jira.nuxeo.com/browse/SUPINT-1772) for more details.
 
-**MongoDB readpreferences**
+**MongoDB ReadPreferences**
 
 MongoDB allows setting [ReadPreferences](https://docs.mongodb.com/manual/core/read-preference/) to leverage read from the secondary nodes.
 
-In the context of bulk-indexing, it seemed like a good idea to try to leverage this capability to feed as fast as possible the Index Computation.
+In the context of bulk-indexing, it seemed like a good idea to try to leverage this capability in order to feed the Index Computation as fast as possible.
 
-However, in the tests we did, this setting also created duplicates in the list of documents to re-index, probably because the read operations are not guaranteed to be repeatable.
+However, in the tests we did, this setting created duplicates in the list of documents to re-index, probably because the read operations are not guaranteed to be repeatable.
 While having a few duplicates should not be a blocker, it revealed a bug on our side (that was fixed) but forced us to temporarily drop this solution.
 
 **Update the import process**
 
 We made a few improvements to the importer system.
 
-The first one is that we build a CSV importer that can be used via HTTP.
+First, we built a CSV importer that can be used via HTTP.
 The principle is simple:
 
 - we have a gigantic CSV file on the "client" side
-- the java client split this CSV file in chunks and upload them to the server in multi-threads
-- for each chunk, the server will allocate the thread-pool to produce DocumentMessages in Kafka using a CSV chunk as a source.
+- the java client splits this CSV file into chunks and uploads them to the server in multi-threads
+- for each chunk, the server will allocate the thread-pool to produce DocumentMessages in Kafka using a CSV chunk as a source
 
 With that principle, with a single Nuxeo injector, we can upload and produce Documents in Kafka at 80K+ documents/s.
-(see [DocumentProducers notebook for more details](https://github.com/nuxeo-sandbox/nuxeo-jit-blobstore/blob/master/notebooks/11B-Steps/Step%200%20-%20DocumentProducers.ipynb)
+(see [DocumentProducers notebook for more details](https://github.com/nuxeo-sandbox/nuxeo-jit-blobstore/blob/master/notebooks/11B-Steps/Step%200%20-%20DocumentProducers.ipynb))
 
 **Import + Bulk Indexing on the fly**
 
-During Phase 1 and during the first steps of phase 1 we use the same approach:
+During Phase 1 and during the first steps of Phase 2 we use the same approach:
 
 - bulk import documents
 - index the full repository
@@ -855,9 +855,10 @@ During Phase 1 and during the first steps of phase 1 we use the same approach:
 As explained earlier, this approach has some advantages, but in the context of the volumizing the 9B+ archives repository, it did not seem to be the best approach.
 
 The goal was to chain the bulk import and bulk indexing without having to run a full scroller against the database.
-Thanks to [NXP-29620](https://jira.nuxeo.com/browse/NXP-29620), we have a single pipeline that allows to chain import and indexing.
+Thanks to [NXP-29620](https://jira.nuxeo.com/browse/NXP-29620), we have a single pipeline that allows us to chain importing and indexing.
 
-See below the monitoring corresponding to the last 2B documents that were imported inside the Archive repository, we can see:
+Below is the monitoring that corresponds to the last 2B documents that were imported inside the Archive repository.
+We can see:
 
 - the number of documents rising from 0 to 2B+
 - the MongoDB import throughput at around 13K docs/s
@@ -867,18 +868,18 @@ See below the monitoring corresponding to the last 2B documents that were import
 
 #### Continuous improvement
 
-We are very aware that running a full benchmark is a significant effort to put all the pieces together.
+We are very aware that running a full benchmark requires a significant effort to put all the pieces together.
 
-We want to be able to capitalize on this effort and progressively integrate the work done for this 11B benchmark our continuous integration and release pipeline, pretty much as we did with the [default performance test suite](https://github.com/nuxeo/nuxeo/tree/master/ftests/nuxeo-server-gatling-tests) and the site [benchmarks.nuxeo.com](https://benchmarks.nuxeo.com/).
+We want to be able to capitalize on this effort and progressively integrate the work done for this 11B benchmark with our continuous integration and release pipeline, pretty much as we did with the [default performance test suite](https://github.com/nuxeo/nuxeo/tree/master/ftests/nuxeo-server-gatling-tests) and the site [benchmarks.nuxeo.com](https://benchmarks.nuxeo.com/).
 
 Ideally, we want to be able to:
 
 - run multi-billions tests regularly
 - be able to quickly build a demo site with multiple billions of documents
 
-The challenge is that running such a benchmark requires to coordinate a lot of different moving pieces:
+The challenge is that running a benchmark such as this requires coordination of a lot of different moving pieces:
 
-- Data Generation
+- Data generation
   - i.e. generate the binary files for Snowball or for S3
   - i.e. generate the CSV files
 - Import the data into Kafka
@@ -886,7 +887,7 @@ The challenge is that running such a benchmark requires to coordinate a lot of d
 - Adjust the infrastructure to the current phase of the test
   - i.e. update the Auto-Scaling group to add or remove worker nodes
 - Update configuration
-  - i.e. change Elasticsearcg `refresh_rate` to -1 before bulk-indexing and to `null` after
+  - i.e. change Elasticsearch `refresh_rate` to -1 before bulk-indexing and to `null` after
 - Run the tests
   - i.e. run Gatling tests
 - Gather statistics
@@ -910,14 +911,14 @@ The usage of Notebook allows us to achieve a few goals:
 
 - we can mix [documentation with execution commands](https://github.com/nuxeo-sandbox/nuxeo-jit-blobstore/blob/master/notebooks/Data-Generation-Examples.ipynb)
 - we can allow interactive usage for debugging and adjustments
-- we can also execute automatically (nbconvert and Notebook REST API)
+- we can execute automatically (nbconvert and Notebook REST API)
 
 <img src="/images/11b/27-phase2-notebook-flow.png" alt="Phase 2: Notebook Flow" width="800px">
 
 #### Import architecture vs Run architecture
 
 For the import architecture, we used M80 NVMe MongoDB cluster with 5 shards.
-This big MongoDB cluster comes with significant cost, but it allowed us to import the documents inside the Archive repository as a great throughput. We reached 25,000 documents/s when importing the first few billions of documents and using 2 Nuxeo injector nodes to maximize the throughput.
+This big MongoDB cluster came with significant cost, but it allowed us to import the documents inside the Archive repository at a great throughput. We reached 25,000 documents/s when importing the first few billions of documents and using 2 Nuxeo injector nodes to maximize the throughput.
 
 Once the import is completed, we can down-scale the cluster to reduce the cost since we do not need the write throughput anymore for the archive repository.
 We can also revert back from NVMe to simple EBS storage since we do not need the same amount of IO.
@@ -926,7 +927,7 @@ We can also revert back from NVMe to simple EBS storage since we do not need the
 
 ## VI - Phase 2 Results
 
-> This chapter presents the results of the second phase of our benchmark
+> This chapter presents the results of the second phase of our benchmark.
 
 ### Browsing an 11B documents repository
 
@@ -936,12 +937,12 @@ Here is a video showing the Nuxeo application running with 11B documents:
 
 ### Volumization results
 
-#### Bulk import
+#### Bulk-import
 
 For Bulk-Import we were able to achieve **25K documents/s** leveraging:
 
 - MongoDB sharding
-  - dispatching write load across 5 replicasets
+  - dispatching write load across 5 *replica sets*
 - 2 Nuxeo Importer nodes
   - each of them importing at 12.5K docs/s
 
@@ -957,11 +958,11 @@ The 2 graphics belows show 2 Nuxeo importer running both with 24 threads and imp
 
 #### Bulk Reindex
 
-We ran a full re-index of the archive repository at 3B documents.
+We ran a full reindex of the archive repository at 3B documents.
 
 The full Reindex was achieved in 14h, meaning that the average throughput was **57K documents/s**.
 
-Here again, we do almost double the performance obtained in phase 1:
+Here again, we do almost double the performance obtained in Phase 1:
 
 - we leverage more IO at the MongoDB cluster level
 - we reduced the indexing required for the archives repository
@@ -969,7 +970,7 @@ Here again, we do almost double the performance obtained in phase 1:
 The graphics below show:
 
 - the Elasticsearch reindexing throughput (in documents / minute)
-- the worker threads allocated to re-indexing on the Nuxeo side (8 worker nodes)
+- the worker threads allocated to reindexing on the Nuxeo side (8 worker nodes)
 
 <img src="/images/11b/30-phase2-bulk-index.png" alt="Phase 2: Bulk index" width="800px">
 
@@ -981,11 +982,11 @@ With the new Import + Index pipeline leveraging the ExtralScroll from the Bulk A
 
 ### Gatling tests results
 
-We first run the Gatling tests with a variable number of threads to identify the optimum trade-off between throughput and response time.
+We first ran the Gatling tests with a variable number of threads to identify the optimum trade-off between throughput and response time.
 
 <img src="/images/11b/32-phase2-gatling-trade-off.png" alt="Phase 2: Gatling Trade-off" width="800px">
 
-Once we have identified how many threads we want to run, we re-run the tests for a longer duration to gather the results.
+Once we have identified how many threads we want to run, we re-ran the tests for a longer duration to gather the results.
 
 **CRUD API test**
 
@@ -1028,7 +1029,7 @@ NB: as visible on the graph, there was a transient network issue during the test
 
 <img src="/images/11b/36-phase2-raw-perfs.png" alt="Phase 2: Raw Performance Statistics" width="800px">
 
-### Down Sizing results
+### Downsizing results
 
 #### Motivations
 
@@ -1060,9 +1061,9 @@ Several aspects can explain the relatively slow migration:
 
 To verify the 3rd point, we ran a performance test during the cluster reconfiguration and did not notice any issue (this is actually [the report linked earlier](https://10b-benchmark-data.s3.amazonaws.com/gatling-test-11B/sim10crud-20201001044118832/index.html)).
 
-After the migration was completed, we re-run the same tests to verify that the MongoDB cluster's downsizing for archives did not impact.
+After the migration was completed, we re-ran the same tests to verify that the MongoDB cluster's downsizing for archives did not impact.
 
-The tests gave very [similar results](https://10b-benchmark-data.s3.amazonaws.com/gatling-test-11B/1htest-afterM40-resize.zip), and we just see that the CPU of the MongoDB Sharded cluster used for Archive goes higher than before.
+The tests gave very [similar results](https://10b-benchmark-data.s3.amazonaws.com/gatling-test-11B/1htest-afterM40-resize.zip), and we see that the CPU of the MongoDB Sharded cluster used for Archive goes higher than before.
 
 <img src="/images/11b/37-phase2-mongo-cpu.png" alt="Phase 2: MongoDB CPU graph" width="800px">
 
@@ -1072,9 +1073,9 @@ The tests gave very [similar results](https://10b-benchmark-data.s3.amazonaws.co
 
 During the import:
 
-- we use a 5xM80 Atlas cluster for the Archive repository to import the data fast enough
-- we scale the number of Nuxeo worker nodes from 2 to 8 when needed
-- we use up to 2 dedicated Nuxeo nodes for data ingestion
+- we used a 5xM80 Atlas cluster for the Archive repository to import the data fast enough
+- we scaled the number of Nuxeo worker nodes from 2 to 8 when needed
+- we used up to 2 dedicated Nuxeo nodes for data ingestion
 
 <img src="/images/11b/38-phase2-import-arch.png" alt="Phase 2: Import architecture" width="800px">
 
@@ -1101,7 +1102,7 @@ The initial goal was 10B, and because of the way we ran the data generation, we 
 
 <a href="https://youtu.be/KOO5S4vxi0o"><img src="https://media.giphy.com/media/aqSl7Dw5HTojK/giphy.gif"/></a>
 
-Here the critical result is not so much the total number of documents, but the fact that we can:
+Here the critical result is not so much the total number of documents, but rather the fact that we can:
 
 - split the data into multiples repositories
 - adjust each repository storage according to cost/performances trade-off
@@ -1110,24 +1111,24 @@ Here the critical result is not so much the total number of documents, but the f
 By transparent, we mean:
 
 - we search across multiple repositories
-- we can have listing mixing documents coming from multiple repositories
-- navigation is consistent and allows to switch to the correct repository transparently
+- we can have listings with mixed documents coming from multiple repositories
+- navigation is consistent and allows for switching to the correct repository transparently
 
-#### Gain of Sharding with MongoDB
+#### Gains of Sharding with MongoDB
 
 We leveraged the MongoDB Sharding to maximize write-throughput to speed-up the import of archives, and it allowed us to reach 25,000 documents/s.
 
 #### Elasticsearch configuration
 
-The Elasticsearch configuration we used for the 1B architecture was using 9 data nodes.
+The Elasticsearch configuration we used for the 1B architecture had 9 data nodes.
 If we had applied the same configuration for 11B documents we would have needed more than 100 Elasticsearch data nodes.
 
-Thanks to the multi-repositories approach, we were able to use multiples indexes and adjust the configuration according to each repository so that the target hardware configuration is less than double (16 data nodes), whereas we multiplied the data volume by 11.
+Thanks to the multi-repositories approach, we were able to use multiple indexes and adjust the configuration according to each repository so that the target hardware configuration was less than double (16 data nodes), whereas we multiplied the data volume by 11.
 
 #### PaaS and transparent infrastructure changes
 
-Using AWS Elasticseach and MongoDB Atlas PaaS Services allowed us to resize the infrastructure dynamically, depending on our needs.
-Because, with 11B documents you can not expect any storage change to be fast, it is essential to be able to make these changes while the application is live. The truth is that migration speed becomes much less important than maintaining the availability of the service.
+Using AWS Elasticsearch and MongoDB Atlas PaaS Services allowed us to resize the infrastructure dynamically, depending on our needs.
+Because, with 11B documents you cannot expect any storage change to be fast, it is essential to be able to make these changes while the application is live. The truth is that migration speed becomes much less important than maintaining the availability of the service.
 
 With both AWS Elasticsearch and MongoDB Atlas, we were able to validate this capability. This is very important for our Nuxeo Cloud operation team.
 

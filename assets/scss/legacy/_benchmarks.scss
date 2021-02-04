@@ -1,3 +1,7 @@
+@charset 'utf-8';
+
+@import '../settings';
+
 a.button-square, a:link.button-square {
   display: block;
   text-align: center;
@@ -22,10 +26,14 @@ a.button-square:hover {
 .result a:link,
 .result a:visited,
 a.tag {
-  font-family: inherit;
-  font-weight: inherit;
   border-bottom: inherit;
+  font-family: $font-primary;
+  font-weight: inherit;
   transition: color .2s ease;
+
+  @supports (font-variation-settings: normal) {
+    font-family: $font-primary-var;
+  }
 }
 
 .result a:hover,
@@ -39,7 +47,11 @@ a.tag {
 .build a:visited, .timems a:visited, .times a:visited, .time a:visited, .avg a:visited, .stddev a:visited, .rps a:visited, .dps a:visited
 {
   white-space: nowrap;
-  font-family: "Open Sans",Arial,sans-serif !important;
+  font-family: $font-primary;
+
+  @supports (font-variation-settings: normal) {
+    font-family: $font-primary-var;
+  }
 }
 
 .time, .times, .timems {
@@ -344,12 +356,6 @@ dd a.tag:hover {
 
 
 /* Custom */
-
-.hero p {
-  font-size: 1.9em;
-  line-height: 1.2em;
-}
-
 .full-height {
   height: 100%;
 }

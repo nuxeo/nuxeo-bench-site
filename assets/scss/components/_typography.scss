@@ -1,3 +1,14 @@
+html,
+body {
+  font-family: $font-primary;
+  font-weight: $weight-roman;
+  line-height: 1.5;
+
+  @supports (font-variation-settings: normal) {
+    font-family: $font-primary-var;
+  }
+}
+
 .h1,
 h1,
 .h2,

@@ -71,7 +71,7 @@ a:hover img,
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 50px;
-  max-width: 250px;
+  max-width: 310px;
   padding: 0;
   position: relative;
   width: 100%;
@@ -159,6 +159,10 @@ a.box {
 
   & .box__content {
     margin: 1.5rem;
+
+    h4 {
+      font-size: 18px;
+    }
 
     &.box__content--last {
       margin-top: 0;

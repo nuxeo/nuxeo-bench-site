@@ -3,13 +3,13 @@
 {{ partial "header.html" . }}
 {{ $data := .Params.build_number }}
 {{ $datapath := .Params.classifier }}
-<div class="hero row padded is-bg-blue is-white">
+<div class="row padded is-bg-blue is-white">
   <div class="large-8 medium-10 small-12 columns">
     <h1>
       {{ (index .Site.Data.custombench $data).bench_suite }}
       <span class="tag {{ (index .Site.Data.custombench $data).dbprofile }}">{{ (index .Site.Data.custombench $data).dbprofile }}</span>
     </h1>
-    <p class="larger is-white">
+    <p class="is-white">
       {{ .Date.Format "Mon, Jan 2, 2006" }}
     </p>
   </div>

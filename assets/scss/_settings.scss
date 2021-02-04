@@ -1,3 +1,22 @@
+//Fonts
+// $font-primary: 'neue-haas-grotesk-display', Helvetica, Arial, sans-serif;
+$font-primary: 'Inter', sans-serif;
+$font-primary-var: 'Inter var', sans-serif;
+
+$weight-roman: 400;
+$weight-medium: 500;
+$weight-bold: 600;
+
+$font-size-0: 0.6875rem;// 11px;
+$font-size-1: 0.75rem;  // 12px
+$font-size-2: 0.875rem; // 14px
+$font-size-3: 1rem;     // 16px
+$font-size-4: 1.125rem; // 18px
+$font-size-5: 1.25rem;  // 20px
+$font-size-6: 1.5rem;   // 24px
+$font-size-7: 1.875rem; // 30px
+$font-size-8: 2.5rem;   // 40px
+
 $c-black: #000;
 $c-white: #fff;
 $c-green: #73d2cf;
@@ -16,11 +35,11 @@ $c-orange: #ff9e00;
 $c-barely-black: #3c3b3b;
 $c-light-blue: #e5f1ff;
 $c-light-aqua: #f2fafa;
+$c-menu-black: #24292e;
+$c-form-background: #e0ecfd66;
+$c-form-error: #f43319;
 
-$font-primary: 'neue-haas-grotesk-display', Helvetica, Arial, sans-serif;
-
-$weight-roman: 500;
-$weight-medium: 600;
+$cta-radius: 4px;
 
 //  Foundation for Sites Settings
 //  -----------------------------
@@ -89,7 +108,7 @@ $weight-medium: 600;
 // 1. Global
 // ---------
 
-// $global-font-size: 100%;
+$global-font-size: 100%;
 $global-width: rem-calc(1400);
 $global-lineheight: 1.6;
 $foundation-palette: (
@@ -106,13 +125,13 @@ $black: #0a0a0a;
 $white: #fff;
 // $body-background: $white;
 // $body-font-color: $black;
-$body-font-family: 'neue-haas-grotesk-display', Helvetica, Arial, sans-serif;
+$body-font-family: $font-primary;
 $body-antialiased: false;
 // $global-margin: 1rem;
 // $global-padding: 1rem;
 // $global-position: 1rem;
 // $global-weight-normal: normal;
-$global-weight-bold: 600;
+$global-weight-bold: $weight-bold;
 // $global-radius: 0;
 // $global-menu-padding: 0.7rem 1rem;
 // $global-menu-nested-margin: 1rem;

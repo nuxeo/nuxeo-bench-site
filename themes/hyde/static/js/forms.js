@@ -16,47 +16,33 @@ var initialise_forms = function(has_interval) {
       if ($marketo_update.length === 1) {
         clearInterval(initialisation_interval);
       }
-      $form.closest(".marketo-update").addClass("initialised");
+      $form.closest('.marketo-update').addClass('initialised');
 
-      $form.find("label").each((i, e) => {
-        var $label = $(e);
-        // Remove gutter div - not necessary
-        $label.siblings(".mktoGutter").remove();
+      // Remove Astrixes
+      $form.find('.mktoAsterix').remove();
 
-        var $special_parent = $label.parent(".mktoLogicalField");
-        var $input = $label.siblings(
-          ".mktoField:not([type=checkbox],[type=radio])"
-        );
+      // Add placeholder
+      $form.find('.mktoInstruction').each((i, e) => {
+        const $hint = $(e);
+        const $placeholder = $hint.parent().find('input,textarea');
 
-        // 3-step swap
-        if ($input.length && !$special_parent.length) {
-          var $temp = $("<div>");
-
-          $input.before($temp);
-          $label.before($input);
-          $temp.after($label).remove();
+        // Only replace the placeholder if not populated
+        if (!$placeholder.attr('placeholder')) {
+          $placeholder.attr('placeholder', $hint.text());
         }
       });
 
-      var $all_inputs = $form
-        .find(".mktoField")
+      // Turn autocomplete off
+      const $all_inputs = $form
+        .find('.mktoField')
         .not(':hidden,[type="checkbox"]');
 
       $form
-        .attr("autocomplete", "off")
+        .attr('autocomplete', 'off')
         .prepend(
           '<input autocomplete="false" name="hidden" type="text" style="display:none;">'
         );
-      $all_inputs.attr("autocomplete", "nah");
-
-      $form.on("change blur", "input", function() {
-        var $this = $(this);
-        if ($this.val() !== "") {
-          $this.addClass("filled");
-        } else {
-          $this.removeClass("filled");
-        }
-      });
+      $all_inputs.attr('autocomplete', 'nah');
     } else if (has_interval && attempt_number++ > 20) {
       clearInterval(initialisation_interval);
     }

@@ -2,19 +2,22 @@
 <body class="{{ .Site.Params.themeColor }}">
 {{ partial "header.html" . }}
 
-<div class="row padded is-bg-blue is-white">
-  <div class="large-8 medium-10 small-12 columns">
-    <h1>Milestone Benchmarks results</h1>
-    <p class="is-white">
-      Here are the Benchmarks results for the main Nuxeo releases. You can click on the link of the first cell on each row to have the complete resultset of the corresponding benchmark.
-    </p>
+<div class="is-bg-blue is-white">
+  <div class="row pad">
+    <div class="large-8 medium-10 small-12 columns">
+      <h1 class="display">Milestone Benchmarks results</h1>
+      <p class="is-white">
+        Here are the Benchmarks results for the main Nuxeo releases. You can click on the link of the first cell on each row to have the complete resultset of the corresponding benchmark.
+      </p>
+    </div>
   </div>
 </div>
-
-<div class="row is-bg-grey is-black paddedt1 blog-section">
-  <div class="small-12 columns">
-    <div class="content container">
-      {{ partial "benchsuite.html" . }}
+<div class="is-black">
+  <div class="row pad blog-section">
+    <div class="small-12 columns">
+      <div class="content container">
+        {{ partial "benchsuite.html" . }}
+      </div>
     </div>
   </div>
 </div>

@@ -1,18 +1,21 @@
 {{ partial "head.html" . }}
 <body class="{{ .Site.Params.themeColor }}">
 {{ partial "header.html" . }}
-<div class="row padded is-bg-blue is-white">
-  <div class="large-8 medium-10 small-12 columns">
-    <h1>Workbench Benchmarks results</h1>
-    <p class="is-white">
-      These are internal dev benchmarks.
-    </p>
+
+<div class="is-bg-blue is-white">
+  <div class="row pad">
+    <div class="large-8 medium-10 small-12 columns">
+      <h1 class="display">Workbench Benchmarks results</h1>
+      <p class="is-white">
+        These are internal dev benchmarks.
+      </p>
+    </div>
   </div>
 </div>
 
-<div class="row is-bg-grey is-black paddedt1 blog-section">
+<div class="row blog-section pad-bottom">
   <div class="small-12 columns">
-    <div class="content container">
+    <div class="content">
       {{ partial "benchsuite.html" . }}
     </div>
   </div>

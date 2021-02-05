@@ -1,27 +1,27 @@
-	{{ partial "head.html" . }}
-	<body class="{{ .Site.Params.themeColor }}">
-	 {{ partial "header.html" . }}
+{{ partial "head.html" . }}
+  <body class="{{ .Site.Params.themeColor }}">
+    {{ partial "header.html" . }}
 
-   <div class="row padded is-bg-blue is-white">
-     <div class="large-8 medium-10 small-12 columns">
-       <h1>{{ .Title }}</h1>
-     </div>
-   </div>
+    <div class="is-bg-blue is-white">
+      <div class="row pad">
+        <div class="large-8 medium-10 small-12 columns">
+          <h1 class="display">{{ .Title }}</h1>
+        </div>
+      </div>
+    </div>
 
-   <div class="row is-bg-grey is-black paddedt1 blog-section">
-     <div class="small-12 columns">
-       <div class="content container">
-         <div class="post">
-           {{ .Content }}
-         </div>
+    <div class="row blog-section pad-bottom">
+      <div class="small-12 columns">
+        <div class="content">
+          {{ .Content }}
 
-         {{ if and (isset .Site.Params "disqusShortname") (ne .Site.Params.disqusShortname "") }}
-         <h2>Comments</h2>
-         {{ partial "disqus" . }}
-         {{ end }}
-       </div>
-     </div>
-   </div>
+          {{ if and (isset .Site.Params "disqusShortname") (ne .Site.Params.disqusShortname "") }}
+          <h2>Comments</h2>
+          {{ partial "disqus" . }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
 
    {{ partial "footer.html" . }}
 

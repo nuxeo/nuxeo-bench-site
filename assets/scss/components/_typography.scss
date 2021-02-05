@@ -1,45 +1,45 @@
-html,
-body {
-  font-family: $font-primary;
-  font-weight: $weight-roman;
-  line-height: 1.5;
-
-  @supports (font-variation-settings: normal) {
-    font-family: $font-primary-var;
-  }
-}
-
-.h1,
-h1,
-.h2,
-h2,
-.h3,
-h3,
-.h4,
-h4,
-.h5,
-h5,
-a, a:link, a:visited {
-  color: inherit;
-  font-weight: $weight-medium;
-}
-
-p {
-  color: inherit;
-}
-
-button,
-a.button,
-input[type="submit"] {
-  border: 0 !important;
-  border-radius: 0;
-  min-width: max-content;
-
-  &.is-bg-blue {
-    &:hover {
-      background: darken($c-blue, $hover-darken-percentage) !important;
-      border: 0 !important;
-      color: $c-white;
-    }
-  }
-}
+// html,
+// body {
+//   font-family: $font-primary;
+//   font-weight: $weight-roman;
+//   line-height: 1.5;
+//
+//   @supports (font-variation-settings: normal) {
+//     font-family: $font-primary-var;
+//   }
+// }
+//
+// .h1,
+// h1,
+// .h2,
+// h2,
+// .h3,
+// h3,
+// .h4,
+// h4,
+// .h5,
+// h5,
+// a, a:link, a:visited {
+//   color: inherit;
+//   font-weight: $weight-medium;
+// }
+//
+// p {
+//   color: inherit;
+// }
+//
+// button,
+// a.button,
+// input[type="submit"] {
+//   border: 0 !important;
+//   border-radius: 0;
+//   min-width: max-content;
+//
+//   &.is-bg-blue {
+//     &:hover {
+//       background: darken($c-blue, $hover-darken-percentage) !important;
+//       border: 0 !important;
+//       color: $c-white;
+//     }
+//   }
+// }

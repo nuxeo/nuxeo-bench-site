@@ -2,10 +2,12 @@
 <body class="{{ .Site.Params.themeColor }}">
 {{ partial "header.html" . }}
 
-<div class="row align-center paddedt1 is-bg-blue is-white">
-  <div class="columns small-12 medium-10 large-8">
-    <h1>404: Page not found</h1>
-    <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="{{ .Site.BaseURL }}">Head back home</a> to try finding it again.</p>
+<div class="is-bg-blue is-white">
+  <div class="row align-center pad">
+    <div class="columns small-12 medium-10 large-8">
+      <h1 class="display">404: Page not found</h1>
+      <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="{{ .Site.BaseURL }}">Head back home</a> to try finding it again.</p>
+    </div>
   </div>
 </div>
 

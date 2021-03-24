@@ -6,6 +6,9 @@ slug: "changes"
 Here are some import changes on the Benchmark infrastructure and tests that
 should be take in account to interpret performance evolution.
 
+- 2021-03-22 Use Zulu JDK 11 instead of OpenJDK 11
+
+
 - 2020-10-29 Upgrade to Elasticsearch 7.9.3
 
 

@@ -1,4 +1,43 @@
 # Here you can comment bench suite using markdown"
+"Nuxeo LTS 2021": "**Import** Similar a bit lower than previous LTS
+
+
+  - As usual, the nuxeo-importer is run on a single node so the synchronous part
+    do not benefit of having multiple Nuxeo node.  The limitation is
+    mostly `Nuxeo CPU` at the beginning (especially for SQL backend)
+    then `Nuxeo IO on S3`, then `SQL Backend IO` and `Backend CPU`.
+
+
+**Create** Faster as previous LTS, limited by Gatling concurrency
+
+
+  - A slight better latency (15ms vs 19ms on MongoDB) enable to reach 1.7k rps instead of 1.5 rps
+
+  - The throughput is limited by the Gatling concurrency used (32 threads)
+
+
+**Read** Similar to previous LTS, scales up to 3500 req/s
+
+
+  - This does not scale linearly with 4 nodes because of the injection concurrency (Gatling).
+
+
+**Search** Faster than previous LTS +30%
+
+
+  - Elasticsearch upgrade from 6.3 to 7.9
+
+
+**Update/CRUD** Scale up limited by Gatling concurrency, similar than previous LTS
+
+
+  - the latency around 30ms limits the possible throughput 1000 req/s with concurrency of 32.
+
+
+**Reindex** Similar to previous LTS
+
+"
+
 "20w44 NXP-29529 elastic 7 vs 6": "With Elastic 7 re-indexing is 20% faster, search 10%.
 
 

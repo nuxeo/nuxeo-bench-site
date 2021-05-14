@@ -5,3 +5,7 @@ SectionPagesMenu = "main"
 [params]
   description = "Benchmarks"
   author = "Nuxeo"
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

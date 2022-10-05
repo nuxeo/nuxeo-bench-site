@@ -107,7 +107,11 @@ function update_data() {
     import_dps=`awk "BEGIN {printf \"%.1f\", $import_docs/$import_s}" || echo "NA"`
   fi
   # Extract reindex stats from server logs
-  reindex_docs=`grep 'ScrollingIndexingWorker.*has submited ' $BUILD_SRC_PATH/archive/logs/*/server.log | sed -e 's,^.*submited.,,g;s,.documents.*$,,g' `
+  if test -n "$(shopt -s nullglob; echo $BUILD_SRC_PATH/archive/logs/*/server.log)"; then
+    reindex_docs=`grep 'ScrollingIndexingWorker.*has submited ' $BUILD_SRC_PATH/archive/logs/*/server.log | sed -e 's,^.*submited.,,g;s,.documents.*$,,g' `
+  else
+    reindex_docs=`grep reindex_docs $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  fi
   reindex_ms=`grep reindex_waitforasync_avg $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   reindex_dps=`awk "BEGIN {printf \"%.1f\", $reindex_docs/($reindex_ms / 1000)}" || echo "NA"`
   set -e

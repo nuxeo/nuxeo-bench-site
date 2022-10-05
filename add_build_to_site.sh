@@ -112,7 +112,7 @@ function update_data() {
   else
     reindex_docs=`grep reindex_docs $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   fi
-  reindex_ms=`grep reindex_waitforasync_avg $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
+  reindex_ms=`grep reindex_reindexallrepository_avg $DATA_SRC_FILE | cut -d \: -f 2 | sed 's,",,g;s,^ *,,g'`
   reindex_dps=`awk "BEGIN {printf \"%.1f\", $reindex_docs/($reindex_ms / 1000)}" || echo "NA"`
   set -e
   # update target data file

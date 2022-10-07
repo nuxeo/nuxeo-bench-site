@@ -31,6 +31,10 @@
           <dd>{{ .Params.classifier }}</dd>
           <dt>Distribution</dt>
           <dd>{{ (index .Site.Data.bench $data).distribution }}</dd>
+          {{ if ne (index .Site.Data.bench $data).docker_image nil }}
+          <dt>Docker Image</dt>
+          <dd>{{ (index .Site.Data.bench $data).docker_image }}</dd>
+          {{ end }}
           <dt>Date</dt>
           <dd>{{ (index .Site.Data.bench $data).benchmark_date }}</dd>
           <dt>Backend</dt>
@@ -44,8 +48,15 @@
           <dd>3</dd>
           {{ end }}
           <dt>CI Build</dt>
-          <dd><a href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a>
+          <dd><a target="_blank" href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a>
           </dd>
+          {{ if ne (index .Site.Data.bench $data).reindex_waitforactiontobecompleted_end nil }}
+          <dt>Datadog Dashboard</dt>
+          <dd>
+            <a target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).import_start }}&to_ts={{ (index .Site.Data.bench $data).reindex_waitforactiontobecompleted_end }}&live=false">Datadog Monitoring</a>
+          </dd>
+          {{ end }}
           <dt>Number of documents</dt>
           <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
         </dl>
@@ -265,11 +276,9 @@
         </dd>
       </dl>
 
-      <a name="navigation" class="suite"></a>
+      {{ if ne (index .Site.Data.bench $data).navjsf_rps nil }}
+      <a name="navigationjsf" class="suite"></a>
       <h3>Navigation using JSF</h3>
-        {{ if eq (index .Site.Data.bench $data).navjsf_rps nil }}
-          No JSF simulation available.
-        {{ else }}
       <div>This simulation uses the JSF interface to navigate on folder and document tabs.</div>
       <dl>
         <dt>Throughput</dt>
@@ -297,7 +306,7 @@
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/index.html">» Gatling report</a>
         </dd>
       </dl>
-         {{ end }}
+      {{ end }}
 
       <a name="search" class="suite"></a>
       <h3>Search using REST</h3>
@@ -537,9 +546,9 @@
         <dd class="times">{{ (index .Site.Data.bench $data).reindex_duration }}</dd>
         <dt>Reports</dt>
         <dd>
-          {{ if ne (index .Site.Data.bench $data).reindex_reindexallrepository_end nil }}
+          {{ if ne (index .Site.Data.bench $data).reindex_waitforactiontobecompleted_end nil }}
           <a class="tag" target="_blank"
-             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).reindex_start }}&to_ts={{ (index .Site.Data.bench $data).reindex_reindexallrepository_end }}&live=false">» Datadog monitoring</a>
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).reindex_start }}&to_ts={{ (index .Site.Data.bench $data).reindex_waitforactiontobecompleted_end }}&live=false">» Datadog monitoring</a>
           {{ else }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/index.html">» Overview and monitoring</a>

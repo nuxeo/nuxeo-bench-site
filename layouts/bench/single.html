@@ -2,7 +2,7 @@
 <body class="{{ .Site.Params.themeColor }}">
 {{ partial "header.html" . }}
 {{ $data := .Params.build_number }}
-
+{{ $datadog_url := "https://app.datadoghq.com/dashboard/b6f-77h-uh9/benchmark-ci-2021" }}
   <div class="is-bg-blue is-white">
     <div class="row pad">
       <div class="large-8 medium-10 small-12 columns">
@@ -153,8 +153,13 @@
         <dd class="timems">{{ (index .Site.Data.bench $data).import_waitforasync_avg }}</dd>
           <dt>Reports</dt>
           <dd>
+            {{ if ne (index .Site.Data.bench $data).import_start nil }}
           <a class="tag" target="_blank"
-          href="/build/{{ $data }}/archive/reports/sim10massimport/overview/index.html">» Overview and monitoring</a>
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).import_start }}&to_ts={{ (index .Site.Data.bench $data).import_end }}&live=false">» Datadog monitoring</a>
+            {{ else }}
+          <a class="tag" target="_blank"
+             href="/build/{{ $data }}/archive/reports/sim10massimport/overview/index.html">» Overview and monitoring</a>
+            {{ end }}
           <a class="tag" target="_blank"
           href="/build/{{ $data }}/archive/reports/sim10massimport/detail/index.html">» Gatling report</a>
           </dd>
@@ -175,8 +180,13 @@
         <dd class="timems">{{ (index .Site.Data.bench $data).bulk_waitforasync_avg }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).bulk_start nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).bulk_start }}&to_ts={{ (index .Site.Data.bench $data).bulk_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
             href="/build/{{ $data }}/archive/reports/sim15bulkupdatedocuments/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
             href="/build/{{ $data }}/archive/reports/sim15bulkupdatedocuments/detail/index.html">» Gatling report</a>
         </dd>
@@ -208,8 +218,13 @@
         <dd class="times">{{ (index .Site.Data.bench $data).createasync_duration }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).createasync_end nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).create_start }}&to_ts={{ (index .Site.Data.bench $data).createasync_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim20createdocuments/detail/index.html">» Gatling report</a>
         </dd>
@@ -238,8 +253,13 @@
         <dd class="times">{{ (index .Site.Data.bench $data).nav_duration }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).nav_start nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).nav_start }}&to_ts={{ (index .Site.Data.bench $data).nav_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigation/detail/index.html">» Gatling report</a>
         </dd>
@@ -247,6 +267,9 @@
 
       <a name="navigation" class="suite"></a>
       <h3>Navigation using JSF</h3>
+        {{ if eq (index .Site.Data.bench $data).navjsf_rps nil }}
+          No JSF simulation available.
+        {{ else }}
       <div>This simulation uses the JSF interface to navigate on folder and document tabs.</div>
       <dl>
         <dt>Throughput</dt>
@@ -274,6 +297,7 @@
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30navigationjsf/detail/index.html">» Gatling report</a>
         </dd>
       </dl>
+         {{ end }}
 
       <a name="search" class="suite"></a>
       <h3>Search using REST</h3>
@@ -299,8 +323,13 @@
         <dd class="times">{{ (index .Site.Data.bench $data).search_duration }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).search_start nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).search_start }}&to_ts={{ (index .Site.Data.bench $data).search_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30search/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30search/detail/index.html">» Gatling report</a>
         </dd>
@@ -334,8 +363,13 @@
         <dd class="times">{{ (index .Site.Data.bench $data).updateasync_duration }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).update_start nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).update_start }}&to_ts={{ (index .Site.Data.bench $data).update_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim30updatedocuments/detail/index.html">» Gatling report</a>
         </dd>
@@ -372,8 +406,13 @@
         <dd>{{ (index .Site.Data.bench $data).mbulk_user }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).mbulk_start nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).mbulk_start }}&to_ts={{ (index .Site.Data.bench $data).mbulk_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
             href="/build/{{ $data }}/archive/reports/sim25bulkupdatefolders/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
             href="/build/{{ $data }}/archive/reports/sim25bulkupdatefolders/detail/index.html">» Gatling report</a>
         </dd>
@@ -413,8 +452,13 @@
         <dd class="times">{{ (index .Site.Data.bench $data).crudasync_duration }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).crudasync_end nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).crud_start }}&to_ts={{ (index .Site.Data.bench $data).crudasync_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50crud/detail/index.html">» Gatling report</a>
         </dd>
@@ -433,8 +477,13 @@
         <dd class="timems">{{ (index .Site.Data.bench $data).exportcsv_waitforactiontobecompleted_avg }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).exportcsv_waitforactiontobecompleted_end nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).exportcsv_start }}&to_ts={{ (index .Site.Data.bench $data).exportcsv_waitforactiontobecompleted_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
             href="/build/{{ $data }}/archive/reports/sim20csvexport/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
             href="/build/{{ $data }}/archive/reports/sim20csvexport/detail/index.html">» Gatling report</a>
         </dd>
@@ -464,8 +513,13 @@
         <dd class="times">{{ (index .Site.Data.bench $data).bench_duration }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).bench_start nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).bench_start }}&to_ts={{ (index .Site.Data.bench $data).bench_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim50bench/detail/index.html">» Gatling report</a>
         </dd>
@@ -483,8 +537,13 @@
         <dd class="times">{{ (index .Site.Data.bench $data).reindex_duration }}</dd>
         <dt>Reports</dt>
         <dd>
+          {{ if ne (index .Site.Data.bench $data).reindex_reindexallrepository_end nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).reindex_start }}&to_ts={{ (index .Site.Data.bench $data).reindex_reindexallrepository_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/detail/index.html">» Gatling report</a>
         </dd>

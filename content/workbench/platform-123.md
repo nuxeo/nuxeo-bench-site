@@ -1,6 +1,6 @@
 ---
 title: "mongodb 4 platform-123"
-bench_suite: "22w42 CI Weekly Benchmark - Build 2021.x"
+bench_suite: "2021"
 build_number: "platform-123"
 dbprofile: "mongodb"
 classifier: ""

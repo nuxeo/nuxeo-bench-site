@@ -485,12 +485,12 @@ docker_image: docker.platform.dev.nuxeo.com/nuxeo/nuxeo-benchmark:PR-570-2021.28
 build_url: "https://jenkins.platform.dev.nuxeo.com/job/nuxeo/job/lts/job/nuxeo-benchmark/120/"
 job_name: "nuxeo/lts/nuxeo-benchmark"
 dbprofile: "mongodb"
-bench_suite: "22w42 CI Weekly Benchmark - Build PR-570-2021.28-SNAPSHOT"
+bench_suite: "task-NXP-31328-run-benchmark-on-promotion"
 nuxeonodes: 2
 esnodes: 1
 classifier: ""
 distribution: "PR-570-2021.28-SNAPSHOT"
-default_category: "continuous"
+default_category: "workbench"
 kafka: true
 import_docs: 100000
 benchmark_duration: 2419

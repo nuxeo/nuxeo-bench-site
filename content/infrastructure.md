@@ -4,6 +4,39 @@ slug: "infra"
 layout: "post"
 ---
 
+# Benchmarks after 2021
+
+Nuxeo benchmark infrastructure runs on Google Kubernetes Engine (GKE).
+
+The benchmark infrastructure is composed of:
+- a Nuxeo cluster composed of API & Worker nodes (number configurable, default 1 of each)
+- a MongoDB backend
+- a Elasticsearch node (or OpenSearch for LTS 2023)
+- a Kafka cluster
+- a shared binary storage (S3 bucket)
+- a Jenkins pod to run the bench
+
+Everything is deployed with the help of Helmfile and Helm Charts, the definition and settings are accessible [here](https://github.com/nuxeo/nuxeo/blob/2021/ci/helm/helmfile.yaml) for the _benchmark_ environment.
+
+MongoDB and Elasticsearch are running on a dedicated Kubernetes node.
+
+There's one Kafka node for one Nuxeo node, both running on the same dedicated Kubernetes node.
+
+Each Kubernetes node is composed of GKE _e2-standard-16_ with 16 vCPU and 64 GB Memory.
+
+The benchmark is driven by continuous integration jobs (Jenkins).
+
+Here is a list of tools used to perform the benchmark:
+
+- [Helmfile](https://helmfile.readthedocs.io/): to deploy services.
+- [Gatling](http://gatling.io/): to generate load.
+- [gatling-report](https://github.com/nuxeo/gatling-report): home made open source tool to expose Gatling results.
+- [Datadog](https://www.datadoghq.com/): to monitor the whole stack (private access).
+- [Hugo](http://gohugo.io/): to generate this static site.
+- [Jenkins](https://jenkins.io/): to drive bench and manage results.
+
+# Benchmarks before 2021
+
 Nuxeo benchmark infrastructure runs on Amazon Web Service (AWS).
 ![Benchmarked Architecture](/images/architecture.png "Architecture deployed for the benchmark")
 

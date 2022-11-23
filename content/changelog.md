@@ -6,6 +6,18 @@ slug: "changes"
 Here are some import changes on the Benchmark infrastructure and tests that
 should be take in account to interpret performance evolution.
 
+- 2022-11-21 Use MongoDB 6.0.2 and Kafka 3.3.1 for LTS 2023
+
+
+- 2022-11-18 Use OpenSearch 1.3.6 instead of Elasticserach 7.9.2 for LTS 2023
+
+
+- 2022-10-24 Benchmark Nuxeo LTS 2023 with Zulu JDK 17
+
+
+- 2022-10-03 Change benchmark infrastructure from AWS EC2 to GKE
+
+
 - 2021-03-22 Use Zulu JDK 11 instead of OpenJDK 11
 
 

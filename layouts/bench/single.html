@@ -50,11 +50,11 @@
           <dt>CI Build</dt>
           <dd><a target="_blank" href="{{ (index .Site.Data.bench $data).build_url }}">{{ (index .Site.Data.bench $data).build_number }}</a>
           </dd>
-          {{ if ne (index .Site.Data.bench $data).reindex_waitforactiontobecompleted_end nil }}
+          {{ if ne (index .Site.Data.bench $data).reindex_getreindexstatus_end nil }}
           <dt>Datadog Dashboard</dt>
           <dd>
             <a target="_blank"
-             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).import_start }}&to_ts={{ (index .Site.Data.bench $data).reindex_waitforactiontobecompleted_end }}&live=false">Datadog Monitoring</a>
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).import_start }}&to_ts={{ (index .Site.Data.bench $data).reindex_getreindexstatus_end }}&live=false">Datadog Monitoring</a>
           </dd>
           {{ end }}
           <dt>Number of documents</dt>
@@ -88,6 +88,12 @@
               </th>
               <th>
                 <div><span>Reindexing</span></div>
+              </th>
+              <th>
+                <div><span>Cleanup</span></div>
+              </th>
+              <th>
+                <div><span>FullGC</span></div>
               </th>
             </thead>
             <tbody>
@@ -546,9 +552,9 @@
         <dd class="times">{{ (index .Site.Data.bench $data).reindex_duration }}</dd>
         <dt>Reports</dt>
         <dd>
-          {{ if ne (index .Site.Data.bench $data).reindex_waitforactiontobecompleted_end nil }}
+          {{ if ne (index .Site.Data.bench $data).reindex_getreindexstatus_end nil }}
           <a class="tag" target="_blank"
-             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).reindex_start }}&to_ts={{ (index .Site.Data.bench $data).reindex_waitforactiontobecompleted_end }}&live=false">» Datadog monitoring</a>
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).reindex_start }}&to_ts={{ (index .Site.Data.bench $data).reindex_getreindexstatus_end }}&live=false">» Datadog monitoring</a>
           {{ else }}
           <a class="tag" target="_blank"
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/overview/index.html">» Overview and monitoring</a>
@@ -557,6 +563,54 @@
           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim80reindexall/detail/index.html">» Gatling report</a>
         </dd>
       </dl>
+
+      <a name="cleanup" class="suite"></a>
+      <h3>Clean up</h3>
+      <div>Delete the test workspace, test users and group. Note that versions are not deleted and will remain as orphan.</div>
+      <dl>
+        <dt>Live documents and versions before</dt>
+        <dd>{{ (index .Site.Data.bench $data).reindex_docs }}</dd>
+        <dt>Versions</dt>
+        <dd>{{ (index .Site.Data.bench $data).versions_total }}</dd>
+        <dt>Duration</dt>
+        <dd class="times">{{ (index .Site.Data.bench $data).cleanup_duration }}</dd>
+      </dl>
+      <dd>
+        {{ if ne (index .Site.Data.bench $data).cleanup_deletegroup_end nil }}
+        <a class="tag" target="_blank"
+           href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).cleanup_start }}&to_ts={{ (index .Site.Data.bench $data).cleanup_deletegroup_end }}&live=false">» Datadog monitoring</a>
+        {{ end }}
+        <a class="tag" target="_blank"
+           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim90cleanup/detail/index.html">» Gatling report</a>
+      </dd>
+
+      <a name="fullgc" class="suite"></a>
+      <h3>Full GC</h3>
+      <div>Run a Full Garbage Collector on orphan versions, then on orphan binaries.</div>
+      <dl>
+        <dt>Version Documents before GC</dt>
+        <dd>{{ (index .Site.Data.bench $data).versions_total }}</dd>
+        <dt>Version Documents after GC</dt>
+        <dd>{{ (index .Site.Data.bench $data).versions_retained }}</dd>
+        <dt>Duration of Versions GC</dt>
+        <dd class="times">{{ (index .Site.Data.bench $data).fullgc_versionfullgc_duration }}</dd>
+
+        <dt>Binaries before GC</dt>
+        <dd>{{ (index .Site.Data.bench $data).binaries_total }}</dd>
+        <dt>Binaries after GC</dt>
+        <dd>{{ (index .Site.Data.bench $data).binaries_retained }}</dd>
+        <dt>Duration of Binaries GC</dt>
+        <dd class="times">{{ (index .Site.Data.bench $data).fullgc_binaryfullgc_duration }}</dd>
+      </dl>
+      <dd>
+        {{ if ne (index .Site.Data.bench $data).fullgc_getbinaryfullgcstatus_end nil }}
+        <a class="tag" target="_blank"
+           href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).fullgc_start }}&to_ts={{ (index .Site.Data.bench $data).fullgc_getbinaryfullgcstatus_end }}&live=false">» Datadog monitoring</a>
+        {{ end }}
+        <a class="tag" target="_blank"
+           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim90cleanup/detail/index.html">» Gatling report</a>
+      </dd>
+
       {{ if and (isset .Site.Params "disqusShortname") (ne .Site.Params.disqusShortname "") }}
       <h2>Comments</h2>
       {{ partial "disqus" . }}

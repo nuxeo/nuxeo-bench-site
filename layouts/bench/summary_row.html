@@ -60,6 +60,12 @@
     <div class="dps"><a href="{{ .Permalink }}index.html#reindex">{{ (index .Site.Data.bench $data).reindex_dps }}</a></div>
   </td>
   <td>
+    <a href="{{ .Permalink }}index.html#cleanup"><div class="times"><span class="">{{ (index .Site.Data.bench $data).cleanup_duration }}</span></div></a>
+  </td>
+  <td>
+    <a href="{{ .Permalink }}index.html#fullgc"><div class="times"><span class="">{{ (index .Site.Data.bench $data).fullgc_duration }}</span></div></a>
+  </td>
+  <td>
     <div class="report"><a href={{ .Permalink }}index.html title="view benchmark report"></a></div>
     <div class="build">{{ (index .Site.Data.bench $data).build_number }}</a></div>
   </td>

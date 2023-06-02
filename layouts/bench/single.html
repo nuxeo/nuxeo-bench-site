@@ -580,15 +580,16 @@
         <dd>{{ (index .Site.Data.bench $data).versions_total }}</dd>
         <dt>Duration</dt>
         <dd class="times">{{ (index .Site.Data.bench $data).cleanup_duration }}</dd>
+        <dt>Reports</dt>
+        <dd>
+          {{ if ne (index .Site.Data.bench $data).cleanup_deletegroup_end nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).cleanup_start }}&to_ts={{ (index .Site.Data.bench $data).cleanup_deletegroup_end }}&live=false">» Datadog monitoring</a>
+          {{ end }}
+          <a class="tag" target="_blank"
+             href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim90cleanup/detail/index.html">» Gatling report</a>
+        </dd>
       </dl>
-      <dd>
-        {{ if ne (index .Site.Data.bench $data).cleanup_deletegroup_end nil }}
-        <a class="tag" target="_blank"
-           href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).cleanup_start }}&to_ts={{ (index .Site.Data.bench $data).cleanup_deletegroup_end }}&live=false">» Datadog monitoring</a>
-        {{ end }}
-        <a class="tag" target="_blank"
-           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim90cleanup/detail/index.html">» Gatling report</a>
-      </dd>
 
       <a name="fullgc" class="suite"></a>
       <h3>Full GC</h3>
@@ -608,15 +609,16 @@
         <dd class="avg">{{ (index .Site.Data.bench $data).fullgc_versionfullgc_avg }}</dd>
         <dt>Duration of Binaries GC</dt>
         <dd class="avg">{{ (index .Site.Data.bench $data).fullgc_binaryfullgc_avg }}</dd>
+        <dt>Reports</dt>
+        <dd>
+          {{ if ne (index .Site.Data.bench $data).fullgc_getbinaryfullgcstatus_end nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).fullgc_start }}&to_ts={{ (index .Site.Data.bench $data).fullgc_getbinaryfullgcstatus_end }}&live=false">» Datadog monitoring</a>
+          {{ end }}
+          <a class="tag" target="_blank"
+             href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim90fullgc/detail/index.html">» Gatling report</a>
+        </dd>
       </dl>
-      <dd>
-        {{ if ne (index .Site.Data.bench $data).fullgc_getbinaryfullgcstatus_end nil }}
-        <a class="tag" target="_blank"
-           href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).fullgc_start }}&to_ts={{ (index .Site.Data.bench $data).fullgc_getbinaryfullgcstatus_end }}&live=false">» Datadog monitoring</a>
-        {{ end }}
-        <a class="tag" target="_blank"
-           href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim90fullgc/detail/index.html">» Gatling report</a>
-      </dd>
 
       {{ if and (isset .Site.Params "disqusShortname") (ne .Site.Params.disqusShortname "") }}
       <h2>Comments</h2>

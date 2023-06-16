@@ -72,6 +72,9 @@
                 <div><span>Import</span></div>
               </th>
               <th>
+                <div><span>Move</span></div>
+              </th>
+              <th>
                 <div><span>Create</span></div>
               </th>
               <th>
@@ -103,6 +106,13 @@
                 </td>
                 <td>
                 <div class="dps"><a href="#massimport">{{ (index .Site.Data.bench $data).import_dps }}</a></div>
+                </td>
+                <td>
+                  {{ if ne (index .Site.Data.bench $data).move_duration nil }}
+                  <div class="times"><a href="#move">{{ (index .Site.Data.bench $data).move_duration }}</a></div>
+                  {{ else }}
+                  NA
+                  {{ end }}
                 </td>
                 <td>
                 <div class="dps"><a href="#create">{{ (index .Site.Data.bench $data).create_rps }}</a></div>
@@ -147,10 +157,18 @@
                 <div class="dps"><a href="#reindex">{{ (index .Site.Data.bench $data).reindex_dps }}</a></div>
                 </td>
                 <td>
+                  {{ if ne (index .Site.Data.bench $data).cleanup_duration nil }}
                   <div class="times"><a href="#cleanup">{{ (index .Site.Data.bench $data).cleanup_duration }}</a></div>
+                  {{ else }}
+                  NA
+                  {{ end }}
                 </td>
                 <td>
+                  {{ if ne (index .Site.Data.bench $data).fullgc_duration nil }}
                   <div class="times"><a href="#fullgc">{{ (index .Site.Data.bench $data).fullgc_duration }}</a></div>
+                  {{ else }}
+                  NA
+                  {{ end }}
                 </td>
               </tr>
             </tbody>
@@ -187,6 +205,28 @@
           href="/build/{{ $data }}/archive/reports/sim10massimport/detail/index.html">» Gatling report</a>
           </dd>
         </dl>
+
+        {{ if ne (index .Site.Data.bench $data).move_duration nil }}
+        <a name="move" class="suite"></a>
+        <h3>Move Folder</h3>
+        <div>Move the folder containing the mass imported docs.</div>
+        <dl>
+          <dt>Documents imported</dt>
+          <dd>{{ (index .Site.Data.bench $data).import_docs }}</dd>
+          <dt>Duration</dt>
+          <dd class="times">{{ (index .Site.Data.bench $data).move_duration }}</dd>
+          <dt>Reports</dt>
+          <dd>
+            {{ if ne (index .Site.Data.bench $data).move_waitforasync_end nil }}
+            <a class="tag" target="_blank"
+               href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).move_start }}&to_ts={{ (index .Site.Data.bench $data).move_waitforasync_end  }}&live=false">» Datadog monitoring</a>
+            {{ end }}
+            <a class="tag" target="_blank"
+               href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim15move/detail/index.html">» Gatling report</a>
+          </dd>
+        </dl>
+        {{ end }}
+
 
         {{ if ne (index .Site.Data.bench $data).bulk_duration nil }}
         <a name="bulk" class="suite"></a>
@@ -570,6 +610,7 @@
         </dd>
       </dl>
 
+      {{ if ne (index .Site.Data.bench $data).cleanup_duration nil }}
       <a name="cleanup" class="suite"></a>
       <h3>Clean up</h3>
       <div>Delete the test workspace, test users and group. Note that versions are not deleted and will remain as orphan.</div>
@@ -590,7 +631,9 @@
              href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim90cleanup/detail/index.html">» Gatling report</a>
         </dd>
       </dl>
+      {{end}}
 
+      {{ if ne (index .Site.Data.bench $data).fullgc_duration nil }}
       <a name="fullgc" class="suite"></a>
       <h3>Full GC</h3>
       <div>Run a Full Garbage Collector on orphan versions, then on orphan binaries.</div>
@@ -619,6 +662,7 @@
              href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim90fullgc/detail/index.html">» Gatling report</a>
         </dd>
       </dl>
+      {{end}}
 
       {{ if and (isset .Site.Params "disqusShortname") (ne .Site.Params.disqusShortname "") }}
       <h2>Comments</h2>

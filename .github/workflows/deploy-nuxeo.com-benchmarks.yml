@@ -1,0 +1,37 @@
+name: Build and Deploy Nuxeo Benchmarks
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Hugo
+      run: |
+        wget https://github.com/spf13/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.tar.gz -O /tmp/hugo.tgz
+        (cd /tmp/; tar xzvf hugo.tgz)
+
+    - name: Build Hugo Site
+      run: /tmp/hugo -t hyde
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Rsync to Server
+      run: |
+        rsync -Waxv --delete ${{ github.workspace }}/public/ root@www:/var/www/nuxeo.com/benchmarks
+
+    - name: Test Nginx Configuration
+      run: ssh root@www "nginx -t"
+
+    - name: Reload Nginx
+      run: ssh root@www "service nginx reload"

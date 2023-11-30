@@ -7,31 +7,26 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: benchmarks
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
-    - name: Install Hugo
-      run: |
-        wget https://github.com/spf13/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.tar.gz -O /tmp/hugo.tgz
-        (cd /tmp/; tar xzvf hugo.tgz)
-
-    - name: Build Hugo Site
-      run: /tmp/hugo -t hyde
+    - name: Build Site
+      uses: chabad360/hugo-actions@master
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: benchmarks
     needs: build
 
     steps:
-    - name: Rsync to Server
-      run: |
-        rsync -Waxv --delete ${{ github.workspace }}/public/ root@www:/var/www/nuxeo.com/benchmarks
+      - name: Rsync to Server
+        run: |
+          rsync -Waxv --delete ${{ github.workspace }}/public/ root@www:/var/www/nuxeo.com/benchmarks
 
-    - name: Test Nginx Configuration
-      run: ssh root@www "nginx -t"
+      - name: Test Nginx Configuration
+        run: ssh root@www "nginx -t"
 
-    - name: Reload Nginx
-      run: ssh root@www "service nginx reload"
+      - name: Reload Nginx
+        run: ssh root@www "service nginx reload"

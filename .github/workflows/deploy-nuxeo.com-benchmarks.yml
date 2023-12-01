@@ -15,6 +15,10 @@ jobs:
 
     - name: Build Site
       uses: chabad360/hugo-actions@master
+      with:
+        buildPath: 'public'
+        hugoVersion: 'extended_0.80.0'
+        args: hugo -t hyde
 
   deploy:
     runs-on: benchmarks

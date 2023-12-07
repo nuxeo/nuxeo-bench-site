@@ -14,11 +14,11 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Build Site
-      uses: chabad360/hugo-actions@master
+      uses: chabad360/hugo-actions@v2
       with:
         buildPath: 'public'
         hugoVersion: 'extended_0.80.0'
-        args: hugo -t hyde
+        args: --gc --minify --cleanDestinationDir
 
   deploy:
     runs-on: benchmarks

@@ -19,6 +19,11 @@ jobs:
         buildPath: 'public'
         hugoVersion: 'extended_0.80.0'
         args: --gc --minify --cleanDestinationDir
+        
+    - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}     
 
   deploy:
     runs-on: benchmarks
@@ -27,10 +32,6 @@ jobs:
     steps:
       - name: Rsync to Server
         run: |
-          rsync -Waxv --delete ${{ github.workspace }}/public/ root@www:/var/www/nuxeo.com/benchmarks
-
-      - name: Test Nginx Configuration
-        run: ssh root@www "nginx -t"
-
-      - name: Reload Nginx
-        run: ssh root@www "service nginx reload"
+          rsync -rcl --delete ${{ github.workspace }}/public/ \
+                "${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:/var/www/nuxeo.com/benchmarks"
+        

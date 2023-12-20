@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - Test-Sushil
-
 jobs:
   build:
     runs-on: benchmarks
@@ -25,3 +24,4 @@ jobs:
       with: 
         name: benchmarks-artifact
         path: ${{ github.workspace }}/public
+        

@@ -19,19 +19,10 @@ jobs:
         buildPath: 'public'
         hugoVersion: 'extended_0.80.0'
         args: -t hyde
-        
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@d4b9b8ff72958532804b70bbe600ad43b36d5f2e  #v0.8.0
-      with:
-        ssh-private-key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}     
 
-  deploy:
-    runs-on: benchmarks
-    needs: build
-
-    steps:
-      - name: Rsync to Server
-        run: |
-          rsync -rcl --delete ${{ github.workspace }}/public/ \
-                "${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:/var/www/nuxeo.com/benchmarks"
+    - name: upload artificate
+      uses: actions/upload-artifact@v4
+      with: 
+        name: benchmarks-artifact
+        path: ${{ github.workspace }}/public
         

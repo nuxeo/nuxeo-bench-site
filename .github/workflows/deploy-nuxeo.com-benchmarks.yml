@@ -4,13 +4,15 @@ on:
   push:
     branches:
       - master
-
 jobs:
-  build:
+  build-and-deploy:
     runs-on: benchmarks
+   
+    steps: 
+    - name: Clean directory
+      run: |
+        sudo rm -rf resources/ public/
 
-    steps:
-        
     - name: Checkout code
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
 
@@ -26,4 +28,17 @@ jobs:
       with: 
         name: benchmarks-artifact
         path: ${{ github.workspace }}/public
-        
+    
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@d4b9b8ff72958532804b70bbe600ad43b36d5f2e  #v0.8.0
+      with:
+        ssh-private-key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}     
+
+    - name: Rsync to Server
+      run: |
+        rsync -rcl --delete ${{ github.workspace }}/public/ \
+              "${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:/var/www/nuxeo.com/benchmarks"
+
+              
+    
+    

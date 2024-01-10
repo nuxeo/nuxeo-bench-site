@@ -44,3 +44,36 @@ by developers for developers, the Nuxeo platform offers a modern
 architecture, a powerful plug-in model and top notch performance.
 
 More information on: <http://www.nuxeo.com/>
+
+
+# Nuxeo Benchmarks Build and Deploy Workflow
+
+This GitHub Actions workflow automates the build and deployment process for the Nuxeo Benchmarks site. It utilizes Hugo for site generation, uploads artifacts, and deploys the site to a specified server using rsync.
+
+## Workflow Overview:
+
+### 1. Clean Directory
+
+This step removes the existing "resources" and "public" directories to ensure a clean build.
+
+### 2. Checkout Code
+
+This step checks out the source code from the repository.
+
+### 3. Build Site with Hugo
+
+The Nuxeo Benchmarks site is built using Hugo with a specific theme and version.
+
+### 4. Upload Artifact
+
+The built site is uploaded as an artifact for further reference.
+
+### 5. Set up SSH
+
+This step configures the SSH agent with the private key required for server deployment.
+
+### 6. Rsync to Server
+
+The final step deploys the Nuxeo Benchmarks site to the specified server using rsync.
+
+

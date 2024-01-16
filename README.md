@@ -80,11 +80,11 @@ The final step deploys the Nuxeo Benchmarks site to the specified server using r
 
 The following variables are required for this workflow:
 
-- `SERVER_SSH_PRIVATE_KEY`: The private SSH key used for authentication with the deployment server.
+- `SERVER_SSH_PRIVATE_KEY`: The private SSH key used for authentication with the benchmarks deployment server.
 
-- `SERVER_USERNAME`: The username used to connect to the deployment server.
+- `SERVER_USERNAME`: The username used to connect to the benchmarks deployment server.
 
-- `SERVER_IP`: The IP address or hostname of the deployment server.
+- `SERVER_IP`: The IP address or hostname of the benchmarks deployment server.
 
 - 'Values for current Variables are kept in LastPass.'
 

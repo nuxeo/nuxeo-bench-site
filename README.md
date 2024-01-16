@@ -76,4 +76,24 @@ This step configures the SSH agent with the private key required for server depl
 
 The final step deploys the Nuxeo Benchmarks site to the specified server using rsync.
 
+## Variables
+
+The following variables are required for this workflow:
+
+- `SERVER_SSH_PRIVATE_KEY`: The private SSH key used for authentication with the deployment server.
+
+- `SERVER_USERNAME`: The username used to connect to the deployment server.
+
+- `SERVER_IP`: The IP address or hostname of the deployment server.
+
+- 'Values for current Variables are kept in LastPass.'
+
+## Usage
+
+Before running the workflow, ensure that the necessary secrets are added to your GitHub repository.
+
+1. Add `SERVER_SSH_PRIVATE_KEY`, `SERVER_USERNAME`, and `SERVER_IP` as secrets in the GitHub repository.
+
+2. Push changes to the `master` branch to trigger the workflow.
+
 

@@ -44,3 +44,56 @@ by developers for developers, the Nuxeo platform offers a modern
 architecture, a powerful plug-in model and top notch performance.
 
 More information on: <http://www.nuxeo.com/>
+
+
+# Nuxeo Benchmarks Build and Deploy Workflow
+
+This GitHub Actions workflow automates the build and deployment process for the Nuxeo Benchmarks site. It utilizes Hugo for site generation, uploads artifacts, and deploys the site to a specified server using rsync.
+
+## Workflow Overview:
+
+### 1. Clean Directory
+
+This step removes the existing "resources" and "public" directories to ensure a clean build.
+
+### 2. Checkout Code
+
+This step checks out the source code from the repository.
+
+### 3. Build Site with Hugo
+
+The Nuxeo Benchmarks site is built using Hugo with a specific theme and version.
+
+### 4. Upload Artifact
+
+The built site is uploaded as an artifact for further reference.
+
+### 5. Set up SSH
+
+This step configures the SSH agent with the private key required for server deployment.
+
+### 6. Rsync to Server
+
+The final step deploys the Nuxeo Benchmarks site to the specified server using rsync.
+
+## Variables
+
+The following variables are required for this workflow:
+
+- `SERVER_SSH_PRIVATE_KEY`: The private SSH key used for authentication with the benchmarks deployment server.
+
+- `SERVER_USERNAME`: The username used to connect to the benchmarks deployment server.
+
+- `SERVER_IP`: The IP address or hostname of the benchmarks deployment server.
+
+- 'Values for current Variables are kept in LastPass.'
+
+## Usage
+
+Before running the workflow, ensure that the necessary secrets are added to your GitHub repository.
+
+1. Add `SERVER_SSH_PRIVATE_KEY`, `SERVER_USERNAME`, and `SERVER_IP` as secrets in the GitHub repository.
+
+2. Push changes to the `master` branch to trigger the workflow.
+
+

@@ -1,0 +1,608 @@
+benchmark_date: 2024-12-02 03:30:51
+
+import_duration: 630.8
+import_avg: 210077.0
+import_rps: 0.0
+import_date: 2024-12-02 03:30:51
+import_start: 1733110251470
+import_end: 1733110882231
+import_count: 3
+import_percentError: 0.00
+import_error: 0
+import_waitforasync_name: "Wait For Async"
+import_waitforasync_avg: 6801.0
+import_generatedocumentsusingthreads_name: "Generate 100000 documents using 12 threads"
+import_generatedocumentsusingthreads_avg: 18719.0
+import_massimportwiththreads_name: "Mass import with 12 threads"
+import_massimportwiththreads_avg: 604711.0
+
+move_avg: 38816.8
+move_rps: 0.0
+move_user: 1
+move_date: 2024-12-02 03:41:40
+move_start: 1733110900755
+move_end: 1733111056517
+move_duration: 155.8
+move_count: 4
+move_percentError: 0.00
+move_error: 0
+move_createfolderasadmin_name: "Create Folder as admin"
+move_createfolderasadmin_avg: 31.0
+move_createfolderasadmin_std: 0
+move_createfolderasadmin_rps: 0.0
+move_createfolderasadmin_end: 1733110901426
+move_movedefaultdomainworkspacesbenchgatlingimporttodefaultdomainworkspacesbenchgatlingmove_name: "Move /default-domain/workspaces/Bench_Gatling/import to /default-domain/workspaces/Bench_Gatling/move"
+move_movedefaultdomainworkspacesbenchgatlingimporttodefaultdomainworkspacesbenchgatlingmove_avg: 72.0
+move_movedefaultdomainworkspacesbenchgatlingimporttodefaultdomainworkspacesbenchgatlingmove_std: 0
+move_movedefaultdomainworkspacesbenchgatlingimporttodefaultdomainworkspacesbenchgatlingmove_rps: 0.0
+move_movedefaultdomainworkspacesbenchgatlingimporttodefaultdomainworkspacesbenchgatlingmove_end: 1733110901501
+move_checkifdocumentexists_name: "Check if document exists"
+move_checkifdocumentexists_avg: 150.0
+move_checkifdocumentexists_std: 0
+move_checkifdocumentexists_rps: 0.0
+move_checkifdocumentexists_end: 1733110901374
+move_waitforasync_name: "Wait For Async"
+move_waitforasync_avg: 155014.0
+move_waitforasync_std: 0
+move_waitforasync_rps: 0.0
+move_waitforasync_end: 1733111056517
+
+bulk_duration: 298.7
+bulk_avg: 99399.7
+bulk_rps: 0.0
+bulk_date: 2024-12-02 03:45:37
+bulk_start: 1733111137211
+bulk_end: 1733111435878
+bulk_count: 3
+bulk_percentError: 0.00
+bulk_error: 0
+bulk_updatedocuments_name: "Update documents"
+bulk_updatedocuments_avg: 152.0
+bulk_waitforasync_name: "Wait For Async"
+bulk_waitforasync_avg: 4882.0
+bulk_waitforactiontobecompleted_name: "Wait for action to be completed"
+bulk_waitforactiontobecompleted_avg: 293165.0
+
+mbulk_avg: 149.0
+mbulk_rps: 211.0
+mbulk_std: 110
+mbulk_min: 4
+mbulk_p50: 131
+mbulk_p95: 341
+mbulk_max: 528
+mbulk_user: 32
+mbulk_date: 2024-12-02 03:53:08
+mbulk_start: 1733111588772
+mbulk_end: 1733111771324
+mbulk_duration: 182.6
+mbulk_count: 38523
+mbulk_percentError: 0.00
+mbulk_error: 0
+mbulk_updatedocuments_name: "Update documents"
+mbulk_updatedocuments_avg: 56.3
+mbulk_updatedocuments_std: 41
+mbulk_updatedocuments_min: 4
+mbulk_updatedocuments_p50: 44
+mbulk_updatedocuments_p95: 148
+mbulk_updatedocuments_max: 335
+mbulk_updatedocuments_rps: 105.5
+mbulk_waitforactiontobecompleted_name: "Wait for action to be completed"
+mbulk_waitforactiontobecompleted_avg: 241.7
+mbulk_waitforactiontobecompleted_std: 73
+mbulk_waitforactiontobecompleted_min: 22
+mbulk_waitforactiontobecompleted_p50: 237
+mbulk_waitforactiontobecompleted_p95: 359
+mbulk_waitforactiontobecompleted_max: 528
+mbulk_waitforactiontobecompleted_rps: 105.5
+
+exportcsv_duration: 58.3
+exportcsv_avg: 28882.0
+exportcsv_rps: 0.0
+exportcsv_date: 2024-12-02 03:44:27
+exportcsv_start: 1733111067766
+exportcsv_end: 1733111126042
+exportcsv_count: 2
+exportcsv_percentError: 0.00
+exportcsv_error: 0
+exportcsv_exportdocumentsincsvfile_name: "Export documents in CSV file"
+exportcsv_exportdocumentsincsvfile_avg: 173.0
+exportcsv_exportdocumentsincsvfile_end: 1733111068378
+exportcsv_waitforactiontobecompleted_name: "Wait for action to be completed"
+exportcsv_waitforactiontobecompleted_avg: 57591.0
+exportcsv_waitforactiontobecompleted_end: 1733111126042
+
+create_avg: 15.0
+create_rps: 1870.2
+create_std: 4
+create_min: 8
+create_p50: 14
+create_p95: 19
+create_max: 163
+create_user: 32
+create_date: 2024-12-02 03:51:21
+create_start: 1733111481638
+create_end: 1733111528841
+create_duration: 47.2
+create_count: 88278
+create_percentError: 0.00
+create_error: 0
+create_createfile_name: "Create File"
+create_createfile_avg: 15.0
+create_createfile_std: 4
+create_createfile_min: 8
+create_createfile_p50: 14
+create_createfile_p95: 19
+create_createfile_max: 163
+create_createfile_rps: 1870.2
+
+createasync_avg: 20498.0
+createasync_duration: 21.0
+createasync_count: 1
+createasync_percentError: 0.00
+createasync_error: 0
+createasync_end: 1733111570247
+
+nav_avg: 5.0
+nav_rps: 4866.5
+nav_std: 1
+nav_min: 2
+nav_p50: 5
+nav_p95: 8
+nav_max: 203
+nav_user: 48
+nav_date: 2024-12-02 04:00:27
+nav_start: 1733112027235
+nav_end: 1733112209607
+nav_duration: 182.4
+nav_count: 887506
+nav_percentError: 0.00
+nav_error: 0
+nav_getdocumentfolder_name: "Get document folder"
+nav_getdocumentfolder_avg: 4.0
+nav_getdocumentfolder_std: 1
+nav_getdocumentfolder_min: 2
+nav_getdocumentfolder_p50: 4
+nav_getdocumentfolder_p95: 7
+nav_getdocumentfolder_max: 62
+nav_getdocumentfolder_rps: 485.8
+nav_getdocumentdconly_name: "Get document dc only"
+nav_getdocumentdconly_avg: 4.7
+nav_getdocumentdconly_std: 1
+nav_getdocumentdconly_min: 2
+nav_getdocumentdconly_p50: 4
+nav_getdocumentdconly_p95: 7
+nav_getdocumentdconly_max: 105
+nav_getdocumentdconly_rps: 487.1
+nav_getdocument_name: "Get document"
+nav_getdocument_avg: 4.9
+nav_getdocument_std: 1
+nav_getdocument_min: 2
+nav_getdocument_p50: 4
+nav_getdocument_p95: 7
+nav_getdocument_max: 202
+nav_getdocument_rps: 1460.3
+nav_getdocumentwithacl_name: "Get document with acl"
+nav_getdocumentwithacl_avg: 4.9
+nav_getdocumentwithacl_std: 1
+nav_getdocumentwithacl_min: 2
+nav_getdocumentwithacl_p50: 4
+nav_getdocumentwithacl_p95: 7
+nav_getdocumentwithacl_max: 202
+nav_getdocumentwithacl_rps: 487.2
+nav_getdocumentwithversionlabel_name: "Get document with versionLabel"
+nav_getdocumentwithversionlabel_avg: 4.9
+nav_getdocumentwithversionlabel_std: 1
+nav_getdocumentwithversionlabel_min: 2
+nav_getdocumentwithversionlabel_p50: 4
+nav_getdocumentwithversionlabel_p95: 7
+nav_getdocumentwithversionlabel_max: 89
+nav_getdocumentwithversionlabel_rps: 244.1
+nav_getdocumentwiththumbnail_name: "Get document with thumbnail"
+nav_getdocumentwiththumbnail_avg: 4.9
+nav_getdocumentwiththumbnail_std: 1
+nav_getdocumentwiththumbnail_min: 2
+nav_getdocumentwiththumbnail_p50: 4
+nav_getdocumentwiththumbnail_p95: 7
+nav_getdocumentwiththumbnail_max: 202
+nav_getdocumentwiththumbnail_rps: 488.5
+nav_getdocumentwithproperties_name: "Get document with properties"
+nav_getdocumentwithproperties_avg: 5.2
+nav_getdocumentwithproperties_std: 1
+nav_getdocumentwithproperties_min: 2
+nav_getdocumentwithproperties_p50: 5
+nav_getdocumentwithproperties_p95: 8
+nav_getdocumentwithproperties_max: 170
+nav_getdocumentwithproperties_rps: 485.0
+nav_getdocumentwithbreadcrumb_name: "Get document with breadcrumb"
+nav_getdocumentwithbreadcrumb_avg: 5.7
+nav_getdocumentwithbreadcrumb_std: 1
+nav_getdocumentwithbreadcrumb_min: 3
+nav_getdocumentwithbreadcrumb_p50: 5
+nav_getdocumentwithbreadcrumb_p95: 8
+nav_getdocumentwithbreadcrumb_max: 203
+nav_getdocumentwithbreadcrumb_rps: 487.5
+nav_getdocumentwithlock_name: "Get document with lock"
+nav_getdocumentwithlock_avg: 6.7
+nav_getdocumentwithlock_std: 1
+nav_getdocumentwithlock_min: 4
+nav_getdocumentwithlock_p50: 6
+nav_getdocumentwithlock_p95: 9
+nav_getdocumentwithlock_max: 68
+nav_getdocumentwithlock_rps: 241.1
+
+navjsf_avg: 
+navjsf_rps: 
+navjsf_std: 
+navjsf_min: 
+navjsf_p50: 
+navjsf_p95: 
+navjsf_max: 
+navjsf_user: 
+navjsf_date: 
+navjsf_start: 
+navjsf_end: 
+navjsf_duration: 
+navjsf_count: 
+navjsf_percentError: 
+navjsf_error: 
+
+search_avg: 35.0
+search_rps: 1346.4
+search_std: 17
+search_min: 7
+search_p50: 33
+search_p95: 46
+search_max: 1046
+search_user: 48
+search_date: 2024-12-02 04:04:10
+search_start: 1733112250433
+search_end: 1733112432823
+search_duration: 182.4
+search_count: 245572
+search_percentError: 0.00
+search_error: 0
+search_searchfolderssorted_name: "Search folders sorted"
+search_searchfolderssorted_avg: 32.0
+search_searchfolderssorted_std: 15
+search_searchfolderssorted_min: 7
+search_searchfolderssorted_p50: 30
+search_searchfolderssorted_p95: 41
+search_searchfolderssorted_max: 623
+search_searchfolderssorted_rps: 134.8
+search_searchonpath_name: "Search on path"
+search_searchonpath_avg: 33.4
+search_searchonpath_std: 13
+search_searchonpath_min: 8
+search_searchonpath_p50: 32
+search_searchonpath_p95: 42
+search_searchonpath_max: 476
+search_searchonpath_rps: 133.9
+search_searchfulltext_name: "Search fulltext"
+search_searchfulltext_avg: 34.4
+search_searchfulltext_std: 14
+search_searchfulltext_min: 8
+search_searchfulltext_p50: 33
+search_searchfulltext_p95: 44
+search_searchfulltext_max: 635
+search_searchfulltext_rps: 808.5
+search_searchall_name: "Search All"
+search_searchall_avg: 35.3
+search_searchall_std: 16
+search_searchall_min: 10
+search_searchall_p50: 34
+search_searchall_p95: 44
+search_searchall_max: 629
+search_searchall_rps: 134.3
+search_searchallsorted_name: "Search All sorted"
+search_searchallsorted_avg: 42.8
+search_searchallsorted_std: 29
+search_searchallsorted_min: 15
+search_searchallsorted_p50: 40
+search_searchallsorted_p95: 53
+search_searchallsorted_max: 1046
+search_searchallsorted_rps: 134.8
+
+
+bench_avg: 7.3
+bench_rps: 88.4
+bench_std: 8
+bench_min: 3
+bench_p50: 5
+bench_p95: 25
+bench_max: 281
+bench_user: 85
+bench_date: 2024-12-02 04:07:35
+bench_start: 1733112455430
+bench_end: 1733112637576
+bench_duration: 182.1
+bench_count: 16095
+bench_percentError: 0.00
+bench_error: 0
+bench_getdocumentfolder_name: "Get document folder"
+bench_getdocumentfolder_avg: 4.3
+bench_getdocumentfolder_std: 4
+bench_getdocumentfolder_min: 3
+bench_getdocumentfolder_p50: 4
+bench_getdocumentfolder_p95: 5
+bench_getdocumentfolder_max: 93
+bench_getdocumentfolder_rps: 8.1
+bench_getdocumentdconly_name: "Get document dc only"
+bench_getdocumentdconly_avg: 4.9
+bench_getdocumentdconly_std: 1
+bench_getdocumentdconly_min: 3
+bench_getdocumentdconly_p50: 5
+bench_getdocumentdconly_p95: 6
+bench_getdocumentdconly_max: 18
+bench_getdocumentdconly_rps: 8.1
+bench_getdocumentwithacl_name: "Get document with acl"
+bench_getdocumentwithacl_avg: 4.9
+bench_getdocumentwithacl_std: 0
+bench_getdocumentwithacl_min: 3
+bench_getdocumentwithacl_p50: 5
+bench_getdocumentwithacl_p95: 6
+bench_getdocumentwithacl_max: 18
+bench_getdocumentwithacl_rps: 7.8
+bench_getdocument_name: "Get document"
+bench_getdocument_avg: 5.1
+bench_getdocument_std: 4
+bench_getdocument_min: 3
+bench_getdocument_p50: 5
+bench_getdocument_p95: 6
+bench_getdocument_max: 232
+bench_getdocument_rps: 23.2
+bench_getdocumentwiththumbnail_name: "Get document with thumbnail"
+bench_getdocumentwiththumbnail_avg: 5.1
+bench_getdocumentwiththumbnail_std: 6
+bench_getdocumentwiththumbnail_min: 3
+bench_getdocumentwiththumbnail_p50: 5
+bench_getdocumentwiththumbnail_p95: 6
+bench_getdocumentwiththumbnail_max: 213
+bench_getdocumentwiththumbnail_rps: 7.8
+bench_getdocumentwithversionlabel_name: "Get document with versionLabel"
+bench_getdocumentwithversionlabel_avg: 5.2
+bench_getdocumentwithversionlabel_std: 7
+bench_getdocumentwithversionlabel_min: 3
+bench_getdocumentwithversionlabel_p50: 5
+bench_getdocumentwithversionlabel_p95: 6
+bench_getdocumentwithversionlabel_max: 213
+bench_getdocumentwithversionlabel_rps: 4.0
+bench_getdocumentwithproperties_name: "Get document with properties"
+bench_getdocumentwithproperties_avg: 5.6
+bench_getdocumentwithproperties_std: 9
+bench_getdocumentwithproperties_min: 3
+bench_getdocumentwithproperties_p50: 5
+bench_getdocumentwithproperties_p95: 6
+bench_getdocumentwithproperties_max: 233
+bench_getdocumentwithproperties_rps: 8.0
+bench_getdocumentwithbreadcrumb_name: "Get document with breadcrumb"
+bench_getdocumentwithbreadcrumb_avg: 5.7
+bench_getdocumentwithbreadcrumb_std: 6
+bench_getdocumentwithbreadcrumb_min: 4
+bench_getdocumentwithbreadcrumb_p50: 5
+bench_getdocumentwithbreadcrumb_p95: 7
+bench_getdocumentwithbreadcrumb_max: 214
+bench_getdocumentwithbreadcrumb_rps: 8.3
+bench_getdocumentwithlock_name: "Get document with lock"
+bench_getdocumentwithlock_avg: 6.7
+bench_getdocumentwithlock_std: 1
+bench_getdocumentwithlock_min: 4
+bench_getdocumentwithlock_p50: 7
+bench_getdocumentwithlock_p95: 8
+bench_getdocumentwithlock_max: 20
+bench_getdocumentwithlock_rps: 4.0
+bench_updatefile_name: "Update File"
+bench_updatefile_avg: 25.8
+bench_updatefile_std: 8
+bench_updatefile_min: 11
+bench_updatefile_p50: 25
+bench_updatefile_p95: 28
+bench_updatefile_max: 281
+bench_updatefile_rps: 9.1
+
+update_avg: 39.1
+update_rps: 792.9
+update_std: 8
+update_min: 11
+update_p50: 39
+update_p95: 48
+update_max: 304
+update_user: 32
+update_date: 2024-12-02 03:56:30
+update_start: 1733111790730
+update_end: 1733111973146
+update_duration: 182.4
+update_count: 144640
+update_percentError: 0.00
+update_error: 0
+update_updatefile_name: "Update File"
+update_updatefile_avg: 39.1
+update_updatefile_std: 8
+update_updatefile_min: 11
+update_updatefile_p50: 39
+update_updatefile_p95: 48
+update_updatefile_max: 304
+update_updatefile_rps: 792.9
+
+updateasync_avg: 13732.0
+updateasync_duration: 14.2
+updateasync_count: 1
+updateasync_percentError: 0.00
+updateasync_error: 0
+
+crud_avg: 17.0
+crud_rps: 1819.6
+crud_std: 9
+crud_min: 3
+crud_p50: 16
+crud_p95: 27
+crud_max: 921
+crud_user: 32
+crud_date: 2024-12-02 04:11:00
+crud_start: 1733112660731
+crud_end: 1733112783228
+crud_duration: 122.5
+crud_count: 222904
+crud_percentError: 0.00
+crud_error: 8
+crud_getfile_name: "Get File"
+crud_getfile_avg: 9.4
+crud_getfile_std: 2
+crud_getfile_min: 3
+crud_getfile_p50: 9
+crud_getfile_p95: 13
+crud_getfile_max: 81
+crud_getfile_rps: 454.8
+crud_createfile_name: "Create File"
+crud_createfile_avg: 16.2
+crud_createfile_std: 5
+crud_createfile_min: 9
+crud_createfile_p50: 16
+crud_createfile_p95: 20
+crud_createfile_max: 215
+crud_createfile_rps: 454.9
+crud_updatefile_name: "Update File"
+crud_updatefile_avg: 16.8
+crud_updatefile_std: 4
+crud_updatefile_min: 9
+crud_updatefile_p50: 16
+crud_updatefile_p95: 21
+crud_updatefile_max: 136
+crud_updatefile_rps: 454.9
+crud_deletefile_name: "Delete File"
+crud_deletefile_avg: 25.5
+crud_deletefile_std: 12
+crud_deletefile_min: 9
+crud_deletefile_p50: 25
+crud_deletefile_p95: 30
+crud_deletefile_max: 921
+crud_deletefile_rps: 455.0
+
+crudasync_avg: 877637.0
+crudasync_duration: 878.1
+crudasync_count: 1
+crudasync_percentError: 0.00
+crudasync_error: 0
+crudasync_end: 1733113683116
+
+reindex_avg: 20877.3
+reindex_rps: 0.0
+reindex_user: 1
+reindex_date: 2024-12-02 04:28:22
+reindex_start: 1733113702034
+reindex_end: 1733113765197
+reindex_duration: 63.2
+reindex_count: 3
+reindex_percentError: 0.00
+reindex_error: 0
+reindex_getreindexstatus_name: "Get Reindex Status"
+reindex_getreindexstatus_avg: 12.0
+reindex_getreindexstatus_std: 0
+reindex_getreindexstatus_rps: 0.0
+reindex_getreindexstatus_end: 1733113765197
+reindex_submitreindex_name: "Submit Reindex"
+reindex_submitreindex_avg: 1052.0
+reindex_submitreindex_std: 0
+reindex_submitreindex_rps: 0.0
+reindex_submitreindex_end: 1733113703545
+reindex_reindex_name: "Reindex"
+reindex_reindex_avg: 61568.0
+reindex_reindex_std: 0
+reindex_reindex_rps: 0.0
+reindex_reindex_end: 1733113765177
+
+cleanup_avg: 5006.4
+cleanup_rps: 0.2
+cleanup_user: 1
+cleanup_date: 2024-12-02 04:29:37
+cleanup_start: 1733113777305
+cleanup_end: 1733116296924
+cleanup_duration: 2519.6
+cleanup_count: 503
+cleanup_percentError: 0.00
+cleanup_error: 0
+cleanup_deleteuser_name: "Delete user"
+cleanup_deleteuser_avg: 14.2
+cleanup_deleteuser_std: 1
+cleanup_deleteuser_rps: 0.2
+cleanup_deleteuser_end: 1733116296905
+cleanup_deletegroup_name: "Delete group"
+cleanup_deletegroup_avg: 18.0
+cleanup_deletegroup_std: 0
+cleanup_deletegroup_rps: 0.0
+cleanup_deletegroup_end: 1733116296924
+cleanup_permanentlydeletefolder_name: "Permanently delete folder"
+cleanup_permanentlydeletefolder_avg: 7749.0
+cleanup_permanentlydeletefolder_std: 0
+cleanup_permanentlydeletefolder_rps: 0.0
+cleanup_permanentlydeletefolder_end: 1733113785750
+cleanup_waitforasync_name: "Wait For Async"
+cleanup_waitforasync_avg: 2503342.0
+cleanup_waitforasync_std: 0
+cleanup_waitforasync_rps: 0.0
+cleanup_waitforasync_end: 1733116289109
+
+fullgc_avg: 43026.2
+fullgc_rps: 0.0
+fullgc_user: 1
+fullgc_date: 2024-12-02 05:11:55
+fullgc_start: 1733116315904
+fullgc_end: 1733116574745
+fullgc_duration: 258.8
+fullgc_count: 6
+fullgc_percentError: 0.00
+fullgc_error: 0
+fullgc_getversionfullgcstatus_name: "Get Version Full GC Status"
+fullgc_getversionfullgcstatus_avg: 7.0
+fullgc_getversionfullgcstatus_std: 0
+fullgc_getversionfullgcstatus_rps: 0.0
+fullgc_getversionfullgcstatus_end: 1733116375810
+fullgc_getbinaryfullgcstatus_name: "Get Binary Full GC Status"
+fullgc_getbinaryfullgcstatus_avg: 8.0
+fullgc_getbinaryfullgcstatus_std: 0
+fullgc_getbinaryfullgcstatus_rps: 0.0
+fullgc_getbinaryfullgcstatus_end: 1733116574745
+fullgc_submitbinaryfullgc_name: "Submit Binary Full GC"
+fullgc_submitbinaryfullgc_avg: 25.0
+fullgc_submitbinaryfullgc_std: 0
+fullgc_submitbinaryfullgc_rps: 0.0
+fullgc_submitbinaryfullgc_end: 1733116375986
+fullgc_submitversionfullgc_name: "Submit Version Full GC"
+fullgc_submitversionfullgc_avg: 157.0
+fullgc_submitversionfullgc_std: 0
+fullgc_submitversionfullgc_rps: 0.0
+fullgc_submitversionfullgc_end: 1733116316514
+fullgc_versionfullgc_name: "Version Full GC"
+fullgc_versionfullgc_avg: 59213.0
+fullgc_versionfullgc_std: 0
+fullgc_versionfullgc_rps: 0.0
+fullgc_versionfullgc_end: 1733116375795
+fullgc_binaryfullgc_name: "Binary Full GC"
+fullgc_binaryfullgc_avg: 198747.0
+fullgc_binaryfullgc_std: 0
+fullgc_binaryfullgc_rps: 0.0
+fullgc_binaryfullgc_end: 1733116574736
+
+build_number: platform-801
+service: benchmark-801
+docker_image: docker-private.packages.nuxeo.com/nuxeo/nuxeo-benchmark:2023.23.3
+build_url: "https://jenkins.platform.dev.nuxeo.com/job/nuxeo/job/lts/job/nuxeo-benchmark/801/"
+job_name: "nuxeo/lts/nuxeo-benchmark"
+dbprofile: "mongodb"
+bench_suite: "24w49 CI Weekly Benchmark - Build 2023.x"
+nuxeonodes: 2
+esnodes: 1
+classifier: ""
+distribution: "2023.23.3"
+default_category: "continuous"
+kafka: true
+import_docs: 100000
+benchmark_duration: 6322
+reindex_docs: 363730
+versions_total: 21303
+versions_retained: 35
+
+binaries_total: 12780
+binaries_retained: 0
+
+import_dps: 158.5
+reindex_dps: 5907.8

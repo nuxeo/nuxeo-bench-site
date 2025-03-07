@@ -54,8 +54,4 @@ jobs:
     - name: Rsync to Server
       run: |
         rsync -rcl --delete ${{ github.workspace }}/public/ \
-              "$lethe.nuxeo.com:/var/www/nuxeo.com/benchmarks"
-
-              
-    
-    
+              "lethe.nuxeo.com:/var/www/nuxeo.com/benchmarks"

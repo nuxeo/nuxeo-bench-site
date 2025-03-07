@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:  # Manual triggering
 jobs:
   build-and-deploy:
     runs-on: benchmarks

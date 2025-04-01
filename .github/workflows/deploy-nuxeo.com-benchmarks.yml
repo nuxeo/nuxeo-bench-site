@@ -9,7 +9,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.ref_name == 'master' || 'development' }}
+      name: ${{ github.ref_name == 'master' && 'master' || 'development' }}
    
     steps: 
     - name: Install SSH key for Bastion

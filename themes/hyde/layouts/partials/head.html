@@ -3,7 +3,7 @@
   <head>
     <link href="http://gmpg.org/xfn/11" rel="profile" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    {{ .Hugo.Generator }}
+    {{ hugo.Generator }}
 
     <!-- Enable responsiveness on mobile devices-->
     <meta
@@ -92,7 +92,7 @@
 
     <!-- RSS -->
     <link
-      href="{{ .RSSLink }}"
+      href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}"
       rel="alternate"
       type="application/rss+xml"
       title="{{ .Site.Title }}"

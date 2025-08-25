@@ -537,7 +537,7 @@ service: benchmark-1055
 docker_image: docker.platform.dev.nuxeo.com/nuxeo/nuxeo-benchmark:2023.35.1-PR-3612-BUILD-12
 build_url: "https://jenkins.platform.dev.nuxeo.com/job/nuxeo/job/lts/job/nuxeo-benchmark/1055/"
 job_name: "nuxeo/lts/nuxeo-benchmark"
-dbprofile: "mongodb"
+dbprofile: "pgsql"
 bench_suite: "task-NXENG-79-run-ci-benchmark-against-nco"
 nuxeonodes: 2
 esnodes: 1

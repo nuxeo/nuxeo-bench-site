@@ -1,5 +1,5 @@
 ---
-title: "mongodb 2 platform-1055"
+title: "pgsql 2 platform-1055"
 bench_suite: "task-NXENG-79-run-ci-benchmark-against-nco"
 build_number: "platform-1055"
 dbprofile: "pgsql"

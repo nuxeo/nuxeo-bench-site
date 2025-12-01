@@ -46,7 +46,7 @@ jobs:
         args: -t hyde
 
     - name: upload artificate
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with: 
         name: benchmarks-artifact
         path: ${{ github.workspace }}/public

@@ -1,10 +1,68 @@
 ---
-title: "Changelog"
+title: "Changes"
 slug: "changes"
+layout: "post"
 ---
 
-Here are some import changes on the Benchmark infrastructure and tests that
-should be take in account to interpret performance evolution.
+Here are some important changes on the benchmark infrastructure and simulations that
+should be taken into account to interpret performance evolution.
+
+## Simulation Changes
+
+### 2026-03-31 Bench various enrichers (NXP-33520)
+
+#### Sim30Navigation
+
+The navigation simulation now benchmarks a much wider range of enrichers.
+Previously, the simulation tested 7 request types; it now tests 20, covering most available document enrichers.
+
+**Distribution changes:**
+
+| Request | Before | After |
+|---|---|---|
+| Get document | 30% | 13% |
+| Get document folder | 10% | 10% |
+| Get document dc only | 10% | 10% |
+| Get document with acl | 10% | 3% |
+| Get document with breadcrumb | 10% | 3% |
+| Get document with thumbnail | 10% | 3% |
+| Get document with properties | 10% | 10% |
+| Get document with versionLabel | 5% | 3% |
+| Get document with lock | 5% | 3% |
+| Get document with audit | — | 3% |
+| Get document with collections and favorites | — | 3% |
+| Get document with firstAccessibleAncestor | — | 3% |
+| Get document folder with hasContent | — | 3% |
+| Get document folder with hasFolderishChild | — | 3% |
+| Get document with pendingTasks, runnableWorkflows, runningWorkflows | — | 3% |
+| Get document with permissions | — | 3% |
+| Get document with preview | — | 3% |
+| Get document with publications | — | 3% |
+| Get document with renditions | — | 3% |
+| Get document with subscribedNotifications | — | 3% |
+| Get document with subtypes | — | 3% |
+| Get document with tags | — | 3% |
+| Get document folder with userPreferences | — | 3% |
+
+**Expected metric impact:** The overall Sim30Navigation response times will change because the request
+mix is now more diverse. Enrichers like `audit`, `pendingTasks`, `runnableWorkflows`, or `permissions`
+add server-side overhead compared to a plain document fetch.
+Direct before/after comparison of this simulation's aggregate metrics with prior benchmarks is therefore not meaningful.
+
+#### Sim20CreateDocuments
+
+A call to `addPreferencesOnParent()` is now executed after each document creation.
+This sets user preferences on the parent folder via `PUT /api/v1/{parentPath}/@preferences`.
+
+**Expected metric impact:**
+- Creation time roughly doubles (~1min 30s → ~3min).
+- Creation rate drops from 1300–1550 docs/s to 900–1150 docs/s.
+
+This additional overhead is expected and reflects a more realistic workload where user preferences are set during content creation.
+
+---
+
+## Infrastructure Changes
 
 - 2022-11-21 Use MongoDB 6.0.2 and Kafka 3.3.1 for LTS 2023
 

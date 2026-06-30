@@ -9,6 +9,14 @@ should be taken into account to interpret performance evolution.
 
 ## Simulation Changes
 
+### 2026-06-30 Switch to clean thumbnail disable mechanism (NXP-33377)
+
+Thumbnail auto-generation was already disabled on the benchmark instance, but in a brutal way: the `perf` server template shipped a `no-thumbnail-config.xml` contribution that forcibly disabled the `updateThumbListener` and `checkBlobUpdate` event listeners.
+Nuxeo now exposes a supported toggle: a new `nuxeo.thumbnail.enabled` configuration property (and a matching `thumbnailConfiguration` extension point on the `ThumbnailService`) to disable thumbnail auto-generation per repository.
+The `perf` template has been migrated to `nuxeo.thumbnail.enabled=false` and the listener override has been removed.
+
+**Expected metric impact:** Negligible, and if any, slightly negative on write paths: the `updateThumbListener` and `checkBlobUpdate` listeners are now actually invoked on document events and short-circuit internally, instead of being completely skipped by the event service.
+
 ### 2026-03-31 Bench various enrichers (NXP-33520)
 
 #### Sim30Navigation

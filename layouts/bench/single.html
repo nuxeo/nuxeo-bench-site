@@ -12,6 +12,9 @@
           {{ if and (ne (index .Site.Data.bench $data).kafka nil) (index .Site.Data.bench $data).kafka }}
           <span class="tag kafka">Kafka</span>
           {{ end }}
+          {{ if and (ne (index .Site.Data.bench $data).versitygw nil) (index .Site.Data.bench $data).versitygw }}
+          <span class="tag versitygw">VersityGW</span>
+          {{ end }}
         </h1>
         <p class="is-white">
           {{ .Date.Format "Mon, Jan 2, 2006" }}

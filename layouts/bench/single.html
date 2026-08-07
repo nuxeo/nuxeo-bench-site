@@ -293,6 +293,43 @@
         </dd>
       </dl>
 
+      {{ if ne (index .Site.Data.bench $data).setpref_duration nil }}
+      <a name="setpref" class="suite"></a>
+      <h3>Set user preferences using REST</h3>
+      <div>This simulation sets user preferences on all documents previously created, exercising the DirectoryCache invalidation path (pub/sub over Kafka) under concurrent load.</div>
+      <dl>
+        <dt>Throughput sync</dt>
+        <dd class="dps">{{ (index .Site.Data.bench $data).setpref_rps }}</dd>
+        <dt>Response time</dt>
+        <dd><span class="timems">{{ (index .Site.Data.bench $data).setpref_avg }}</span> <span
+          class="stddev">{{ (index .Site.Data.bench $data).setpref_std }}</span><br>
+          <div class="pill"><span>min:</span>{{ (index .Site.Data.bench $data).setpref_min }}</div>
+          <div class="pill"><span>p50:</span>{{ (index .Site.Data.bench $data).setpref_p50 }}</div>
+          <div class="pill"><span>p95:</span>{{ (index .Site.Data.bench $data).setpref_p95 }}</div>
+        </dd>
+        <dt>Preferences set</dt>
+        <dd>{{ (index .Site.Data.bench $data).setpref_count }}</dd>
+        <dt>Error</dt>
+        <dd class="pcterr">{{ (index .Site.Data.bench $data).setpref_percentError }}</dd>
+        <dt>Concurrency</dt>
+        <dd>{{ (index .Site.Data.bench $data).setpref_user }}</dd>
+        <dt>Duration sync</dt>
+        <dd class="times">{{ (index .Site.Data.bench $data).setpref_duration }}</dd>
+        <dt>Reports</dt>
+        <dd>
+          {{ if ne (index .Site.Data.bench $data).setpref_end nil }}
+          <a class="tag" target="_blank"
+             href="{{ $datadog_url }}?from_ts={{ (index .Site.Data.bench $data).setpref_start }}&to_ts={{ (index .Site.Data.bench $data).setpref_end }}&live=false">» Datadog monitoring</a>
+          {{ else }}
+          <a class="tag" target="_blank"
+          href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim27setpreferences/overview/index.html">» Overview and monitoring</a>
+          {{ end }}
+          <a class="tag" target="_blank"
+          href="/build/{{ (index .Site.Data.bench $data).build_number }}/archive/reports/sim27setpreferences/detail/index.html">» Gatling report</a>
+        </dd>
+      </dl>
+      {{ end }}
+
       <a name="read" class="suite"></a>
       <h3>Read using REST</h3>
       <div>This simulation reads random documents and folders with different kind of metadata.</div>

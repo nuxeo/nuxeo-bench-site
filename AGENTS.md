@@ -41,7 +41,7 @@ Detailed reports (Gatling HTML reports, monitoring dashboards) are **not** store
 
 ## Naming convention in data.yml
 
-Each simulation contributes a group of keys prefixed by its short name, e.g. `import_`, `move_`, `bulk_`, `mbulk_`, `create_`, `nav_` (Read), `navjsf_`, `search_`, `update_`, `crud_`, `exportcsv_`, `bench_` (mixed actions), `reindex_`, `cleanup_`, `fullgc_`.
+Each simulation contributes a group of keys prefixed by its short name, e.g. `import_`, `move_`, `bulk_`, `mbulk_`, `create_`, `setpref_`, `nav_` (Read), `navjsf_`, `search_`, `update_`, `crud_`, `exportcsv_`, `bench_` (mixed actions), `reindex_`, `cleanup_`, `fullgc_`.
 
 Common suffixes per simulation prefix:
 - `_duration` — total wall-clock duration of the simulation, in **seconds**.
@@ -100,6 +100,7 @@ Summary of simulations and their corresponding data.yml prefix:
 | Multi bulk update | `mbulk_` | Many small Bulk Service commands on random folders |
 | CSV export | `exportcsv_` | Bulk Service export of imported docs to CSV |
 | Create document (REST) | `create_` / `createasync_` | No attachment, from CSV |
+| Set user preferences (REST) | `setpref_` | Runs after create; exercises DirectoryCache invalidation over Kafka pub/sub under concurrent load. Not shown in Overview table. |
 | Read (REST) | `nav_` | Random folders/docs, various metadata |
 | Navigation (JSF) | `navjsf_` | Web UI navigation, optional/legacy |
 | Search (REST) | `search_` | Fulltext + NXQL search |

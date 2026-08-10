@@ -9,6 +9,10 @@ should be taken into account to interpret performance evolution.
 
 ## Simulation Changes
 
+### 2026-08-10 New Sim27SetPreferences simulation (NXP-33855)
+
+SetPreferences used to be done inline in Sim20CreateDocuments (see NXP-33520), which doubled the request count reported for that simulation, since it fired one extra request per document created. Splitting it into its own simulation (NXP-33855) restores Sim20CreateDocuments's request count to exactly the number of documents created again, comparable with LTS 2023 (which never had this extra request), while still measuring and reporting on the preferences update itself, on its own.
+
 ### 2026-06-30 Switch to clean thumbnail disable mechanism (NXP-33377)
 
 Thumbnail auto-generation was already disabled on the benchmark instance, but in a brutal way: the `perf` server template shipped a `no-thumbnail-config.xml` contribution that forcibly disabled the `updateThumbListener` and `checkBlobUpdate` event listeners.

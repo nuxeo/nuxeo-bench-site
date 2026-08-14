@@ -76,6 +76,19 @@ This additional overhead is expected and reflects a more realistic workload wher
 
 ## Infrastructure Changes
 
+- 2026-08-14 Use Versity S3 Gateway (VersityGW) as default local object store in GKE benchmark cluster (NXP-33841)
+
+  The benchmark pipeline previously read and wrote binary objects to a real AWS S3 bucket (us-east-1) from a GCP cluster, making cross-cloud network latency the dominant bottleneck during blob-heavy phases.
+  VersityGW is now the default: a Versity S3-compatible gateway is deployed co-located in the benchmark Kubernetes namespace and the Nuxeo S3 binary manager is configured to point to it.
+
+  **Expected metric impact:**
+  - **Mass import:** significant throughput increase as blob upload latency drops from cross-cloud (tens of ms) to intra-cluster (sub-ms).
+  - **Full GC:** faster binary orphan GC pass as blob existence checks and deletions are served locally instead of over the AWS S3 API.
+
+  Direct comparison of Mass import and Full GC metrics with prior runs not using VersityGW is therefore not meaningful.
+
+  Fixed versions: 2025.x, 2027.x.
+
 - 2022-11-21 Use MongoDB 6.0.2 and Kafka 3.3.1 for LTS 2023
 
 

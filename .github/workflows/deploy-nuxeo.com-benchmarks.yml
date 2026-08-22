@@ -36,7 +36,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no lethe.nuxeo.com "sudo rm -rf resources/ public/"
 
     - name: Checkout code
-      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #v6.0.2
 
     - name: Build Site
       uses: chabad360/hugo-actions@3a5b10adf0b017f695597e22ebcb79e40fd6cb4e #v2

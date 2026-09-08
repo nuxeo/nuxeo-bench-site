@@ -13,7 +13,7 @@ jobs:
    
     steps: 
     - name: Install SSH key for Bastion
-      uses: shimataro/ssh-key-action@d4fffb50872869abe2d9a9098a6d9c5aa7d16be4
+      uses: shimataro/ssh-key-action@6b84f2e793b32fa0b03a379cadadec75cc539391
       with:
         key: ${{ secrets.DEV_TOOLS_BASTION_PRIVATE_KEY }}
         name: id_rsa-bastion
@@ -21,7 +21,7 @@ jobs:
         config: ${{ secrets.CONFIG }}
   
     - name: Install SSH key of Lethe server
-      uses: shimataro/ssh-key-action@d4fffb50872869abe2d9a9098a6d9c5aa7d16be4
+      uses: shimataro/ssh-key-action@6b84f2e793b32fa0b03a379cadadec75cc539391
       with:
         key: ${{ secrets.DEV_TOOLS_EC2_PRIVATE_KEY }}
         name: id_rsa-target

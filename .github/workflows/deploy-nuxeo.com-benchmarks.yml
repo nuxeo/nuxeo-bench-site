@@ -5,6 +5,10 @@ on:
     branches:
       - master
   workflow_dispatch:  # Manual triggering
+
+permissions:
+  contents: read
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
